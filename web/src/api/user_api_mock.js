@@ -1,5 +1,5 @@
-export default{
-    "users": 
+
+ const users =
     [
         {
             "id": 0,
@@ -17,4 +17,5 @@ export default{
             "county": "Denmark"
         }
     ]
-}
+
+export default users

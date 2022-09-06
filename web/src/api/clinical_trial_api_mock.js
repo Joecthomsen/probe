@@ -1,5 +1,5 @@
-export default{
-    "clinicalTrials": 
+{
+    const clinicalTrials = 
     [
         {
             "id": 0,
@@ -22,3 +22,4 @@ export default{
         }
     ]
 }
+export default clinicalTrials
