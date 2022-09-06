@@ -1,5 +1,5 @@
-{
-    const clinicalTrials = 
+const clinicalTrials = {
+    "clinicalTrials": 
     [
         {
             "id": 0,

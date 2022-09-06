@@ -1,5 +1,6 @@
-
- const users =
+const users = 
+{
+    "users": 
     [
         {
             "id": 0,
@@ -17,5 +18,5 @@
             "county": "Denmark"
         }
     ]
-
+}
 export default users
