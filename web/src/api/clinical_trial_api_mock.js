@@ -4,6 +4,7 @@ export default{
         {
             "id": 0,
             "image": "<PATH_TO_IMAGE_HERE>",
+            "dateSubmitted": "10/08/2022",
             "header": "Cancer Study",
             "title": "A study for patient with terminal stage 3 cancer",
             "minAge": 18,

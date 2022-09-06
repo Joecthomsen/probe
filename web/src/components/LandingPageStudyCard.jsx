@@ -1,5 +1,3 @@
-import studyCards from "../api/clinical_trial_api_mock"
-
 const LandingPageStudyCard = (props) => {
 
 
