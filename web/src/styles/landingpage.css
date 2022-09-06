@@ -1,0 +1,60 @@
+.nav-bar-container {
+  display: flex;
+  padding: 15px 2%;
+  justify-content: space-between;
+  background-color: #57a8cc;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+  color: #faebd7;
+  font-weight: bolder;
+}
+.nav-bar-container h1:hover {
+  cursor: default;
+}
+
+.nav-bar-links {
+  display: flex;
+}
+.nav-bar-links h1 {
+  margin: auto 20px;
+  color: #faebd7;
+}
+.nav-bar-links h1:hover {
+  color: #b8d3df;
+  cursor: pointer;
+}
+
+.studycard-container {
+  width: 15rem;
+  background: linear-gradient(148deg, rgb(87, 168, 204) 0%, rgb(138, 205, 233) 66%, rgb(217, 237, 246) 100%);
+  margin: 10% 5rem;
+  padding: 1.5rem 1rem;
+  border-radius: 0.8rem;
+}
+.studycard-container h1 {
+  color: #faebd7;
+}
+.studycard-container h2 {
+  color: #faebd7;
+  font-size: medium;
+  font-weight: 400;
+  margin: 1rem 0 0 0;
+}
+.studycard-container h3 {
+  color: #faebd7;
+  margin: 1rem 0 0 0;
+}
+.studycard-container p {
+  margin: 0.5rem 0 0 0;
+  color: #faebd7;
+}
+
+.footer {
+  font-size: x-small;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 5%;
+  left: 0;
+  right: 0;
+}/*# sourceMappingURL=landingpage.css.map */

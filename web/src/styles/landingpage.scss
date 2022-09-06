@@ -1,0 +1,69 @@
+$navBarBlue: #57a8cc;
+$hoverBlue: #b8d3df;
+$textColor: #faebd7;
+$spaceBetweenLinks: 20px;
+
+.nav-bar-container{
+    display: flex;
+    padding: 15px 2%;
+    justify-content: space-between;
+    background-color: $navBarBlue;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+    color: $textColor;
+    font-weight: bolder;
+    h1{
+        &:hover{
+            cursor: default;
+        }
+    }
+
+}
+
+.nav-bar-links{
+    display: flex;
+    h1 {
+        margin: auto $spaceBetweenLinks;
+        color: $textColor;
+        &:hover{
+            color: $hoverBlue;
+            cursor: pointer;
+        }
+    }
+}
+
+.studycard-container{
+    width: 15rem;
+    background: linear-gradient(148deg, rgba(87,168,204,1) 0%, rgba(138,205,233,1) 66%, rgba(217,237,246,1) 100%);
+    margin: 10% 5rem;
+    padding: 1.5rem 1rem;
+    border-radius: 0.8rem;
+    h1{
+        color: #faebd7;
+    }
+    h2{
+        color: $textColor;
+        font-size: medium;
+        font-weight:400;
+        margin: 1rem 0 0 0;
+    }
+    h3{
+        color: #faebd7;
+        margin: 1rem 0 0 0
+    }
+    p{
+        margin: 0.5rem 0 0 0;
+        color: $textColor;
+    }
+}
+
+.footer{
+    font-size: x-small;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 5%;
+    left: 0; 
+    right: 0; 
+
+}
