@@ -1,7 +1,9 @@
 .nav-bar-container {
+  font-size: x-large;
   display: flex;
-  padding: 15px 2%;
+  padding: 18px 2% 18px 15px;
   justify-content: space-between;
+  align-items: center;
   background-color: #57a8cc;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
   color: #faebd7;
@@ -9,6 +11,10 @@
 }
 .nav-bar-container h1:hover {
   cursor: default;
+}
+
+.main-container {
+  margin: 5% 2rem;
 }
 
 .nav-bar-links {
@@ -30,9 +36,9 @@
 
 .main-container {
   display: flex;
+  align-items: top;
 }
 .main-container div {
-  margin: 10% 2rem;
   width: 40%;
 }
 
@@ -41,28 +47,28 @@
   min-width: 15rem;
   max-height: 20rem;
   background: linear-gradient(148deg, rgb(87, 168, 204) 0%, rgb(138, 205, 233) 66%, rgb(217, 237, 246) 100%);
-  margin: 10% 5rem;
+  margin: 0% 5rem;
   padding: 1.5rem 1rem;
   border-radius: 0.8rem;
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.4);
-  text-shadow: 0.5px 0.5px 0.5px black;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4);
+  text-shadow: 1px 1px 1px #ffffff;
 }
 .studycard-container h1 {
-  color: #faebd7;
+  color: #000000;
 }
 .studycard-container h2 {
-  color: #faebd7;
+  color: #000000;
   font-size: medium;
   font-weight: 400;
   margin: 1rem 0 0 0;
 }
 .studycard-container h3 {
-  color: #faebd7;
+  color: #000000;
   margin: 1rem 0 0 0;
 }
 .studycard-container p {
   margin: 0.5rem 0 0 0;
-  color: #faebd7;
+  color: #000000;
 }
 
 .material-symbols-outlined {
@@ -78,7 +84,13 @@
 }
 
 .carusel-container {
-  min-width: 500px;
+  margin: 0px 10rem 3rem 50px;
+  padding-bottom: 30px;
+  padding-right: 75px;
+}
+
+.carusel-item {
+  margin: 10px 0px 10px 0px;
 }
 
 .footer {
@@ -99,7 +111,7 @@
   left: 0;
   height: 60%;
   width: 100%;
-  background: #eafaff;
+  background: #dcf6ff;
   margin: 0;
   padding: 0;
   border-top-left-radius: 12rem 6rem;

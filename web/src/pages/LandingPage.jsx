@@ -1,4 +1,4 @@
-import Footer from "../components/Footer";
+//import Footer from "../components/Footer";
 import LandingPageStudyCard from "../components/LandingPageStudyCard";
 import NavBar from "../components/NavBar";
 import "../styles/landingpage.css"
@@ -10,22 +10,22 @@ import "react-multi-carousel/lib/styles.css";
 
 const responsive = {
     superLargeDesktop: {
-    // the naming can be any, depends on you.
-    breakpoint: { max: 4000, min: 3000 },
-    items: 3
-    },
-    desktop: {
-    breakpoint: { max: 3000, min: 1024 },
-    items: 2
-    },
-    tablet: {
-    breakpoint: { max: 1024, min: 464 },
-    items: 2
-    },
-    mobile: {
-    breakpoint: { max: 464, min: 0 },
-    items: 1
-    }
+        // the naming can be any, depends on you.
+        breakpoint: { max: 4000, min: 3000 },
+        items: 2
+      },
+      desktop: {
+        breakpoint: { max: 3000, min: 1024 },
+        items: 2
+      },
+      tablet: {
+        breakpoint: { max: 1024, min: 464 },
+        items: 1
+      },
+      mobile: {
+        breakpoint: { max: 464, min: 0 },
+        items: 1
+      }
 };
 
 const LandingPage = () => {
@@ -41,13 +41,16 @@ const LandingPage = () => {
             <NavBar />
                 <main className="main-container">
                     <LandingPageIntroduction/>
-                    {/* {element} */}
-                    <Carousel responsive={responsive} infinite={true} containerClass="carusel-container" itemClass="carusel-item">
-                    {cardList}
-                </Carousel>;
+                    <Carousel 
+                        responsive={responsive} 
+                        infinite={true} 
+                        containerClass="carusel-container" 
+                        itemClass="carusel-item"
+                        showDots={true}
+                        >
+                        {cardList}
+                    </Carousel>
                 </main>  
-            
-            {/* <Footer/> */}
             <div className="blob-down"/>
         </div>
     )

@@ -1,15 +1,21 @@
 $navBarBlue: #57a8cc;
 $hoverBlue: #b8d3df;
 $textColor: #faebd7;
+$cardTextColor: #000000;
+$cardTextShadow: #ffffff;
 $spaceBetweenLinks: 20px;
-$cardFontShadowSize: 0.5px;
-$blobColor: #eafaff;
+$cardFontShadowSize: 1px;
+$blobColor: #dcf6ff;
 $blobShadowColor: #caedfa;
 
+
+
 .nav-bar-container{
+    font-size: x-large;
     display: flex;
-    padding: 15px 2%;
+    padding: 18px 2% 18px 15px;
     justify-content: space-between;
+    align-items: center;
     background-color: $navBarBlue;
     box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
     color: $textColor;
@@ -19,12 +25,11 @@ $blobShadowColor: #caedfa;
             cursor: default;
         }
     }
-
 }
 
-// .main-container{
-//     background-color: red;
-// }
+.main-container{
+    margin: 5% 2rem;    
+}
 
 .nav-bar-links{
     display: flex;
@@ -39,14 +44,16 @@ $blobShadowColor: #caedfa;
 }
 
 .ldn-pg-intro{
+    // margin-top: 2rem;
     font-size: x-large;
     text-align:justify;
 }
 
 .main-container{
     display: flex;
+    align-items:top;
     div{
-        margin: 10% 2rem;
+        // margin: 10% 2rem;
         width: 40%;
     }
 }
@@ -56,11 +63,11 @@ $blobShadowColor: #caedfa;
     min-width: 15rem;
     max-height: 20rem;
     background: linear-gradient(148deg, rgba(87,168,204,1) 0%, rgba(138,205,233,1) 66%, rgba(217,237,246,1) 100%);
-    margin: 10% 5rem;
+    margin: 0% 5rem;
     padding: 1.5rem 1rem;
     border-radius: 0.8rem;
-    box-shadow: 0 2px 4px 0 rgba(0,0,0,.4);
-    text-shadow: $cardFontShadowSize $cardFontShadowSize $cardFontShadowSize black;
+    box-shadow: 0 4px 8px 0 #00000066;
+    text-shadow: $cardFontShadowSize $cardFontShadowSize $cardFontShadowSize $cardTextShadow;
 
     // &:hover{
     //     background: linear-gradient(148deg, rgb(62, 145, 180) 0%, rgb(111, 182, 212) 66%, rgb(179, 219, 238) 100%);
@@ -68,21 +75,21 @@ $blobShadowColor: #caedfa;
     // }
 
     h1{
-        color: #faebd7;
+        color: $cardTextColor;
     }
     h2{
-        color: $textColor;
+        color: $cardTextColor;
         font-size: medium;
         font-weight:400;
         margin: 1rem 0 0 0;
     }
     h3{
-        color: #faebd7;
+        color: $cardTextColor;
         margin: 1rem 0 0 0
     }
     p{
         margin: 0.5rem 0 0 0;
-        color: $textColor;
+        color: $cardTextColor;
     }
 }
 
@@ -104,12 +111,15 @@ $blobShadowColor: #caedfa;
 }
 
 .carusel-container{
-    min-width: 500px;
+    margin: 0px 10rem 3rem 50px;
+    padding-bottom: 30px;
+    padding-right: 75px;
 }
 
-// .carusel-item{
-//     margin: 10px 10px 10px 10px;
-// }
+.carusel-item{
+    margin: 10px 0px 10px 0px;
+   
+}
 
 .footer{
     font-size: x-small;
