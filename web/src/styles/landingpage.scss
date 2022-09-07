@@ -2,6 +2,9 @@ $navBarBlue: #57a8cc;
 $hoverBlue: #b8d3df;
 $textColor: #faebd7;
 $spaceBetweenLinks: 20px;
+$cardFontShadowSize: 0.5px;
+$blobColor: #eafaff;
+$blobShadowColor: #caedfa;
 
 .nav-bar-container{
     display: flex;
@@ -19,6 +22,10 @@ $spaceBetweenLinks: 20px;
 
 }
 
+// .main-container{
+//     background-color: red;
+// }
+
 .nav-bar-links{
     display: flex;
     h1 {
@@ -31,12 +38,35 @@ $spaceBetweenLinks: 20px;
     }
 }
 
+.ldn-pg-intro{
+    font-size: x-large;
+    text-align:justify;
+}
+
+.main-container{
+    display: flex;
+    div{
+        margin: 10% 2rem;
+        width: 40%;
+    }
+}
+
 .studycard-container{
-    width: 15rem;
+    max-width: 15rem;
+    min-width: 15rem;
+    max-height: 20rem;
     background: linear-gradient(148deg, rgba(87,168,204,1) 0%, rgba(138,205,233,1) 66%, rgba(217,237,246,1) 100%);
     margin: 10% 5rem;
     padding: 1.5rem 1rem;
     border-radius: 0.8rem;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.4);
+    text-shadow: $cardFontShadowSize $cardFontShadowSize $cardFontShadowSize black;
+
+    // &:hover{
+    //     background: linear-gradient(148deg, rgb(62, 145, 180) 0%, rgb(111, 182, 212) 66%, rgb(179, 219, 238) 100%);
+    //     cursor: pointer;
+    // }
+
     h1{
         color: #faebd7;
     }
@@ -56,6 +86,31 @@ $spaceBetweenLinks: 20px;
     }
 }
 
+.material-symbols-outlined {
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 48;
+    color: white;
+    padding-left: 80%;
+    padding-top: 5%;
+    font-size: 50px;
+    &:hover{
+        color: $hoverBlue;
+        cursor: pointer;
+    }
+    
+}
+
+.carusel-container{
+    min-width: 500px;
+}
+
+// .carusel-item{
+//     margin: 10px 10px 10px 10px;
+// }
+
 .footer{
     font-size: x-small;
     display: flex;
@@ -67,3 +122,21 @@ $spaceBetweenLinks: 20px;
     right: 0; 
 
 }
+
+.blob-down{
+    position: absolute;
+    z-index: -1;
+    bottom: 0;
+    left: 0;
+    height: 60%;
+    width: 100%;
+    background: $blobColor;
+    margin: 0;
+    padding: 0;
+    border-top-left-radius: 12rem 6rem;
+    border-top-right-radius: 90rem 16rem;
+    box-shadow: 6rem 0rem 6rem 0rem $blobShadowColor;
+}
+
+
+

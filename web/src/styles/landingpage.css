@@ -23,12 +23,29 @@
   cursor: pointer;
 }
 
+.ldn-pg-intro {
+  font-size: x-large;
+  text-align: justify;
+}
+
+.main-container {
+  display: flex;
+}
+.main-container div {
+  margin: 10% 2rem;
+  width: 40%;
+}
+
 .studycard-container {
-  width: 15rem;
+  max-width: 15rem;
+  min-width: 15rem;
+  max-height: 20rem;
   background: linear-gradient(148deg, rgb(87, 168, 204) 0%, rgb(138, 205, 233) 66%, rgb(217, 237, 246) 100%);
   margin: 10% 5rem;
   padding: 1.5rem 1rem;
   border-radius: 0.8rem;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.4);
+  text-shadow: 0.5px 0.5px 0.5px black;
 }
 .studycard-container h1 {
   color: #faebd7;
@@ -48,6 +65,22 @@
   color: #faebd7;
 }
 
+.material-symbols-outlined {
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 48;
+  color: white;
+  padding-left: 80%;
+  padding-top: 5%;
+  font-size: 50px;
+}
+.material-symbols-outlined:hover {
+  color: #b8d3df;
+  cursor: pointer;
+}
+
+.carusel-container {
+  min-width: 500px;
+}
+
 .footer {
   font-size: x-small;
   display: flex;
@@ -57,4 +90,19 @@
   bottom: 5%;
   left: 0;
   right: 0;
+}
+
+.blob-down {
+  position: absolute;
+  z-index: -1;
+  bottom: 0;
+  left: 0;
+  height: 60%;
+  width: 100%;
+  background: #eafaff;
+  margin: 0;
+  padding: 0;
+  border-top-left-radius: 12rem 6rem;
+  border-top-right-radius: 90rem 16rem;
+  box-shadow: 6rem 0rem 6rem 0rem #caedfa;
 }/*# sourceMappingURL=landingpage.css.map */
