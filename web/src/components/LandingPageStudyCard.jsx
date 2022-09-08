@@ -2,7 +2,7 @@ const LandingPageStudyCard = (props) => {
 
     let description = props.description;
     if(description.length > 200){
-        description = description.substring(0, 200 ) + "..."
+        description = description.substring(0, 100 ) + "..."
     }
 
     return (
