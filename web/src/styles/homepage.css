@@ -1,7 +1,9 @@
 nav {
+  position: relative;
+  z-index: 2;
   height: 5vh;
   display: flex;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.418);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.65);
   padding: 18px 2%;
   justify-content: space-between;
   background-color: #00435f;
@@ -12,17 +14,17 @@ nav {
 
 .nav-bar-links-container {
   display: flex;
-  text-decoration: none;
-  padding-right: 50px;
+  padding-right: 100px;
   color: #ffffff;
   font-size: xx-large;
   font-weight: bold;
 }
-.nav-bar-links-container h1 {
-  font-size: 40px;
-  padding-left: 40px;
+.nav-bar-links-container .nav-bar-links {
+  text-decoration: none;
+  color: #ffffff;
+  padding-left: 100px;
 }
-.nav-bar-links-container h1:hover {
+.nav-bar-links-container .nav-bar-links:hover {
   color: #b8d3df;
 }
 
