@@ -27,12 +27,19 @@ nav{
     color: $navbar-textColor;
     font-size: x-large;
     align-items: center;
-    .nav-bar-links{
-        text-decoration: none;
-        padding-right: 50px;
-        color: $navbar-textColor;
-        font-size: xx-large;
-        font-weight: bold;
+}
+
+.nav-bar-links-container{
+    display: flex;
+    text-decoration: none;
+    padding-right: 50px;
+    color: $navbar-textColor;
+    font-size: xx-large;
+    font-weight: bold;
+  
+    h1{
+        font-size: 40px;
+        padding-left: 40px;
         &:hover{
             color: $hoverBlue;
         }

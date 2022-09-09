@@ -9,14 +9,20 @@ nav {
   font-size: x-large;
   align-items: center;
 }
-nav .nav-bar-links {
+
+.nav-bar-links-container {
+  display: flex;
   text-decoration: none;
   padding-right: 50px;
   color: #ffffff;
   font-size: xx-large;
   font-weight: bold;
 }
-nav .nav-bar-links:hover {
+.nav-bar-links-container h1 {
+  font-size: 40px;
+  padding-left: 40px;
+}
+.nav-bar-links-container h1:hover {
   color: #b8d3df;
 }
 
