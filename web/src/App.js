@@ -9,13 +9,14 @@ import {
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-          <Route path='/' element={<Homepage/>}/>
-          <Route path='/about' element={<About/>}/>
-          <Route path='/login' element={<Login/>}/>
-      </Routes>
-    </BrowserRouter>
+    <Homepage/>
+    // <BrowserRouter>
+    //   <Routes>
+    //       <Route path='/' element={<Homepage/>}/>
+    //       <Route path='/about' element={<About/>}/>
+    //       <Route path='/login' element={<Login/>}/>
+    //   </Routes>
+    // </BrowserRouter>
     // <div className="App">
     //   <LandingPage />
     // </div>
