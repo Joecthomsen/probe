@@ -1,9 +1,9 @@
 //import Footer from "../components/Footer";
-import LandingPageStudyCard from "../components/LandingPageStudyCard";
+import LandingPageStudyCard from "../components/HomepageStudyCard";
 import NavBar from "../components/NavBar";
 import "../styles/landingpage.css"
 import cardData from "../api/clinical_trial_api_mock"
-import LandingPageIntroduction from "../components/LandingpageIntroduction";
+import LandingPageIntroduction from "../components/HomepageIntroduction";
 
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";

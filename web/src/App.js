@@ -1,4 +1,4 @@
-import LandingPage from './pages/LandingPage';
+import Homepage from './pages/Home';
 import Aboute from './pages/About';
 import Login from './pages/Login';
 import {
@@ -11,7 +11,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-          <Route path='/' element={<LandingPage/>}/>
+          <Route path='/' element={<Homepage/>}/>
           <Route path='/about' element={<Aboute/>}/>
           <Route path='/login' element={<Login/>}/>
       </Routes>
