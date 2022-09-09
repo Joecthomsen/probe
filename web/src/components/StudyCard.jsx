@@ -8,8 +8,14 @@ const LandingPageStudyCard = (props) => {
     return (
         <div className="studycard-container">
                 <h1>{props.header}</h1>
+                <div className="card-location">
+                    {/* <span class="material-symbols-outlined">location_city</span> */}
+                    <p className="card-country">{props.country}</p>
+                    <p className="card-city">{props.city}</p>
+                </div>
+                
                 <h2>{props.title}</h2>
-                <h3>{props.country}</h3>
+                
                 <p>{description}</p>
                 <span className="material-symbols-outlined">arrow_outward</span>
         </div>

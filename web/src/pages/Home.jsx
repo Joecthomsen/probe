@@ -1,5 +1,5 @@
 //import Footer from "../components/Footer";
-import LandingPageStudyCard from "../components/HomepageStudyCard";
+import LandingPageStudyCard from "../components/StudyCard";
 import NavBar from "../components/NavBar";
 import "../styles/homepage.css"
 import cardData from "../api/clinical_trial_api_mock"
@@ -42,7 +42,8 @@ const LandingPage = () => {
         return(<LandingPageStudyCard key={index} 
             header={element.header} 
             title={element.title} 
-            country={element.county} 
+            country={element.county}
+            city={element.city} 
             description={element.cardDescription}/>)
     })
 
@@ -57,19 +58,24 @@ const LandingPage = () => {
                             <h2>World wide experimental medicin initiateves</h2>
                         </div>
                     </div>                   
-                </main>  
-                <Carousel 
-                    responsive={responsive} 
-                    infinite={true} 
-                    containerClass="carusel-container" 
-                    itemClass="carusel-item"
-                    showDots={true}
-                    partialVisible={false}
-                    //centerMode={false}
-                    >
-                    {cardList}
-                </Carousel>
-            {/* <div className="blob-down"/> */}
+                </main> 
+                <div className="card-page">
+                    <div className="card-header">
+                        <h1>Selection of Studies</h1>
+                    </div>
+                    <Carousel 
+                        responsive={responsive} 
+                        infinite={true} 
+                        containerClass="carusel-container" 
+                        itemClass="carusel-item"
+                        showDots={true}
+                        partialVisible={false}
+                        //centerMode={false}
+                        >
+                        {cardList}
+                    </Carousel>
+                </div> 
+                {/* <h1 className="card-header">Selection of Studies</h1> */}
         </div>
     )
 }

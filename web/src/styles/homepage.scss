@@ -13,6 +13,7 @@
 //Card styling
     $cardTextColor: #000000;
     $cardTextShadow: #ffffff;
+    $card-location-color:  rgb(100, 100, 100);
     $spaceBetweenLinks: 20px;
     $cardFontShadowSize: 1px;
 
@@ -55,6 +56,8 @@ nav{
     min-height: 95vh;
     position: relative;
     z-index: 0;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
 }
 
 .color-overlay{
@@ -63,6 +66,8 @@ nav{
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, $background-color-overlay);
+    margin-bottom: 0px;
+    padding-bottom: 0px;
 }
 
 .header{
@@ -76,14 +81,24 @@ nav{
     }
 }
 
-.carusel-container{
+.card-page{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    margin-top: 0px;
+    padding-top: 0px;
+    background-color: white;
+    .card-header{
+        padding-top: 2%;
+        font-size: 2rem;
+    }
+}
 
+
+.carusel-container{
     width: 90%;
-    margin: 5rem 30px 0px 20px;
-    
-    // margin: 0px 5rem 3rem 50px;
-    // padding-bottom: 30px;
-    // padding-right: 75px;
+    margin: 5rem 30px 0px 30px;
 }
 
 .carusel-item{
@@ -94,27 +109,44 @@ nav{
 
 
 .studycard-container{
-    // max-width: 15rem;
-    // min-width: 15rem;
+ 
     display: flex;
     flex-direction: column;
     max-height: 280px;
-    border: 1px solid black;
-    //background: linear-gradient(148deg, rgba(87,168,204,1) 0%, rgba(138,205,233,1) 66%, rgba(217,237,246,1) 100%);
+
     margin: 0% 1rem 0rem 5rem;
     padding: 1.5rem 1rem;
     border-radius: 0.8rem;
-    box-shadow: 0 4px 8px 0 #00000066;
+    box-shadow: 4px 4px 8px 4px hsla(0, 0%, 0%, 0.2);
     text-shadow: $cardFontShadowSize $cardFontShadowSize $cardFontShadowSize $cardTextShadow;
 
-    // &:hover{
-    //     background: linear-gradient(148deg, rgb(62, 145, 180) 0%, rgb(111, 182, 212) 66%, rgb(179, 219, 238) 100%);
-    //     cursor: pointer;
-    // }
+    .card-location{
+        display: flex;
+        margin-top: 3%;
+        align-items: flex-start;
+        justify-content: start;
+    }
+    .card-country{
+        color: $card-location-color;
+        margin-right: 15%;
+        margin-left: 0px;
+    }
+
+    .card-city{
+        color: $card-location-color;
+    }
+    
+    span{
+        float: left;
+        color: black;
+    }
+
 
     h1{
-        color: $cardTextColor;
+        font-size: x-large;
+        color: black
     }
+
     h2{
         color: $cardTextColor;
         font-size: medium;
@@ -130,6 +162,7 @@ nav{
         color: $cardTextColor;
     }
 }
+
 
 
 
@@ -153,17 +186,17 @@ nav{
 }
 
 
-.footer{
-    font-size: x-small;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    bottom: 5%;
-    left: 0; 
-    right: 0; 
+// .footer{
+//     font-size: x-small;
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     position: absolute;
+//     bottom: 5%;
+//     left: 0; 
+//     right: 0; 
 
-}
+// }
 
 
 
