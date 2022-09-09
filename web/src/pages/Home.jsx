@@ -45,7 +45,7 @@ const LandingPage = () => {
     return ( 
         <div>
             <NavBar />
-                <body className="bg-image">
+                <main className="bg-image">
                     <div>
                         <div className="color-overlay"/>
                         <div className="header">
@@ -53,7 +53,7 @@ const LandingPage = () => {
                             <h2>World wide experimental medicin initiateves</h2>
                         </div>
                     </div>                   
-                </body>  
+                </main>  
                 <Carousel 
                     responsive={responsive} 
                     infinite={true} 

@@ -1,5 +1,5 @@
 import Homepage from './pages/Home';
-import Aboute from './pages/About';
+import About from './pages/About';
 import Login from './pages/Login';
 import {
   BrowserRouter,
@@ -11,8 +11,8 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-          <Route path='/probe' element={<Homepage/>}/>
-          <Route path='/about' element={<Aboute/>}/>
+          <Route index element={<Homepage/>}/>
+          <Route path='/about' element={<About/>}/>
           <Route path='/login' element={<Login/>}/>
       </Routes>
     </BrowserRouter>
