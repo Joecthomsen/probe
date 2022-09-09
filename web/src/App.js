@@ -11,7 +11,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-          <Route index element={<Homepage/>}/>
+          <Route path='/' element={<Homepage/>}/>
           <Route path='/about' element={<About/>}/>
           <Route path='/login' element={<Login/>}/>
       </Routes>
