@@ -60,7 +60,7 @@ nav .nav-bar-links:hover {
   display: flex;
   flex-direction: column;
   max-height: 280px;
-  background: linear-gradient(148deg, rgb(87, 168, 204) 0%, rgb(138, 205, 233) 66%, rgb(217, 237, 246) 100%);
+  border: 1px solid black;
   margin: 0% 1rem 0rem 5rem;
   padding: 1.5rem 1rem;
   border-radius: 0.8rem;

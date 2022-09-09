@@ -35,7 +35,11 @@ const LandingPage = () => {
     const studies = cardData.clinicalTrials;
 
     const cardList = studies.map((element, index) => {
-        return(<LandingPageStudyCard key={index} header={element.header} title={element.title} country={element.county} description={element.cardDescription}/>)
+        return(<LandingPageStudyCard key={index} 
+            header={element.header} 
+            title={element.title} 
+            country={element.county} 
+            description={element.cardDescription}/>)
     })
 
     return ( 
@@ -48,10 +52,7 @@ const LandingPage = () => {
                             <h1>Clinical trial matching</h1>
                             <h2>World wide experimental medicin initiateves</h2>
                         </div>
-                    </div>
-
-                    {/* <LandingPageIntroduction/> */}
-                    
+                    </div>                   
                 </body>  
                 <Carousel 
                     responsive={responsive} 

@@ -89,7 +89,8 @@ nav{
     display: flex;
     flex-direction: column;
     max-height: 280px;
-    background: linear-gradient(148deg, rgba(87,168,204,1) 0%, rgba(138,205,233,1) 66%, rgba(217,237,246,1) 100%);
+    border: 1px solid black;
+    //background: linear-gradient(148deg, rgba(87,168,204,1) 0%, rgba(138,205,233,1) 66%, rgba(217,237,246,1) 100%);
     margin: 0% 1rem 0rem 5rem;
     padding: 1.5rem 1rem;
     border-radius: 0.8rem;
