@@ -1,5 +1,3 @@
-import location from "../resources/location_on.svg"
-
 const StudyCard = (props) => {
 
     let description = props.description;
