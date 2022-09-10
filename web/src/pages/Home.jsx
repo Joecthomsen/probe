@@ -21,15 +21,15 @@ const responsive = {
         partialVisibilityGutter: 40
       },
       tablet: {
-        breakpoint: { max: 1599, min: 1024 },
+        breakpoint: { max: 1599, min: 1124 },
         items: 3
       },
       smallTablet: {
-        breakpoint: {max: 1023, min: 624},
+        breakpoint: {max: 1123, min: 724},
         items: 2
       },
       mobile: {
-        breakpoint: { max: 623, min: 0 },
+        breakpoint: { max: 723, min: 0 },
         items: 1
       }
 };
@@ -70,12 +70,10 @@ const LandingPage = () => {
                         itemClass="carusel-item"
                         showDots={true}
                         partialVisible={false}
-                        //centerMode={false}
                         >
                         {cardList}
                     </Carousel>
                 </div> 
-                {/* <h1 className="card-header">Selection of Studies</h1> */}
         </div>
     )
 }

@@ -5,17 +5,21 @@
     $navbar-textColor: #ffffff;
 
 //Body styling
-    $background-color-overlay: 0.2; //Percenatge black overlay
+    $background-color-overlay: 0.2; //Percenatge black overlay on bg-image
     $header-color: #ffffff;
     $header-border-color: #052a3a;
     $header-border-size: 2px;
 
 //Card styling
     $cardTextColor: #000000;
-    $cardTextShadow: #ffffff;
-    $card-location-color:  rgb(100, 100, 100);
-    $spaceBetweenLinks: 20px;
+    $card-location-text-color:  rgb(100, 100, 100);
+    $card-location-icon-color: #00ff0d;
     $cardFontShadowSize: 1px;
+    $description-border-color: rgb(196, 196, 196);
+    $description-text-color: rgb(131, 131, 131);
+    $card-link-learn-more-color: #00ff0d;
+    $card-link-learn-more-hover-color: #00ad09;
+
 
 
 nav{
@@ -99,6 +103,8 @@ nav{
 .carusel-container{
     width: 90%;
     margin: 5rem 30px 0px 30px;
+    padding: 4px 4px 8px 4px;
+
 }
 
 .carusel-item{
@@ -109,64 +115,76 @@ nav{
 
 
 .studycard-container{
- 
     display: flex;
     flex-direction: column;
     max-height: 280px;
 
     margin: 0% 1rem 0rem 5rem;
     padding: 1.5rem 1rem;
-    border-radius: 0.8rem;
-    box-shadow: 4px 4px 8px 4px hsla(0, 0%, 0%, 0.2);
-    text-shadow: $cardFontShadowSize $cardFontShadowSize $cardFontShadowSize $cardTextShadow;
+    border-radius: 12px;
+    box-shadow: 4px 3px 6px 4px hsla(0, 0%, 0%, 0.12);
 
     .card-location{
         display: flex;
-        margin-top: 3%;
-        align-items: flex-start;
-        justify-content: start;
-    }
-    .card-country{
-        color: $card-location-color;
-        margin-right: 15%;
-        margin-left: 0px;
-    }
+        align-items: center;
+        margin-top: 1%;
 
-    .card-city{
-        color: $card-location-color;
-    }
+        h1{
+            display: flex;
+            font-size: x-large;
+            color: black
+        }
+        
+        span{
+            color: $card-location-icon-color;
+            height: 30px;
+            font-size: x-large;
+            padding-left: 0px;
+            // margin: 0px 2px 0px 0px;
+        }
+
+        .card-country{
+            color: $card-location-text-color;
+            margin-right: 10%;
+            margin-left: 3%;
+        }
     
-    span{
-        float: left;
-        color: black;
+        .card-city{
+            color: $card-location-text-color;
+        }
     }
 
-
-    h1{
-        font-size: x-large;
-        color: black
+    hr{
+        height: 1px;
+        background-color:$card-location-icon-color;
+        border: none;
+        margin-top: 1%;
     }
 
     h2{
-        color: $cardTextColor;
-        font-size: medium;
-        font-weight:400;
-        margin: 1rem 0 0 0;
+        font-size: 12px;
+        margin: 5% 0px 0px 2%;
     }
-    h3{
-        color: $cardTextColor;
-        margin: 1rem 0 0 0
+
+    .card-description-container{
+        font-size: 14px;
+        padding: 2%;
+        margin-top: 4%;
+        border: 1px solid $description-border-color;
+        color: $description-text-color;
+        text-align: justify
     }
-    p{
-        margin: 0.5rem 0 0 0;
-        color: $cardTextColor;
+
+    .links{
+        display: flex;
+        padding: 5% 0px 0px 80%;
+        color: $card-link-learn-more-color;
+        &:hover{
+            color: $card-link-learn-more-hover-color;
+            cursor: pointer;
+        }
     }
 }
-
-
-
-
-
 
 .material-symbols-outlined {
     font-variation-settings:
@@ -174,29 +192,16 @@ nav{
     'wght' 400,
     'GRAD' 0,
     'opsz' 48;
-    color: white;
-    padding-left: 80%;
+    // padding-left: 80%;
     padding-top: 5%;
     font-size: 50px;
-    &:hover{
-        color: $hoverBlue;
-        cursor: pointer;
-    }
+    // &:hover{
+    //     color: $hoverBlue;
+    //     cursor: pointer;
+    // }
     
 }
 
-
-// .footer{
-//     font-size: x-small;
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-//     position: absolute;
-//     bottom: 5%;
-//     left: 0; 
-//     right: 0; 
-
-// }
 
 
 

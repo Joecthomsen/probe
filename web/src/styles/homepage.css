@@ -76,6 +76,7 @@ nav {
 .carusel-container {
   width: 90%;
   margin: 5rem 30px 0px 30px;
+  padding: 4px 4px 8px 4px;
 }
 
 .carusel-item {
@@ -88,55 +89,63 @@ nav {
   max-height: 280px;
   margin: 0% 1rem 0rem 5rem;
   padding: 1.5rem 1rem;
-  border-radius: 0.8rem;
-  box-shadow: 4px 4px 8px 4px hsla(0deg, 0%, 0%, 0.2);
-  text-shadow: 1px 1px 1px #ffffff;
+  border-radius: 12px;
+  box-shadow: 4px 3px 6px 4px hsla(0deg, 0%, 0%, 0.12);
 }
 .studycard-container .card-location {
   display: flex;
-  margin-top: 3%;
-  align-items: flex-start;
-  justify-content: start;
+  align-items: center;
+  margin-top: 1%;
 }
-.studycard-container .card-country {
-  color: rgb(100, 100, 100);
-  margin-right: 15%;
-  margin-left: 0px;
-}
-.studycard-container .card-city {
-  color: rgb(100, 100, 100);
-}
-.studycard-container span {
-  float: left;
-  color: black;
-}
-.studycard-container h1 {
+.studycard-container .card-location h1 {
+  display: flex;
   font-size: x-large;
   color: black;
 }
+.studycard-container .card-location span {
+  color: #00ff0d;
+  height: 30px;
+  font-size: x-large;
+  padding-left: 0px;
+}
+.studycard-container .card-location .card-country {
+  color: rgb(100, 100, 100);
+  margin-right: 10%;
+  margin-left: 3%;
+}
+.studycard-container .card-location .card-city {
+  color: rgb(100, 100, 100);
+}
+.studycard-container hr {
+  height: 1px;
+  background-color: #00ff0d;
+  border: none;
+  margin-top: 1%;
+}
 .studycard-container h2 {
-  color: #000000;
-  font-size: medium;
-  font-weight: 400;
-  margin: 1rem 0 0 0;
+  font-size: 12px;
+  margin: 5% 0px 0px 2%;
 }
-.studycard-container h3 {
-  color: #000000;
-  margin: 1rem 0 0 0;
+.studycard-container .card-description-container {
+  font-size: 14px;
+  padding: 2%;
+  margin-top: 4%;
+  border: 1px solid rgb(196, 196, 196);
+  color: rgb(131, 131, 131);
+  text-align: justify;
 }
-.studycard-container p {
-  margin: 0.5rem 0 0 0;
-  color: #000000;
+.studycard-container .links {
+  display: flex;
+  padding: 5% 0px 0px 80%;
+  color: #00ff0d;
+}
+.studycard-container .links:hover {
+  color: #00ad09;
+  cursor: pointer;
 }
 
 .material-symbols-outlined {
   font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 48;
-  color: white;
-  padding-left: 80%;
   padding-top: 5%;
   font-size: 50px;
-}
-.material-symbols-outlined:hover {
-  color: #b8d3df;
-  cursor: pointer;
 }/*# sourceMappingURL=homepage.css.map */
