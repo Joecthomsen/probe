@@ -12,18 +12,17 @@ import {
 
 function App() {
   return (
-    <HashRouter>
-      <Routes>
-          <Route path='/' element={<Homepage/>}/>
-          <Route path='/about' element={<About/>}/>
-          <Route path='/login' element={<Login/>}/>
-          <Route path='/userProfile' element={<UserProfile/>} />
-          <Route path='*' element={<PageNotFound/>}/>
-      </Routes>
-    </HashRouter>
-    // <div className="App">
-    //   <LandingPage />
-    // </div>
+    <>
+        <HashRouter>
+          <Routes>
+              <Route path='/' element={<Homepage/>}/>
+              <Route path='/about' element={<About/>}/>
+              <Route path='/login' element={<Login/>}/>
+              <Route path='/userProfile' element={<UserProfile/>} />
+              <Route path='*' element={<PageNotFound/>}/>
+          </Routes>
+        </HashRouter>
+      </>
   );
 }
 
