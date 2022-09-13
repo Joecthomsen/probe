@@ -9,15 +9,16 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
+import Layout from './components/Layout';
 
 function App() {
   return (
     <>
         <HashRouter>
           <Routes>
-              <Route path='/' element={<Homepage/>}/>
-              <Route path='/about' element={<About/>}/>
-              <Route path='/login' element={<Login/>}/>
+              <Route path='/' element={<Layout> <Homepage/> </Layout>}/>
+              <Route path='/about' element={<Layout> <About/> </Layout>}/>
+              <Route path='/login' element={<Layout> <Login/> </Layout>}/>
               <Route path='/userProfile' element={<UserProfile/>} />
               <Route path='*' element={<PageNotFound/>}/>
           </Routes>

@@ -1,11 +1,6 @@
-//import Footer from "../components/Footer";
 import LandingPageStudyCard from "../components/StudyCard";
-import NavBar from "../components/NavBar";
 import "../styles/homepage.css"
 import cardData from "../api/clinical_trial_api_mock"
-//import LandingPageIntroduction from "../components/HomepageIntroduction";
-//import backgroundImage from "../resources/background_image.jpg"
-
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
@@ -48,7 +43,6 @@ const LandingPage = () => {
 
     return ( 
         <div>
-            <NavBar />
                 <main className="bg-image">
                     <div>
                         <div className="color-overlay"/>
