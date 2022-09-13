@@ -5,6 +5,9 @@
 /.pnp
 .pnp.js
 
+# ide settings
+/.idea
+
 # testing
 /coverage
 
