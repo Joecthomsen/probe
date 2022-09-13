@@ -8,6 +8,7 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
+import EditTrials from "./pages/EditTrials";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path='/about' element={<About/>}/>
           <Route path='/login' element={<Login/>}/>
           <Route path='/userProfile' element={<UserProfile/>} />
+          <Route path='/edittrials' element={<EditTrials/>}/>
       </Routes>
     </HashRouter>
     // <div className="App">
