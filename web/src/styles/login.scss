@@ -100,8 +100,48 @@ $soMeButtonsSize: 80px;
 }
 
 .create-new-user{
+  background-image: url("../resources/background-blur.jpg");
+  background-size: cover;
   width: 40vw;
-  height: 95vh;
-  background-color: green;
+  background-position: right;
+  min-height: 95vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  h1{
+    font-size: 4vw;
+    padding: 20vh 1vw 0px 1vw;
+    color: $signInButtonColor;
+    // text-shadow: 1px 1px black;
+  }
+
+  h2{
+    justify-content: center;
+    padding: 2vh;
+    color: $signInButtonColor;
+    // text-shadow: 1px 1px black;
+  }
+
+  button{
+    width: 20vw;
+    margin-top: 6%;
+    padding: 12px 0px 12px 5px;
+    border: none;
+    background-color: rgb(131, 131, 255);
+    font-size: large;
+    font-weight: 900;
+    color: black;
+    border-radius: $border-radius;
+    &:hover{
+      background-color: $signInHoverColor;
+      cursor: pointer;
+    }
+  }
+  
 }
+
+
+
+
 
