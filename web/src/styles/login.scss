@@ -1,72 +1,107 @@
 $margin-between-objects: 2%;
 $object-height: 20px;
 $border-radius: 35px;
-$inputcolor: #f7f7f7;
+$inputcolor: #e6e6e6;
 $signInButtonColor: #00435f;
 $signInHoverColor: #006c9b;
+$soMeButtonsSize: 80px;
 
-.login-header{
-  color: black;
-  padding: 20px 0px 0px 0px;
-  margin-bottom: 0px;
-  font-size: 80px;
+//Layout for the intire page
+.page-container{
+  display: flex;
 }
 
-.outer-page{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+//Left side of the page
+.login-page{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 60vw;
+
+  .login-header{
+    color: black;
+    padding: 20px 0px 0px 0px;
+    margin-bottom: 0px;
+    font-size: 4vw;
+  }
+
+  h2{
+    font-size: medium;
+    color: gray;
+    margin-top: 4%;
+    margin-bottom: 2%;
+  }
 }
-
-.login-container {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    margin: 1% 25% 20px 25%;
-    align-items: center;
-
-    button{
-      background-color: transparent;
-      margin-top: $margin-between-objects;
-      padding: $object-height 10%;
-      font-size: large;
-      border-radius: $border-radius;
-      // box-shadow: 0px 2px 4px 0px gray;
-      border: 0px;
-      width: auto;
-      background-color: $signInButtonColor;
-      color: white;
-      font-size: x-large;
-      &:hover{
-        background-color: $signInHoverColor;
-      }
-    }
-
-  }
-  
-  input{
-    background-color: $inputcolor;
-    width: 30%;
-    margin-top: $margin-between-objects;
-    padding: $object-height 15px;
-    font-size: large;
-    border-radius: $border-radius;
-    border: 0px solid gray;
-  }
-  
-
 
 .so-me-login-buttons{
-    display: flex;
+  display: flex;
+  align-items: center;
 }
 
 .google-button{
-    height: 150px;
+  border-radius: 50px;
+  height: $soMeButtonsSize;
+  &:hover{
+    background-color: #e1f6ff;
+    cursor: pointer;
+  }
+}
+
+.facebook-button{
+  padding: 0px;
+  border-radius: 20px;
+  height: 120px;
+  &:hover{
+    background-color: #e1f6ff;
+    cursor: pointer;
+  }
+}
+
+.line-breaker{
+  height: 1px;
+  width: 40vw;
+  background-color: black;
+  // border: 2px solid black;
 }
 
 
-h2{
-    padding-top: 0px;
-    margin-top: 0px;
+
+.login-container {
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 2%;
+
+  input{
+    align-items: center;
+    background-color: $inputcolor;
+    width: 35vw;
+    padding: 12px 0px 12px 16px;
+    margin-bottom: 6%;
+    border-radius: $border-radius;
+    border: none;
+  }
+  button{
+    width: 20vw;
+    margin-top: 6%;
+    padding: 12px 0px 12px 5px;
+    border: none;
+    background-color: $signInButtonColor;
+    font-size: large;
+    font-weight: 900;
+    color: white;
+    border-radius: $border-radius;
+    &:hover{
+      background-color: $signInHoverColor;
+      cursor: pointer;
+    }
+  }
 }
-  
+
+.create-new-user{
+  width: 40vw;
+  height: 95vh;
+  background-color: green;
+}
+

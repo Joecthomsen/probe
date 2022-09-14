@@ -1,6 +1,7 @@
 import Homepage from './pages/Home';
 import About from './pages/About';
 import Login from './pages/Login';
+import CreateUser from './pages/CreateUser';
 import UserProfile from "./pages/UserProfile";
 import PageNotFound from "./pages/PageNotFound";
 import EditTrials from "./pages/EditTrials";
@@ -19,6 +20,7 @@ function App() {
               <Route path='/' element={<Layout> <Homepage/> </Layout>}/>
               <Route path='/about' element={<Layout> <About/> </Layout>}/>
               <Route path='/login' element={<Layout> <Login/> </Layout>}/>
+              <Route path='createuser' element={<Layout> <CreateUser/> </Layout>}/>
               <Route path='/userProfile' element={<UserProfile/>} />
               <Route path='/edittrials' element={<EditTrials/>}/>
               <Route path='*' element={<PageNotFound/>}/>
