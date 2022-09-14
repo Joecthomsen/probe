@@ -1,0 +1,30 @@
+$margin-between-objects: 5%;
+$object-height: 15px;
+$border-radius: 6px;
+
+.login-container {
+    display: flex;
+    flex-direction: column;
+    margin: 5% 35%;
+  }
+  
+  input{
+    margin-top: $margin-between-objects;
+    padding: $object-height 10px;
+    font-size: large;
+    border-radius: $border-radius;
+    border: 1px solid gray;
+  }
+  
+  button{
+    background-color: transparent;
+    margin-top: 2*$margin-between-objects;
+    padding: $object-height 0%;
+    font-size: large;
+    border-radius: $border-radius;
+    border: 2px solid black;
+    box-shadow: 0px 2px 4px 0px gray;
+  }
+  
+  
+  

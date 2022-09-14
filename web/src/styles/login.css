@@ -1,0 +1,23 @@
+.login-container {
+  display: flex;
+  flex-direction: column;
+  margin: 5% 35%;
+}
+
+input {
+  margin-top: 5%;
+  padding: 15px 10px;
+  font-size: large;
+  border-radius: 6px;
+  border: 1px solid gray;
+}
+
+button {
+  background-color: transparent;
+  margin-top: 10%;
+  padding: 15px 0%;
+  font-size: large;
+  border-radius: 6px;
+  border: 2px solid black;
+  box-shadow: 0px 2px 4px 0px gray;
+}/*# sourceMappingURL=login.css.map */

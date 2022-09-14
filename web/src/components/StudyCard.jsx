@@ -1,7 +1,7 @@
 const StudyCard = (props) => {
 
     let description = props.description;
-    if(description.length > 200){
+    if(description.length > 100){
         description = description.substring(0, 100 ) + "..."
     }
 

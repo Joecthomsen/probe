@@ -1,6 +1,6 @@
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import LandingPageStudyCard from "../components/StudyCard";
+import StudyCard from "../components/StudyCard";
 import cardData from "../api/clinical_trial_api_mock"
 
 const responsive = {
@@ -29,7 +29,7 @@ const responsive = {
 
 const studies = cardData.clinicalTrials;
 const cardList = studies.map((element, index) => {
-  return(<LandingPageStudyCard key={index} 
+  return(<StudyCard key={index} 
       header={element.header} 
       title={element.title} 
       country={element.county}
