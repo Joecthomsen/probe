@@ -2,7 +2,6 @@ import Homepage from './pages/Home';
 import About from './pages/About';
 import Login from './pages/Login';
 import UserProfile from "./pages/UserProfile";
-import PageNotFound from './pages/PageNotFound';
 
 import {
   HashRouter,
