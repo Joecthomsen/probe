@@ -2,7 +2,9 @@ import Homepage from './pages/Home';
 import About from './pages/About';
 import Login from './pages/Login';
 import UserProfile from "./pages/UserProfile";
-
+import PageNotFound from "./pages/PageNotFound";
+import EditTrials from "./pages/EditTrials";
+import Layout from './components/Layout';
 import {
   HashRouter,
   Routes,
@@ -11,17 +13,18 @@ import {
 
 function App() {
   return (
-    <HashRouter>
-      <Routes>
-          <Route path='/' element={<Homepage/>}/>
-          <Route path='/about' element={<About/>}/>
-          <Route path='/login' element={<Login/>}/>
-          <Route path='/userProfile' element={<UserProfile/>} />
-      </Routes>
-    </HashRouter>
-    // <div className="App">
-    //   <LandingPage />
-    // </div>
+    <>
+        <HashRouter>
+          <Routes>
+              <Route path='/' element={<Layout> <Homepage/> </Layout>}/>
+              <Route path='/about' element={<Layout> <About/> </Layout>}/>
+              <Route path='/login' element={<Layout> <Login/> </Layout>}/>
+              <Route path='/userProfile' element={<UserProfile/>} />
+              <Route path='/edittrials' element={<EditTrials/>}/>
+              <Route path='*' element={<PageNotFound/>}/>
+          </Routes>
+        </HashRouter>
+      </>
   );
 }
 

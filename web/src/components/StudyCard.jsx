@@ -1,7 +1,7 @@
 const StudyCard = (props) => {
 
     let description = props.description;
-    if(description.length > 200){
+    if(description.length > 100){
         description = description.substring(0, 100 ) + "..."
     }
 
@@ -19,7 +19,7 @@ const StudyCard = (props) => {
                     <p>{description}</p>
                 </div>
                 <div className="links">
-                    <span class="material-symbols-outlined">read_more</span>
+                    <span className="material-symbols-outlined">read_more</span>
                 </div>
         </div>
     );

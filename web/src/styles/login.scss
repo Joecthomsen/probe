@@ -1,0 +1,72 @@
+$margin-between-objects: 2%;
+$object-height: 20px;
+$border-radius: 35px;
+$inputcolor: #f7f7f7;
+$signInButtonColor: #00435f;
+$signInHoverColor: #006c9b;
+
+.login-header{
+  color: black;
+  padding: 20px 0px 0px 0px;
+  margin-bottom: 0px;
+  font-size: 80px;
+}
+
+.outer-page{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 1% 25% 20px 25%;
+    align-items: center;
+
+    button{
+      background-color: transparent;
+      margin-top: $margin-between-objects;
+      padding: $object-height 10%;
+      font-size: large;
+      border-radius: $border-radius;
+      // box-shadow: 0px 2px 4px 0px gray;
+      border: 0px;
+      width: auto;
+      background-color: $signInButtonColor;
+      color: white;
+      font-size: x-large;
+      &:hover{
+        background-color: $signInHoverColor;
+      }
+    }
+
+  }
+  
+  input{
+    background-color: $inputcolor;
+    width: 30%;
+    margin-top: $margin-between-objects;
+    padding: $object-height 15px;
+    font-size: large;
+    border-radius: $border-radius;
+    border: 0px solid gray;
+  }
+  
+
+
+.so-me-login-buttons{
+    display: flex;
+}
+
+.google-button{
+    height: 150px;
+}
+
+
+h2{
+    padding-top: 0px;
+    margin-top: 0px;
+}
+  
