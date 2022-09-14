@@ -9,6 +9,7 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
+import EditTrials from "./pages/EditTrials";
 import Layout from './components/Layout';
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
               <Route path='/about' element={<Layout> <About/> </Layout>}/>
               <Route path='/login' element={<Layout> <Login/> </Layout>}/>
               <Route path='/userProfile' element={<UserProfile/>} />
+              <Route path='/edittrials' element={<EditTrials/>}/>
               <Route path='*' element={<PageNotFound/>}/>
           </Routes>
         </HashRouter>
