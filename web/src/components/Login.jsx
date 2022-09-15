@@ -1,5 +1,5 @@
 import googleLogo from "../resources/google_logo.svg";
-import facebookLogo from "../resources/facebook-logo.svg"
+import facebookLogo from "../resources/facebook-round-logo.png"
 
 const Login = () => {
     return ( 
