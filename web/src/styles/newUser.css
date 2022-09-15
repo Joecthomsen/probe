@@ -10,7 +10,7 @@
   -o-object-fit: contain;
      object-fit: contain;
   width: 40vw;
-  padding: 0px 2vw 20vh 8vw;
+  padding: 15vh 2vw 20vh 8vw;
   opacity: 0.7;
 }
 
@@ -41,4 +41,19 @@
 .create-user-form button:hover {
   background-color: #d6e7d0;
   cursor: pointer;
+}
+
+.gender {
+  display: flex;
+  flex-direction: row;
+  background-color: red;
+  width: 30vw;
+}
+.gender input {
+  padding: 0px 10px 0px 10px;
+}
+
+.error-messages {
+  padding-top: 12px;
+  color: red;
 }/*# sourceMappingURL=newUser.css.map */

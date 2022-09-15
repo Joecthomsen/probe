@@ -12,7 +12,7 @@ $input-bottom-margin: 2vh;
 .world-image{
     object-fit: contain;
     width: 40vw;
-    padding: 0px 2vw 20vh 8vw;
+    padding: 15vh  2vw 20vh 8vw;
     opacity: 0.7;
 }
 
@@ -46,3 +46,23 @@ $input-bottom-margin: 2vh;
         }
     }
 }
+
+.gender{
+    display: flex;
+    flex-direction:row;
+    background-color: red;
+    width: 30vw;
+    input{
+        padding: 0px 10px 0px 10px;
+    }
+}
+
+.error-messages{
+    padding-top: 12px;
+    color: red;
+}
+
+// .gender{
+//     display: flex;
+//     flex-direction: row;
+// }

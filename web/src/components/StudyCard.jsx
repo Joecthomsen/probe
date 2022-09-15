@@ -9,7 +9,7 @@ const StudyCard = (props) => {
         <div className="studycard-container">
             <h1>{props.header}</h1>
             <div className="card-location">
-                <span class="material-symbols-outlined">location_on</span>
+                <span className="material-symbols-outlined">location_on</span>
                 <p className="card-country">{props.country}</p>
                 <p className="card-city">{props.city}</p>
             </div>            
