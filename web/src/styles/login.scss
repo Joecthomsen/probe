@@ -3,6 +3,7 @@ $object-height: 20px;
 $border-radius: 35px;
 $inputcolor: #e6e6e6;
 $signInButtonColor: #00435f;
+$textColorNewUserPage: #036a96;
 $signInHoverColor: #006c9b;
 $soMeButtonsSize: 80px;
 
@@ -99,7 +100,7 @@ $soMeButtonsSize: 80px;
 }
 
 .create-new-user{
-  background-image: url("../resources/background-blur.jpg");
+  background: linear-gradient(0deg, rgba(165,161,241,1) 0%, rgba(200,200,228,1) 35%, rgba(233,251,255,1) 100%);
   background-size: cover;
   width: 40vw;
   background-position: right;
@@ -111,14 +112,14 @@ $soMeButtonsSize: 80px;
   h1{
     font-size: 4vw;
     padding: 20vh 1vw 0px 1vw;
-    color: $signInButtonColor;
+    color: $textColorNewUserPage;
     // text-shadow: 1px 1px black;
   }
 
   h2{
     justify-content: center;
     padding: 2vh;
-    color: $signInButtonColor;
+    color: $textColorNewUserPage;
     // text-shadow: 1px 1px black;
   }
 
