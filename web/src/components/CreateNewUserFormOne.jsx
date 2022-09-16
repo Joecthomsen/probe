@@ -1,8 +1,5 @@
-import {observer} from "mobx-react-lite"
 import { useState } from "react";
-import { RadioGroup, FormControlLabel, Radio } from "@material-ui/core";
-import { useEffect } from "react";
-
+import users from "../api/user_api_mock";
 
 const CreateUserFormOne = () => {
 
@@ -116,6 +113,25 @@ const CreateUserFormOne = () => {
         }
     }
 
+    const submitUser = () => {
+        users.users.push({
+            "id": 0,
+            "image": "<PATH_TO_IMAGE_HERE>",
+            "firstName": firstName,
+            "lastName": lastName,
+            "cpr": "NIL",
+            "age": 40,
+            "chronicDisease": "Lung cancer stage 4",
+            "streetName": "Nørrebrogade",
+            "doorNumber": 42,
+            "zipCode": 2200,
+            "city": city,
+            "region": region,
+            "county": country
+        }
+        )
+    }
+
 return (
     firstForm 
     ?             
@@ -139,22 +155,10 @@ return (
             <label htmlFor="Create a new user"></label>
             <input type="text" placeholder="Your diagnose (If any)"></input>
             <input placeholder="Discribe your life with your diagnose"></input>
-            <button onClick={checkForm} >Create Users</button>
+            <button onClick={submitUser} >Create Users</button>
             {error ? <p className="error-messages">{errorMsg}</p> : <p></p>}
         </form>
     );
-    
-    // else{
-    //     return(
-    //         <form className="create-user-form">
-    //         <label htmlFor="Create a new user"></label>
-    //         <input type="text" placeholder="Diagnose"/>
-    //         <input className="Description" type="text" placeholder="Description of diagnose"></input>
-    //         <button onClick={checkForm} >Create New User</button>
-    //         {error ? <p className="error-messages">{errorMsg}</p> : <p></p>}
-    //     </form>
-    //     )
-    // }
 }
  
 export default CreateUserFormOne;
