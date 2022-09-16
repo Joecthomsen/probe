@@ -3,29 +3,28 @@ import {
     Dialog,
     DialogActions,
     DialogContent,
-    DialogContentText,
     DialogTitle,
-    Grid
+    Grid,
 } from "@mui/material";
 import {Add} from "@mui/icons-material";
 import cardData from "../api/clinical_trial_api_mock";
 import EditTrialsStudyCards from "../components/TrialCard";
 import * as React from 'react';
-
+import DialogContextTrial from "../components/EditTrialDialogContext";
 
 const EditTrials = () => {
     const [open, setOpen] = React.useState(false);
+
 
     const handleClickOpen = () => {
         setOpen(true);
     };
 
-    const handleClose = () => {
+    const handleClickClose = () => {
         setOpen(false);
     };
 
-
-    const studies = cardData.clinicalTrials.filter(obj => obj.ownerId == "0");
+    const studies = cardData.clinicalTrials.filter(obj => obj.ownerId === 0);
 
     const cardList = studies.map((element, index) => {
         return (<EditTrialsStudyCards key={index}
@@ -38,21 +37,19 @@ const EditTrials = () => {
         />)
     });
 
-
-
     const popup = () => {
         return (
-            <Dialog open={open} onClose={handleClose}>
-                <DialogTitle>Test Form</DialogTitle>
+            <Dialog open={open} onClose={handleClickClose}>
+                <DialogTitle>Edit Trial</DialogTitle>
                 <DialogContent>
-                    <DialogContentText>
-                        Test
-                    </DialogContentText>
+                    <DialogContextTrial/>
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={handleClose} color="error">Delete</Button>
-                    <Button onClick={handleClose}>Cancel</Button>
-                    <Button onClick={handleClose}>Save</Button>
+                    <Grid container>
+                        <Grid item xs={8}><Button onClick={handleClickClose} color="error" variant={"outlined"}>Delete</Button></Grid>
+                        <Grid item xs={2}><Button onClick={handleClickClose} variant={"outlined"}>Cancel</Button></Grid>
+                        <Grid item xs={2}><Button onClick={handleClickClose} variant={"outlined"}>Save</Button></Grid>
+                    </Grid>
                 </DialogActions>
             </Dialog>
         );
@@ -61,23 +58,21 @@ const EditTrials = () => {
     return (
         <Grid container spacing={2}>
             {popup()}
-            <Grid item xs={12}></Grid>
-
-
-            <Grid item xs={1}/>
-            <Grid item xs={8}><h1>My Trials</h1></Grid>
-            <Grid item xs={3}><Button variant="contained" startIcon={<Add/>} size="large" onClick={handleClickOpen}>Create
+            <Grid item xs={10}><h1>My Trials</h1></Grid>
+            <Grid item xs={2}><Button variant="contained" startIcon={<Add/>} size="large" onClick={handleClickOpen}>Create
                 Trial</Button></Grid>
 
-            <Grid item xs={1}/>
-            <Grid item xs={10}>
+
+            <Grid item xs={12}>
                 <Grid container title={"cardContainer"}>
                     {cardList}
                 </Grid>
             </Grid>
 
+
         </Grid>
     );
 }
+
 
 export default EditTrials;
