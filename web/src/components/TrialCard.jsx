@@ -1,4 +1,7 @@
 import {Button, Grid} from "@mui/material";
+import PersonIcon from '@mui/icons-material/Person';
+import {EditTrialStoreOBJ} from "../stores/EditTrialStore";
+
 
 const StudyCard = (props) => {
 
@@ -28,9 +31,11 @@ const StudyCard = (props) => {
                     </div>
                 </Grid>
                 <Grid item xs={12}/>
-                <Grid item xs={9}/>
+                <Grid item xs={9}><p>{props.participants}<PersonIcon fontSize="small"/></p></Grid>
                 <Grid item xs={3}><
-                    Button variant="contained" onClick={props.click}>Edit</Button>
+                    Button variant="contained" onClick={()=>{
+                    EditTrialStoreOBJ.openAndSetDialog(props.click)
+                }}>Edit</Button>
                 </Grid>
             </Grid>
         </div>
