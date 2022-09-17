@@ -1,20 +1,21 @@
 {
   "files": {
-    "main.css": "/probe/static/css/main.6cb20753.css",
-    "main.js": "/probe/static/js/main.3ce2e5a3.js",
+    "main.css": "/probe/static/css/main.1fce0ba3.css",
+    "main.js": "/probe/static/js/main.f4d4df59.js",
     "static/js/787.d1d4a2c2.chunk.js": "/probe/static/js/787.d1d4a2c2.chunk.js",
+    "static/media/world-connected.png": "/probe/static/media/world-connected.123671533cb678ce9057.png",
     "static/media/background_image.jpg": "/probe/static/media/background_image.7e0b6a37b1a722495722.jpg",
     "static/media/revicons.eot": "/probe/static/media/revicons.a77de540a38981833f9e.eot",
     "static/media/revicons.ttf": "/probe/static/media/revicons.57fd05d4ae650374c8de.ttf",
     "static/media/revicons.woff": "/probe/static/media/revicons.e8746a624ed098489406.woff",
     "static/media/google_logo.svg": "/probe/static/media/google_logo.efa560d32653a615a1db742bbf78c815.svg",
     "index.html": "/probe/index.html",
-    "main.6cb20753.css.map": "/probe/static/css/main.6cb20753.css.map",
-    "main.3ce2e5a3.js.map": "/probe/static/js/main.3ce2e5a3.js.map",
+    "main.1fce0ba3.css.map": "/probe/static/css/main.1fce0ba3.css.map",
+    "main.f4d4df59.js.map": "/probe/static/js/main.f4d4df59.js.map",
     "787.d1d4a2c2.chunk.js.map": "/probe/static/js/787.d1d4a2c2.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.6cb20753.css",
-    "static/js/main.3ce2e5a3.js"
+    "static/css/main.1fce0ba3.css",
+    "static/js/main.f4d4df59.js"
   ]
 }
