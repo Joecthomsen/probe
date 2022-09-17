@@ -10,7 +10,7 @@ const CreateUSer = () => {
             <div className="image-wrapper">
                 <img className="world-image" src={WorldImage} alt="null" />
             </div>
-            {formOne ? <CreateUserFormOne/> : <h1>Lets write some more stuff</h1>}
+             <CreateUserFormOne/> 
         </div>
      );
 }
