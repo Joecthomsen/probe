@@ -1,11 +1,9 @@
 import "../styles/newUser.css"
 import WorldImage from "../resources/world-connected.png"
 import CreateUserFormOne from "../components/CreateNewUserFormOne";
-import { useState } from "react";
 
 const CreateUSer = () => {
 
-    const [formOne, setFormOne] = useState(true)
 
     return ( 
         <div className="create-user-wrapper">

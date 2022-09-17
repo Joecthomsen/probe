@@ -17,7 +17,6 @@ const CreateUserFormOne = () => {
     const [errorMsg, setErrorMsg] = useState("")
     const [firstForm, setFirstForm] = useState(true)
 
-    const [value, setValue] = useState()
 
     const handleEmail = (event) => {
         setEmail(event.target.value)
