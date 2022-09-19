@@ -33,23 +33,20 @@ const TrialView = (props) => {
 
     const studies = cardData.clinicalTrials;
 
-    /*const cardList = studies.map((element, index) => {
+    const cardList = studies.map((element, index) => {
         return(<StudyCardLarge key={index}
                                header={element.header}
                                title={element.title}
                                country={element.county}
                                city={element.city}
                                description={element.cardDescription}/>)
-    })*/
-    const numbers = props.numbers;
-    const listItems = numbers.map((number) =>
-        <li>
-            {number}
-        </li>
-    );
+    })
 
     return (
-        <ul>{listItems}</ul>
+        <div className="trials-box">
+            <ul>{cardList}</ul>
+        </div>
+
     );
 }
 
