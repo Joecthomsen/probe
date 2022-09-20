@@ -1,0 +1,59 @@
+.create-user-wrapper {
+  display: flex;
+  justify-content: space-between;
+  background: linear-gradient(0deg, rgb(165, 161, 241) 0%, rgb(200, 200, 228) 35%, rgb(233, 251, 255) 100%);
+  height: 95vh;
+  padding: 8vh 0px 0px 2vh;
+}
+
+.world-image {
+  -o-object-fit: contain;
+     object-fit: contain;
+  width: 40vw;
+  padding: 15vh 2vw 20vh 8vw;
+  opacity: 0.7;
+}
+
+.create-user-form {
+  display: flex;
+  flex-direction: column;
+  width: 40vw;
+  align-items: flex-end;
+  padding-right: 3vw;
+}
+.create-user-form input {
+  width: 37vw;
+  padding: 8px 2vw 8px 1vw;
+  margin-bottom: 2vh;
+  border: 1px outset blue;
+  border-radius: 6px;
+}
+.create-user-form label {
+  padding: 0px 34vw 8px 12px;
+}
+.create-user-form button {
+  width: 20vw;
+  padding: 8px 0px;
+  border-radius: 18px;
+  border: none;
+  font-size: large;
+}
+.create-user-form button:hover {
+  background-color: #d6e7d0;
+  cursor: pointer;
+}
+
+.gender {
+  display: flex;
+  flex-direction: row;
+  background-color: red;
+  width: 30vw;
+}
+.gender input {
+  padding: 0px 10px 0px 10px;
+}
+
+.error-messages {
+  padding-top: 12px;
+  color: red;
+}/*# sourceMappingURL=newUser.css.map */

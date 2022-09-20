@@ -1,0 +1,147 @@
+$margin-between-objects: 2%;
+$object-height: 20px;
+$border-radius: 35px;
+$inputcolor: #e6e6e6;
+$signInButtonColor: #00435f;
+$textColorNewUserPage: #036a96;
+$signInHoverColor: #006c9b;
+$soMeButtonsSize: 80px;
+
+//Layout for the intire page
+.page-container{
+  display: flex;
+}
+
+//Left side of the page
+.login-page{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 60vw;
+
+  .login-header{
+    color: black;
+    padding: 20px 0px 0px 0px;
+    margin-bottom: 0px;
+    font-size: 4vw;
+  }
+
+  h2{
+    font-size: medium;
+    color: gray;
+    margin-top: 4%;
+    margin-bottom: 2%;
+  }
+}
+
+.so-me-login-buttons{
+  display: flex;
+  align-items: center;
+}
+
+.google-button{
+  border-radius: 50px;
+  height: $soMeButtonsSize;
+  &:hover{
+    background-color: #e1f6ff;
+    cursor: pointer;
+  }
+}
+
+.facebook-button{
+  padding: 0px;
+  border-radius: 0.5*$soMeButtonsSize;
+  padding: 10px;
+  height: 0.65*$soMeButtonsSize;
+  &:hover{
+    background-color: #e1f6ff;
+    cursor: pointer;
+  }
+}
+
+.line-breaker{
+  height: 1px;
+  width: 40vw;
+  background-color: #1900ff;
+  // border: 2px solid black;
+}
+
+.login-container {
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 2%;
+
+  input{
+    align-items: center;
+    background-color: $inputcolor;
+    width: 35vw;
+    padding: 12px 0px 12px 16px;
+    margin-bottom: 6%;
+    border-radius: $border-radius;
+    border: none;
+  }
+  button{
+    width: 20vw;
+    margin-top: 6%;
+    padding: 12px 0px 12px 5px;
+    border: none;
+    background-color: $signInButtonColor;
+    font-size: large;
+    font-weight: 900;
+    color: white;
+    border-radius: $border-radius;
+    &:hover{
+      background-color: $signInHoverColor;
+      cursor: pointer;
+    }
+  }
+}
+
+.create-new-user{
+  background: linear-gradient(0deg, rgba(165,161,241,1) 0%, rgba(200,200,228,1) 35%, rgba(233,251,255,1) 100%);
+  background-size: cover;
+  width: 40vw;
+  background-position: right;
+  min-height: 95vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  h1{
+    font-size: 4vw;
+    padding: 20vh 1vw 0px 1vw;
+    color: $textColorNewUserPage;
+    // text-shadow: 1px 1px black;
+  }
+
+  h2{
+    justify-content: center;
+    padding: 2vh;
+    color: $textColorNewUserPage;
+    // text-shadow: 1px 1px black;
+  }
+
+  button{
+    width: 20vw;
+    margin-top: 6%;
+    padding: 12px 0px 12px 5px;
+    border: none;
+    background-color: rgb(131, 131, 255);
+    font-size: large;
+    font-weight: 900;
+    color: black;
+    border-radius: $border-radius;
+    &:hover{
+      background-color: $signInHoverColor;
+      cursor: pointer;
+    }
+  }
+  
+}
+
+
+
+
+
