@@ -17,7 +17,7 @@ const CreateUserFormOne = () => {
 
     const [error, setError] = useState(false)
     const [errorMsg, setErrorMsg] = useState("")
-    const [firstForm, setFirstForm] = useState(false)
+    const [firstForm, setFirstForm] = useState(true)
 
     const navigate = useNavigate();
 
