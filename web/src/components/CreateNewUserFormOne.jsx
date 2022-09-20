@@ -113,6 +113,7 @@ const CreateUserFormOne = () => {
     }
 
     const submitUser = () => {
+
         users.users.push({
             "id": 0,
             "image": "<PATH_TO_IMAGE_HERE>",
@@ -127,8 +128,7 @@ const CreateUserFormOne = () => {
             "city": city,
             "region": region,
             "county": country
-        }
-        )
+        })
     }
 
 return (

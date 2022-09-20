@@ -150,3 +150,87 @@ nav {
   padding-top: 5%;
   font-size: 50px;
 }/*# sourceMappingURL=homepage.css.map */
+
+.view-trials-page {
+  padding: 0%;
+  display: flex;
+  height: 100vh;
+}
+
+.filter-box {
+  display: inline-block;
+  background-color: rgb(150, 225, 255);;
+  flex: 2;
+}
+
+.filter-option {
+  display: inline-block;
+  padding: 20%;
+}
+.trials-box {
+  display: inline-block;
+  background-color: white;
+  flex: 10;
+  padding: 0%;
+}
+
+.studycard-container-large {
+  display: flex;
+  flex-direction: column;
+  max-height: 500px;
+  margin: 2% 1rem 0rem 5rem;
+  padding: 1.5rem 1rem;
+  border-radius: 12px;
+  box-shadow: 4px 3px 6px 4px hsla(0deg, 0%, 0%, 0.12);
+}
+.studycard-container-large .card-location {
+  display: flex;
+  align-items: center;
+  margin-top: 0px;
+}
+.studycard-container-large .card-location h1 {
+  display: flex;
+  font-size: x-large;
+  color: black;
+}
+.studycard-container-large .card-location span {
+  color: #00ff0d;
+  height: 30px;
+  font-size: x-large;
+  padding-left: 0px;
+}
+.studycard-container-large .card-location .card-country {
+  color: rgb(100, 100, 100);
+  margin-right: 10%;
+  margin-left: 3%;
+}
+.studycard-container-large .card-location .card-city {
+  color: rgb(100, 100, 100);
+}
+.studycard-container-large hr {
+  height: 1px;
+  background-color: #00ff0d;
+  border: none;
+  margin-top: 1%;
+}
+.studycard-container-large h2 {
+  font-size: 12px;
+  margin: 5% 0px 0px 2%;
+}
+.studycard-container-large .card-description-container {
+  font-size: 14px;
+  padding: 2%;
+  margin-top: 4%;
+  border: 1px solid rgb(196, 196, 196);
+  color: rgb(131, 131, 131);
+  text-align: justify;
+}
+.studycard-container-large .links {
+  display: flex;
+  padding: 1% 0px 0px 80%;
+  color: #00ff0d;
+}
+.studycard-container-large .links:hover {
+  color: #00ad09;
+  cursor: pointer;
+}
