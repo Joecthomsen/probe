@@ -62,7 +62,28 @@ $input-bottom-margin: 2vh;
     color: red;
 }
 
-// .gender{
-//     display: flex;
-//     flex-direction: row;
-// }
+.gender-selection{
+    display: flex;
+    align-items: center;
+    padding: 0px 0px 2vh 0px;
+    p{
+        padding-right: 10vw;
+    }
+}
+
+.radio-buttons{
+    display: flex;
+    flex-direction: row;
+}
+
+.form-check{
+    padding-right: 10px;
+}
+
+.form-check-label{
+    padding-left: 10px;
+}
+
+.description{
+    padding: 10vh 5px;
+}
