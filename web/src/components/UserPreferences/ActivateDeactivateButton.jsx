@@ -5,11 +5,11 @@ import {observer} from "mobx-react-lite";
 const ActivateDeactivateButton = () => {
     if (userPreferences.active) {
         return (
-            <Button variant="text" onClick={() => userPreferences.setActiveState(false)}>Deactivate Me</Button>
+            <Button id={"aOrD"} variant="text" onClick={() => userPreferences.setActiveState(false)}>Deactivate Me</Button>
         )
     } else {
         return (
-            <Button variant="text" onClick={() => userPreferences.setActiveState(true)}>Activate Me</Button>
+            <Button id={"aOrD"} variant="text" onClick={() => userPreferences.setActiveState(true)}>Activate Me</Button>
         )
     }
 }

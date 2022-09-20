@@ -2,6 +2,7 @@ import ActivateDeactivateButton from "../components/UserPreferences/ActivateDeac
 import Grid from '@mui/material/Unstable_Grid2';
 import {userPreferences} from "../stores/UserPreferencesStore";
 import {observer} from "mobx-react-lite";
+import PreferenceArray from "../components/UserPreferences/PreferenceArray";
 
 const UserProfile = () => {
 
@@ -15,7 +16,10 @@ const UserProfile = () => {
                   <p>  {userPreferences.statusString} </p>
                 </Grid>
                 <Grid xs={12} md={6}>
-                    <ActivateDeactivateButton            />
+                    <ActivateDeactivateButton/>
+                </Grid>
+                <Grid xs={12} md={12} >
+                    <PreferenceArray id={"prefArray"} />
                 </Grid>
             </Grid>
 

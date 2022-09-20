@@ -2,7 +2,9 @@ import { makeObservable, observable, computed } from "mobx"
 
 class UserPreferencesStore{
     // Variables
-    preferences = ['No Preference Set']
+    preferences = [
+        { key: "Only Interested in Paid Studies", value: "yes" },
+        {key: "Max Distance to Home Address in KM", value: "12"}]
     active = true
 
     // Constructor
