@@ -23,7 +23,7 @@ function App() {
               <Route path='/login' element={<Layout> <Login/> </Layout>}/>
               <Route path='/userProfile' element={<UserProfile/>} />
               <Route path='/edittrials' element={<EditTrials/>}/>
-              <Route path='/createuser' element={<CreateUser/>}/>
+              <Route path='/createuser' element={ <Layout> <CreateUser/> </Layout> }/>
               <Route path='*' element={<PageNotFound/>}/>
           </Routes>
         </HashRouter>
