@@ -1,12 +1,12 @@
 const StudyCardLarge = (props) => {
     console.log(props);
     let description = props.description;
-    if(description.length > 200){
-        description = description.substring(0, 100 ) + "..."
+    if(description.length > 1200){
+        description = description.substring(0, 1200 ) + "..."
     }
 
     return (
-        <div className="studycard-container">
+        <div className="studycard-container-large">
             <h1>{props.header}</h1>
             <div className="card-location">
                 <span class="material-symbols-outlined">location_on</span>

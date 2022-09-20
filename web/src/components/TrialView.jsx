@@ -39,7 +39,7 @@ const TrialView = (props) => {
                                title={element.title}
                                country={element.county}
                                city={element.city}
-                               description={element.cardDescription}/>)
+                               description={element.longDescription}/>)
     })
 
     return (
