@@ -34,6 +34,7 @@ const StudyCard = (props) => {
                 <Grid item xs={9}><p>{props.participants}<PersonIcon fontSize="small"/></p></Grid>
                 <Grid item xs={3}><
                     Button variant="contained" onClick={()=>{
+                        EditTrialStoreOBJ.setId(props.id)
                     EditTrialStoreOBJ.openAndSetDialog(props.click)
                 }}>Edit</Button>
                 </Grid>
