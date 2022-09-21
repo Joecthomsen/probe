@@ -11,7 +11,7 @@ const CreateUserFormOne = () => {
     const [error, setError] = useState(false)
     const [errorMsg, setErrorMsg] = useState("")
     const [firstForm, setFirstForm] = useState(true)
-    const [createMedicalUser, setCreateMedicalUser] = useState(false)
+    // const [createMedicalUser, setCreateMedicalUser] = useState(false)
 
     const navigate = useNavigate();
 
@@ -160,7 +160,7 @@ const CreateUserFormOne = () => {
 
 return (
     //Check if the user wants to create a medical user
-    !createMedicalUser 
+    !userStore.createMedicalUser
     ?       
         firstForm 
         ?             
@@ -209,7 +209,10 @@ return (
                 </form>
             </div>
     : //If the user wants to create a medical user
-    <div>Hohomofo</div>
+            <form className="create-user-form">
+                <SelectUserType/>
+                <label htmlFor="Create a new user"></label>
+            </form>
         );
 }
  

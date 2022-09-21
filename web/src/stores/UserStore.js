@@ -17,6 +17,7 @@ class UserStore{
    occupation;
    description;
    ageWhenDiagnosed;
+   createMedicalUser = false;
 
     constructor() {
         makeAutoObservable(this,
@@ -66,6 +67,9 @@ class UserStore{
     }
     setAgeWhenDiagnosed(ageWhenDiagnosed){
         this.ageWhenDiagnosed = ageWhenDiagnosed
+    }
+    setCreateMedicalUser(value){
+        this.createMedicalUser = value
     }
 }
 export const userStore = new UserStore()
