@@ -1,37 +1,39 @@
 import {makeAutoObservable} from "mobx";
 
 
-class EditTrialStore{
+class EditTrialStore {
 
     dialogOpen = false;
-    OwnerID=0;
+    OwnerID = 0;
 
+    id="";
 
-    Header="";
-    Country="";
-    Title="";
-    City="";
-    Match="";
-    ZipCode="";
-    MinAge="";
-    Address="";
-    MaxAge="";
-    StartDate="";
-    RequiredVisit="";
-    StartTime="";
-    Img="https://images.unsplash.com/photo-1567306301408-9b74779a11af";
-    CardDesc="";
-    LongDesc="";
-    Applicants="";
+    Header = "";
+    Country = "";
+    Title = "";
+    City = "";
+    Match = "";
+    ZipCode = "";
+    MinAge = "";
+    Address = "";
+    MaxAge = "";
+    StartDate = "";
+    RequiredVisit = "";
+    StartTime = "";
+    Img = "https://images.unsplash.com/photo-1567306301408-9b74779a11af";
+    CardDesc = "";
+    LongDesc = "";
+    Applicants = "";
+    Vek = "";
 
     constructor() {
         makeAutoObservable(this,
             {},
-            {autoBind:true}//For non-arrow-functions bind
+            {autoBind: true}//For non-arrow-functions bind
         )
     }
 
-    clearDialogInfo(){
+    clearDialogInfo() {
         this.setHeader("");
         this.setCountry("");
         this.setTitle("");
@@ -48,9 +50,35 @@ class EditTrialStore{
         this.setCardDesc("");
         this.setLongDesc("");
         this.setApplicants("");
+        this.setVek("");
     }
 
-    setDialogInfo(props){
+    getDialogInfo() {
+        return {
+            "dialogInfo": {
+                "Header": this.getHeader(),
+                "Country": this.getCountry(),
+                "Title": this.getTitle(),
+                "City": this.getCity(),
+                "Match": this.getMatch(),
+                "ZipCode": this.getZipCode(),
+                "MinAge": this.getMinAge(),
+                "Address": this.getAddress(),
+                "MaxAge": this.getMaxAge(),
+                "StartDate": this.getStartDate(),
+                "RequiredVisit": this.getRequiredVisit(),
+                "StartTime": this.getStartTime(),
+                "Img": this.getImg(),
+                "CardDesc": this.getCardDesc(),
+                "LongDesc": this.getLongDesc(),
+                "Applicants": this.getApplicants(),
+                "Vek": this.getVek()
+            }
+        }
+    }
+
+
+    setDialogInfo(props) {
         this.setHeader(props.header);
         this.setCountry(props.county);
         this.setTitle(props.title);
@@ -58,7 +86,7 @@ class EditTrialStore{
         this.setMatch(props.match.toString());
         this.setZipCode(props.zipCode);
         this.setMinAge(props.minAge);
-        this.setAddress(props.streetName+" "+ props.doorNumber);
+        this.setAddress(props.streetName + " " + props.doorNumber);
         this.setMaxAge(props.maxAge);
         this.setStartDate(props.date);
         this.setRequiredVisit(props.requiredVisits);
@@ -67,34 +95,37 @@ class EditTrialStore{
         this.setCardDesc(props.cardDescription);
         this.setLongDesc(props.longDescription);
         this.setApplicants(props.participants);
+        this.setVek(props.vek)
     }
 
-    openDialog(){
-        this.dialogOpen=true;
+    openDialog() {
+        this.dialogOpen = true;
     }
 
-
-
-    openAndSetDialog(props){
+    openAndSetDialog(props) {
         this.setDialogInfo(props)
         this.openDialog()
     }
 
-    openAndClearDialog(){
+    openAndClearDialog() {
         this.clearDialogInfo()
         this.openDialog()
     }
 
-    closeDialog(){
-        this.dialogOpen=false;
+    closeDialog() {
+        this.dialogOpen = false;
     }
 
-    getDialog(){
+    getDialog() {
         return this.dialogOpen;
     }
 
-    getOwnerId(){
-        return this.OwnerID
+    getOwnerId() {
+        return this.OwnerID;
+    }
+
+    setOwnerID(value){
+        this.OwnerID=value;
     }
 
     getHeader() {
@@ -209,6 +240,14 @@ class EditTrialStore{
         this.CardDesc = value;
     }
 
+    getId() {
+        return this.id;
+    }
+
+    setId(value) {
+        this.id = value;
+    }
+
     getLongDesc() {
         return this.LongDesc;
     }
@@ -225,6 +264,15 @@ class EditTrialStore{
         this.Applicants = value;
     }
 
+    setVek(value) {
+        this.Vek = value;
+
+    }
+
+    getVek() {
+        return this.Vek;
+    }
 }
+
 export const EditTrialStoreOBJ = new EditTrialStore()
 
