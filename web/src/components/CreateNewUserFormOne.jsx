@@ -3,23 +3,15 @@ import users from "../api/user_api_mock";
 import { useNavigate } from 'react-router-dom';
 import {userStore} from "../stores/UserStore"
 import { observer } from "mobx-react-lite"
+import SelectUserType from "./SelectUserType";
 
 const CreateUserFormOne = () => {
 
-    // const [email, setEmail] = useState()
-    // const [password, setPassword] = useState();
-    // const [repeatPassword, setRepeatPassword] = useState();
-    // const [firstName, setFirstName] = useState();
-    // const [lastName, setLastName] = useState();
-    // const [dob, setDob] = useState();
-    // const [city, setCity] = useState();
-    // const [region, setRegion] = useState();
-    // const [country, setCountry] = useState();
-    // const [gender, setGender] = useState();
 
     const [error, setError] = useState(false)
     const [errorMsg, setErrorMsg] = useState("")
     const [firstForm, setFirstForm] = useState(true)
+    const [createMedicalUser, setCreateMedicalUser] = useState(false)
 
     const navigate = useNavigate();
 
@@ -167,52 +159,58 @@ const CreateUserFormOne = () => {
     }
 
 return (
-    firstForm 
-    ?             
-        <form className="create-user-form">
-            <label htmlFor="Create a new user"></label>
-            <input onChange={handleEmail} name="email" type="text" placeholder={userStore.email ? userStore.email : "Email"}/>
-            <input onChange={handlePassword} type="password" placeholder={userStore.password ? userStore.password : "Password"}/>
-            <input onChange={handleRepeatPassword} type="password" placeholder={userStore.repeatPassword ? userStore.region : "Repeat password"}/>
-            <input onChange={handleFirstName} type="text" placeholder={userStore.firstName ? userStore.firstName : "First name(s)"}/>
-            <input onChange={handleLastName} type="text" placeholder={userStore.lastName ? userStore.lastName : "Last name"}/>
-            <label htmlFor="user-birthday">Day of Birth:</label>
-            <input onChange={handleBirthday} type="date" name="Birthday" id="user-birthday" placeholder={userStore.dob ? userStore.dob : ""}/>
-            <input onChange={handleCity} type="text" placeholder={userStore.city ? userStore.city : "city"}/>
-            <input onChange={handleRegion} type="text" placeholder={userStore.region ? userStore.region : "Region"}/>
-            <input onChange={handleCountry} type="text" placeholder={userStore.country ? userStore.city : "County"}/>
-            <button onClick={checkFirstForm} >Next</button>
-            {error ? <p className="error-messages">{errorMsg}</p> : <p></p>}
-        </form>
-    : 
-        <div>
-            <div className="gender-selection">
-                <p>Select gender</p>
-                <div className="radio-buttons">
-                    <div className="form-check">
-                        <input className="form-check-input" type="radio" onChange={handleGender} name="exampleRadios" id="exampleRadios1" value="male" />
-                        <label className="form-check-label" htmlFor="exampleRadios1">
-                            Male
-                        </label>
-                    </div>
-                    <div className="form-check">
-                        <input className="form-check-input" type="radio" onChange={handleGender} name="exampleRadios" id="exampleRadios2" value="female"/>
-                        <label className="form-check-label" htmlFor="exampleRadios2">
-                            Female
-                        </label>
-                    </div>
-                </div>
-            </div>
-            <form className="create-user-form">        
+    //Check if the user wants to create a medical user
+    !createMedicalUser 
+    ?       
+        firstForm 
+        ?             
+            <form className="create-user-form">
+                <SelectUserType/>
                 <label htmlFor="Create a new user"></label>
-                <input onChange={handleDiagnose} type="text" placeholder="Your diagnose (If any)"></input>
-                <input onChange={handleAgeWhenDiagnosed} type="text" placeholder="Age whe you got diagnosed (If appliable)"></input> 
-                <input onChange={handleOccupation} type="text" placeholder="Occupation"></input> 
-                <button onClick={submitUser} >Create Users</button>
+                <input onChange={handleEmail} name="email" type="text" placeholder={userStore.email ? userStore.email : "Email"}/>
+                <input onChange={handlePassword} type="password" placeholder={userStore.password ? userStore.password : "Password"}/>
+                <input onChange={handleRepeatPassword} type="password" placeholder={userStore.repeatPassword ? userStore.region : "Repeat password"}/>
+                <input onChange={handleFirstName} type="text" placeholder={userStore.firstName ? userStore.firstName : "First name(s)"}/>
+                <input onChange={handleLastName} type="text" placeholder={userStore.lastName ? userStore.lastName : "Last name"}/>
+                <label htmlFor="user-birthday">Day of Birth:</label>
+                <input onChange={handleBirthday} type="date" name="Birthday" id="user-birthday" placeholder={userStore.dob ? userStore.dob : ""}/>
+                <input onChange={handleCity} type="text" placeholder={userStore.city ? userStore.city : "city"}/>
+                <input onChange={handleRegion} type="text" placeholder={userStore.region ? userStore.region : "Region"}/>
+                <input onChange={handleCountry} type="text" placeholder={userStore.country ? userStore.city : "County"}/>
+                <button onClick={checkFirstForm} >Next</button>
                 {error ? <p className="error-messages">{errorMsg}</p> : <p></p>}
             </form>
-        </div>
-    );
+        : 
+            <div>
+                <div className="gender-selection">
+                    <p>Select gender</p>
+                    <div className="radio-buttons">
+                        <div className="form-check">
+                            <input className="form-check-input" type="radio" onChange={handleGender} name="exampleRadios" id="exampleRadios1" value="male" />
+                            <label className="form-check-label" htmlFor="exampleRadios1">
+                                Male
+                            </label>
+                        </div>
+                        <div className="form-check">
+                            <input className="form-check-input" type="radio" onChange={handleGender} name="exampleRadios" id="exampleRadios2" value="female"/>
+                            <label className="form-check-label" htmlFor="exampleRadios2">
+                                Female
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <form className="create-user-form">        
+                    <label htmlFor="Create a new user"></label>
+                    <input onChange={handleDiagnose} type="text" placeholder="Your diagnose (If any)"></input>
+                    <input onChange={handleAgeWhenDiagnosed} type="text" placeholder="Age whe you got diagnosed (If appliable)"></input> 
+                    <input onChange={handleOccupation} type="text" placeholder="Occupation"></input> 
+                    <button onClick={submitUser} >Create Users</button>
+                    {error ? <p className="error-messages">{errorMsg}</p> : <p></p>}
+                </form>
+            </div>
+    : //If the user wants to create a medical user
+    <div>Hohomofo</div>
+        );
 }
  
 export default observer(CreateUserFormOne)
