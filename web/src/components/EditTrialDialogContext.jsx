@@ -11,43 +11,80 @@ function DialogContextTrial() {
                 <Grid container item xs={7} spacing={1}>
                     <Grid item xs={6}><TextField id="Header" label="Header" variant="filled" required={true}
                                                  InputLabelProps={{shrink: true}}
-                                                 value={EditTrialStoreOBJ.getHeader()}/></Grid>
+                                                 defaultValue={EditTrialStoreOBJ.getHeader()}
+                                                 onChange={() => {
+                                                     EditTrialStoreOBJ.setHeader(document.getElementById("Header").value)
+                                                 }}/></Grid>
                     <Grid item xs={6}><TextField id="Country" label="Country" variant="filled" required={true}
                                                  InputLabelProps={{shrink: true}}
-                                                 value={EditTrialStoreOBJ.getCountry()}/></Grid>
+                                                 defaultValue={EditTrialStoreOBJ.getCountry()}
+                                                 onChange={() => {
+                                                     EditTrialStoreOBJ.setCountry(document.getElementById("Country").value)
+                                                 }}/></Grid>
                     <Grid item xs={6}><TextField id="Title" label="Title" variant="filled"
                                                  InputLabelProps={{shrink: true}}
-                                                 value={EditTrialStoreOBJ.getTitle()}/></Grid>
+                                                 defaultValue={EditTrialStoreOBJ.getTitle()}
+                                                 onChange={() => {
+                                                     EditTrialStoreOBJ.setTitle(document.getElementById("Title").value)
+                                                 }}/></Grid>
                     <Grid item xs={6}><TextField id="City" label="City" variant="filled" required={true}
                                                  InputLabelProps={{shrink: true}}
-                                                 value={EditTrialStoreOBJ.getCity()}/></Grid>
-                    <Grid item xs={6}><Autocomplete inputValue={EditTrialStoreOBJ.getMatch()}
-                                                    value={EditTrialStoreOBJ.getMatch()} disablePortal id="Match"
-                                                    options={match_codes_api}
-                                                    renderInput={(params) => <TextField {...params}
-                                                                                        label="Match*"/>}
-                                                    required={true}/></Grid>
+                                                 defaultValue={EditTrialStoreOBJ.getCity()}
+                                                 onChange={() => {
+                                                     EditTrialStoreOBJ.setCity(document.getElementById("City").value)
+                                                 }}/></Grid>
+                    <Grid item xs={6}> <Autocomplete id="Match"
+                                                     options={match_codes_api.map((option) => option.label)}
+                                                     defaultValue={EditTrialStoreOBJ.getMatch()}
+                                                     renderInput={(params) => <TextField {...params}
+                                                                                         label="Match"/>}
+                                                     onChange={(e, v) => {
+                                                         EditTrialStoreOBJ.setMatch(v)
+                                                     }}
+                                                     required={true}/>
+                    </Grid>
                     <Grid item xs={6}><TextField id="ZipCode" label="Zip-code" variant="filled"
                                                  InputLabelProps={{shrink: true}}
-                                                 value={EditTrialStoreOBJ.getZipCode()}/></Grid>
+                                                 defaultValue={EditTrialStoreOBJ.getZipCode()}
+                                                 onChange={() => {
+                                                     EditTrialStoreOBJ.setZipCode(document.getElementById("ZipCode").value)
+                                                 }}/></Grid>
                     <Grid item xs={6}><TextField id="MinAge" label="MinAge" variant="filled" required={true}
                                                  InputLabelProps={{shrink: true}}
-                                                 value={EditTrialStoreOBJ.getMinAge()}/></Grid>
+                                                 defaultValue={EditTrialStoreOBJ.getMinAge()}
+                                                 onChange={() => {
+                                                     EditTrialStoreOBJ.setMinAge(document.getElementById("MinAge").value)
+                                                 }}/></Grid>
                     <Grid item xs={6}><TextField id="Address" label="Address" variant="filled" required={true}
                                                  InputLabelProps={{shrink: true}}
-                                                 value={EditTrialStoreOBJ.getAddress()}/></Grid>
+                                                 defaultValue={EditTrialStoreOBJ.getAddress()}
+                                                 onChange={() => {
+                                                     EditTrialStoreOBJ.setAddress(document.getElementById("Address").value)
+                                                 }}/></Grid>
                     <Grid item xs={6}><TextField id="MaxAge" label="MaxAge" variant="filled" required={true}
                                                  InputLabelProps={{shrink: true}}
-                                                 value={EditTrialStoreOBJ.getMaxAge()}/></Grid>
+                                                 defaultValue={EditTrialStoreOBJ.getMaxAge()}
+                                                 onChange={() => {
+                                                     EditTrialStoreOBJ.setMaxAge(document.getElementById("MaxAge").value)
+                                                 }}/></Grid>
                     <Grid item xs={6}><TextField id="StartDate" label="StartDate" variant="filled"
                                                  required={true} InputLabelProps={{shrink: true}}
-                                                 value={EditTrialStoreOBJ.getStartDate()}/></Grid>
+                                                 defaultValue={EditTrialStoreOBJ.getStartDate()}
+                                                 onChange={() => {
+                                                     EditTrialStoreOBJ.setStartDate(document.getElementById("StartDate").value)
+                                                 }}/></Grid>
                     <Grid item xs={6}><TextField id="Required_visits" label="Required visits" variant="filled"
                                                  required={true} InputLabelProps={{shrink: true}}
-                                                 value={EditTrialStoreOBJ.getRequiredVisit()}/></Grid>
+                                                 defaultValue={EditTrialStoreOBJ.getRequiredVisit()}
+                                                 onChange={() => {
+                                                     EditTrialStoreOBJ.setRequiredVisit(document.getElementById("Required_visits").value)
+                                                 }}/></Grid>
                     <Grid item xs={6}><TextField id="time" label="Time" variant="filled"
                                                  required={true} InputLabelProps={{shrink: true}}
-                                                 value={EditTrialStoreOBJ.getStartTime()}/></Grid>
+                                                 defaultValue={EditTrialStoreOBJ.getStartTime()}
+                                                 onChange={() => {
+                                                     EditTrialStoreOBJ.setStartTime(document.getElementById("time").value)
+                                                 }}/></Grid>
                 </Grid>
                 <Grid container item xs={5}>
                     <Grid item xs={12}><img id="Img"
@@ -56,23 +93,47 @@ function DialogContextTrial() {
                     <Grid item xs={12}>
                         <Button variant={"outlined"}>Upload new picture</Button>
                     </Grid>
+                    <Grid item xs={12}>
+                        <Autocomplete id="Vek"
+                                      defaultValue={EditTrialStoreOBJ.getVek()}
+                                      options={[
+                                          {value: 'Yes'},
+                                          {value: 'No'}].map((option) => option.value)}
+                                      renderInput={(params) => <TextField {...params}
+                                                                          label="Match"/>}
+                                      onChange={(e, v) => {
+                                          EditTrialStoreOBJ.setVek(v)
+                                      }}
+                                      required={true}/>
+                    </Grid>
                 </Grid>
 
                 <Grid item xs={12}>
-                    <h3>Card Description</h3>
-                    <TextField id="CardDesc" multiline rows={2} defaultValue="Lorem Ipsum" inputProps={{maxLength: 200}}
-                               fullWidth={true} value={EditTrialStoreOBJ.getCardDesc()}/></Grid>
+                    Card Description
+                    <TextField id="CardDesc" multiline rows={2} inputProps={{maxLength: 200}}
+                               fullWidth={true} defaultValue={EditTrialStoreOBJ.getCardDesc()}
+                               onChange={() => {
+                                   EditTrialStoreOBJ.setCardDesc(document.getElementById("CardDesc").value)
+                               }}/></Grid>
 
                 <Grid item xs={12}>
-                    <h3>Long Description</h3>
-                    <TextField id="LongDesc" multiline rows={4} defaultValue="Lorem Ipsum" inputProps={{maxLength: 200}}
-                               fullWidth={true} value={EditTrialStoreOBJ.getLongDesc()}/></Grid>
+                    Long Description
+                    <TextField id="LongDesc" multiline rows={4} inputProps={{maxLength: 200}}
+                               fullWidth={true} defaultValue={EditTrialStoreOBJ.getLongDesc()}
+                               onChange={() => {
+                                   EditTrialStoreOBJ.setLongDesc(document.getElementById("LongDesc").value)
+                               }}/></Grid>
 
                 <Grid item xs={12}>
-                    <h3>Applicants</h3>
-                    <TextField id="Applicants" multiline rows={2} defaultValue="Lorem Ipsum"
+                    Applicants
+                    <TextField id="Applicants" multiline rows={2}
                                inputProps={{maxLength: 200}}
-                               fullWidth={true} value={JSON.stringify(EditTrialStoreOBJ.getApplicants())}/></Grid>
+                               fullWidth={true}
+                               defaultValue={JSON.stringify(EditTrialStoreOBJ.getApplicants())}
+                               disabled={true}
+                               onChange={() => {
+                                   EditTrialStoreOBJ.setApplicants(document.getElementById("Applicants").value)
+                               }}/></Grid>
             </Grid>
 
         </DialogContentText>

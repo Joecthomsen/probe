@@ -8,19 +8,20 @@ import {observer} from "mobx-react-lite";
 import popup from "../components/DialogModalTrial";
 
 const EditTrials = () => {
-    const studies = cardData.clinicalTrials.filter(obj => obj.ownerId === EditTrialStoreOBJ.getOwnerId());
+    let studies = cardData.clinicalTrials.filter(obj => obj.ownerId === EditTrialStoreOBJ.getOwnerId());
 
-    const cardList = studies.map((element, index) => {
+    const cardList=(studies.map((element, index) => {
         return <EditTrialsStudyCards key={index}
-                                      header={element.header}
-                                      title={element.title}
-                                      country={element.county}
-                                      city={element.city}
-                                      description={element.cardDescription}
-                                      participants={element.participants.length}
-                                      click={element}
+                                     id={element.id}
+                                     header={element.header}
+                                     title={element.title}
+                                     country={element.county}
+                                     city={element.city}
+                                     description={element.cardDescription}
+                                     participants={element.participants.length}
+                                     click={element}
         />
-    });
+    }));
 
     return (
         <Grid container spacing={2}>
