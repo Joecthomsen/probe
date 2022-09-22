@@ -55,7 +55,8 @@ nav{
 
 
 .bg-image{
-    background-image: url("../resources/background_image.jpg");
+    //background-image: url("../resources/background_image.jpg");
+    background: linear-gradient(0deg, rgba(165,161,241,1) 0%, rgba(200,200,228,1) 35%, rgba(233,251,255,1) 100%);
     background-size: cover;
     min-height: 95vh;
     position: relative;

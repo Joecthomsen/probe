@@ -29,7 +29,7 @@ nav {
 }
 
 .bg-image {
-  background-image: url("../resources/background_image.jpg");
+  background: linear-gradient(0deg, rgb(165, 161, 241) 0%, rgb(200, 200, 228) 35%, rgb(233, 251, 255) 100%);
   background-size: cover;
   min-height: 95vh;
   position: relative;
