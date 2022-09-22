@@ -39,6 +39,10 @@ nav {
   background-position: right;
 }
 
+.landingpage-wrapper {
+  display: flex;
+}
+
 .color-overlay {
   z-index: 0;
   position: absolute;
@@ -49,12 +53,24 @@ nav {
   padding-bottom: 0px;
 }
 
+.world {
+  -o-object-fit: contain;
+     object-fit: contain;
+  width: 40vw;
+  height: 40vw;
+  opacity: 0.7;
+}
+
 .header {
-  font-size: xx-large;
+  width: 60vw;
+  font-size: x-large;
   position: relative;
   z-index: 1;
-  color: #ffffff;
+  color: #036a96;
   padding: 15% 0% 0% 5%;
+}
+.header h1 {
+  font-size: 300%;
 }
 .header h2 {
   padding-top: 3%;
