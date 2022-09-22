@@ -8,8 +8,8 @@ import SelectUserType from "../SelectUserType";
 const CreateUserFormOne = () => {
 
 
-    const [error, setError] = useState(false)
-    const [errorMsg, setErrorMsg] = useState("")
+    // const [error, setError] = useState(false)
+    // const [errorMsg, setErrorMsg] = useState("")
     const [firstForm, setFirstForm] = useState(true)
     // const [createMedicalUser, setCreateMedicalUser] = useState(false)
 
@@ -118,19 +118,19 @@ const CreateUserFormOne = () => {
         }
         computedErrorMsg += "\n and resubmit - thank you!"
         if(hasError){
-            setErrorMsg(computedErrorMsg)
-            setError(true)
+            userStore.setErrorMsg(computedErrorMsg)
+            userStore.setError(true)
         }
         else{
-            setError(false)
+            userStore.setError(false)
             setFirstForm(false)
         }
     }
 
     function checkSecondForm()  {
         if(!userStore.gender){
-            setError(true);
-            setErrorMsg("Please select gender")
+            userStore.setError(true);
+            userStore.setErrorMsg("Please select gender")
             return false;
         }
         return true;
@@ -178,7 +178,7 @@ return (
                 <input onChange={handleRegion} type="text" placeholder={userStore.region ? userStore.region : "Region"}/>
                 <input onChange={handleCountry} type="text" placeholder={userStore.country ? userStore.city : "County"}/>
                 <button onClick={checkFirstForm} >Next</button>
-                {error ? <p className="error-messages">{errorMsg}</p> : <p></p>}
+                {userStore.error ? <p className="error-messages">{userStore.errorMsg}</p> : <p></p>}
             </form>
         : 
             <div>
@@ -205,13 +205,23 @@ return (
                     <input onChange={handleAgeWhenDiagnosed} type="text" placeholder="Age whe you got diagnosed (If appliable)"></input> 
                     <input onChange={handleOccupation} type="text" placeholder="Occupation"></input> 
                     <button onClick={submitUser} >Create Users</button>
-                    {error ? <p className="error-messages">{errorMsg}</p> : <p></p>}
+                    {userStore.error ? <p className="error-messages">{userStore.errorMsg}</p> : <p></p>}
                 </form>
             </div>
     : //If the user wants to create a medical user
             <form className="create-user-form">
                 <SelectUserType/>
                 <label htmlFor="Create a new user"></label>
+                <input onChange={handleEmail} name="email" type="text" placeholder={userStore.email ? userStore.email : "Email"}/>
+                <input onChange={handlePassword} type="password" placeholder={userStore.password ? userStore.password : "Password"}/>
+                <input onChange={handleRepeatPassword} type="password" placeholder={userStore.repeatPassword ? userStore.region : "Repeat password"}/>
+                <input onChange={handleFirstName} type="text" placeholder={userStore.firstName ? userStore.firstName : "First name(s)"}/>
+                <input onChange={handleLastName} type="text" placeholder={userStore.lastName ? userStore.lastName : "Last name"}/>
+                <input onChange={handleCity} type="text" placeholder={userStore.city ? userStore.city : "city"}/>
+                <input onChange={handleRegion} type="text" placeholder={userStore.region ? userStore.region : "Region"}/>
+                <input onChange={handleCountry} type="text" placeholder={userStore.country ? userStore.city : "County"}/>
+                <button onClick={checkFirstForm} >Create User</button>
+                {userStore.error ? <p className="error-messages">{userStore.errorMsg}</p> : <p></p>}
             </form>
         );
 }

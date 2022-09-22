@@ -5,6 +5,7 @@ const SelectUserType = () => {
     const medicalUser = "Medical User"
 
     const handleOnClicked = () => {
+        userStore.setError(false)
         userStore.setCreateMedicalUser(!userStore.createMedicalUser)
     }
     

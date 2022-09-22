@@ -17,7 +17,11 @@ class UserStore{
    occupation;
    description;
    ageWhenDiagnosed;
+
    createMedicalUser = false;
+   error = false;
+   errorMsg = "";
+
 
     constructor() {
         makeAutoObservable(this,
@@ -70,6 +74,12 @@ class UserStore{
     }
     setCreateMedicalUser(value){
         this.createMedicalUser = value
+    }
+    setError(value){
+        this.error = value
+    }
+    setErrorMsg(msg){
+        this.errorMsg = msg
     }
 }
 export const userStore = new UserStore()
