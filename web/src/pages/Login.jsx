@@ -1,6 +1,6 @@
 import "../styles/login.css"
-import Login from "../components/Login";
-import CreateNewUser from "../components/CreateNewUser";
+import Login from "../components/singin/Login";
+import CreateNewUser from "../components/singin/CreateNewUser";
 
 const login = () => {
     return (    

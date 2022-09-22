@@ -1,9 +1,9 @@
 import { useState } from "react";
-import users from "../api/user_api_mock";
+import users from "../../api/user_api_mock";
 import { useNavigate } from 'react-router-dom';
-import {userStore} from "../stores/UserStore"
+import {userStore} from "../../stores/UserStore"
 import { observer } from "mobx-react-lite"
-import SelectUserType from "./SelectUserType";
+import SelectUserType from "../SelectUserType";
 
 const CreateUserFormOne = () => {
 

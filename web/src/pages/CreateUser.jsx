@@ -1,6 +1,6 @@
 import "../styles/newUser.css"
 import WorldImage from "../resources/world-connected.png"
-import CreateUserForm from "../components/CreateNewUserFormOne";
+import CreateUserForm from "../components/createuser/CreateNewUserForm" //"../components/createuser/CreateNewUserForm";
 
 const CreateUSer = () => {
 
