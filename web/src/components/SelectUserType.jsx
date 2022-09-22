@@ -13,17 +13,18 @@ const SelectUserType = () => {
     }
 
     return ( 
-        !userStore.createMedicalUser ?
-        <div className="select-user-type-wrapper">
-        <button type="button" onClick={handleOnClicked} style={styles}>{clientUser}</button>
-        <button type="button" onClick={handleOnClicked}>{medicalUser}</button>
-        </div>
-     :
-        <div className="select-user-type-wrapper">
-            <button type="button" onClick={handleOnClicked}>{clientUser}</button>
-            <button type="button" onClick={handleOnClicked} style={styles}>{medicalUser}</button>
-        </div>
-     );
+        !userStore.createMedicalUser 
+        ?
+            <div className="select-user-type-wrapper">
+                <button type="button" onClick={handleOnClicked} style={styles}>{clientUser}</button>
+                <button type="button" onClick={handleOnClicked}>{medicalUser}</button>
+            </div>
+        :
+            <div className="select-user-type-wrapper">
+                <button type="button" onClick={handleOnClicked}>{clientUser}</button>
+                <button type="button" onClick={handleOnClicked} style={styles}>{medicalUser}</button>
+            </div>
+    );
 }
  
 export default SelectUserType;
