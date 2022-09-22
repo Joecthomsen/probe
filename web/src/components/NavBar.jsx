@@ -1,7 +1,22 @@
+import { observer } from 'mobx-react-lite';
 import {Link} from 'react-router-dom'
+import { windowSizeStore } from '../stores/WindowSizeStore';
 
 const NavBar = () => {
+
+    function handleResize() {
+        console.log('resized to: ', window.innerWidth, 'x', window.innerHeight)
+        windowSizeStore.windowWidth = window.innerWidth
+        windowSizeStore.windowHeight = window.innerHeight
+      
+  }
+  
+
+    window.addEventListener('resize', handleResize)
+
     return (
+        windowSizeStore.windowWidth > 950 
+        ?
         <nav className="nav-bar-container">
             <h1 className="nav-bar-logo">PROBE</h1>
             <div className="nav-bar-links-container">
@@ -10,7 +25,16 @@ const NavBar = () => {
                 <Link to='/login' className="nav-bar-links">Login</Link>
             </div>
         </nav>
+        : 
+        <nav className="nav-bar-container">
+            <h1 className="nav-bar-logo">MOFO</h1>
+            <div className="nav-bar-links-container">
+            <span class="material-symbols-outlined">
+                menu
+            </span>
+            </div>
+        </nav>
     );
 }
  
-export default NavBar;
+export default observer(NavBar);

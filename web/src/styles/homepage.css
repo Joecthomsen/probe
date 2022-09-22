@@ -4,7 +4,7 @@ nav {
   height: 5vh;
   display: flex;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.65);
-  padding: 18px 2%;
+  padding: 18px 5vw;
   justify-content: space-between;
   background-color: #00435f;
   color: #ffffff;
@@ -41,6 +41,8 @@ nav {
 
 .landingpage-wrapper {
   display: flex;
+  align-items: center;
+  padding: 15vh 0px 0px 5vw;
 }
 
 .color-overlay {
@@ -57,22 +59,22 @@ nav {
   -o-object-fit: contain;
      object-fit: contain;
   width: 40vw;
-  height: 40vw;
+  height: auto;
   opacity: 0.7;
+  margin-left: 5vw;
 }
 
 .header {
   width: 60vw;
-  font-size: x-large;
   position: relative;
   z-index: 1;
   color: #036a96;
-  padding: 15% 0% 0% 5%;
 }
 .header h1 {
-  font-size: 300%;
+  font-size: 5vw;
 }
 .header h2 {
+  font-size: 2vw;
   padding-top: 3%;
 }
 
