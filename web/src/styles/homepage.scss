@@ -50,6 +50,11 @@ nav{
             color: $hoverBlue;
         }
     }
+    span{
+        &:hover{
+            color: $hoverBlue;
+        }
+    }
 }
 
 

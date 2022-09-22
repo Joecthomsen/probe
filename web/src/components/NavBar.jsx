@@ -5,13 +5,10 @@ import { windowSizeStore } from '../stores/WindowSizeStore';
 const NavBar = () => {
 
     function handleResize() {
-        console.log('resized to: ', window.innerWidth, 'x', window.innerHeight)
         windowSizeStore.windowWidth = window.innerWidth
-        windowSizeStore.windowHeight = window.innerHeight
-      
-  }
+        windowSizeStore.windowHeight = window.innerHeight    
+    }
   
-
     window.addEventListener('resize', handleResize)
 
     return (
@@ -27,11 +24,9 @@ const NavBar = () => {
         </nav>
         : 
         <nav className="nav-bar-container">
-            <h1 className="nav-bar-logo">MOFO</h1>
+            <h1 className="nav-bar-logo">PROBE</h1>
             <div className="nav-bar-links-container">
-            <span class="material-symbols-outlined">
-                menu
-            </span>
+            <span className="material-symbols-outlined">menu</span>
             </div>
         </nav>
     );

@@ -27,6 +27,9 @@ nav {
 .nav-bar-links-container .nav-bar-links:hover {
   color: #b8d3df;
 }
+.nav-bar-links-container span:hover {
+  color: #b8d3df;
+}
 
 .bg-image {
   background: linear-gradient(0deg, rgb(165, 161, 241) 0%, rgb(200, 200, 228) 35%, rgb(233, 251, 255) 100%);
