@@ -1,12 +1,19 @@
 import { observer } from 'mobx-react-lite';
 import {Link} from 'react-router-dom'
 import { windowSizeStore } from '../stores/WindowSizeStore';
+import { homepageStore } from '../stores/HomepageStore';
 
 const NavBar = () => {
 
     function handleResize() {
-        windowSizeStore.windowWidth = window.innerWidth
-        windowSizeStore.windowHeight = window.innerHeight    
+        windowSizeStore.setWindowWidth(window.innerWidth)
+        windowSizeStore.setWindowHeight(window.innerHeight) 
+    }
+
+    const handleBurgerMenuClick = () => {
+        // window.alert("I should probably make a real menu. \n Till that, use a labtop.")
+        homepageStore.toggleBurgerMenu()
+        console.log(homepageStore.burgerMenuToggled)
     }
   
     window.addEventListener('resize', handleResize)
@@ -26,7 +33,7 @@ const NavBar = () => {
         <nav className="nav-bar-container">
             <h1 className="nav-bar-logo">PROBE</h1>
             <div className="nav-bar-links-container">
-            <span className="material-symbols-outlined">menu</span>
+                <span onClick={handleBurgerMenuClick} className="material-symbols-outlined">menu</span>
             </div>
         </nav>
     );

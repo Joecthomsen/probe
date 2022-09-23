@@ -11,5 +11,12 @@ class WindowSizeStore{
             {autoBind:true}//For non-arrow-functions bind
         )
      }
+
+    setWindowWidth(windowWidth){
+        this.windowWidth = windowWidth
+    }
+    setWindowHeight(windowHeight){
+        this.windowHeight = windowHeight
+    }
 }
 export const windowSizeStore = new WindowSizeStore()
