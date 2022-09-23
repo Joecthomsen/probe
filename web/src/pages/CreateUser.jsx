@@ -1,6 +1,6 @@
 import "../styles/newUser.css"
 import WorldImage from "../resources/world-connected.png"
-import CreateUserFormOne from "../components/CreateNewUserFormOne";
+import CreateUserForm from "../components/createuser/CreateNewUserForm" //"../components/createuser/CreateNewUserForm";
 
 const CreateUSer = () => {
 
@@ -10,7 +10,7 @@ const CreateUSer = () => {
             <div className="image-wrapper">
                 <img className="world-image" src={WorldImage} alt="null" />
             </div>
-             <CreateUserFormOne/> 
+             <CreateUserForm/> 
         </div>
      );
 }

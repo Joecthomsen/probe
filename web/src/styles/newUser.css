@@ -56,4 +56,41 @@
 .error-messages {
   padding-top: 12px;
   color: red;
+}
+
+.gender-selection {
+  display: flex;
+  align-items: center;
+  padding: 0px 0px 2vh 0px;
+}
+.gender-selection p {
+  padding-right: 10vw;
+}
+
+.radio-buttons {
+  display: flex;
+  flex-direction: row;
+}
+
+.form-check {
+  padding-right: 10px;
+}
+
+.form-check-label {
+  padding-left: 10px;
+}
+
+.description {
+  padding: 10vh 5px;
+}
+
+.select-user-type-wrapper {
+  display: flex;
+  padding-bottom: 1vh;
+  border-radius: 16px;
+}
+.select-user-type-wrapper button {
+  border-radius: 0px;
+  background-color: #e3e2f7;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.65);
 }/*# sourceMappingURL=newUser.css.map */

@@ -28,7 +28,7 @@ nav{
     height: 5vh;
     display: flex;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.65);
-    padding: 18px 2%;
+    padding: 18px 5vw;
     justify-content: space-between;
     background-color: $navBar-color;
     color: $navbar-textColor;
@@ -50,12 +50,19 @@ nav{
             color: $hoverBlue;
         }
     }
+    span{
+        &:hover{
+            color: $hoverBlue;
+            cursor: pointer;
+        }
+    }
 }
 
 
 
 .bg-image{
-    background-image: url("../resources/background_image.jpg");
+    //background-image: url("../resources/background_image.jpg");
+    background: linear-gradient(0deg, rgba(165,161,241,1) 0%, rgba(200,200,228,1) 35%, rgba(233,251,255,1) 100%);
     background-size: cover;
     min-height: 95vh;
     position: relative;
@@ -63,6 +70,13 @@ nav{
     margin-bottom: 0px;
     padding-bottom: 0px;
     background-position: right;
+}
+
+.landingpage-wrapper{
+    display: flex;
+    align-items: center;
+    //justify-content: center;
+    padding: 15vh 0px 0px 5vw;
 }
 
 .color-overlay{
@@ -75,13 +89,29 @@ nav{
     padding-bottom: 0px;
 }
 
+.world{
+    object-fit: contain;
+    width: 40vw;
+    height: auto;
+    opacity: 0.7;
+    margin-left: 5vw;
+
+    // padding: 15vh 0vw 0px 15vw;
+}
+
 .header{
-    font-size: xx-large;
+    width: 60vw;
+    // font-size: x-large;
     position: relative;
     z-index: 1;
-    color: $header-color;
-    padding: 15% 0% 0% 5%;
+    color: #036a96;
+    // padding: 15% 0% 0% 5%;
+    h1{
+        // font-size: 300%;
+        font-size: 5vw;
+    }
     h2{
+        font-size: 2vw;
         padding-top: 3%;
     }
 }
