@@ -53,6 +53,7 @@ nav{
     span{
         &:hover{
             color: $hoverBlue;
+            cursor: pointer;
         }
     }
 }

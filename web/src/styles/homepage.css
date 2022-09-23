@@ -29,6 +29,7 @@ nav {
 }
 .nav-bar-links-container span:hover {
   color: #b8d3df;
+  cursor: pointer;
 }
 
 .bg-image {
