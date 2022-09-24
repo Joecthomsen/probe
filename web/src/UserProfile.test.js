@@ -1,3 +1,5 @@
+/*
+
 import { render, screen } from '@testing-library/react';
 import UserProfile from "./pages/UserProfile";
 import {userPreferences} from "./stores/UserPreferencesStore";
@@ -6,6 +8,13 @@ test('correct Header', () => {
     render(<UserProfile />);
     const header = screen.getByRole("heading")
     expect(header).toHaveTextContent("User Preferences")
+});
+
+
+test('contain correct navbar', () => {
+    render(<UserProfile/>);
+    const navBarLoggedIn = screen.queryByTitle("NavBarAsLogedInClient")
+    expect(navBarLoggedIn).toBeInTheDocument();
 });
 
 test('correct button', () => {
@@ -19,3 +28,6 @@ test('correct button', () => {
     }
 
 })
+
+
+ */

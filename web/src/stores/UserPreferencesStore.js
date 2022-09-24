@@ -1,42 +1,76 @@
-import { makeObservable, observable, computed } from "mobx"
+import {makeAutoObservable} from "mobx"
 
 class UserPreferencesStore{
+
+
     // Variables
-    preferences = [
-        { key: "Only Interested in Paid Studies", value: "yes" },
-        {key: "Max Distance to Home Address in KM", value: "12"}]
+    thisUsersPreferences = [
+
+    ]
+
     active = true
 
+    possiblePreferences = [
+        {pref: "Only Interested in Paid Studies", choices: ['yes', 'no'],},
+        {pref: "Max Distance to Home Address in KM", choices: ['5', '10', '20', '30', '40','50', 'dont care' ],},
+        {pref: "Need to be accompanied by helper", choices: ['yes', 'no'],},
+        {pref: "Preferred Language", choices: ['Danish', 'English', 'Spanish', 'Chinese', 'Other', 'dont care'],},
+        {pref: "Willing to do physical hard work", choices: ['yes', 'no'],},
+        {pref: "Max Duration of Test Period in months", choices: ['1','2', '3', '4', '4', '5', '6', '7', '8', '9','10','11','12','dont care'],},
+    ]
+
+    currentPref = this.possiblePreferences[0].pref
+    currentChoice = this.possiblePreferences[0].choices[0]
+
     // Constructor
-    constructor() {
-        makeObservable(this,{
-            preferences: observable,
-            active: observable,
-            statusString: computed
-        } )
+        constructor() {
+            makeAutoObservable(this, {},{autoBind: true} )
+        }
+
+    setCurrentPref(value) {
+        this.currentPref = value
+    }
+    setCurrentChoice(value) {
+        this.currentChoice = value
+    }
+
+
+    getPossibleChoices() {
+        const singleElement = this.possiblePreferences.find(value => value.pref === this.currentPref) || {index: 5, pref: "no match", choices: ['no', 'no']}
+        console.log(singleElement)
+        return  singleElement.choices
     }
 
     get statusString() {
-        console.log("Computing...")
         if (this.active) {
             return "You are actively seeking studies"
         } else {
             return "You are NOT seeking studies"
         }
-
     }
 
-    addPreference = (preference) => {
-        if (this.preferences.length === 1 && this.preferences[0] === 'No Preference Set') {
-            this.preferences.splice(0,1)
+
+    getPossiblePrefs()  {
+       let prefArray = []
+        this.possiblePreferences.forEach(value => {
+            prefArray.push(value.pref)
+        })
+        return prefArray
+    }
+
+    deletePreference(index) {
+        this.thisUsersPreferences.splice(index, 1);
+    }
+
+    addPreference = () => {
+        if (this.thisUsersPreferences.length === 1 && this.thisUsersPreferences[0].value === 'No Preference Set') {
+            this.thisUsersPreferences.splice(0,1)
         }
-
-        this.preferences.push(preference)
+        this.thisUsersPreferences.push({key: this.currentPref, value: this.currentChoice})
     }
 
-    setActiveState = (state) => {
+    setActiveState(state) {
         this.active = state
-        console.log("active is: ", this.active);
     }
 
 
