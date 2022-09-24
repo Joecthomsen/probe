@@ -1,12 +1,14 @@
 import {makeAutoObservable} from "mobx";
-
+import cardData from "../api/clinical_trial_api_mock";
+import EditTrialsStudyCards from "../components/TrialCard";
+import * as React from "react";
 
 class EditTrialStore {
 
     dialogOpen = false;
     OwnerID = 0;
 
-    id="";
+    id = "";
 
     Header = "";
     Country = "";
@@ -51,6 +53,7 @@ class EditTrialStore {
         this.setLongDesc("");
         this.setApplicants("");
         this.setVek("");
+        this.setId("");
     }
 
     getDialogInfo() {
@@ -124,8 +127,8 @@ class EditTrialStore {
         return this.OwnerID;
     }
 
-    setOwnerID(value){
-        this.OwnerID=value;
+    setOwnerID(value) {
+        this.OwnerID = value;
     }
 
     getHeader() {
@@ -272,7 +275,30 @@ class EditTrialStore {
     getVek() {
         return this.Vek;
     }
+
+    cardList;
+    studies;
+
+    updateCardList(){
+        this.studies = cardData.clinicalTrials.filter(obj => obj.ownerId === this.getOwnerId());
+
+        this.cardList=(this.studies.map((element, index) => {
+            return <EditTrialsStudyCards key={index}
+                                         id={element.id}
+                                         header={element.header}
+                                         title={element.title}
+                                         country={element.county}
+                                         city={element.city}
+                                         description={element.cardDescription}
+                                         participants={element.participants.length}
+                                         click={element}
+            />
+        }));
+    }
+
 }
 
-export const EditTrialStoreOBJ = new EditTrialStore()
+
+
+export const EditTrialStoreOBJ = new EditTrialStore();
 
