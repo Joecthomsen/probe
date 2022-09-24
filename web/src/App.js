@@ -23,7 +23,7 @@ function App() {
               <Route path='/about' element={<Layout> <About/> </Layout>}/>
               <Route path='/login' element={<Layout> <Login/> </Layout>}/>
               <Route path='/userProfile' element={<UserProfile/>} />
-              <Route path='/edittrials' element={<EditTrials/>}/>
+              <Route path='/edittrials' element={<Layout><EditTrials/></Layout>}/>
               <Route path='/createuser' element={ <Layout> <CreateUser/> </Layout> }/>
               <Route path='/createuser' element={<CreateUser/>}/>
               <Route path='/trials' element={<ViewTrials/>}/>
