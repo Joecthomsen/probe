@@ -5,7 +5,7 @@ import Grid from "@mui/material/Unstable_Grid2";
 
 const PreferenceArray = () => {
 
-    const preferences = userPreferences.preferences
+    const preferences = userPreferences.thisUsersPreferences
     const constructedArray = []
 
     function editPref(index) {
@@ -13,18 +13,15 @@ const PreferenceArray = () => {
     }
 
     function deletePref(index) {
+userPreferences.deletePreference(index)
         console.log("clicked delete on: ", index)
-    }
-
-    function addPref() {
-        console.log("clicked add")
     }
 
     preferences.forEach((preference, index) => {
          constructedArray.push(
 
-        <Grid key={index} container spacing={2} border={1}>
-             <Grid xs={12} md={3}>
+        <Grid key={`${index}consArray`} container spacing={2} border={1}>
+            <Grid xs={12} md={3}>
                <p>  {preference.key} </p>
              </Grid>
             <Grid xs={12} md={3} borderLeft={1} borderRight={1}>
@@ -41,14 +38,7 @@ const PreferenceArray = () => {
     })
 
     return (
-        <Grid container spacing={2} >
-            <Grid xs={12} md={12}>
-           {constructedArray}
-            </Grid>
-            <Grid xs={12} md={12}>
-           <Button variant={"outlined"} onClick={addPref}> Add Another Preference </Button>
-            </Grid>
-        </Grid>
+        constructedArray
     )
 
 }
