@@ -3,6 +3,7 @@ import match_codes_api from "../api/match_codes_api";
 import * as React from "react";
 import {EditTrialStoreOBJ} from "../stores/EditTrialStore";
 
+
 function DialogContextTrial() {
 
     return (
@@ -97,10 +98,11 @@ function DialogContextTrial() {
                         <Autocomplete id="Vek"
                                       defaultValue={EditTrialStoreOBJ.getVek()}
                                       options={[
+                                          {value: ""},
                                           {value: 'Yes'},
                                           {value: 'No'}].map((option) => option.value)}
                                       renderInput={(params) => <TextField {...params}
-                                                                          label="Match"/>}
+                                                                          label="Vek"/>}
                                       onChange={(e, v) => {
                                           EditTrialStoreOBJ.setVek(v)
                                       }}
@@ -135,9 +137,9 @@ function DialogContextTrial() {
                                    EditTrialStoreOBJ.setApplicants(document.getElementById("Applicants").value)
                                }}/></Grid>
             </Grid>
-
         </DialogContentText>
-    );
+    )
+        ;
 }
 
 export default DialogContextTrial;
