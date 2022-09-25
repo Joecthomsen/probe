@@ -3,7 +3,6 @@ import Grid from '@mui/material/Unstable_Grid2';
 import {userPreferences} from "../stores/UserPreferencesStore";
 import {observer} from "mobx-react-lite";
 import PreferenceArray from "../components/UserPreferences/PreferenceArray";
-import NavBarAsLoggedInClient from "../components/NavBarAsLoggedInClient";
 import {Box} from "@mui/material";
 import * as React from 'react';
 import PreferenceAdder from "../components/UserPreferences/PreferenceAdder";
@@ -12,12 +11,9 @@ import PreferenceAdder from "../components/UserPreferences/PreferenceAdder";
 const UserProfile = () => {
 
 
-
     return (
 
         <div>
-
-        <NavBarAsLoggedInClient />
 
         <div>
             <Grid container spacing={2}>
