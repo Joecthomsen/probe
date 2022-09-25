@@ -1,8 +1,10 @@
-/*
 
-import { render, screen } from '@testing-library/react';
+
+import { render, screen} from "@testing-library/react";
 import UserProfile from "./pages/UserProfile";
 import {userPreferences} from "./stores/UserPreferencesStore";
+import ActivateDeactivateButton from "./components/UserPreferences/ActivateDeactivateButton";
+
 
 test('correct Header', () => {
     render(<UserProfile />);
@@ -10,15 +12,8 @@ test('correct Header', () => {
     expect(header).toHaveTextContent("User Preferences")
 });
 
-
-test('contain correct navbar', () => {
-    render(<UserProfile/>);
-    const navBarLoggedIn = screen.queryByTitle("NavBarAsLogedInClient")
-    expect(navBarLoggedIn).toBeInTheDocument();
-});
-
 test('correct button', () => {
-    render(<UserProfile />)
+    render(<ActivateDeactivateButton />)
     const button = screen.queryByRole('button');
     if (userPreferences.active) {
         expect(button).toHaveTextContent("Deactivate Me")
@@ -29,5 +24,6 @@ test('correct button', () => {
 
 })
 
+test("preferenceArray", () => {
 
- */
+})
