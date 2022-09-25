@@ -12,9 +12,10 @@ const PreferenceAdder = () => {
 
     function setPref(value) {
         userPreferences.setCurrentPref(value);
+        userPreferences.setCurrentChoice(userPreferences.getPossibleChoices()[0]);
     }
     function setChoice(value) {
-        userPreferences.currentChoice = value;
+        userPreferences.setCurrentChoice(value);
     }
 
     const prefList = userPreferences.getPossiblePrefs().map((value) =>
