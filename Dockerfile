@@ -9,6 +9,8 @@ WORKDIR /tmp
 COPY /web/package.json  ./
 COPY /web/src ./src
 COPY /web/public ./public
+# RUN npm i
+# RUN npm run build
 RUN yarn install
 RUN yarn build
 
