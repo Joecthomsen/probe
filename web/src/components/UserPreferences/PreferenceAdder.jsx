@@ -29,7 +29,7 @@ const PreferenceAdder = () => {
     return (
         <div>
             <FormControl fullWidth>
-                <InputLabel variant="filled" htmlFor="uncontrolled-native">
+                <InputLabel variant="standard" htmlFor="uncontrolled-native">
                     Preference
                 </InputLabel>
                 <NativeSelect defaultValue={userPreferences.getPossiblePrefs()[0]}
@@ -40,7 +40,7 @@ const PreferenceAdder = () => {
             </FormControl>
 
             <FormControl fullWidth>
-                <InputLabel variant="filled" htmlFor="uncontrolled-native">
+                <InputLabel variant="standard" htmlFor="uncontrolled-native">
                     Choice
                 </InputLabel>
                 <NativeSelect defaultValue={userPreferences.getPossibleChoices()[0]}
