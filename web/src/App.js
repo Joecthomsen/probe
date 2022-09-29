@@ -4,6 +4,7 @@ import Login from './pages/Login';
 import UserProfile from "./pages/UserProfile";
 import CreateUser from "./pages/CreateUser";
 import ViewTrials from "./pages/ViewTrials";
+import AdminLogin from "./pages/AdminLogin";
 
 import {
   HashRouter,
@@ -27,6 +28,7 @@ function App() {
               <Route path='/createuser' element={ <Layout> <CreateUser/> </Layout> }/>
               <Route path='/createuser' element={<CreateUser/>}/>
               <Route path='/trials' element={<ViewTrials/>}/>
+              <Route path='/admin' element={<AdminLogin/>}/>
               <Route path='*' element={<PageNotFound/>}/>
           </Routes>
         </HashRouter>
