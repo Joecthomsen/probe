@@ -1,5 +1,6 @@
-import NavBar from "./AdminLayout";
-const Layout = ({ children }) => {
+import NavBar from "./NavBar";
+
+const AdmLayout = ({ children }) => {
   return (
     <>
       <div>
@@ -10,4 +11,4 @@ const Layout = ({ children }) => {
   );
 };
 
-export default Layout;
+export default AdmLayout;

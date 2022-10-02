@@ -1,4 +1,4 @@
-import { TextField, Button } from "@mui/material";
+import { TextField, Button, Typography, Box } from "@mui/material";
 import React, { useState } from "react";
 import ApiMock from "../../api/admin_login_mock";
 import { useNavigate } from "react-router-dom";
@@ -31,39 +31,54 @@ function Login() {
   };
 
   return (
-    <form>
-      <TextField
-        style={{ width: "200px", margin: "5px" }}
-        type="text"
-        label="Username"
-        variant="outlined"
-        id="username"
-        onChange={onChange}
-        value={username}
-      />
-      <br />
-      <TextField
-        style={{ width: "200px", margin: "5px" }}
-        type="password"
-        label="Password"
-        variant="outlined"
-        id="password"
-        onChange={onChange}
-        value={password}
-      />
-      <br />
-      <Button
-        variant="contained"
-        color="primary"
-        disabled={btnDisabled}
-        id="loginBtn"
-        onClick={onClick}
-      >
-        save
-      </Button>
-      <br />
-      {error}
-    </form>
+    <Box
+      justifyContent="center"
+      alignItems="center"
+      sx={{ mx: "auto", width: 400, pm: "auto" }}
+    >
+      <Typography variant="h3" margin="20px">
+        Sign in
+      </Typography>
+
+      <form>
+        <TextField
+          style={{ width: "350px", padding: "10px" }}
+          type="text"
+          label="Username"
+          variant="outlined"
+          id="username"
+          onChange={onChange}
+          value={username}
+        />
+        <br />
+        <TextField
+          style={{
+            width: "350px",
+            padding: "10px",
+          }}
+          type="password"
+          label="Password"
+          variant="outlined"
+          id="password"
+          onChange={onChange}
+          value={password}
+        />
+        <br />
+        <Button
+          variant="contained"
+          color="primary"
+          disabled={btnDisabled}
+          onClick={onClick}
+          sx={{ fontSize: 18 }}
+        >
+          log in
+        </Button>
+        <br />
+        <Typography component="p" variant="h5">
+          {error}
+        </Typography>
+      </form>
+    </Box>
   );
 }
 
