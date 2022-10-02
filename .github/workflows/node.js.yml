@@ -34,7 +34,7 @@ jobs:
       # Trigger deploy on Caprover instance
       - name: Deploy app
         env: 
-          APP_NAME: 'probe-devopse22'
+          APP_NAME: 'probe'
           APP_URL: 'https://joecthomsen.dk/'
           IMAGE_NAME: 'joecthomsen/docker-app:${{github.run_number}}'
         run: 
