@@ -15,7 +15,7 @@ const LandingPage = () => {
                     {/* <div className="color-overlay"/> */}
                     <div className="header">
                         <h1>Clinical trial matching</h1>
-                        <h2>World wide experimental medicin initiateves test</h2>
+                        <h2>World wide experimental medicin initiateves test test </h2>
                     </div>
                     <img className="world" src={world} alt="null" /> 
 
