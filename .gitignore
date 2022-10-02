@@ -8,6 +8,7 @@ node_modules/
 # ide settings
 /.idea
 /.vscode
+/.vs
 
 # testing
 /coverage
