@@ -12,9 +12,6 @@ import TextField from '@mui/material/TextField';
 function valuetext(value) {
     return `${value} years`;
 }
-function valuetext2(value) {
-    return `${value} km`;
-}
 
 const Filter = () => {
     const marks = [
