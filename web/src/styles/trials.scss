@@ -1,0 +1,105 @@
+//Card styling
+$cardTextColor: #000000;
+$card-location-text-color:  rgb(100, 100, 100);
+$card-location-icon-color: #00ff0d;
+$cardFontShadowSize: 1px;
+$description-border-color: rgb(196, 196, 196);
+$description-text-color: rgb(131, 131, 131);
+$card-link-learn-more-color: #00ff0d;
+$card-link-learn-more-hover-color: #00ad09;
+
+.view-trials-page{
+  display: flex;
+  background: linear-gradient(0deg, rgba(165,161,241,1) 0%, rgba(200,200,228,1) 35%, rgba(233,251,255,1) 100%);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+.filter-box{
+  flex: 2;
+
+  .filter-list{
+    list-style-type: none;
+    margin: 0.5%;
+    font-size: medium;
+    .filter-option{
+      margin: 20px;
+    }
+  }
+}
+.trials-box{
+  flex: 10;
+}
+
+.studycard-container-large{
+  display: flex;
+  flex-direction: column;
+  max-height: 500px;
+
+  margin: 2% 1rem 0rem 1rem;
+  padding: 1.5rem 1rem;
+  border-radius: 12px;
+  box-shadow: 4px 3px 6px 4px hsla(0, 0%, 0%, 0.12);
+  background: rgba(224, 248, 255,1);
+
+  .card-location{
+    display: flex;
+    align-items: center;
+    margin-top: 1%;
+
+    h1{
+      font-size: x-large;
+      color: black;
+      margin-bottom: 1%;
+    }
+
+    span{
+      color: $card-location-icon-color;
+      height: 40px;
+      font-size: x-large;
+      padding-left: 0px;
+      margin: 0px 2px 0px 0px;
+    }
+
+    .card-country{
+      color: $card-location-text-color;
+      margin-right: 10%;
+      margin-left: 3%;
+    }
+
+    .card-city{
+      color: $card-location-text-color;
+    }
+  }
+
+  hr{
+    height: 5px;
+    background-color:$card-location-icon-color;
+    border: none;
+    margin-top: 1%;
+  }
+
+  h2{
+    font-size: large;
+    margin: 5% 0px 0px 2%;
+  }
+
+  .card-description-container{
+    font-size: 14px;
+    padding: 2% 20% 0px 0px;
+    margin-top: 4%;
+    border: 1px solid $description-border-color;
+    color: $description-text-color;
+    text-align: justify
+  }
+
+  .links{
+    display: flex;
+    padding: 1% 0px 0px 90%;
+    color: $card-link-learn-more-color;
+    &:hover{
+      color: $card-link-learn-more-hover-color;
+      cursor: pointer;
+    }
+  }
+}
