@@ -28,7 +28,7 @@ function App() {
               <Route path='/userProfile' element={<Layout> <UserProfile/> </Layout>} />
               <Route path='/edittrials' element={<Layout><EditTrials/></Layout>}/>
               <Route path='/createuser' element={ <Layout> <CreateUser/></Layout> }/>
-              <Route path='/trials' element={<ViewTrials/>}/>
+              <Route path='/trials' element={<Layout> <ViewTrials/> </Layout>}/>
               <Route path='/admin' element={<AdminLogin/>}/>
               <Route path='/admin-page' element={<AdmLayout><Page/> </AdmLayout>}/>
               <Route path='*' element={<PageNotFound/>}/>
