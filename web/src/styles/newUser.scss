@@ -1,0 +1,102 @@
+$input-vertical-padding: 8px;
+$input-bottom-margin: 2vh;
+
+.create-user-wrapper{
+    display: flex;
+    justify-content: space-between;
+    background: linear-gradient(0deg, rgba(165,161,241,1) 0%, rgba(200,200,228,1) 35%, rgba(233,251,255,1) 100%);
+    height: 95vh;
+    padding: 8vh 0px 0px 2vh;
+}
+
+.world-image{
+    object-fit: contain;
+    width: 40vw;
+    padding: 15vh  2vw 20vh 8vw;
+    opacity: 0.7;
+}
+
+.create-user-form{
+    display: flex;
+    flex-direction: column;
+    width: 40vw;
+    align-items: flex-end;
+    padding-right: 3vw;
+    input{
+        width: 37vw;
+        padding: $input-vertical-padding 2vw $input-vertical-padding 1vw;
+        margin-bottom: $input-bottom-margin;
+        border: 1px outset blue;
+        border-radius: 6px;
+    }
+
+    label{
+        padding: 0px 34vw 8px 12px;
+    }
+
+    button{
+        width: 20vw;
+        padding: $input-vertical-padding 0px;
+        border-radius: 18px;
+        border: none;
+        font-size: large;
+        &:hover{
+            background-color: #d6e7d0;
+            cursor: pointer;
+        }
+    }
+}
+
+.gender{
+    display: flex;
+    flex-direction:row;
+    background-color: red;
+    width: 30vw;
+    input{
+        padding: 0px 10px 0px 10px;
+    }
+}
+
+.error-messages{
+    padding-top: 12px;
+    color: red;
+}
+
+.gender-selection{
+    display: flex;
+    align-items: center;
+    padding: 0px 0px 2vh 0px;
+    p{
+        padding-right: 10vw;
+    }
+}
+
+.radio-buttons{
+    display: flex;
+    flex-direction: row;
+}
+
+.form-check{
+    padding-right: 10px;
+}
+
+.form-check-label{
+    padding-left: 10px;
+}
+
+.description{
+    padding: 10vh 5px;
+}
+
+.select-user-type-wrapper{
+    display: flex;
+    padding-bottom: 1vh;
+
+    border-radius: 16px;    button{
+        border-radius: 0px;
+        background-color: #e3e2f7;
+        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.65);
+
+    }
+
+}
