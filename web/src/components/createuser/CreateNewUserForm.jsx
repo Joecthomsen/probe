@@ -154,8 +154,8 @@ return (
                 <SelectUserType/>
                 <label htmlFor="Create a new user"></label>
                 <input onChange={handleEmail} name="email" type="text" placeholder={userStore.email ? userStore.email : "Email"}/>
-                <input onChange={handlePassword} type="password" placeholder={userStore.password ? userStore.password : "Password"}/>
-                <input onChange={handleRepeatPassword} type="password" placeholder={userStore.repeatPassword ? userStore.region : "Repeat password"}/>
+                <input onChange={handlePassword} type="password" placeholder="Password"/>
+                <input onChange={handleRepeatPassword} type="password" placeholder="Repeat password"/>
                 <input onChange={handleFirstName} type="text" placeholder={userStore.firstName ? userStore.firstName : "First name(s)"}/>
                 <input onChange={handleLastName} type="text" placeholder={userStore.lastName ? userStore.lastName : "Last name"}/>
                 <label htmlFor="user-birthday">Day of Birth:</label>
@@ -199,8 +199,8 @@ return (
                 <SelectUserType/>
                 <label htmlFor="Create a new user"></label>
                 <input onChange={handleEmail} name="email" type="text" placeholder={userStore.email ? userStore.email : "Email"}/>
-                <input onChange={handlePassword} type="password" placeholder={userStore.password ? userStore.password : "Password"}/>
-                <input onChange={handleRepeatPassword} type="password" placeholder={userStore.repeatPassword ? userStore.region : "Repeat password"}/>
+                <input onChange={handlePassword} type="password" placeholder="Password"/>
+                <input onChange={handleRepeatPassword} type="password" placeholder="Repeat password"/>
                 <input onChange={handleFirstName} type="text" placeholder={userStore.firstName ? userStore.firstName : "First name(s)"}/>
                 <input onChange={handleLastName} type="text" placeholder={userStore.lastName ? userStore.lastName : "Last name"}/>
                 <input onChange={handleCity} type="text" placeholder={userStore.city ? userStore.city : "city"}/>
