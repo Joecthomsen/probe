@@ -2,7 +2,7 @@
 import { makeAutoObservable } from "mobx"
 
 class UserStore{
-   
+
    email;
    password;
    repeatPassword;
@@ -80,6 +80,23 @@ class UserStore{
     }
     setErrorMsg(msg){
         this.errorMsg = msg
+    }
+
+    getUserObject(){
+        return{
+            cpr: this.dob,
+            firstName: this.firstName,
+            lastName: this.lastName,
+            age: 999,
+            weight: 999,
+            chronicDisease: this.diagnose,
+            streetName: 'TODO',
+            doorNumber: 999,
+            zipCode: 999,
+            city: this.city,
+            region: this.region,
+            country: this.country
+        }
     }
 }
 export const userStore = new UserStore()

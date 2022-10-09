@@ -9,6 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/user")
+@CrossOrigin(maxAge = 3600)
 public class UserController {
 
     @Autowired

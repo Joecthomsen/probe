@@ -19,4 +19,4 @@ WORKDIR /tmp
 COPY --from=MAVEN /tmp/target ./
 COPY --from=REACT /tmp/build ./src/main/webapp/
 EXPOSE 8080
-CMD ["java","-Xmx1024m", "-jar", "/tmp/devops-fatjar.jar"]
+CMD ["java","-Xmx1024m", "-jar", "/tmp/probe_springboot-0.0.1-SNAPSHOT.jar"]

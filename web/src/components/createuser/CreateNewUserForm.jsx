@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import {userStore} from "../../stores/UserStore"
 import { observer } from "mobx-react-lite"
 import SelectUserType from "../SelectUserType";
-
+import axios from "axios";
 const CreateUserFormOne = () => {
 
 
@@ -138,25 +138,11 @@ const CreateUserFormOne = () => {
 
     const submitUser = (event) => {
         event.preventDefault();
-        if(checkSecondForm()){
-            navigate("/")
-            users.users.push({
-                "id": 0,
-                "image": "<PATH_TO_IMAGE_HERE>",
-                "firstName": userStore.firstName,
-                "lastName": userStore.lastName,
-                "cpr": "NIL",
-                "age": 40,
-                "chronicDisease": "Lung cancer stage 4",
-                "streetName": "Nørrebrogade",
-                "doorNumber": 42,
-                "zipCode": 2200,
-                "city": userStore.city,
-                "region": userStore.region,
-                "county": userStore.country
-            })
+        console.log("submitting........")
+        axios.post('http://localhost:8080/user/add', userStore.getUserObject())
+            .then(response => {console.log(response)})
+            .catch(error => console.log(error))
         }
-    }
 
 return (
     //Check if the user wants to create a medical user
