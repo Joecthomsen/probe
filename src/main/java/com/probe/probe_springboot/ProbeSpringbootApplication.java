@@ -9,11 +9,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class ProbeSpringbootApplication {
 
-
 	public static void main(String[] args) {
-//		for (int i = 0 ; i < 10 ; i++){
-//			User user = new User("1211-"+i, "John", "Thom", 32, 80, "Cancer", "Fensmarkgade", 51, 2200, "Copenhagen", "Hovedstaden", "Denmark");
-//		}
+
+		//User user = new User("121110-0908", "John", "Thom", 32, 80, "Cancer", "Fensmarkgade", 51, 2200, "Copenhagen", "Hovedstaden", "Denmark");
 		SpringApplication.run(ProbeSpringbootApplication.class, args);
 	}
 
