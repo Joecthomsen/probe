@@ -20,7 +20,6 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private boolean medicalUser;
-    private String cpr;
     private String sex;
     private String firstName;
     private String lastName;

@@ -4,9 +4,8 @@ import { makeAutoObservable } from "mobx"
 
 class UserStore{
 
-    id;
-    passWo
-    cpr;
+    password;
+    repeatPassword;
     sex;
     firstName;
     lastName;
@@ -52,6 +51,21 @@ class UserStore{
     setDob(dob){
         this.dob = dob;
     }
+    setWeight(weight){
+        this.weight = weight;
+    }
+    setChronicDisease(value){
+        this.chronicDisease = value;
+    }
+    setStreetName(value){
+        this.streetName = value;
+    }
+    setDoorNumber(value){
+        this.doorNumber = value;
+    }
+    setZipCode(value){
+        this.zipCode = value;
+    }
     setCity(city){
         this.city = city
     }
@@ -64,18 +78,18 @@ class UserStore{
     setGender(gender){
         this.gender = gender
     }
-    setDiagnose(diagnose){
-        this.diagnose = diagnose
-    }
-    setOccupation(occupation){
-        this.occupation = occupation
-    }
-    setDescription(description){
-        this.description = description
-    }
-    setAgeWhenDiagnosed(ageWhenDiagnosed){
-        this.ageWhenDiagnosed = ageWhenDiagnosed
-    }
+    // setDiagnose(diagnose){
+    //     this.diagnose = diagnose
+    // }
+    // setOccupation(occupation){
+    //     this.occupation = occupation
+    // }
+    // setDescription(description){
+    //     this.description = description
+    // }
+    // setAgeWhenDiagnosed(ageWhenDiagnosed){
+    //     this.ageWhenDiagnosed = ageWhenDiagnosed
+    // }
 
 
 
@@ -99,15 +113,17 @@ class UserStore{
 
     getUserObject(){
         return{
-            cpr: this.dob,
+            medicalUser: this.createMedicalUser,
+            dob: this.dob,
             firstName: this.firstName,
             lastName: this.lastName,
-            age: 999,
-            weight: 999,
-            chronicDisease: this.diagnose,
+            weight: this.weight,
+            chronicDisease: this.chronicDisease,
+            email: this.email,
+            phoneNumber: this.phoneNumber,
             streetName: 'TODO',
-            doorNumber: 999,
-            zipCode: 999,
+            doorNumber: this.doorNumber,
+            zipCode: this.zipCode,
             city: this.city,
             region: this.region,
             country: this.country

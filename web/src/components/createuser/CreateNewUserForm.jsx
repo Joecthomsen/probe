@@ -46,17 +46,23 @@ const CreateUserFormOne = () => {
         userStore.setGender(event.target.value)
     }
     const handleDiagnose = (event) => {
-        userStore.setDiagnose(event.target.value)
+        userStore.setChronicDisease(event.target.value)
     }
-    const handleOccupation = (event) => {
-        userStore.setOccupation(event.target.value)
+    const handleWeight = (event) => {
+        userStore.setWeight(event.target.value)
     }
+    const handlePhoneNumber = (event) => {
+        userStore.setPhoneNumber(event.target.value)
+    }
+    // const handleOccupation = (event) => {
+    //     userStore.setOccupation(event.target.value)
+    // }
     // const handleDescription = (event) => {
     //     userStore.setDescription(event.target.value)
     // }
-    const handleAgeWhenDiagnosed = (event) => {
-        userStore.ageWhenDiagnosed(event.target.value)
-    }
+    // const handleAgeWhenDiagnosed = (event) => {
+    //     userStore.ageWhenDiagnosed(event.target.value)
+    // }
 
     const checkFirstForm = (event) => {
 
@@ -136,6 +142,8 @@ const CreateUserFormOne = () => {
     //     return true;
     // }
 
+    //'http://localhost:8080/user/add'
+    //'https://probe.joecthomsen.dk/user/add'
     const submitUser = (event) => {
         event.preventDefault();
         console.log("submitting........")
@@ -188,8 +196,8 @@ return (
                 <form className="create-user-form">        
                     <label htmlFor="Create a new user"></label>
                     <input onChange={handleDiagnose} type="text" placeholder="Your diagnose (If any)"></input>
-                    <input onChange={handleAgeWhenDiagnosed} type="text" placeholder="Age whe you got diagnosed (If appliable)"></input> 
-                    <input onChange={handleOccupation} type="text" placeholder="Occupation"></input> 
+                    <input onChange={handleWeight} type="text" placeholder="Weight"></input>
+                    <input onChange={handlePhoneNumber} type="text" placeholder="Phone number"></input>
                     <button onClick={submitUser} >Create Users</button>
                     {userStore.error ? <p className="error-messages">{userStore.errorMsg}</p> : <p></p>}
                 </form>
