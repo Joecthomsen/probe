@@ -3,16 +3,17 @@ WORKDIR /tmp
 COPY /src/ ./src
 COPY /pom.xml ./
 RUN mvn package
+CMD ["java", "-jar", "probe_springboot-0.0.1-SNAPSHOT.jar"]
+
 
 FROM node:18-slim AS REACT
 WORKDIR /tmp
 COPY /web/package.json  ./
 COPY /web/src ./src
 COPY /web/public ./public
-# RUN npm i
-# RUN npm run build
 RUN yarn install
 RUN yarn build
+
 
 FROM openjdk:18-alpine
 WORKDIR /tmp
