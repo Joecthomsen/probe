@@ -139,7 +139,7 @@ const CreateUserFormOne = () => {
     const submitUser = (event) => {
         event.preventDefault();
         console.log("submitting........")
-        axios.post('http://localhost:8080/user/add', userStore.getUserObject())
+        axios.post('https://probe.joecthomsen.dk/user/add', userStore.getUserObject())
             .then(response => {console.log(response)})
             .catch(error => console.log(error))
         }
