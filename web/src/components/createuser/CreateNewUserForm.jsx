@@ -1,6 +1,6 @@
 import { useState } from "react";
-import users from "../../api/user_api_mock";
-import { useNavigate } from 'react-router-dom';
+//import users from "../../api/user_api_mock";
+//import { useNavigate } from 'react-router-dom';
 import {userStore} from "../../stores/UserStore"
 import { observer } from "mobx-react-lite"
 import SelectUserType from "../SelectUserType";
@@ -13,7 +13,7 @@ const CreateUserFormOne = () => {
     const [firstForm, setFirstForm] = useState(true)
     // const [createMedicalUser, setCreateMedicalUser] = useState(false)
 
-    const navigate = useNavigate();
+    //const navigate = useNavigate();
 
     const handleEmail = (event) => {
         userStore.setEmail(event.target.value)
@@ -127,14 +127,14 @@ const CreateUserFormOne = () => {
         }
     }
 
-    function checkSecondForm()  {
-        if(!userStore.gender){
-            userStore.setError(true);
-            userStore.setErrorMsg("Please select gender")
-            return false;
-        }
-        return true;
-    }
+    // function checkSecondForm()  {
+    //     if(!userStore.gender){
+    //         userStore.setError(true);
+    //         userStore.setErrorMsg("Please select gender")
+    //         return false;
+    //     }
+    //     return true;
+    // }
 
     const submitUser = (event) => {
         event.preventDefault();
