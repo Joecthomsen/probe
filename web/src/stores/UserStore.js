@@ -1,26 +1,30 @@
 
 import { makeAutoObservable } from "mobx"
 
+
 class UserStore{
 
-   email;
-   password;
-   repeatPassword;
-   firstName;
-   lastName;
-   dob;
-   city;
-   region;
-   country;
-   gender;
-   diagnose;
-   occupation;
-   description;
-   ageWhenDiagnosed;
+    id;
+    passWo
+    cpr;
+    sex;
+    firstName;
+    lastName;
+    dob;
+    weight;
+    chronicDisease;
+    email;
+    phoneNumber;
+    streetName;
+    doorNumber;
+    zipCode;
+    city;
+    region;
+    country;
 
-   createMedicalUser = false;
-   error = false;
-   errorMsg = "";
+    createMedicalUser = false;
+    error = false;
+    errorMsg = "";
 
 
     constructor() {
@@ -72,6 +76,17 @@ class UserStore{
     setAgeWhenDiagnosed(ageWhenDiagnosed){
         this.ageWhenDiagnosed = ageWhenDiagnosed
     }
+
+
+
+    setSex(value) {
+        this.sex = value;
+    }
+
+    setPhoneNumber(value) {
+        this.phoneNumber = value;
+    }
+
     setCreateMedicalUser(value){
         this.createMedicalUser = value
     }
