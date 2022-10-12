@@ -17,8 +17,8 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public User getUserByCpr(Integer cpr){
-        return userRepository.findById(cpr).orElse(null);
+    public User getUserByCpr(Integer id){
+        return userRepository.findById(id).orElse(null);
     }
 
     public List<User> getAllUsers(){
