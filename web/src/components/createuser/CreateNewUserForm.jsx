@@ -7,9 +7,6 @@ import SelectUserType from "../SelectUserType";
 import axios from "axios";
 const CreateUserFormOne = () => {
 
-
-    // const [error, setError] = useState(false)
-    // const [errorMsg, setErrorMsg] = useState("")
     const [firstForm, setFirstForm] = useState(true)
     // const [createMedicalUser, setCreateMedicalUser] = useState(false)
 
@@ -54,20 +51,8 @@ const CreateUserFormOne = () => {
     const handlePhoneNumber = (event) => {
         userStore.setPhoneNumber(event.target.value)
     }
-    // const handleOccupation = (event) => {
-    //     userStore.setOccupation(event.target.value)
-    // }
-    // const handleDescription = (event) => {
-    //     userStore.setDescription(event.target.value)
-    // }
-    // const handleAgeWhenDiagnosed = (event) => {
-    //     userStore.ageWhenDiagnosed(event.target.value)
-    // }
 
     const checkFirstForm = (event) => {
-
-        console.log(userStore.firstName)
-
         event.preventDefault();
         let computedErrorMsg = "Please fill in the folloving information: "
         let hasError = false;
@@ -133,23 +118,22 @@ const CreateUserFormOne = () => {
         }
     }
 
-    // function checkSecondForm()  {
-    //     if(!userStore.gender){
-    //         userStore.setError(true);
-    //         userStore.setErrorMsg("Please select gender")
-    //         return false;
-    //     }
-    //     return true;
-    // }
-
-    //'http://localhost:8080/user/add'
-    //'https://probe.joecthomsen.dk/user/add'
     const submitUser = (event) => {
         event.preventDefault();
-        console.log("submitting........")
-        axios.post('https://probe.joecthomsen.dk/user/add', userStore.getUserObject())
-            .then(response => {console.log(response)})
-            .catch(error => console.log(error))
+        if(!userStore.createMedicalUser) {
+            axios.post('https://probe.joecthomsen.dk/user/add', userStore.getClinicalUserObject())
+                .then(response => {
+                    console.log(response)
+                })
+                .catch(error => console.log(error))
+        }
+        else{
+            axios.post('https://probe.joecthomsen.dk/user/add', userStore.getMedicalUserObject())
+                .then(response => {
+                    console.log(response)
+                })
+                .catch(error => console.log(error))
+        }
     }
 
     return (

@@ -111,7 +111,26 @@ class UserStore{
         this.errorMsg = msg
     }
 
-    getUserObject(){
+    getMedicalUserObject(){
+        return{
+            medicalUser: this.createMedicalUser,
+            dob: null,
+            firstName: this.firstName,
+            lastName: this.lastName,
+            weight: null,
+            chronicDisease: null,
+            email: this.email,
+            phoneNumber: null,
+            streetName: null,
+            doorNumber: null,
+            zipCode: null,
+            city: this.city,
+            region: this.region,
+            country: this.country
+        }
+    }
+
+    getClinicalUserObject(){
         return{
             medicalUser: this.createMedicalUser,
             dob: this.dob,
@@ -121,7 +140,7 @@ class UserStore{
             chronicDisease: this.chronicDisease,
             email: this.email,
             phoneNumber: this.phoneNumber,
-            streetName: 'TODO',
+            streetName: this.streetName,
             doorNumber: this.doorNumber,
             zipCode: this.zipCode,
             city: this.city,
