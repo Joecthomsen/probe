@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.sql.Date;
 
 @Getter
 @Setter
@@ -16,19 +17,22 @@ import javax.persistence.*;
 public class User {
 
     @Id
-    private String cpr;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
+    private boolean medicalUser;
+    private String sex;
     private String firstName;
     private String lastName;
-    private int age;
-    private int weight;
+    private Date dob;
+    private double weight;
     private String chronicDisease;
+    private String email;
+    private String phoneNumber;
     private String streetName;
     private int doorNumber;
-    private int zipCode;
+    private String zipCode;
     private String city;
     private String region;
     private String country;
-
-
 
 }
