@@ -198,7 +198,7 @@ const CreateUserFormOne = () => {
                 <input onChange={handleCity} type="text" placeholder={userStore.city ? userStore.city : "city"}/>
                 <input onChange={handleRegion} type="text" placeholder={userStore.region ? userStore.region : "Region"}/>
                 <input onChange={handleCountry} type="text" placeholder={userStore.country ? userStore.city : "County"}/>
-                <button onClick={checkFirstForm} >Create User</button>
+                <button onClick={submitUser} >Create User</button>
                 {userStore.error ? <p className="error-messages">{userStore.errorMsg}</p> : <p></p>}
             </form>
     );
