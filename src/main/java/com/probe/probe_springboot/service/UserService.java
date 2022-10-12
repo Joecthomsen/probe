@@ -17,7 +17,7 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public User getUserByCpr(String cpr){
+    public User getUserByCpr(Integer cpr){
         return userRepository.findById(cpr).orElse(null);
     }
 
