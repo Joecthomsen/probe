@@ -1,26 +1,29 @@
 
 import { makeAutoObservable } from "mobx"
 
+
 class UserStore{
 
-   email;
-   password;
-   repeatPassword;
-   firstName;
-   lastName;
-   dob;
-   city;
-   region;
-   country;
-   gender;
-   diagnose;
-   occupation;
-   description;
-   ageWhenDiagnosed;
+    password;
+    repeatPassword;
+    sex;
+    firstName;
+    lastName;
+    dob;
+    weight;
+    chronicDisease;
+    email;
+    phoneNumber;
+    streetName;
+    doorNumber;
+    zipCode;
+    city;
+    region;
+    country;
 
-   createMedicalUser = false;
-   error = false;
-   errorMsg = "";
+    createMedicalUser = false;
+    error = false;
+    errorMsg = "";
 
 
     constructor() {
@@ -28,25 +31,40 @@ class UserStore{
             {},
             {autoBind:true}//For non-arrow-functions bind
         )
-     }
+    }
 
     setEmail(email){
         this.email = email
     }
     setPassword(password){
-    this.password = password
+        this.password = password
     }
     setRepeatPassword(repeatPassword){
-    this.repeatPassword = repeatPassword
+        this.repeatPassword = repeatPassword
     }
     setFirstName(firstName){
-    this.firstName = firstName;
+        this.firstName = firstName;
     }
     setLastName(lastName){
         this.lastName = lastName
     }
     setDob(dob){
         this.dob = dob;
+    }
+    setWeight(weight){
+        this.weight = weight;
+    }
+    setChronicDisease(value){
+        this.chronicDisease = value;
+    }
+    setStreetName(value){
+        this.streetName = value;
+    }
+    setDoorNumber(value){
+        this.doorNumber = value;
+    }
+    setZipCode(value){
+        this.zipCode = value;
     }
     setCity(city){
         this.city = city
@@ -60,18 +78,29 @@ class UserStore{
     setGender(gender){
         this.gender = gender
     }
-    setDiagnose(diagnose){
-        this.diagnose = diagnose
+    // setDiagnose(diagnose){
+    //     this.diagnose = diagnose
+    // }
+    // setOccupation(occupation){
+    //     this.occupation = occupation
+    // }
+    // setDescription(description){
+    //     this.description = description
+    // }
+    // setAgeWhenDiagnosed(ageWhenDiagnosed){
+    //     this.ageWhenDiagnosed = ageWhenDiagnosed
+    // }
+
+
+
+    setSex(value) {
+        this.sex = value;
     }
-    setOccupation(occupation){
-        this.occupation = occupation
+
+    setPhoneNumber(value) {
+        this.phoneNumber = value;
     }
-    setDescription(description){
-        this.description = description
-    }
-    setAgeWhenDiagnosed(ageWhenDiagnosed){
-        this.ageWhenDiagnosed = ageWhenDiagnosed
-    }
+
     setCreateMedicalUser(value){
         this.createMedicalUser = value
     }
@@ -84,15 +113,17 @@ class UserStore{
 
     getUserObject(){
         return{
-            cpr: this.dob,
+            medicalUser: this.createMedicalUser,
+            dob: this.dob,
             firstName: this.firstName,
             lastName: this.lastName,
-            age: 999,
-            weight: 999,
-            chronicDisease: this.diagnose,
-            streetName: 'TODO',
-            doorNumber: 999,
-            zipCode: 999,
+            weight: this.weight,
+            chronicDisease: this.chronicDisease,
+            email: this.email,
+            phoneNumber: this.phoneNumber,
+            streetName: this.streetName,
+            doorNumber: this.doorNumber,
+            zipCode: this.zipCode,
             city: this.city,
             region: this.region,
             country: this.country
