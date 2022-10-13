@@ -3,7 +3,7 @@ import { useState } from "react";
 //import { useNavigate } from 'react-router-dom';
 import {userStore} from "../../stores/UserStore"
 import { observer } from "mobx-react-lite"
-import SelectUserType from "../SelectUserType";
+import SelectUserType from "./SelectUserType";
 import axios from "axios";
 // import bcrypt from 'bcryptjs';
 

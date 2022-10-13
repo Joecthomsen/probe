@@ -4,7 +4,6 @@ import CreateUserForm from "../components/createuser/CreateNewUserForm" //"../co
 
 const CreateUSer = () => {
 
-
     return ( 
         <div className="create-user-wrapper">
             <div className="image-wrapper">

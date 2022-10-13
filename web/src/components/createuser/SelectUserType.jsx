@@ -1,4 +1,4 @@
-import { userStore } from "../stores/UserStore";
+import { userStore } from "../../stores/UserStore";
 const SelectUserType = () => {
 
     const clientUser = "Client User"

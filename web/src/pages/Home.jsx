@@ -1,6 +1,6 @@
 import "../styles/homepage.css"
 import "react-multi-carousel/lib/styles.css";
-import CustomCarousel from "../components/Carousel";
+import CustomCarousel from "../components/landingPage/Carousel";
 import world from "../resources/map-of-the-world-png.png"
 // import { homepageStore } from "../stores/HomepageStore";
 import { observer } from 'mobx-react-lite';
@@ -17,7 +17,7 @@ const LandingPage = () => {
                         <h1>Clinical trial matching</h1>
                         <h2>World wide experimental medicin initiateves test test </h2>
                     </div>
-                    <img className="world" src={world} alt="null" /> 
+                    <img className="world" data-testid="bgn-world" src={world} alt="null" />
 
                     {/* {!homepageStore.burgerMenuToggled 
                     ? 

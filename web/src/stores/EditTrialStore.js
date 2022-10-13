@@ -1,6 +1,6 @@
 import {makeAutoObservable} from "mobx";
 import cardData from "../api/clinical_trial_api_mock";
-import EditTrialsStudyCards from "../components/TrialCard";
+import EditTrialsStudyCards from "../components/landingPage/TrialCard";
 import * as React from "react";
 
 class EditTrialStore {
