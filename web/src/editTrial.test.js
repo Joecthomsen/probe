@@ -1,6 +1,6 @@
 import {fireEvent, render, screen} from "@testing-library/react";
-import EditTrials from "../pages/EditTrials";
-import {EditTrialStoreOBJ} from "../stores/EditTrialStore";
+import EditTrials from "./pages/EditTrials";
+import {EditTrialStoreOBJ} from "./stores/EditTrialStore";
 
 
 const homepageErrors = console.error.bind(console)

@@ -1,10 +1,10 @@
 
 
 import { render, screen} from "@testing-library/react";
-import UserProfile from "../pages/UserProfile";
-import {userPreferences} from "../stores/UserPreferencesStore";
-import ActivateDeactivateButton from "../components/UserPreferences/ActivateDeactivateButton";
-import PreferenceArray from "../components/UserPreferences/PreferenceArray";
+import UserProfile from "./pages/UserProfile";
+import {userPreferences} from "./stores/UserPreferencesStore";
+import ActivateDeactivateButton from "./components/UserPreferences/ActivateDeactivateButton";
+import PreferenceArray from "./components/UserPreferences/PreferenceArray";
 
 
 test('correct Header', () => {
