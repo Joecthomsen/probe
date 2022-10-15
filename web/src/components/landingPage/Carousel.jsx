@@ -1,7 +1,7 @@
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import StudyCard from "../components/StudyCard";
-import cardData from "../api/clinical_trial_api_mock"
+import StudyCard from "../StudyCard";
+import cardData from "../../api/clinical_trial_api_mock"
 
 const responsive = {
   superLargeDesktop: {

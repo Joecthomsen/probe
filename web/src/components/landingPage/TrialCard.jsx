@@ -1,6 +1,6 @@
 import {Button, Grid} from "@mui/material";
 import PersonIcon from '@mui/icons-material/Person';
-import {EditTrialStoreOBJ} from "../stores/EditTrialStore";
+import {EditTrialStoreOBJ} from "../../stores/EditTrialStore";
 
 
 const StudyCard = (props) => {
