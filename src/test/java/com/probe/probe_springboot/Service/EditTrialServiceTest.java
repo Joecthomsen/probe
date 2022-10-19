@@ -33,7 +33,7 @@ public class EditTrialServiceTest {
         list.add(1);
         list.add(2);
         list.add(3);
-        return new EditTrial(null, "header", "Title", 0, 1, "Streetname", "Doornumber", "ZipCode", "City", "Region", "Country", "cardDescription", "longDescription", "Vek", "date", "requiredvisits", "starttime", 12, list, "1");
+        return new EditTrial(null, "header", "Title", 0, 1, "Streetname", 213, "City", "Country", "cardDescription", "longDescription", "Vek", "date", 2, "starttime", 12, list, "1");
     }
 
     @DisplayName("EditTrial Service save method test")
