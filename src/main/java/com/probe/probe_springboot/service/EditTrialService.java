@@ -19,7 +19,11 @@ public class EditTrialService {
     }
 
     public EditTrial getEditTrial(Integer id) {
-        return editTrialRepository.findById(id).orElse(null);
+        EditTrial editTrial = editTrialRepository.findById(id).orElse(null);
+        if (editTrial != null) {
+            editTrial.setParticipantsID(editTrialRepository.findParticipants(editTrial.getId()));
+        }
+        return editTrial;
     }
 
     public String deleteEditTrialByID(Integer id) {
@@ -33,15 +37,22 @@ public class EditTrialService {
     }
 
     public EditTrial updateEditTrial(EditTrial editTrial) {
-        if(editTrialRepository.findById(editTrial.getId()).isPresent()) {
+        if (editTrialRepository.findById(editTrial.getId()).isPresent()) {
             return editTrialRepository.save(editTrial);
-        }else{
+        } else {
             return null;
         }
     }
 
     public List<EditTrial> getEditTrialByOwnerID(Integer ownerID) {
-        return editTrialRepository.findByOwnerID(ownerID);
+        List<EditTrial> list = editTrialRepository.findByOwnerID(ownerID);
+        if (!list.isEmpty()){
+            //For each
+            for (EditTrial editTrial : list) {
+                editTrial.setParticipantsID(editTrialRepository.findParticipants(editTrial.getId()));
+            }
+        }
+        return list;
     }
 
 

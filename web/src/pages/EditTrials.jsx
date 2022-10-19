@@ -6,8 +6,9 @@ import {observer} from "mobx-react-lite";
 import popup from "../components/DialogModalTrial";
 
 
+EditTrialStoreOBJ.updateCardList()
+
 const EditTrials = () => {
-    EditTrialStoreOBJ.updateCardList()
 
     return (
         <Grid container spacing={2}  style={{ marginTop:20 }}>
@@ -24,6 +25,7 @@ const EditTrials = () => {
                     {EditTrialStoreOBJ.cardList}
                 </Grid>
             </Grid>
+            {EditTrialStoreOBJ.dontlook}
 
 
         </Grid>

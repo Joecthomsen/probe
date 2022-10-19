@@ -9,7 +9,7 @@ function DialogContextTrial() {
     return (
         <DialogContentText>
             <Grid container spacing={2}>
-                <Grid container item xs={7} spacing={1}>
+                <Grid container item xs={9} spacing={1}>
                     <Grid item xs={6}><TextField id="Header" label="Header" variant="filled" required={true}
                                                  InputLabelProps={{shrink: true}}
                                                  defaultValue={EditTrialStoreOBJ.getHeader()}
@@ -87,10 +87,10 @@ function DialogContextTrial() {
                                                      EditTrialStoreOBJ.setStartTime(document.getElementById("time").value)
                                                  }}/></Grid>
                 </Grid>
-                <Grid container item xs={5}>
+                <Grid container item xs={3}>
                     <Grid item xs={12}><img id="Img"
                                             src={EditTrialStoreOBJ.getImg()}
-                                            alt={"props"} height={200} width={230}/></Grid>
+                                            alt={"props"} height={200} width={100}/></Grid>
                     <Grid item xs={12}>
                         <Button variant={"outlined"}>Upload new picture</Button>
                     </Grid>

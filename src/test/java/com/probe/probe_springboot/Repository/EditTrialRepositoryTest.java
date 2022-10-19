@@ -25,7 +25,7 @@ public class EditTrialRepositoryTest {
         list.add(1);
         list.add(2);
         list.add(3);
-        return new EditTrial(id, "header", "Title", 0, 1, "Streetname", "Doornumber", "ZipCode", "City", "Region", "Country", "cardDescription", "longDescription", "Vek", "date", "requiredvisits", "starttime", 12, list, "1");
+        return new EditTrial(id, "header", "Title", 0, 1, "Streetname", 1234, "City", "Country", "cardDescription", "longDescription", "Vek", "date", 2, "starttime", 12, list, "1");
     }
 
     @DisplayName("EditTrial Reposository save method test")
@@ -95,5 +95,17 @@ public class EditTrialRepositoryTest {
 
         assertThat(dbet.getId()).isEqualTo(dbet2.getId());
         assertThat(dbTitle).isNotEqualTo(dbet2.getTitle());
+    }
+
+    @DisplayName("EditTrial Reposository findParticipants method test")
+    @Test
+    public void nacvn (){
+        EditTrial et = makeET(null);
+        //save object for automatic id.
+        EditTrial dbet = etr.save(et);
+        List<Integer> list =etr.findParticipants(dbet.getId());
+
+        assertThat(list).isNotEmpty();
+        assertThat(list.size()).isEqualTo(3);
     }
 }

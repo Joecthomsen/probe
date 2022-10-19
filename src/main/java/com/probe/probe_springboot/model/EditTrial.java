@@ -1,9 +1,11 @@
 package com.probe.probe_springboot.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.context.annotation.Lazy;
 
 import javax.persistence.*;
 import java.util.List;
@@ -22,11 +24,9 @@ public class EditTrial {
     private String title;
     private int minAge;
     private int maxAge;
-    private String streetName;
-    private String doorNumber;
-    private String zipCode;
+    private String addresse;
+    private int zipCode;
     private String city;
-    private String region;
     private String country;
     @Column(columnDefinition = "TEXT")
     private String cardDescription;
@@ -34,11 +34,11 @@ public class EditTrial {
     private String longDescription;
     private String vek;
     private String date;
-    private String requiredVisits;
-    private String Starttime;
+    private int requiredVisits;
+    private String starttime;
     private int ownerID;
     @ElementCollection
     private List<Integer> participantsID;
-    private String MathCodeID;
+    private String matchCode;
 
 }
