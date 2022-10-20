@@ -101,7 +101,7 @@ class EditTrialStore {
     }
 
     updateCardList() {
-        let url ="https://probe.joecthomsen.dk/editTrial/getByOwnerID"+this.getOwnerId();
+        let url ="https://probe.joecthomsen.dk/editTrial/getByOwnerID/"+this.getOwnerId();
         fetch(url, {
                 method: 'GET',
                 mode: 'cors',
@@ -140,7 +140,7 @@ class EditTrialStore {
     }
 
     deleteTrial() {
-        let url = "https://probe.joecthomsen.dk/editTrial/delete"+this.getId();
+        let url = "https://probe.joecthomsen.dk/editTrial/delete/"+this.getId();
         fetch(url, {
                 method: 'DELETE',
                 mode: 'cors',
