@@ -1,32 +1,32 @@
-import {makeAutoObservable} from "mobx";
-import cardData from "../api/clinical_trial_api_mock";
+import {makeAutoObservable, runInAction} from "mobx";
 import EditTrialsStudyCards from "../components/landingPage/TrialCard";
 import * as React from "react";
 
 class EditTrialStore {
+    dontlook = [];
+    cardList;
 
     dialogOpen = false;
-    OwnerID = 0;
 
+    ownerID = 0;// Should come from cookie or something.
     id = "";
-
-    Header = "";
-    Country = "";
-    Title = "";
-    City = "";
-    Match = "";
-    ZipCode = "";
-    MinAge = "";
-    Address = "";
-    MaxAge = "";
-    StartDate = "";
-    RequiredVisit = "";
-    StartTime = "";
+    header = "";
+    country = "";
+    title = "";
+    city = "";
+    matchCodeID = "";
+    zipCode = "";
+    minAge = "";
+    addresse = "";
+    maxAge = "";
+    date = "";
+    requiredVisits = "";
+    starttime = "";
     Img = "https://images.unsplash.com/photo-1567306301408-9b74779a11af";
-    CardDesc = "";
-    LongDesc = "";
-    Applicants = "";
-    Vek = "";
+    cardDescription = "";
+    longDescription = "";
+    participantsID = null;
+    vek = "";
 
     constructor() {
         makeAutoObservable(this,
@@ -51,54 +51,119 @@ class EditTrialStore {
         this.setImg("https://images.unsplash.com/photo-1567306301408-9b74779a11af");
         this.setCardDesc("");
         this.setLongDesc("");
-        this.setApplicants("");
+        this.setApplicants(null);
         this.setVek("");
         this.setId("");
     }
 
     getDialogInfo() {
         return {
-            "dialogInfo": {
-                "Header": this.getHeader(),
-                "Country": this.getCountry(),
-                "Title": this.getTitle(),
-                "City": this.getCity(),
-                "Match": this.getMatch(),
-                "ZipCode": this.getZipCode(),
-                "MinAge": this.getMinAge(),
-                "Address": this.getAddress(),
-                "MaxAge": this.getMaxAge(),
-                "StartDate": this.getStartDate(),
-                "RequiredVisit": this.getRequiredVisit(),
-                "StartTime": this.getStartTime(),
-                "Img": this.getImg(),
-                "CardDesc": this.getCardDesc(),
-                "LongDesc": this.getLongDesc(),
-                "Applicants": this.getApplicants(),
-                "Vek": this.getVek()
-            }
+            "id": this.getId(),
+            "header": this.getHeader(),
+            "country": this.getCountry(),
+            "title": this.getTitle(),
+            "city": this.getCity(),
+            "disease": this.getMatch(),
+            "zipCode": this.getZipCode(),
+            "minAge": this.getMinAge(),
+            "addresse": this.getAddress(),
+            "maxAge": this.getMaxAge(),
+            "date": this.getStartDate(),
+            "requiredVisits": this.getRequiredVisit(),
+            "starttime": this.getStartTime(),
+            "cardDescription": this.getCardDesc(),
+            "longDescription": this.getLongDesc(),
+            "participantsID": this.getApplicants(),
+            "vek": this.getVek()
         }
     }
 
 
     setDialogInfo(props) {
         this.setHeader(props.header);
-        this.setCountry(props.county);
+        this.setCountry(props.country);
         this.setTitle(props.title);
         this.setCity(props.city);
-        this.setMatch(props.match.toString());
+        this.setMatch(props.disease);
         this.setZipCode(props.zipCode);
         this.setMinAge(props.minAge);
-        this.setAddress(props.streetName + " " + props.doorNumber);
+        this.setAddress(props.addresse);
         this.setMaxAge(props.maxAge);
         this.setStartDate(props.date);
         this.setRequiredVisit(props.requiredVisits);
-        this.setStartTime(props.time);
+        this.setStartTime(props.starttime);
         //this.setImg(props.image);
         this.setCardDesc(props.cardDescription);
         this.setLongDesc(props.longDescription);
-        this.setApplicants(props.participants);
+        this.setApplicants(props.participantsID);
         this.setVek(props.vek)
+    }
+
+    updateCardList() {
+        let url ="http://localhost:8080/editTrial/getByOwnerID"+this.getOwnerId();
+        fetch(url, {
+                method: 'GET',
+                mode: 'cors',
+            }
+        ).then(
+            async (response) => await response.json().then(
+                (json) => runInAction(async () => {
+                    this.cardList = (await json.map((element, index) => {
+                        return <EditTrialsStudyCards key={index}
+                                                     id={element.id}
+                                                     header={element.header}
+                                                     title={element.title}
+                                                     country={element.county}
+                                                     city={element.city}
+                                                     description={element.cardDescription}
+                                                     participants={element.participantsID.length}
+                                                     click={element}
+                        />
+                    }));
+                    this.renderhack();
+                })));
+    }
+
+    putTial() {
+        fetch("http://localhost:8080/editTrial/put", {
+                method: 'PUT',
+                mode: 'cors',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(this.getDialogInfo())
+            }
+        ).then(async (response) => await response.json().then((resp) => alert("Updated: " + resp.title))).then(this.updateCardList);
+
+    }
+
+    deleteTrial() {
+        let url = "http://localhost:8080/editTrial/delete"+this.getId();
+        fetch(url, {
+                method: 'DELETE',
+                mode: 'cors',
+            }
+        ).then(async (response) => await response.text().then((resp) => alert(resp))).then(this.updateCardList);
+    }
+
+    createTrial() {
+        fetch("http://localhost:8080/editTrial/add", {
+                method: 'POST',
+                mode: 'cors',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(this.getDialogInfo())
+            }
+        ).then(async (response) => await response.json().then((resp) => alert("added: " + resp.title))).then(this.updateCardList);
+    }
+
+    renderhack() {
+        this.dontlook.push("")
+        this.dontlook.pop()
+
     }
 
     openDialog() {
@@ -124,107 +189,107 @@ class EditTrialStore {
     }
 
     getOwnerId() {
-        return this.OwnerID;
+        return this.ownerID;
     }
 
     setOwnerID(value) {
-        this.OwnerID = value;
+        this.ownerID = value;
     }
 
     getHeader() {
-        return this.Header;
+        return this.header;
     }
 
     setHeader(value) {
-        this.Header = value;
+        this.header = value;
     }
 
     getCountry() {
-        return this.Country;
+        return this.country;
     }
 
     setCountry(value) {
-        this.Country = value;
+        this.country = value;
     }
 
     getTitle() {
-        return this.Title;
+        return this.title;
     }
 
     setTitle(value) {
-        this.Title = value;
+        this.title = value;
     }
 
     getCity() {
-        return this.City;
+        return this.city;
     }
 
     setCity(value) {
-        this.City = value;
+        this.city = value;
     }
 
     getMatch() {
-        return this.Match;
+        return this.matchCodeID;
     }
 
     setMatch(value) {
-        this.Match = value;
+        this.matchCodeID = value;
     }
 
     getZipCode() {
-        return this.ZipCode;
+        return this.zipCode;
     }
 
     setZipCode(value) {
-        this.ZipCode = value;
+        this.zipCode = value;
     }
 
     getMinAge() {
-        return this.MinAge;
+        return this.minAge;
     }
 
     setMinAge(value) {
-        this.MinAge = value;
+        this.minAge = value;
     }
 
     getAddress() {
-        return this.Address;
+        return this.addresse;
     }
 
     setAddress(value) {
-        this.Address = value;
+        this.addresse = value;
     }
 
     getMaxAge() {
-        return this.MaxAge;
+        return this.maxAge;
     }
 
     setMaxAge(value) {
-        this.MaxAge = value;
+        this.maxAge = value;
     }
 
     getStartDate() {
-        return this.StartDate;
+        return this.date;
     }
 
     setStartDate(value) {
-        this.StartDate = value;
+        this.date = value;
     }
 
     getRequiredVisit() {
-        return this.RequiredVisit;
+        return this.requiredVisits;
     }
 
     setRequiredVisit(value) {
-        this.RequiredVisit = value;
+        this.requiredVisits = value;
     }
 
     getStartTime() {
-        return this.StartTime;
+        return this.startTime;
     }
 
     setStartTime(value) {
-        this.StartTime = value;
+        this.startTime = value;
     }
 
     getImg() {
@@ -236,11 +301,11 @@ class EditTrialStore {
     }
 
     getCardDesc() {
-        return this.CardDesc;
+        return this.cardDescription;
     }
 
     setCardDesc(value) {
-        this.CardDesc = value;
+        this.cardDescription = value;
     }
 
     getId() {
@@ -252,52 +317,30 @@ class EditTrialStore {
     }
 
     getLongDesc() {
-        return this.LongDesc;
+        return this.longDescription;
     }
 
     setLongDesc(value) {
-        this.LongDesc = value;
+        this.longDescription = value;
     }
 
     getApplicants() {
-        return this.Applicants;
+        return this.participantsID;
     }
 
     setApplicants(value) {
-        this.Applicants = value;
+        this.participantsID = value;
     }
 
     setVek(value) {
-        this.Vek = value;
+        this.vek = value;
 
     }
 
     getVek() {
-        return this.Vek;
+        return this.vek;
     }
-
-    cardList;
-    studies;
-
-    updateCardList(){
-        this.studies = cardData.clinicalTrials.filter(obj => obj.ownerId === this.getOwnerId());
-
-        this.cardList=(this.studies.map((element, index) => {
-            return <EditTrialsStudyCards key={index}
-                                         id={element.id}
-                                         header={element.header}
-                                         title={element.title}
-                                         country={element.county}
-                                         city={element.city}
-                                         description={element.cardDescription}
-                                         participants={element.participants.length}
-                                         click={element}
-            />
-        }));
-    }
-
 }
-
 
 
 export const EditTrialStoreOBJ = new EditTrialStore();
