@@ -3,8 +3,10 @@ import { useState } from "react";
 //import { useNavigate } from 'react-router-dom';
 import {userStore} from "../../stores/UserStore"
 import { observer } from "mobx-react-lite"
-import SelectUserType from "../SelectUserType";
+import SelectUserType from "./SelectUserType";
 import axios from "axios";
+// import bcrypt from 'bcryptjs';
+
 const CreateUserFormOne = () => {
 
     const [firstForm, setFirstForm] = useState(true)
@@ -54,7 +56,7 @@ const CreateUserFormOne = () => {
 
     const checkFirstForm = (event) => {
         event.preventDefault();
-        let computedErrorMsg = "Please fill in the folloving information: "
+        let computedErrorMsg = "Please fill in the following information: "
         let hasError = false;
 
         if(userStore.password !== userStore.repeatPassword){

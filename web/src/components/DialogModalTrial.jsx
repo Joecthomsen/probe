@@ -10,15 +10,25 @@ function DeleteButtonPick() {
     }
     return (
         <Button onClick={() => {
-            console.log("Delete sql Entry: " + EditTrialStoreOBJ.getId());
-            console.log("UpdateCardList");
-            EditTrialStoreOBJ.updateCardList();
+            EditTrialStoreOBJ.deleteTrial();
             EditTrialStoreOBJ.closeDialog();
         }} color="error" variant={"outlined"}>Delete
         </Button>
     );
 }
 
+function SaveButtonPick() {
+    if (EditTrialStoreOBJ.getId() === "") {
+        return <Button onClick={() => {
+            EditTrialStoreOBJ.createTrial();
+            EditTrialStoreOBJ.closeDialog();
+        }} variant={"outlined"}>Create</Button>
+    }
+    return (<Button onClick={() => {
+        EditTrialStoreOBJ.putTial()
+        EditTrialStoreOBJ.closeDialog();
+    }} variant={"outlined"}>Update</Button>)
+}
 
 const popup = () => {
     return (
@@ -34,11 +44,7 @@ const popup = () => {
                     </Grid>
                     <Grid item xs={2}><Button onClick={EditTrialStoreOBJ.closeDialog}
                                               variant={"outlined"}>Cancel</Button></Grid>
-                    <Grid item xs={2}><Button onClick={() => {
-                        console.log(JSON.stringify(EditTrialStoreOBJ.getDialogInfo()))
-                        console.log("UpdateCardList");
-                        EditTrialStoreOBJ.closeDialog()
-                    }} variant={"outlined"}>Save</Button></Grid>
+                    <Grid item xs={2}>{SaveButtonPick()}</Grid>
                 </Grid>
             </DialogActions>
         </Dialog>

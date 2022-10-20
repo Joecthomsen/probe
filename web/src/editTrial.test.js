@@ -36,13 +36,6 @@ test("editTrials has box for StudyCards", () => {
     expect(cardList).toBeInTheDocument();
 })
 
-test("editTrials studies and cardList is same lenght",()=>{
-    render(<EditTrials/>)
-    EditTrialStoreOBJ.setOwnerID(0);
-    expect(EditTrialStoreOBJ.cardList.length===EditTrialStoreOBJ.studies.length).toBeTruthy()
-    }
-)
-
 test("EditTrials dialog is hidden", () => {
     render(<EditTrials/>)
     let dialog =EditTrialStoreOBJ.dialogOpen;
