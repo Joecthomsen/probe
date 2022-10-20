@@ -16,14 +16,13 @@ public class EditTrialsController {
     @Autowired
     EditTrialService editTrialService;
 
-    @GetMapping("get{id}")
+    @GetMapping("/get{id}")
     public EditTrial getAllUsers(@PathVariable Integer id){
         return editTrialService.getEditTrial(id);
     }
 
     @GetMapping("/getByOwnerID{ownerID}")
     public List<EditTrial> getEditTrialsByOwnerID(@PathVariable Integer ownerID){
-        System.out.println(ownerID);
         return editTrialService.getEditTrialByOwnerID(ownerID);
     }
 
