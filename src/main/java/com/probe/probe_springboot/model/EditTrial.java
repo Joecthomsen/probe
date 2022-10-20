@@ -1,11 +1,9 @@
 package com.probe.probe_springboot.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.context.annotation.Lazy;
 
 import javax.persistence.*;
 import java.util.List;
@@ -39,6 +37,6 @@ public class EditTrial {
     private int ownerID;
     @ElementCollection
     private List<Integer> participantsID;
-    private String matchCode;
+    private String disease;
 
 }
