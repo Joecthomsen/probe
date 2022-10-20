@@ -16,7 +16,7 @@ public class EditTrialsController {
     @Autowired
     EditTrialService editTrialService;
 
-    @GetMapping("/get{id}")
+    @GetMapping("/get/{id}")
     public EditTrial getAllUsers(@PathVariable Integer id){
         return editTrialService.getEditTrial(id);
     }
@@ -31,7 +31,7 @@ public class EditTrialsController {
         return editTrialService.saveEditTrial(editTrial);
     }
 
-    @DeleteMapping("/delete{id}")
+    @DeleteMapping("/delete/{id}")
     public String deleteByID(@PathVariable Integer id){
         return editTrialService.deleteEditTrialByID(id);
     }
