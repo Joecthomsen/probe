@@ -8,7 +8,7 @@ class EditTrialStore {
 
     dialogOpen = false;
 
-    ownerID = 0;// Should come from cookie or something.
+    ownerID = 1;// Should come from cookie or something.
     id = "";
     header = "";
     country = "";
@@ -74,6 +74,7 @@ class EditTrialStore {
             "cardDescription": this.getCardDesc(),
             "longDescription": this.getLongDesc(),
             "participantsID": this.getApplicants(),
+            "ownerID": this.getOwnerId(),
             "vek": this.getVek()
         }
     }
@@ -100,7 +101,7 @@ class EditTrialStore {
     }
 
     updateCardList() {
-        let url ="http://localhost:8080/editTrial/getByOwnerID"+this.getOwnerId();
+        let url ="https://probe.joecthomsen.dk/editTrial/getByOwnerID"+this.getOwnerId();
         fetch(url, {
                 method: 'GET',
                 mode: 'cors',
@@ -125,7 +126,7 @@ class EditTrialStore {
     }
 
     putTial() {
-        fetch("http://localhost:8080/editTrial/put", {
+        fetch("https://probe.joecthomsen.dk/editTrial/put", {
                 method: 'PUT',
                 mode: 'cors',
                 headers: {
@@ -139,7 +140,7 @@ class EditTrialStore {
     }
 
     deleteTrial() {
-        let url = "http://localhost:8080/editTrial/delete"+this.getId();
+        let url = "https://probe.joecthomsen.dk/editTrial/delete"+this.getId();
         fetch(url, {
                 method: 'DELETE',
                 mode: 'cors',
@@ -148,7 +149,7 @@ class EditTrialStore {
     }
 
     createTrial() {
-        fetch("http://localhost:8080/editTrial/add", {
+        fetch("https://probe.joecthomsen.dk/editTrial/add", {
                 method: 'POST',
                 mode: 'cors',
                 headers: {
