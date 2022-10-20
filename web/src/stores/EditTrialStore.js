@@ -8,7 +8,7 @@ class EditTrialStore {
 
     dialogOpen = false;
 
-    ownerID = 1;// Should come from cookie or something.
+    ownerID = 0;// Should come from cookie or something.
     id = "";
     header = "";
     country = "";

@@ -21,7 +21,7 @@ public class EditTrialsController {
         return editTrialService.getEditTrial(id);
     }
 
-    @GetMapping("/getByOwnerID{ownerID}")
+    @GetMapping("/getByOwnerID/{ownerID}")
     public List<EditTrial> getEditTrialsByOwnerID(@PathVariable Integer ownerID){
         return editTrialService.getEditTrialByOwnerID(ownerID);
     }
