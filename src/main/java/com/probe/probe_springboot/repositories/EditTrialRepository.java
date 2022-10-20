@@ -10,6 +10,6 @@ public interface EditTrialRepository extends JpaRepository<EditTrial, Integer> {
 
     List<EditTrial> findByOwnerID(Integer ownerID);
 
-    @Query(value = "SELECT participantsID FROM edittrial_participantsid WHERE EditTrial_id=?", nativeQuery = true)
+    @Query(value = "SELECT participantsID FROM EditTrial_participantsID WHERE EditTrial_id=?1", nativeQuery = true)
     List<Integer> findParticipants(Integer editTrialID);
 }
