@@ -10,9 +10,7 @@ function DeleteButtonPick() {
     }
     return (
         <Button onClick={() => {
-            console.log("Delete sql Entry: " + EditTrialStoreOBJ.getId());
-            console.log("UpdateCardList");
-            EditTrialStoreOBJ.updateCardList();
+            EditTrialStoreOBJ.deleteTrial();
             EditTrialStoreOBJ.closeDialog();
         }} color="error" variant={"outlined"}>Delete
         </Button>
@@ -22,10 +20,12 @@ function DeleteButtonPick() {
 function SaveButtonPick() {
     if (EditTrialStoreOBJ.getId() === "") {
         return <Button onClick={() => {
+            EditTrialStoreOBJ.createTrial();
             EditTrialStoreOBJ.closeDialog();
         }} variant={"outlined"}>Create</Button>
     }
     return (<Button onClick={() => {
+        EditTrialStoreOBJ.putTial()
         EditTrialStoreOBJ.closeDialog();
     }} variant={"outlined"}>Update</Button>)
 }

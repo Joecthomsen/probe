@@ -1,5 +1,4 @@
 import {makeAutoObservable, runInAction} from "mobx";
-import cardData from "../api/clinical_trial_api_mock";
 import EditTrialsStudyCards from "../components/landingPage/TrialCard";
 import * as React from "react";
 
@@ -9,7 +8,7 @@ class EditTrialStore {
 
     dialogOpen = false;
 
-    ownerID = 1;// Should come from cookie or something.
+    ownerID = 0;// Should come from cookie or something.
     id = "";
     header = "";
     country = "";
@@ -26,7 +25,7 @@ class EditTrialStore {
     Img = "https://images.unsplash.com/photo-1567306301408-9b74779a11af";
     cardDescription = "";
     longDescription = "";
-    participantsID = "";
+    participantsID = null;
     vek = "";
 
     constructor() {
@@ -52,7 +51,7 @@ class EditTrialStore {
         this.setImg("https://images.unsplash.com/photo-1567306301408-9b74779a11af");
         this.setCardDesc("");
         this.setLongDesc("");
-        this.setApplicants("");
+        this.setApplicants(null);
         this.setVek("");
         this.setId("");
     }
@@ -64,7 +63,7 @@ class EditTrialStore {
             "country": this.getCountry(),
             "title": this.getTitle(),
             "city": this.getCity(),
-            "matchCode": this.getMatch(),
+            "disease": this.getMatch(),
             "zipCode": this.getZipCode(),
             "minAge": this.getMinAge(),
             "addresse": this.getAddress(),
@@ -75,16 +74,17 @@ class EditTrialStore {
             "cardDescription": this.getCardDesc(),
             "longDescription": this.getLongDesc(),
             "participantsID": this.getApplicants(),
-            "vek": this.getVek()}
+            "vek": this.getVek()
+        }
     }
 
 
     setDialogInfo(props) {
         this.setHeader(props.header);
-        this.setCountry(props.county);
+        this.setCountry(props.country);
         this.setTitle(props.title);
         this.setCity(props.city);
-        this.setMatch(props.matchCode);
+        this.setMatch(props.disease);
         this.setZipCode(props.zipCode);
         this.setMinAge(props.minAge);
         this.setAddress(props.addresse);
@@ -100,7 +100,8 @@ class EditTrialStore {
     }
 
     updateCardList() {
-        fetch("http://localhost:8080/editTrial/getByOwnerID0", {
+        let url ="http://localhost:8080/editTrial/getByOwnerID"+this.getOwnerId();
+        fetch(url, {
                 method: 'GET',
                 mode: 'cors',
             }
@@ -124,23 +125,39 @@ class EditTrialStore {
     }
 
     putTial() {
+        fetch("http://localhost:8080/editTrial/put", {
+                method: 'PUT',
+                mode: 'cors',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(this.getDialogInfo())
+            }
+        ).then(async (response) => await response.json().then((resp) => alert("Updated: " + resp.title))).then(this.updateCardList);
 
     }
 
     deleteTrial() {
+        let url = "http://localhost:8080/editTrial/delete"+this.getId();
+        fetch(url, {
+                method: 'DELETE',
+                mode: 'cors',
+            }
+        ).then(async (response) => await response.text().then((resp) => alert(resp))).then(this.updateCardList);
     }
 
     createTrial() {
-        console.log(this.getDialogInfo())
         fetch("http://localhost:8080/editTrial/add", {
                 method: 'POST',
                 mode: 'cors',
-                headers: {'Content-Type': 'application/json'},
-                body: this.getDialogInfo()
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(this.getDialogInfo())
             }
-        ).then(async (response) => await response.json().then((resp) => alert("added: "+resp.title)));
-        this.renderhack();
-
+        ).then(async (response) => await response.json().then((resp) => alert("added: " + resp.title))).then(this.updateCardList);
     }
 
     renderhack() {

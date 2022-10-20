@@ -38,7 +38,7 @@ function DialogContextTrial() {
                                                      options={match_codes_api.map((option) => option.label)}
                                                      defaultValue={EditTrialStoreOBJ.getMatch()}
                                                      renderInput={(params) => <TextField {...params}
-                                                                                         label="Match"/>}
+                                                                                         label="Disease"/>}
                                                      onChange={(e, v) => {
                                                          EditTrialStoreOBJ.setMatch(v)
                                                      }}
