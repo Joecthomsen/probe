@@ -1,5 +1,14 @@
 import googleLogo from "../../resources/google_logo.svg";
 import facebookLogo from "../../resources/facebook-round-logo.png"
+import {authenticationStore} from "../../stores/AuthenticationStore";
+
+const setUsername = (event) => {
+    authenticationStore.setUsername(event.target.value)
+}
+
+const setPassword = (event) => {
+    authenticationStore.setPassword(event.target.value);
+}
 
 const Login = () => {
     return ( 
@@ -14,9 +23,9 @@ const Login = () => {
                 <hr className="line-breaker"></hr>
                 <h2>Login With Credential</h2>
                 <form className="login-container">
-                    <input type="text" placeholder="Username"/>
-                    <input type="password" placeholder="Password"/>
-                    <button>Sign in</button>
+                    <input onChange={setUsername} type="text" placeholder="Username"/>
+                    <input onChange={setPassword} type="password" placeholder="Password"/>
+                    <button onClick={authenticationStore.doLogin}>Sign in</button>
                 </form>
             </div>
         </div>
