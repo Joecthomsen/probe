@@ -1,7 +1,8 @@
 package com.probe.probe_springboot.controller;
 
+import com.probe.probe_springboot.model.Role;
 import com.probe.probe_springboot.model.User;
-import com.probe.probe_springboot.service.UserService;
+import com.probe.probe_springboot.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,25 +14,40 @@ import java.util.List;
 public class UserController {
 
     @Autowired
-    private UserService userService;
+    private UserServiceImpl userServiceImpl;
 
-    @GetMapping("/hello")
-    public String helloWorld(){
-        return "Hello, world!";
+    @GetMapping("/get/id={id}")
+    public User getUserById(@PathVariable Long id){
+        return userServiceImpl.getUserById(id);
     }
 
-    @GetMapping("/get/{cpr}")
-    public User getUserById(@PathVariable Integer cpr){
-        return userService.getUserByCpr(cpr);
+    @GetMapping("/get/email={email}")
+    public User getUserByEmail(@PathVariable String email){
+        return userServiceImpl.getUserByEmail(email);
     }
 
     @GetMapping("get/all")
     public List<User> getAllUsers(){
-        return userService.getAllUsers();
+        return userServiceImpl.getUsers();
+    }
+
+    @GetMapping("/roles")
+    public List<Role> getAllRoles(){
+        return userServiceImpl.getAllRoles();
     }
 
     @PostMapping("/add")
     public User saveUser(@RequestBody User user){
-        return userService.saveUser(user);
+        return userServiceImpl.saveUser(user);
+    }
+
+    @PostMapping("/role/save")
+    public Role saveRole(@RequestBody Role role){
+        return userServiceImpl.saveRole(role);
+    }
+
+    @PutMapping("role/addroletouser/userid={userId}/rolename={roleName}")
+    public void addRoleToUser(@PathVariable Long userId, @PathVariable String roleName){
+        userServiceImpl.addRoleToUser(userId, roleName);
     }
 }

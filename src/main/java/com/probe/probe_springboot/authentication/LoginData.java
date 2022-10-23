@@ -1,2 +1,14 @@
-package com.probe.probe_springboot.authentication;public class LoginData {
+package com.probe.probe_springboot.authentication;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+public class LoginData {
+    private String userName;
+    private String password;
+
+    public LoginData(String userName, String s) {
+    }
 }
