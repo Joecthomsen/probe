@@ -1,7 +1,8 @@
 import { makeAutoObservable } from "mobx"
-import axios from "axios";
+import axios from "axios"
 
 const baseUrl = "http://localhost:8080/authentication/post";
+//const axios = require('axios')
 
 class AuthenticationStore{
 
@@ -20,14 +21,19 @@ class AuthenticationStore{
         )
     }
 
-    doLogin() {
-        axios.post(baseUrl, this.loginData)
+    async doLogin() {
+         await axios.post(baseUrl, this.loginData)
             .then(response => {
                 console.log(response)
+                console.log(response.data)
+                this.setToken(response.data)
             })
             .catch(error => console.log(error)
       )
-        console.log(this.loginData.userName + " ........ " + this.loggedIn)
+        if(this.token != null){
+            this.setLoggedIn(true)
+        }
+        console.log("User: " + this.loginData.userName + " logged in: " + this.loggedIn + " token: " + this.token)
     }
 
     setUsername(userName){
@@ -35,6 +41,12 @@ class AuthenticationStore{
     }
     setPassword(password){
         this.loginData.password = password;
+    }
+    setToken(token){
+        this.token = token;
+    }
+    setLoggedIn(status){
+        this.loggedIn = status;
     }
 
 }
