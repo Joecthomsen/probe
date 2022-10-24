@@ -23,12 +23,95 @@ public class ProbeSpringbootApplication {
 			userServiceImpl.saveRole(new Role("ADMIN_USER"));
 			userServiceImpl.saveRole(new Role("DEVELOPER_USER"));
 
-			userServiceImpl.saveUser(new User("Male","Hans", "Christian", "1234", null, 82.0, "Cancer", "hans@christian.dk", "12345678", "Hansgade", 44, "2400", "Copenhagen", "Hovedstaden", "Denmark"));
-			userServiceImpl.saveUser(new User("Male","Anders", "Andersen", "1234",null, 83.0, "Cancer", "a@b.dk", "12345678", "Hansgade", 44, "2400", "Copenhagen", "Hovedstaden", "Denmark"));
-			userServiceImpl.saveUser(new User("Female","Christina", "Ali","1234", null, 82.0, "Cancer", "c@d.dk", "12345678", "Hansgade", 44, "2400", "Copenhagen", "Hovedstaden", "Denmark"));
-			userServiceImpl.saveUser(new User("Female","Feduma", "Hansen", "1234",null, 127.0, "Fat", "f@g.dk", "12345678", "Hansgade", 44, "2400", "Copenhagen", "Hovedstaden", "Denmark"));
-			userServiceImpl.saveUser(new User("Male","Troels", "Dtu", "1234", null, 55.0, "Stupid", "troels@dtu.dk", "12345678", "Hansgade", 44, "2400", "Copenhagen", "Hovedstaden", "Denmark"));
+			userServiceImpl.saveUser(User.builder()
+					.firstName("Hans")
+					.lastName("Christensen")
+					.sex("Male")
+					.hashedPassword("1234")
+					.email("hans@christian.dk")
+					.weight(82.6)
+					.dob(null)
+					.chronicDisease("Cancer")
+					.phoneNumber("22234434")
+					.streetName("Fensmarkgade")
+					.doorNumber(22)
+					.zipCode("2200")
+					.city("Copenhagen")
+					.region("Hovedstaden")
+					.country("Denmark")
+					.build());
 
+			userServiceImpl.saveUser(User.builder()
+					.firstName("Anders")
+					.lastName("Andersen")
+					.sex("Male")
+					.hashedPassword("1234")
+					.email("a@b.dk")
+					.weight(82.6)
+					.dob(null)
+					.chronicDisease("Cancer")
+					.phoneNumber("22234434")
+					.streetName("Fensmarkgade")
+					.doorNumber(22)
+					.zipCode("2200")
+					.city("Copenhagen")
+					.region("Hovedstaden")
+					.country("Denmark")
+					.build());
+
+			userServiceImpl.saveUser(User.builder()
+					.firstName("Marianne")
+					.lastName("Ali")
+					.sex("Female")
+					.hashedPassword("1234")
+					.email("c@d.dk")
+					.weight(82.6)
+					.dob(null)
+					.chronicDisease("Cancer")
+					.phoneNumber("22234434")
+					.streetName("Fensmarkgade")
+					.doorNumber(22)
+					.zipCode("2200")
+					.city("Copenhagen")
+					.region("Hovedstaden")
+					.country("Denmark")
+					.build());
+
+			userServiceImpl.saveUser(User.builder()
+					.firstName("Feduma")
+					.lastName("Hansen")
+					.sex("Female")
+					.hashedPassword("1234")
+					.email("f@g.dk")
+					.weight(122.6)
+					.dob(null)
+					.chronicDisease("Cancer")
+					.phoneNumber("22234434")
+					.streetName("Fensmarkgade")
+					.doorNumber(22)
+					.zipCode("2200")
+					.city("Copenhagen")
+					.region("Hovedstaden")
+					.country("Denmark")
+					.build());
+
+			userServiceImpl.saveUser(User.builder()
+					.firstName("Troels")
+					.lastName("Dtu")
+					.sex("Male")
+					.hashedPassword("1234")
+					.email("troels@dtu.dk")
+					.weight(82.6)
+					.dob(null)
+					.chronicDisease("Cancer")
+					.phoneNumber("22234434")
+					.streetName("Fensmarkgade")
+					.doorNumber(22)
+					.zipCode("2200")
+					.city("Copenhagen")
+					.region("Hovedstaden")
+					.country("Denmark")
+					.build());
 
 			Long hansUserId = userServiceImpl.getUserByEmail("hans@christian.dk").getId();
 			Long andersUserId = userServiceImpl.getUserByEmail("a@b.dk").getId();
