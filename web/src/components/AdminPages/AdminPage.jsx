@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Box, ButtonGroup } from "@mui/material";
+import { ToggleButton, Box, ToggleButtonGroup } from "@mui/material";
 import ListView from "./ListView";
 import users from "../../api/user_api_mock";
 import clinicalTrials from "../../api/clinical_trial_api_mock";
@@ -13,21 +13,21 @@ const userCols = [
   { field: "chronicDisease", headerName: "Chronic Disease", flex: 3 },
   { field: "adress", headerName: "Adress", flex: 3 },
   { field: "city", headerName: "City", flex: 2 },
-  { field: "zipCode", headerName: "Zip", flex: 2 },
+  { field: "zipCode", headerName: "Zip", flex: 0 },
   { field: "region", headerName: "Region", flex: 2 },
   { field: "county", headerName: "Country", flex: 2 }, // TODO change to proper field name
 ];
 
 const trialCols = [
   { field: "id", headerName: "ID", flex: 0 },
-  { field: "header", headerName: "Header", flex: 2 },
+  { field: "header", headerName: "Header", flex: 3 },
   { field: "dateSubmitted", headerName: "Date Submitted", flex: 2 },
   { field: "title", headerName: "Title", flex: 2 },
   { field: "minAge", headerName: "Min Age", flex: 0 },
-  { field: "maxAge", headerName: "Max Age", flex: 3 },
+  { field: "maxAge", headerName: "Max Age", flex: 0 },
   { field: "hospital", headerName: "Hospital", flex: 3 },
   { field: "city", headerName: "City", flex: 2 },
-  { field: "zipCode", headerName: "Zip", flex: 2 },
+  { field: "zipCode", headerName: "Zip", flex: 0 },
   { field: "region", headerName: "Region", flex: 2 },
   { field: "county", headerName: "Country", flex: 2 }, // TODO change to proper field name
 ];
@@ -46,9 +46,11 @@ const researcherCols = [
 function Page() {
   const [data, setData] = useState(users["users"]);
   const [columns, setColumns] = useState(userCols);
+  const [activeBtn, setActiveBtn] = useState("users");
 
-  const onClick = (e) => {
-    switch (e.target.id) {
+  const handleChange = (e, newActiveBtn) => {
+    setActiveBtn(newActiveBtn);
+    switch (newActiveBtn) {
       case "trials":
         setData(clinicalTrials["clinicalTrials"]);
         setColumns(trialCols);
@@ -67,21 +69,23 @@ function Page() {
         alignItems="center"
         sx={{ mx: "auto", width: 400, pm: "auto", padding: "50px" }}
       >
-        <ButtonGroup
-          variant="outlined"
-          aria-label="outlined button group"
+        <ToggleButtonGroup
           size="large"
+          color="primary"
+          value={activeBtn}
+          onChange={handleChange}
+          exclusive
         >
-          <Button id="users" sx={{ fontSize: 24 }} onClick={onClick}>
+          <ToggleButton value="users" sx={{ fontSize: 24 }}>
             Users
-          </Button>
-          <Button id="researchers" sx={{ fontSize: 24 }} onClick={onClick}>
+          </ToggleButton>
+          <ToggleButton sx={{ fontSize: 24 }} value="researchers">
             Researchers
-          </Button>
-          <Button id="trials" sx={{ fontSize: 24 }} onClick={onClick}>
+          </ToggleButton>
+          <ToggleButton value="trials" sx={{ fontSize: 24 }}>
             Trials
-          </Button>
-        </ButtonGroup>
+          </ToggleButton>
+        </ToggleButtonGroup>
       </Box>
       <Box
         justifyContent="center"

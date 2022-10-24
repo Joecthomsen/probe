@@ -3,7 +3,7 @@ const users =
     "users": 
     [
         {
-            "id": 600,
+            "id": 0,
             "image": "<PATH_TO_IMAGE_HERE>",
             "firstName": "Mogens",
             "lastName": "Mogensen",
