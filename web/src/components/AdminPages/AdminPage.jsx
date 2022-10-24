@@ -59,6 +59,15 @@ function Page() {
         setData(users["users"]);
         setColumns(userCols);
         break;
+      case "researchers":
+        // FIXME: Add researchers
+        setData([]);
+        setColumns(researcherCols);
+        break;
+      default:
+        setData(users["users"]);
+        setColumns(userCols);
+        break;
     }
   };
 
