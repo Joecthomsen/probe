@@ -1,5 +1,5 @@
 import { DataGrid } from "@mui/x-data-grid";
-import React, { useState } from "react";
+import React from "react";
 
 // TODO fix double re-render
 export default function ListView({ data, columns }) {
