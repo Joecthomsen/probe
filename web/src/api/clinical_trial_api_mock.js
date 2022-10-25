@@ -129,7 +129,6 @@ const clinicalTrials = {
             "time": "16:20 - 17:20",
             "participants": ["patient1","Patient2","Patient3","Patient4","Patient5","Patient6","Patient7"]
         },
-
         {
             "id": 5,
             "image": "<PATH_TO_IMAGE_HERE>",
