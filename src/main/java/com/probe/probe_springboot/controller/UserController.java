@@ -45,13 +45,6 @@ public class UserController {
 
             URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/user/add").toUriString());
             return ResponseEntity.created(uri).body(userServiceImpl.saveUser(user));
-
-//        User userToAdd = userServiceImpl.getUserByEmail(user.getEmail());
-//        if(userToAdd == null){
-//            URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/user/add").toUriString());
-//            return ResponseEntity.created(uri).body(userServiceImpl.saveUser(user));
-//        }
-//        throw new UserAlreadyExists("User email is already exists in the database - contact an administrator or try to sign up with another email");
     }
 
     @PostMapping("/role/save")
