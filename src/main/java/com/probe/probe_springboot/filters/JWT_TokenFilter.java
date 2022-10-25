@@ -1,13 +1,9 @@
 package com.probe.probe_springboot.filters;
 
-
 import java.io.IOException;
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.springframework.context.annotation.Configuration;
-import org.springframework.stereotype.Component;
 
 public class JWT_TokenFilter implements Filter {
     @Override
