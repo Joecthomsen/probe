@@ -20,17 +20,17 @@ public class UserController {
     @Autowired
     private UserServiceImpl userServiceImpl;
 
-    @GetMapping("/get/id={id}")
+    @GetMapping("/byid/id={id}")
     public User getUserById(@PathVariable Long id){
         return userServiceImpl.getUserById(id);
     }
 
-    @GetMapping("/get/email={email}")
+    @GetMapping("/byemail/email={email}")
     public User getUserByEmail(@PathVariable String email){
         return userServiceImpl.getUserByEmail(email);
     }
 
-    @GetMapping("get/all")
+    @GetMapping("/all")
     public List<User> getAllUsers(){
         return userServiceImpl.getUsers();
     }
