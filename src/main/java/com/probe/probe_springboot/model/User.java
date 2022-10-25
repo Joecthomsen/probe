@@ -1,28 +1,29 @@
 package com.probe.probe_springboot.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.Collection;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Entity
 @Table(name = "Users")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
-    private boolean medicalUser;
+    private Long id;
+    //private boolean medicalUser;
     private String sex;
     private String firstName;
     private String lastName;
+    private String hashedPassword;
     private Date dob;
     private double weight;
     private String chronicDisease;
@@ -34,5 +35,8 @@ public class User {
     private String city;
     private String region;
     private String country;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Collection<Role> roles = new ArrayList<>();
 
 }

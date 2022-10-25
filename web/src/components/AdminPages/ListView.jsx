@@ -1,17 +1,11 @@
 import { DataGrid } from "@mui/x-data-grid";
-import * as React from "react";
-const columns = [
-  { field: "id", headerName: "ID" },
-  { field: "title", headerName: "Title", width: 300 },
-  { field: "body", headerName: "Body", width: "2%" },
-];
+import React from "react";
 
-const rows = [];
-
-export default function ListView() {
+// TODO fix double re-render
+export default function ListView({ data, columns }) {
   return (
     <div style={{ height: 400, width: "100%" }}>
-      <DataGrid rows={rows} columns={columns} />
+      <DataGrid rows={data} columns={columns} getRowId={(row) => row.id} />
     </div>
   );
 }
