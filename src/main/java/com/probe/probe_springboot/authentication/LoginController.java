@@ -20,7 +20,7 @@ public class LoginController {
     }
 
     @PostMapping("/validate/{token}")
-        public LoginData validateToken(@PathVariable String token){
+        public ValidationData validateToken(@PathVariable String token){
         return loginService.validateToken(token);
     }
 }

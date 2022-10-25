@@ -20,29 +20,28 @@ public class UserController {
     @Autowired
     private UserServiceImpl userServiceImpl;
 
-    @GetMapping("/byid/id={id}")
+    @GetMapping("/get/id={id}")
     public User getUserById(@PathVariable Long id){
         return userServiceImpl.getUserById(id);
     }
 
-    @GetMapping("/byemail/email={email}")
+    @GetMapping("/get/email={email}")
     public User getUserByEmail(@PathVariable String email){
         return userServiceImpl.getUserByEmail(email);
     }
 
-    @GetMapping("/all")
+    @GetMapping("/get/all")
     public List<User> getAllUsers(){
         return userServiceImpl.getUsers();
     }
 
-    @GetMapping("/roles")
+    @GetMapping("/get/roles")
     public List<Role> getAllRoles(){
         return userServiceImpl.getAllRoles();
     }
 
     @PostMapping("/add")
     public ResponseEntity<User> saveUser(@RequestBody User user){
-
             URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/user/add").toUriString());
             return ResponseEntity.created(uri).body(userServiceImpl.saveUser(user));
     }

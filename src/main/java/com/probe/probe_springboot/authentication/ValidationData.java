@@ -6,14 +6,12 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
-public class LoginData {
+public class ValidationData {
 
-    public LoginData(String email){
+    public ValidationData(String email){
         this.email = email;
     }
 
-    private String email;
-    private String password;
+    String email;
 
 }
