@@ -9,7 +9,7 @@ class AuthenticationStore{
     loggedIn = false;
     token = null;
     loginData = {
-        userName: "",
+        email: "",
         password: ""
     }
 
@@ -33,11 +33,11 @@ class AuthenticationStore{
         if(this.token != null){
             this.setLoggedIn(true)
         }
-        console.log("User: " + this.loginData.userName + " logged in: " + this.loggedIn + " token: " + this.token)
+        console.log("User: " + this.loginData.email + " logged in: " + this.loggedIn + " token: " + this.token)
     }
 
     setUsername(userName){
-        this.loginData.userName = userName;
+        this.loginData.email = userName;
     }
     setPassword(password){
         this.loginData.password = password;

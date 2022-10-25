@@ -3,14 +3,24 @@ package com.probe.probe_springboot.authentication;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.probe.probe_springboot.exceptions.NotAuthorizedException;
 import com.probe.probe_springboot.exceptions.UserNotFound;
+import com.probe.probe_springboot.model.User;
+import com.probe.probe_springboot.service.UserServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class LoginService {
 
+    @Autowired
+    UserServiceImpl userService;
     public String postLoginData(LoginData login) throws NotAuthorizedException, JsonProcessingException {
+
+        User user = userService.getUserByEmail(login.getEmail());
         System.out.println("from service: " + login);
-        if(login != null && "Brian".equals(login.getUserName()) && "kodeord".equals(login.getPassword())){
+//        if(login != null && "Brian".equals(login.getEmail()) && "kodeord".equals(login.getPassword())){
+//            return JWTHandler.generateJwtToken(login);
+//        }
+        if(user != null && user.getEmail().equals(login.getEmail()) && user.getHashedPassword().equals(login.getPassword())){
             return JWTHandler.generateJwtToken(login);
         }
         throw new NotAuthorizedException("Wrong username");

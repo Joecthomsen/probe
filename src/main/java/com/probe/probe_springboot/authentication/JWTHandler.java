@@ -12,7 +12,7 @@ import com.probe.probe_springboot.model.User;
 import java.util.Calendar;
 
 public class JWTHandler {
-    private static String key = "hæmli";
+    private static final String key = "hæmli";
     private static final int TOKEN_EXPIRY = 2880;
 
     public static String generateJwtToken(LoginData user) throws JsonProcessingException {
