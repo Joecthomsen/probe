@@ -12,7 +12,7 @@ import com.probe.probe_springboot.model.User;
 import java.util.Calendar;
 
 public class JWTHandler {
-    private static final String key = "hæmli";
+    private static final String key = System.getenv("JWT_KEY");
     private static final int TOKEN_EXPIRY = 2880;
 
     public static String generateJwtToken(LoginData user) throws JsonProcessingException {
@@ -20,7 +20,7 @@ public class JWTHandler {
         Calendar expiry = Calendar.getInstance();
         expiry.add(Calendar.MINUTE, TOKEN_EXPIRY);
         ObjectMapper objectMapper = new ObjectMapper();
-        String s = objectMapper.writer().writeValueAsString(user);
+        String s = objectMapper.writer().writeValueAsString(user.getEmail());
         System.out.println("USER!!!   !!!  ::: " + user);
 
         return JWT.create()

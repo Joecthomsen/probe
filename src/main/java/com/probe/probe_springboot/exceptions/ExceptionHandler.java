@@ -15,11 +15,17 @@ public class ExceptionHandler extends ResponseEntityExceptionHandler {
 
     @org.springframework.web.bind.annotation.ExceptionHandler(UserNotFound.class)
     public ResponseEntity<Object> handleUserNotFound(UserNotFound ex, WebRequest request) {
-        return new ResponseEntity<>(new ApiError(ex.getMessage(), HttpStatus.NOT_FOUND, LocalDateTime.now()), HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(new ApiError(ex.getMessage(), HttpStatus.NOT_FOUND, request.toString(), LocalDateTime.now()), HttpStatus.NOT_FOUND);
     }
 
     @Override
     protected ResponseEntity<Object> handleNoHandlerFoundException(NoHandlerFoundException ex, HttpHeaders headers, HttpStatus status,  WebRequest request){
-        return new ResponseEntity<>(new ApiError(ex.getMessage(), HttpStatus.NOT_FOUND, LocalDateTime.now()), HttpStatus.NOT_FOUND );
+        return new ResponseEntity<>(new ApiError(ex.getMessage(), HttpStatus.NOT_FOUND, request.toString(), LocalDateTime.now()), HttpStatus.NOT_FOUND );
+    }
+
+    @org.springframework.web.bind.annotation.ExceptionHandler(UserAlreadyExists.class)
+    public ResponseEntity<Object> handelUserAlreadyExistsException(UserAlreadyExists ex, WebRequest request){
+        System.out.println("Request: " + request);
+        return new ResponseEntity<>(new ApiError(ex.getMessage(), HttpStatus.BAD_REQUEST, request.toString(), LocalDateTime.now()), HttpStatus.BAD_REQUEST);
     }
 }
