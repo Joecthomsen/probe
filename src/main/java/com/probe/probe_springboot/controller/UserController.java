@@ -20,17 +20,17 @@ public class UserController {
     @Autowired
     private UserServiceImpl userServiceImpl;
 
-    @GetMapping("/get/id={id}")
+    @GetMapping("/byid/id={id}")
     public User getUserById(@PathVariable Long id){
         return userServiceImpl.getUserById(id);
     }
 
-    @GetMapping("/get/email={email}")
+    @GetMapping("/byemail/email={email}")
     public User getUserByEmail(@PathVariable String email){
         return userServiceImpl.getUserByEmail(email);
     }
 
-    @GetMapping("get/all")
+    @GetMapping("/all")
     public List<User> getAllUsers(){
         return userServiceImpl.getUsers();
     }
@@ -45,13 +45,6 @@ public class UserController {
 
             URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/user/add").toUriString());
             return ResponseEntity.created(uri).body(userServiceImpl.saveUser(user));
-
-//        User userToAdd = userServiceImpl.getUserByEmail(user.getEmail());
-//        if(userToAdd == null){
-//            URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/user/add").toUriString());
-//            return ResponseEntity.created(uri).body(userServiceImpl.saveUser(user));
-//        }
-//        throw new UserAlreadyExists("User email is already exists in the database - contact an administrator or try to sign up with another email");
     }
 
     @PostMapping("/role/save")
