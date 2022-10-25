@@ -3,7 +3,6 @@ import axios from "axios"
 
 const baseUrl = "http://localhost:8080/authentication/post";
 //const axios = require('axios')
-
 class AuthenticationStore{
 
     loggedIn = false;
@@ -47,6 +46,9 @@ class AuthenticationStore{
     }
     setLoggedIn(status){
         this.loggedIn = status;
+    }
+    getLoggedIn(){
+        return this.loggedIn;
     }
 
 }
