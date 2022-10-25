@@ -6,7 +6,7 @@ import {EditTrialStoreOBJ} from "../../stores/EditTrialStore";
 const StudyCard = (props) => {
 
     let description = props.description;
-    if (description.length > 200) {
+    if (description?.length > 200) {
         description = description.substring(0, 100) + "..."
     }
 
@@ -27,7 +27,7 @@ const StudyCard = (props) => {
                 <Grid item xs={10}><h2>{props.title}</h2></Grid>
                 <Grid item xs={12}>
                     <div className="card-description-container">
-                        {description}
+                        {description    }
                     </div>
                 </Grid>
                 <Grid item xs={12}/>

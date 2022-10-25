@@ -4,12 +4,14 @@ import * as React from 'react';
 import {EditTrialStoreOBJ} from "../stores/EditTrialStore";
 import {observer} from "mobx-react-lite";
 import popup from "../components/DialogModalTrial";
+import EditTrialsStudyCards from "../components/landingPage/TrialCard";
 
 
 EditTrialStoreOBJ.updateCardList()
 
-const EditTrials = () => {
+const EditTrials =() => {
 
+    const element = EditTrialStoreOBJ.cardList;
     return (
         <Grid container spacing={2}  style={{ marginTop:20 }}>
             {popup()}
@@ -22,7 +24,16 @@ const EditTrials = () => {
 
             <Grid item xs={12}>
                 <Grid container title={"cardContainer"}>
-                    {EditTrialStoreOBJ.cardList}
+                    {element && <EditTrialsStudyCards key={element.id}
+                                           id={element.id}
+                                           header={element.header}
+                                           title={element.title}
+                                           country={element.county}
+                                           city={element.city}
+                                           description={element.cardDescription}
+                                           participants={element?.participantsID?.length}
+                                           click={element}
+                    />}
                 </Grid>
             </Grid>
             {EditTrialStoreOBJ.dontlook}

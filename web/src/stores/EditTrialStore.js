@@ -100,29 +100,16 @@ class EditTrialStore {
         this.setVek(props.vek)
     }
 
-    updateCardList() {
+    async updateCardList() {
         let url ="https://probe.joecthomsen.dk/editTrial/getByOwnerID/"+this.getOwnerId();
-        fetch(url, {
+        const res = await fetch(url, {
                 method: 'GET',
                 mode: 'cors',
             }
-        ).then(
-            async (response) => await response.json().then(
-                (json) => runInAction(async () => {
-                    this.cardList = (await json.map((element, index) => {
-                        return <EditTrialsStudyCards key={index}
-                                                     id={element.id}
-                                                     header={element.header}
-                                                     title={element.title}
-                                                     country={element.county}
-                                                     city={element.city}
-                                                     description={element.cardDescription}
-                                                     participants={element.participantsID.length}
-                                                     click={element}
-                        />
-                    }));
-                    this.renderhack();
-                })));
+        )
+        const json = await res.json();
+        this.cardList = json;
+
     }
 
     putTial() {
