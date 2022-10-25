@@ -12,5 +12,6 @@ public class ApiError {
 
     private String messages;
     private HttpStatus status;
+    private String path;
     private LocalDateTime timeStamp;
 }
