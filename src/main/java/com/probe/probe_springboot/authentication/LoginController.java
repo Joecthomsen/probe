@@ -14,12 +14,14 @@ public class LoginController {
     private LoginService loginService;
 
     @PostMapping("/post")
+    @CrossOrigin(origins = "*")
     public String login(@RequestBody LoginData loginData) throws NotAuthorizedException, JsonProcessingException {
         System.out.println("From controller: " + loginData);
         return loginService.postLoginData(loginData);
     }
 
     @PostMapping("/validate/{token}")
+    @CrossOrigin(origins = "*")
         public ValidationData validateToken(@PathVariable String token){
         return loginService.validateToken(token);
     }
