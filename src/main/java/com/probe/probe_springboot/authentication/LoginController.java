@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(value = "/authentication" )
-@CrossOrigin(maxAge = 3600)
+@CrossOrigin()
 public class LoginController {
 
     @Autowired
