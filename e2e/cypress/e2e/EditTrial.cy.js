@@ -1,18 +1,22 @@
 describe('Edit Trial', () => {
+    beforeEach(()=>{
+        cy.visit('https://probe.joecthomsen.dk/editTrial')
+        cy.get('[id=selectID]').click()
+        cy.contains("owneridTest").click({force: true})
+    });
+
     it('Page loads correctly', () => {
-        cy.visit('https://joecthomsen.dk/#/edittrials')
+
         cy.contains("My Trials")
         cy.contains("Create Trial")
     })
 
     it("Create Trial Open Modal", () => {
-        cy.visit('https://joecthomsen.dk/#/edittrials')
         cy.contains("Create Trial").click()
         cy.contains("Edit Trial")
     })
 
     it("Create Trial delete button disabled right button = Create", () => {
-        cy.visit('https://joecthomsen.dk/#/edittrials')
         cy.contains("Create Trial").click()
         cy.contains("Edit Trial")
         cy.get('[id=Create]')
@@ -20,7 +24,6 @@ describe('Edit Trial', () => {
     })
 
     it("Can Create Trial", () => {
-        cy.visit('https://joecthomsen.dk/#/edittrials')
         cy.contains("Create Trial").click()
         cy.contains("Edit Trial")
         cy.contains("Header").click().type("test")
@@ -28,11 +31,9 @@ describe('Edit Trial', () => {
         cy.contains("Title").click().type("test")
         cy.contains("City").click().type("test")
         cy.get('[id=Create]').click()
-        cy.contains("test")
     })
 
     it("Check is Trial was created correctly", () =>{
-        cy.visit('https://joecthomsen.dk/#/edittrials')
         cy.contains("test")
         cy.contains("Edit").click()
         cy.contains("Edit Trial")
@@ -43,7 +44,6 @@ describe('Edit Trial', () => {
     })
 
     it("Edit Trial delete button not disabled right button = update", () => {
-        cy.visit('https://joecthomsen.dk/#/edittrials')
         cy.contains("Edit").click()
         cy.contains("Edit Trial")
         cy.get('[id=Update]')
@@ -51,7 +51,6 @@ describe('Edit Trial', () => {
     })
 
     it("Can open A Trial and Cancel", () => {
-        cy.visit('https://joecthomsen.dk/#/edittrials')
         cy.contains("Edit").click()
         cy.contains("Edit Trial")
         cy.contains("Cancel").click()
@@ -60,7 +59,6 @@ describe('Edit Trial', () => {
     })
 
     it("Can open A Trial and Delete", () => {
-        cy.visit('https://joecthomsen.dk/#/edittrials')
         cy.contains("test")
         cy.contains("Edit").click()
         cy.contains("Edit Trial")
