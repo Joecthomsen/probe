@@ -1,5 +1,4 @@
 package com.probe.probe_springboot.model;
-
 import lombok.*;
 
 import javax.persistence.*;
