@@ -9,14 +9,13 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(value = "/authentication" )
 @CrossOrigin(maxAge = 3600)
 public class LoginController {
-
     @Autowired
     private LoginService loginService;
 
-    @PostMapping("/post")
+    @PostMapping("/login")
     public String login(@RequestBody LoginData loginData) throws NotAuthorizedException, JsonProcessingException {
         System.out.println("From controller: " + loginData);
-        return loginService.postLoginData(loginData);
+        return loginService.login(loginData);
     }
 
     @PostMapping("/validate/{token}")
