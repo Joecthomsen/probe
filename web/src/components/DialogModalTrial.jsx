@@ -22,12 +22,12 @@ function SaveButtonPick() {
         return <Button onClick={() => {
             EditTrialStoreOBJ.createTrial();
             EditTrialStoreOBJ.closeDialog();
-        }} variant={"outlined"}>Create</Button>
+        }} variant={"outlined"} id={"Create"}>Create</Button>
     }
     return (<Button onClick={() => {
         EditTrialStoreOBJ.putTial()
         EditTrialStoreOBJ.closeDialog();
-    }} variant={"outlined"}>Update</Button>)
+    }} variant={"outlined"} id={"Update"}>Update</Button>)
 }
 
 const popup = () => {
