@@ -5,10 +5,12 @@ import * as React from "react";
 class EditTrialStore {
     dontlook = [];
     cardList;
-
+    webUrl = "https://probe.joecthomsen.dk/editTrial";
+    //https://probe.joecthomsen.dk/editTrial
+    //http://localhost:8080/editTrial
     dialogOpen = false;
 
-    ownerID = 0;// Should come from cookie or something.
+    ownerID = null;// Should come from cookie or something.
     id = "";
     header = "";
     country = "";
@@ -101,32 +103,35 @@ class EditTrialStore {
     }
 
     updateCardList() {
-        let url ="https://probe.joecthomsen.dk/editTrial/getByOwnerID/"+this.getOwnerId();
-        fetch(url, {
-                method: 'GET',
-                mode: 'cors',
-            }
-        ).then(
-            async (response) => await response.json().then(
-                (json) => runInAction(async () => {
-                    this.cardList = (await json.map((element, index) => {
-                        return <EditTrialsStudyCards key={index}
-                                                     id={element.id}
-                                                     header={element.header}
-                                                     title={element.title}
-                                                     country={element.county}
-                                                     city={element.city}
-                                                     description={element.cardDescription}
-                                                     participants={element.participantsID.length}
-                                                     click={element}
-                        />
-                    }));
-                    this.renderhack();
-                })));
+        if (this.getOwnerId() != null) {
+            let url = this.webUrl + "/getByOwnerID/" + this.getOwnerId();
+            fetch(url, {
+                    method: 'GET',
+                    mode: 'cors',
+                }
+            ).then(
+                async (response) => await response.json().then(
+                    (json) => runInAction(async () => {
+                        this.cardList = (await json.map((element, index) => {
+                            return <EditTrialsStudyCards key={index}
+                                                         id={element.id}
+                                                         header={element.header}
+                                                         title={element.title}
+                                                         country={element.county}
+                                                         city={element.city}
+                                                         description={element.cardDescription}
+                                                         participants={element.participantsID.length}
+                                                         click={element}
+                            />
+                        }));
+                        this.renderhack();
+                    })));
+        }
     }
 
     putTial() {
-        fetch("https://probe.joecthomsen.dk/editTrial/put", {
+        let url = this.webUrl + "/put"
+        fetch(url, {
                 method: 'PUT',
                 mode: 'cors',
                 headers: {
@@ -140,7 +145,7 @@ class EditTrialStore {
     }
 
     deleteTrial() {
-        let url = "https://probe.joecthomsen.dk/editTrial/delete/"+this.getId();
+        let url = this.webUrl + "/delete/" + this.getId();
         fetch(url, {
                 method: 'DELETE',
                 mode: 'cors',
@@ -149,7 +154,8 @@ class EditTrialStore {
     }
 
     createTrial() {
-        fetch("https://probe.joecthomsen.dk/editTrial/add", {
+        let url = this.webUrl + "/add"
+        fetch(url, {
                 method: 'POST',
                 mode: 'cors',
                 headers: {
