@@ -1,8 +1,7 @@
 import { makeAutoObservable } from "mobx"
 import axios from "axios"
 
-const baseUrl = "http://localhost:8080/authentication/post";
-//const axios = require('axios')
+const baseUrl = "https://probe.joecthomsen.dk/authentication/login";
 class AuthenticationStore{
 
     loggedIn = false;
@@ -20,7 +19,14 @@ class AuthenticationStore{
         )
     }
 
+
+
     async doLogin() {
+        // const headers = {
+        //     'Access-Control-Allow-Origin':  '*',
+        //     'Access-Control-Allow-Methods': 'POST',
+        //     'Access-Control-Allow-Headers' : 'Content-Type, Authorization'
+        // }
          await axios.post(baseUrl, this.loginData)
             .then(response => {
                 console.log(response)
