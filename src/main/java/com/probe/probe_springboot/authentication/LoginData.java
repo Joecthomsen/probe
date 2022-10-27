@@ -12,7 +12,6 @@ public class LoginData {
     public LoginData(String email){
         this.email = email;
     }
-
     private String email;
     private String password;
 
