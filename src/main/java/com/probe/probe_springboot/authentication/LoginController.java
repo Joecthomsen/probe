@@ -5,7 +5,7 @@ import com.probe.probe_springboot.exceptions.NotAuthorizedException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin
+@CrossOrigin(maxAge = 3600)
 @RestController
 @RequestMapping(value = "/authentication" )
 public class LoginController {
