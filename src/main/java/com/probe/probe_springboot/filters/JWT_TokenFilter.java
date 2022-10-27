@@ -47,6 +47,6 @@ public class JWT_TokenFilter implements Filter {
         }
 
         chain.doFilter(request, response);
-        chain.doFilter(request, res);
+        //chain.doFilter(request, res);
     }
 }
