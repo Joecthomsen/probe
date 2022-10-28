@@ -16,13 +16,17 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/user" )
 public class UserController {
-
     @Autowired
     private UserServiceImpl userServiceImpl;
 
     @GetMapping("/get/id={id}")
     public User getUserById(@PathVariable Long id){
         return userServiceImpl.getUserById(id);
+    }
+
+    @GetMapping
+    public String helloWorld(){
+        return "Hello from controller";
     }
 
     @GetMapping("/get/email={email}")
