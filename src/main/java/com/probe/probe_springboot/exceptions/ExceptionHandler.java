@@ -28,4 +28,9 @@ public class ExceptionHandler extends ResponseEntityExceptionHandler {
         System.out.println("Request: " + request);
         return new ResponseEntity<>(new ApiError(ex.getMessage(), HttpStatus.BAD_REQUEST, request.toString(), LocalDateTime.now()), HttpStatus.BAD_REQUEST);
     }
+
+    @org.springframework.web.bind.annotation.ExceptionHandler(TokenExpiredExceptionCustom.class)
+    public ResponseEntity<Object> handelTokenExpiredException(TokenExpiredExceptionCustom ex, WebRequest request){
+        return new ResponseEntity<>(new ApiError(ex.getMessage(), HttpStatus.UNAUTHORIZED, request.toString(), LocalDateTime.now()), HttpStatus.BAD_REQUEST);
+    }
 }
