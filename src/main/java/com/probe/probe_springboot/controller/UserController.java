@@ -12,17 +12,21 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 import java.util.List;
 
+@CrossOrigin(maxAge = 3600)
 @RestController
 @RequestMapping(value = "/user" )
-@CrossOrigin(maxAge = 3600)
 public class UserController {
-
     @Autowired
     private UserServiceImpl userServiceImpl;
 
     @GetMapping("/get/id={id}")
     public User getUserById(@PathVariable Long id){
         return userServiceImpl.getUserById(id);
+    }
+
+    @GetMapping
+    public String helloWorld(){
+        return "Hello from controller";
     }
 
     @GetMapping("/get/email={email}")
