@@ -3,6 +3,7 @@ package com.probe.probe_springboot.filters;
 import com.probe.probe_springboot.authentication.JWTHandler;
 import com.probe.probe_springboot.authentication.LoginData;
 import com.probe.probe_springboot.authentication.ValidationData;
+import com.probe.probe_springboot.exceptions.NotAuthorizedException;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.IOException;
@@ -19,20 +20,16 @@ public class JWT_TokenFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 //        @Autowired
         HttpServletRequest req = (HttpServletRequest) request;
-        //HttpServletResponse res = (HttpServletResponse) response;
+        JWTHandler jwtHandler = new JWTHandler();
 
-        //String resp = res.getHeader("token");
-
-        String key = req.getHeader("token");
+        String token = req.getHeader("token");
 
         String requestEmail = req.getHeader("email");
 
         System.out.println("request:  " + ((HttpServletRequest) request).getHeader("token"));
 
-        //System.out.println("userHeader:  " + resp);
-        //System.out.println("Email header  " + resp.getHeader("email"));
 
-        if(key == null) {
+        if(token == null) {
             ((HttpServletResponse) response).setStatus(401);
             response.getOutputStream().write("JWT token is missing!".getBytes());
             return;
@@ -43,11 +40,17 @@ public class JWT_TokenFilter implements Filter {
             return;
         }
 
-        if(!Objects.equals(JWTHandler.validate(key).getEmail(), requestEmail)) {
-            ((HttpServletResponse) response).setStatus(403);
-            response.getOutputStream().write("JWT token is invalid".getBytes());
-            return;
+        try {
+            JWTHandler.validate(token);
+        } catch (NotAuthorizedException e) {
+            throw new RuntimeException(e);
         }
+
+//        if(!Objects.equals(JWTHandler.validate(token).getEmail(), requestEmail)) {
+//            ((HttpServletResponse) response).setStatus(403);
+//            response.getOutputStream().write("JWT token is invalid".getBytes());
+//            return;
+//        }
 
         chain.doFilter(request, response);
         //chain.doFilter(request, res);

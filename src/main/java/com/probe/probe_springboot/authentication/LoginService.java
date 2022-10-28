@@ -23,7 +23,7 @@ public class LoginService {
         throw new NotAuthorizedException("Wrong username");
     }
 
-    public ValidationData validateToken(String token) throws UserNotFound {
+    public boolean validateToken(String token) throws UserNotFound, NotAuthorizedException {
         return JWTHandler.validate(token);
     }
 }
