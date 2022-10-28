@@ -11,11 +11,7 @@ public class JWT_TokenFilterRegister {
     public FilterRegistrationBean<JWT_TokenFilter> registerJWT_TokenFilter(){
         FilterRegistrationBean<JWT_TokenFilter> registrationBean = new FilterRegistrationBean<>();
         registrationBean.setFilter(new JWT_TokenFilter());
-        registrationBean.addUrlPatterns("/user/id=");
-        registrationBean.addUrlPatterns("/user/email=");
-        registrationBean.addUrlPatterns("/user/role/save");
-        registrationBean.addUrlPatterns("/user/role/addroletouser/*");
-
+        registrationBean.addUrlPatterns("/user/authorize/*");
         return registrationBean;
     }
 
