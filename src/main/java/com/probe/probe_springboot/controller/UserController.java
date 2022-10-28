@@ -19,27 +19,27 @@ public class UserController {
     @Autowired
     private UserServiceImpl userServiceImpl;
 
-    @GetMapping("/get/id={id}")
+    @GetMapping("/id={id}")
     public User getUserById(@PathVariable Long id){
         return userServiceImpl.getUserById(id);
     }
 
-    @GetMapping
+    @GetMapping("/hello")
     public String helloWorld(){
         return "Hello from controller";
     }
 
-    @GetMapping("/get/email={email}")
+    @GetMapping("/email={email}")
     public User getUserByEmail(@PathVariable String email){
         return userServiceImpl.getUserByEmail(email);
     }
 
-    @GetMapping("/get/all")
+    @GetMapping("/all")
     public List<User> getAllUsers(){
         return userServiceImpl.getUsers();
     }
 
-    @GetMapping("/get/roles")
+    @GetMapping("/roles")
     public List<Role> getAllRoles(){
         return userServiceImpl.getAllRoles();
     }
