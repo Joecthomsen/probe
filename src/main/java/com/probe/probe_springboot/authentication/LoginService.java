@@ -13,7 +13,7 @@ public class LoginService {
 
     @Autowired
     UserServiceImpl userService;
-    public String postLoginData(LoginData login) throws NotAuthorizedException, JsonProcessingException {
+    public String login(LoginData login) throws NotAuthorizedException, JsonProcessingException {
 
         User user = userService.getUserByEmail(login.getEmail());
         System.out.println("from service: " + login);
