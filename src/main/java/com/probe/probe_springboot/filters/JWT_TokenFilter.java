@@ -19,17 +19,19 @@ public class JWT_TokenFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 //        @Autowired
         HttpServletRequest req = (HttpServletRequest) request;
-//        HttpServletResponse res = (HttpServletResponse) response;
-//
-//        res.setHeader("Access-Control-Allow-Origin", res.getHeader("Origin"));
-//        //res.setHeader("Access-Control-Allow-Origin", "*");
-//        res.setHeader("Access-Control-Allow-Credentials", "true");
-//        res.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
-//        res.setHeader("Access-Control-Max-Age", "3600");
-//        res.setHeader("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With, remember-me");
+        //HttpServletResponse res = (HttpServletResponse) response;
 
-        String key = req.getHeader("user");
+        //String resp = res.getHeader("token");
+
+        String key = req.getHeader("token");
+
         String requestEmail = req.getHeader("email");
+
+        System.out.println("request:  " + ((HttpServletRequest) request).getHeader("token"));
+
+        //System.out.println("userHeader:  " + resp);
+        //System.out.println("Email header  " + resp.getHeader("email"));
+
         if(key == null) {
             ((HttpServletResponse) response).setStatus(401);
             response.getOutputStream().write("JWT token is missing!".getBytes());

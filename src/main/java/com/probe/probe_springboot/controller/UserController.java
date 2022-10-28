@@ -1,6 +1,11 @@
+/*
+* Created by Johannes Claudius Thomsen october 2022
+*
+* Note: Every endpoint with "/authorize" in front of it, will require the user to have a valid JWT.
+* */
+
 package com.probe.probe_springboot.controller;
 
-import com.probe.probe_springboot.exceptions.UserAlreadyExists;
 import com.probe.probe_springboot.model.Role;
 import com.probe.probe_springboot.model.User;
 import com.probe.probe_springboot.service.UserServiceImpl;
@@ -8,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
 import java.net.URI;
 import java.util.List;
 
@@ -19,9 +23,14 @@ public class UserController {
     @Autowired
     private UserServiceImpl userServiceImpl;
 
-    @GetMapping("/id={id}")
-    public User getUserById(@PathVariable Long id){
-        return userServiceImpl.getUserById(id);
+    @GetMapping("/authorize/id/{id}")
+    public ResponseEntity<User> getUserById(@PathVariable Long id/*, @RequestHeader("token") String token, @RequestHeader("email") String email*/){
+//        HttpHeaders responseHeader = new HttpHeaders();
+//        responseHeader.set("token", token);
+//        responseHeader.set("email", email);
+       // return ResponseEntity.ok().headers(responseHeader).body(userServiceImpl.getUserById(id));
+        return ResponseEntity.ok().body(userServiceImpl.getUserById(id));
+        //return userServiceImpl.getUserById(id);
     }
 
     @GetMapping("/hello")
@@ -29,7 +38,7 @@ public class UserController {
         return "Hello from controller";
     }
 
-    @GetMapping("/email={email}")
+    @GetMapping("/authorize/email={email}")
     public User getUserByEmail(@PathVariable String email){
         return userServiceImpl.getUserByEmail(email);
     }
@@ -39,7 +48,7 @@ public class UserController {
         return userServiceImpl.getUsers();
     }
 
-    @GetMapping("/roles")
+    @GetMapping("/authorize/roles")
     public List<Role> getAllRoles(){
         return userServiceImpl.getAllRoles();
     }
@@ -50,12 +59,12 @@ public class UserController {
             return ResponseEntity.created(uri).body(userServiceImpl.saveUser(user));
     }
 
-    @PostMapping("/role/save")
+    @PostMapping("/authorize/role/save")
     public Role saveRole(@RequestBody Role role){
         return userServiceImpl.saveRole(role);
     }
 
-    @PutMapping("role/addroletouser/userid={userId}/rolename={roleName}")
+    @PutMapping("/authorize/role/addroletouser/userid={userId}/rolename={roleName}")
     public void addRoleToUser(@PathVariable Long userId, @PathVariable String roleName){
         userServiceImpl.addRoleToUser(userId, roleName);
     }
