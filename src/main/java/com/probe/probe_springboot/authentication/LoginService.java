@@ -18,7 +18,7 @@ public class LoginService {
         User user = userService.getUserByEmail(login.getEmail());
         System.out.println("from service: " + login);
         if(user != null && user.getEmail().equals(login.getEmail()) && user.getHashedPassword().equals(login.getPassword())){
-            return JWTHandler.generateJwtToken(login);
+            return JWTHandler.generateJwtToken(login,user.getId());
         }
         throw new NotAuthorizedException("Wrong username");
     }

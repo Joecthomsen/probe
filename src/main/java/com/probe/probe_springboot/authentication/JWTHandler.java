@@ -11,23 +11,40 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.probe.probe_springboot.exceptions.NotAuthorizedException;
 import com.probe.probe_springboot.exceptions.TokenExpiredExceptionCustom;
+import com.probe.probe_springboot.model.Role;
 
 
 import java.util.Base64;
 import java.util.Calendar;
+import java.util.Collection;
 import java.util.Date;
 
-public class JWTHandler extends Throwable{
+public class JWTHandler extends Throwable {
     private static final String key = System.getenv("JWT_KEY");
     private static final int TOKEN_EXPIRY = 2880;
 
-    public static String generateJwtToken(LoginData user) throws JsonProcessingException {
+    public static String generateJwtToken(LoginData user, Long ownerID) throws JsonProcessingException {
 
         Calendar expiry = Calendar.getInstance();
         expiry.add(Calendar.MINUTE, TOKEN_EXPIRY);
         ObjectMapper objectMapper = new ObjectMapper();
         String s = objectMapper.writer().writeValueAsString(user.getEmail());
+
         System.out.println("USER!!!   !!!  ::: " + user);
+
+
+        //Har lige tilføjet den her hilsen Troels :-)
+        //if medical user
+        if (user.getEmail().equals("Medical")) {
+            String s2 = objectMapper.writer().writeValueAsString(ownerID);
+            return JWT.create()
+                    .withIssuer("ProbeDeluxe")
+                    .withClaim("user", s)
+                    .withClaim("ownerID", s2)
+                    .withClaim("role", "Medical")
+                    .withExpiresAt(expiry.getTime())
+                    .sign(Algorithm.HMAC512(key));
+        }
 
         return JWT.create()
                 .withIssuer("ProbeDeluxe")
@@ -44,7 +61,7 @@ public class JWTHandler extends Throwable{
 
         try {
             verifier.verify(s);
-        }catch (Exception e){
+        } catch (Exception e) {
             throw new TokenExpiredExceptionCustom("JWT corrupted or expired.");
         }
         return true;
