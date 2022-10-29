@@ -19,7 +19,7 @@ public class LoginController {
     }
 
     @PostMapping("/validate/{token}")
-        public ValidationData validateToken(@PathVariable String token){
+        public boolean validateToken(@PathVariable String token) throws NotAuthorizedException {
         return loginService.validateToken(token);
     }
 }
