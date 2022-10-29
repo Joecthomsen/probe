@@ -1,6 +1,7 @@
 import {makeAutoObservable, runInAction} from "mobx";
 import EditTrialsStudyCards from "../components/landingPage/TrialCard";
 import * as React from "react";
+import {authenticationStore} from "./AuthenticationStore";
 
 class EditTrialStore {
     dontlook = [];
@@ -108,6 +109,12 @@ class EditTrialStore {
             fetch(url, {
                     method: 'GET',
                     mode: 'cors',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json',
+                        'token': authenticationStore.token,
+                        'email': authenticationStore.loginData.email
+                    }
                 }
             ).then(
                 async (response) => await response.json().then(
@@ -136,7 +143,9 @@ class EditTrialStore {
                 mode: 'cors',
                 headers: {
                     'Accept': 'application/json',
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'token': authenticationStore.token,
+                    'email': authenticationStore.loginData.email
                 },
                 body: JSON.stringify(this.getDialogInfo())
             }
@@ -149,18 +158,24 @@ class EditTrialStore {
         fetch(url, {
                 method: 'DELETE',
                 mode: 'cors',
+                'token': authenticationStore.token,
+                'email': authenticationStore.loginData.email
             }
         ).then(async (response) => await response.text().then((resp) => alert(resp))).then(this.updateCardList);
     }
 
     createTrial() {
         let url = this.webUrl + "/add"
+        console.log(authenticationStore.loginData.email)
+        console.log(authenticationStore.token)
         fetch(url, {
                 method: 'POST',
                 mode: 'cors',
                 headers: {
                     'Accept': 'application/json',
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'token': authenticationStore.token,
+                    'email': authenticationStore.loginData.email
                 },
                 body: JSON.stringify(this.getDialogInfo())
             }
@@ -174,7 +189,6 @@ class EditTrialStore {
     }
 
     openDialog() {
-        console.log(this.getOwnerId())
         this.dialogOpen = true;
     }
 
