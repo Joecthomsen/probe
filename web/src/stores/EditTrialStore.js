@@ -174,6 +174,7 @@ class EditTrialStore {
     }
 
     openDialog() {
+        console.log(this.getOwnerId())
         this.dialogOpen = true;
     }
 
@@ -201,6 +202,8 @@ class EditTrialStore {
 
     setOwnerID(value) {
         this.ownerID = value;
+        this.updateCardList();
+        this.renderhack();
     }
 
     getHeader() {

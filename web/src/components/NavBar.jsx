@@ -46,7 +46,9 @@ const NavBar = () => {
                     <h1 className="nav-bar-logo">PROBE</h1>
                     <div className="nav-bar-links-container">
                         <Link to='/' className="nav-bar-links">Home</Link>
-                        <Link onClick={() => authenticationStore.setLoggedIn(false)} to='/' className="nav-bar-links">Logout</Link>
+                        <Link onClick={() => {authenticationStore.setLoggedIn(false);
+                        authenticationStore.setToken(null)}
+                        } to='/' className="nav-bar-links">Logout</Link>
                     </div>
                 </nav>
                 :
