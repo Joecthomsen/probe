@@ -35,6 +35,7 @@ class AuthenticationStore {
                 console.log(response)
                 console.log(response.data)
                 this.setToken(response.data)
+                localStorage.setItem("token", response.data)
             })
             .catch(error => console.log(error)
             )
