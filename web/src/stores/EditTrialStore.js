@@ -1,7 +1,6 @@
 import {makeAutoObservable, runInAction} from "mobx";
 import EditTrialsStudyCards from "../components/landingPage/TrialCard";
 import * as React from "react";
-import {authenticationStore} from "./AuthenticationStore";
 
 class EditTrialStore {
     dontlook = [];
@@ -112,8 +111,8 @@ class EditTrialStore {
                     headers: {
                         'Accept': 'application/json',
                         'Content-Type': 'application/json',
-                        'token': authenticationStore.token,
-                        'email': authenticationStore.loginData.email
+                        'token': localStorage.getItem('token'),
+                        'email': "mail"
                     }
                 }
             ).then(
@@ -144,8 +143,8 @@ class EditTrialStore {
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
-                    'token': authenticationStore.token,
-                    'email': authenticationStore.loginData.email
+                    'token': localStorage.getItem('token'),
+                    'email': "mail"
                 },
                 body: JSON.stringify(this.getDialogInfo())
             }
@@ -156,26 +155,25 @@ class EditTrialStore {
     deleteTrial() {
         let url = this.webUrl + "/delete/" + this.getId();
         fetch(url, {
-                method: 'DELETE',
-                mode: 'cors',
-                'token': authenticationStore.token,
-                'email': authenticationStore.loginData.email
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'token': localStorage.getItem('token'),
+                'email': "mail"
             }
         ).then(async (response) => await response.text().then((resp) => alert(resp))).then(this.updateCardList);
     }
 
     createTrial() {
         let url = this.webUrl + "/add"
-        console.log(authenticationStore.loginData.email)
-        console.log(authenticationStore.token)
+        console.log( localStorage.getItem('token'))
         fetch(url, {
                 method: 'POST',
                 mode: 'cors',
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
-                    'token': authenticationStore.token,
-                    'email': authenticationStore.loginData.email
+                    'token': localStorage.getItem('token'),
+                    'email': "mail"
                 },
                 body: JSON.stringify(this.getDialogInfo())
             }
