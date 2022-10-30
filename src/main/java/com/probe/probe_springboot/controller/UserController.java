@@ -23,24 +23,24 @@ public class UserController {
     @Autowired
     private UserServiceImpl userServiceImpl;
 
-    @GetMapping("/authorize/id/{id}")
-    public ResponseEntity<User> getUserById(@PathVariable Long id/*, @RequestHeader("token") String token, @RequestHeader("email") String email*/){
-//        HttpHeaders responseHeader = new HttpHeaders();
-//        responseHeader.set("token", token);
-//        responseHeader.set("email", email);
-       // return ResponseEntity.ok().headers(responseHeader).body(userServiceImpl.getUserById(id));
-        return ResponseEntity.ok().body(userServiceImpl.getUserById(id));
-        //return userServiceImpl.getUserById(id);
-    }
+//    @GetMapping("/authorize/id/{email}")
+//    public ResponseEntity<User> getUserById(@PathVariable String email/*, @RequestHeader("token") String token, @RequestHeader("email") String email*/){
+////        HttpHeaders responseHeader = new HttpHeaders();
+////        responseHeader.set("token", token);
+////        responseHeader.set("email", email);
+//       // return ResponseEntity.ok().headers(responseHeader).body(userServiceImpl.getUserById(id));
+//        return ResponseEntity.ok().body(userServiceImpl.findByEmail(email));
+//        //return userServiceImpl.getUserById(id);
+//    }
 
     @GetMapping("/hello")
     public String helloWorld(){
         return "Hello from controller";
     }
 
-    @GetMapping("/authorize/email={email}")
+    @GetMapping("/authorize/{email}")
     public User getUserByEmail(@PathVariable String email){
-        return userServiceImpl.getUserByEmail(email);
+        return userServiceImpl.findByEmail(email);
     }
 
     @GetMapping("/all")
@@ -64,8 +64,8 @@ public class UserController {
         return userServiceImpl.saveRole(role);
     }
 
-    @PutMapping("/authorize/role/addroletouser/userid={userId}/rolename={roleName}")
-    public void addRoleToUser(@PathVariable Long userId, @PathVariable String roleName){
-        userServiceImpl.addRoleToUser(userId, roleName);
+    @PutMapping("/authorize/role/addroletouser/userid={userEmail}/rolename={roleName}")
+    public void addRoleToUser(@PathVariable String userEmail, @PathVariable String roleName){
+        userServiceImpl.addRoleToUser(userEmail, roleName);
     }
 }
