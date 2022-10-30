@@ -4,7 +4,8 @@ import jwt_decode from 'jwt-decode';
 import {EditTrialStoreOBJ} from "./EditTrialStore";
 
 
-const baseUrl = "https://probe.joecthomsen.dk/authentication/login";
+// const getToken = "https://probe.joecthomsen.dk/authentication/jwt";
+const getToken = "http://localhost:8080/authentication/jwt";
 
 class AuthenticationStore {
 
@@ -23,22 +24,31 @@ class AuthenticationStore {
         )
     }
 
-
     async doLogin() {
-        // const headers = {
-        //     'Access-Control-Allow-Origin':  '*',
-        //     'Access-Control-Allow-Methods': 'POST',
-        //     'Access-Control-Allow-Headers' : 'Content-Type, Authorization'
-        // }
-        await axios.post(baseUrl, this.loginData)
-            .then(response => {
-                console.log(response)
-                console.log(response.data)
-                this.setToken(response.data)
-                localStorage.setItem("token", response.data)
-            })
-            .catch(error => console.log(error)
-            )
+
+        const res = await axios({
+            method: "get",
+            url: "http://localhost:8080/authentication/jwt",
+            data: {
+                email: this.loginData.email,
+                password: this.loginData.password,
+            },
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+            },
+        });
+
+        console.log("Blabla: " + res)
+
+        // await axios.post(baseUrl, this.loginData)
+        //     .then(response => {
+        //         console.log(response)
+        //         console.log(response.data)
+        //         this.setToken(response.data)
+        //         localStorage.setItem("token", response.data)
+        //     })
+        //     .catch(error => console.log(error)
+        //     )
         if (this.token != null) {
             this.setLoggedIn(true)
 
