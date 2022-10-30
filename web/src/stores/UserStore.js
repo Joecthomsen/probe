@@ -1,6 +1,4 @@
-
 import { makeAutoObservable } from "mobx"
-
 
 class UserStore{
 
@@ -20,6 +18,7 @@ class UserStore{
     city;
     region;
     country;
+    role;
 
     createMedicalUser = false;
     error = false;
@@ -78,20 +77,6 @@ class UserStore{
     setGender(gender){
         this.gender = gender
     }
-    // setDiagnose(diagnose){
-    //     this.diagnose = diagnose
-    // }
-    // setOccupation(occupation){
-    //     this.occupation = occupation
-    // }
-    // setDescription(description){
-    //     this.description = description
-    // }
-    // setAgeWhenDiagnosed(ageWhenDiagnosed){
-    //     this.ageWhenDiagnosed = ageWhenDiagnosed
-    // }
-
-
 
     setSex(value) {
         this.sex = value;
@@ -112,11 +97,16 @@ class UserStore{
     }
 
     getMedicalUserObject(){
+        // const bcrypt = require('bcryptjs');
+        // bcrypt.hash(this.password, 10, function(err, hash) {
+        //
+        // });
+        console.log(this.password)
         return{
-            medicalUser: this.createMedicalUser,
             dob: null,
             firstName: this.firstName,
             lastName: this.lastName,
+            password: this.password,
             weight: null,
             chronicDisease: null,
             email: this.email,
@@ -126,16 +116,17 @@ class UserStore{
             zipCode: null,
             city: this.city,
             region: this.region,
-            country: this.country
+            country: this.country,
+            role: this.role
         }
     }
 
     getClinicalUserObject(){
         return{
-            medicalUser: this.createMedicalUser,
             dob: this.dob,
             firstName: this.firstName,
             lastName: this.lastName,
+            password: this.password,
             weight: this.weight,
             chronicDisease: this.chronicDisease,
             email: this.email,
@@ -145,7 +136,8 @@ class UserStore{
             zipCode: this.zipCode,
             city: this.city,
             region: this.region,
-            country: this.country
+            country: this.country,
+            role: this.role
         }
     }
 }
