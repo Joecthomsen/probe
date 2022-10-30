@@ -23,7 +23,7 @@ public class JWTHandler extends Throwable {
     private static final String key = System.getenv("JWT_KEY");
     private static final int TOKEN_EXPIRY = 2880;
 
-    public static String generateJwtToken(LoginData user, Long ownerID) throws JsonProcessingException {
+    public static String generateJwtToken(LoginData user, String email) throws JsonProcessingException {
 
         Calendar expiry = Calendar.getInstance();
         expiry.add(Calendar.MINUTE, TOKEN_EXPIRY);
@@ -36,7 +36,7 @@ public class JWTHandler extends Throwable {
         //Har lige tilføjet den her hilsen Troels :-)
         //if medical user
         if (user.getEmail().equals("Medical")) {
-            String s2 = objectMapper.writer().writeValueAsString(ownerID);
+            String s2 = objectMapper.writer().writeValueAsString(email);
             return JWT.create()
                     .withIssuer("ProbeDeluxe")
                     .withClaim("user", s)

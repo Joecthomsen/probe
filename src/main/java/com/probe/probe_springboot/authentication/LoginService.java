@@ -15,10 +15,10 @@ public class LoginService {
     UserServiceImpl userService;
     public String login(LoginData login) throws NotAuthorizedException, JsonProcessingException {
 
-        User user = userService.getUserByEmail(login.getEmail());
+        User user = userService.findByEmail(login.getEmail());
         System.out.println("from service: " + login);
         if(user != null && user.getEmail().equals(login.getEmail()) && user.getHashedPassword().equals(login.getPassword())){
-            return JWTHandler.generateJwtToken(login,user.getId());
+            return JWTHandler.generateJwtToken(login,user.getEmail());
         }
         throw new NotAuthorizedException("Wrong username");
     }

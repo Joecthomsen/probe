@@ -16,9 +16,7 @@ import java.util.Collection;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    //private boolean medicalUser;
+    private String email;
     private String sex;
     private String firstName;
     private String lastName;
@@ -26,7 +24,6 @@ public class User {
     private Date dob;
     private double weight;
     private String chronicDisease;
-    private String email;
     private String phoneNumber;
     private String streetName;
     private int doorNumber;
