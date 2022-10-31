@@ -1,5 +1,6 @@
 import {makeAutoObservable} from "mobx"
-import axios from "axios"
+import {loginRequest} from '../requests/loginRequest'
+//import axios from "axios"
 // import jwt_decode from 'jwt-decode';
 // import {EditTrialStoreOBJ} from "./EditTrialStore";
 //import app from "../App";
@@ -31,42 +32,7 @@ class AuthenticationStore {
         // const cors = require('cors');
         // app.use(cors())
 
-        const fetchData = async () => {
-            try {
-                const response = await axios.post("http://localhost:8080/authentication/signin", { email: this.loginData.email, password: this.loginData.password })
-                const data = response.data
-                console.log("Data: " + JSON.stringify(data))
-            }catch (error){
-                console.log("error: " + error.response)
-            }
-        }
-
-        await fetchData();
-
-/////////////////////////////////////////////
-        // const res = await axios({
-        //     method: "get",
-        //     url: "http://localhost:8080/user/hello",
-        //     data: {
-        //         email: this.loginData.email,
-        //         password: this.loginData.password,
-        //     },
-        //     headers: {
-        //         "Content-Type": "application/x-www-form-urlencoded",
-        //     },
-        // });
-        //
-        // console.log("Blabla: " + res)
-////////////////////////////////////////////////////////////////
-        // await axios.post(baseUrl, this.loginData)
-        //     .then(response => {
-        //         console.log(response)
-        //         console.log(response.data)
-        //         this.setToken(response.data)
-        //         localStorage.setItem("token", response.data)
-        //     })
-        //     .catch(error => console.log(error)
-        //     )
+        await loginRequest(this.loginData.email, this.loginData.password);
 
         // if (this.token != null) {
         //     this.setLoggedIn(true)
