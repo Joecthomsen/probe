@@ -5,7 +5,7 @@ import {userStore} from "../../stores/UserStore"
 import { observer } from "mobx-react-lite"
 import SelectUserType from "./SelectUserType";
 //import axios from "axios";
-//import bcrypt from 'bcryptjs';
+import bcrypt from 'bcryptjs';
 // import {submitUser} from "../../requests/submitNewUser";
 // import {drawerClasses} from "@mui/material";
 import axios from "axios";
@@ -125,27 +125,9 @@ const CreateUserFormOne = () => {
         }
     }
 
-    // sex: userStore.sex,
-    // firstName: userStore.firstName,
-    // lastName: userStore.lastName,
-    // hashedPassword: userStore.password,
-    // dob: userStore.dob,
-    // weight: userStore.weight,
-    // chronicDisease: userStore.chronicDisease,
-    // email: userStore.email,
-    // phoneNumber: userStore.phoneNumber,
-    // streetName: userStore.streetName,
-    // doorNumber: 10,
-    // zipCode: userStore.zipCode,
-    // city: userStore.city,
-    // region: userStore.region,
-    // country: userStore.country,
-    // role: userStore.role
-
     const submitUser = async (event) => {
-        //event.preventDefault();
+        event.preventDefault();
         //await submitUser()
-
         const role = userStore.role === "MEDICAL_USER" ? [{
                 "id": 2,
                 "roleName": "MEDICAL_USER"
@@ -156,14 +138,16 @@ const CreateUserFormOne = () => {
                 "roleName": "CLIENT_USER"
             }]
 
-        console.log("Inside submitUser")
+        const theHashedPassword = bcrypt.hashSync(userStore.password, 10)
+
+        console.log("Password: " + userStore.password + "\n" + "Hashed Password: " + theHashedPassword + "\n")
         try {
             console.log("FirstName: " + userStore.firstName)
             const response = await axios.post(addUserUrl, {
                 sex: userStore.sex,
                 firstName: userStore.firstName,
                 lastName: userStore.lastName,
-                hashedPassword: userStore.password,
+                hashedPassword: theHashedPassword,
                 dob: userStore.dob,
                 weight: userStore.weight,
                 chronicDisease: userStore.chronicDisease,
