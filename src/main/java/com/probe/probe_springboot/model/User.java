@@ -10,6 +10,7 @@ import java.util.Collection;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 @Builder
 @Entity
 @Table(name = "Users")
@@ -20,7 +21,7 @@ public class User {
     private String sex;
     private String firstName;
     private String lastName;
-    private String hashedPassword;
+    private String password;
     private Date dob;
     private String weight;
     private String chronicDisease;
