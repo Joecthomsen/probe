@@ -13,12 +13,15 @@ public class LoginService {
 
     @Autowired
     UserServiceImpl userService;
-    public String login(LoginData login) throws NotAuthorizedException, JsonProcessingException {
+
+    public ReturnUserData signIn(LoginData login) throws NotAuthorizedException, JsonProcessingException {
 
         User user = userService.findByEmail(login.getEmail());
         System.out.println("from service: " + login);
         if(user != null && user.getEmail().equals(login.getEmail()) && user.getHashedPassword().equals(login.getPassword())){
-            return JWTHandler.generateJwtToken(login,user.getEmail());
+            String token = JWTHandler.generateJwtToken(login);
+            System.out.println("ReturnUserObj: " + ReturnUserData.createReturnObject(user,token));
+            return ReturnUserData.createReturnObject(user, token);
         }
         throw new NotAuthorizedException("Wrong username");
     }

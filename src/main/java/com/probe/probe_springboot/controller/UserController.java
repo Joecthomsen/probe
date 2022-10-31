@@ -48,7 +48,7 @@ public class UserController {
         return userServiceImpl.getUsers();
     }
 
-    @GetMapping("/authorize/roles")
+    @GetMapping("/roles")
     public List<Role> getAllRoles(){
         return userServiceImpl.getAllRoles();
     }
@@ -64,7 +64,7 @@ public class UserController {
         return userServiceImpl.saveRole(role);
     }
 
-    @PutMapping("/authorize/role/addroletouser/userid={userEmail}/rolename={roleName}")
+    @PutMapping("/role/addroletouser/userid/{userEmail}/rolename/{roleName}")
     public void addRoleToUser(@PathVariable String userEmail, @PathVariable String roleName){
         userServiceImpl.addRoleToUser(userEmail, roleName);
     }

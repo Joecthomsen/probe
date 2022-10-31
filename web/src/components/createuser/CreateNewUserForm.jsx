@@ -13,7 +13,7 @@ import axios from "axios";
 const CreateUserFormOne = () => {
 
     const addUserUrl = process.env.NODE_ENV === 'development' ?  "http://localhost:8080/user/add" : "https://probe.joecthomsen.dk/user/add"; //Check if dev environment
-
+    //const addRoleUrl
     const [firstForm, setFirstForm] = useState(true)
 
     //const navigate = useNavigate();
@@ -146,33 +146,42 @@ const CreateUserFormOne = () => {
         //event.preventDefault();
         //await submitUser()
 
+        const role = userStore.role === "MEDICAL_USER" ? [{
+                "id": 2,
+                "roleName": "MEDICAL_USER"
+            }] :
+
+            [{
+                "id": 1,
+                "roleName": "CLIENT_USER"
+            }]
+
         console.log("Inside submitUser")
         try {
+            console.log("FirstName: " + userStore.firstName)
             const response = await axios.post(addUserUrl, {
-                sex: "Male",
-                firstName: "Joe",
-                lastName: "Moe",
-                hashedPassword: "secret",
-                dob: null,
-                weight: 75,
-                chronicDisease: "sick",
-                email: "email.com",
-                phoneNumber: "23456",
-                streetName: "Fensmarke3n",
-                doorNumber: 10,
-                zipCode: "22345",
-                city: "userStore.city",
-                region: "userStore.region",
-                country: "userStore.country",
-                roles: []
+                sex: userStore.sex,
+                firstName: userStore.firstName,
+                lastName: userStore.lastName,
+                hashedPassword: userStore.password,
+                dob: userStore.dob,
+                weight: userStore.weight,
+                chronicDisease: userStore.chronicDisease,
+                email: userStore.email,
+                phoneNumber: userStore.phoneNumber,
+                streetName: userStore.streetName,
+                doorNumber: userStore.doorNumber,
+                zipCode: userStore.zipCode,
+                city: userStore.zipCode,
+                region: userStore.region,
+                country: userStore.country,
+                roles: role
             })
             const data = response.data
             console.log("response: " + JSON.stringify(data))
-
         }catch (error) {
             console.log("error: " + error.response)
         }
-
         // if(!userStore.createMedicalUser) {
         //     axios.post(addUserUrl, userStore.getClinicalUserObject())
         //         .then(response => {
