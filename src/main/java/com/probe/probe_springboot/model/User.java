@@ -22,7 +22,7 @@ public class User {
     private String lastName;
     private String hashedPassword;
     private Date dob;
-    private double weight;
+    private String weight;
     private String chronicDisease;
     private String phoneNumber;
     private String streetName;
