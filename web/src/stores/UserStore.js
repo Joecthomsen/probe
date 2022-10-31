@@ -18,7 +18,7 @@ class UserStore{
     city;
     region;
     country;
-    role;
+    role = [];
 
     createMedicalUser = false;
     error = false;
@@ -95,6 +95,9 @@ class UserStore{
     }
     setErrorMsg(msg){
         this.errorMsg = msg
+    }
+    setRole(role){
+        this.role.push(role)
     }
 
     getMedicalUserObject(){
