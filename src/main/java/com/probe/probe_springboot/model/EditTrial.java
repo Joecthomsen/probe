@@ -34,7 +34,7 @@ public class EditTrial {
     private String date;
     private int requiredVisits;
     private String starttime;
-    private int ownerID;
+    private String ownerID;
     @ElementCollection
     private List<Integer> participantsID;
     private String disease;
