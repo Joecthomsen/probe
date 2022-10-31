@@ -1,5 +1,4 @@
 import { makeAutoObservable } from "mobx"
-import bcrypt from 'bcryptjs'
 
 class UserStore{
 
@@ -38,10 +37,7 @@ class UserStore{
     }
 
     setPassword(password){
-        //const bcrypt = require('bcrypt');
-        //const hashedPassword = bcrypt.hashSync(password, 10)
         this.password = password
-        //console.log("Income password: " + password + "\nthis.pass: " + this.password + "\nHash: " + hashedPassword + "\n")
     }
     setRepeatPassword(repeatPassword){
         this.repeatPassword = repeatPassword

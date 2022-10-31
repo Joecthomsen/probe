@@ -5,7 +5,7 @@ import {userStore} from "../../stores/UserStore"
 import { observer } from "mobx-react-lite"
 import SelectUserType from "./SelectUserType";
 //import axios from "axios";
-import bcrypt from 'bcryptjs';
+//import bcrypt from 'bcryptjs';
 // import {submitUser} from "../../requests/submitNewUser";
 // import {drawerClasses} from "@mui/material";
 import axios from "axios";
@@ -138,16 +138,16 @@ const CreateUserFormOne = () => {
                 "roleName": "CLIENT_USER"
             }]
 
-        const theHashedPassword = bcrypt.hashSync(userStore.password, 10)
+        //const theHashedPassword = bcrypt.hashSync(userStore.password, 10)
 
-        console.log("Password: " + userStore.password + "\n" + "Hashed Password: " + theHashedPassword + "\n")
+       // console.log("Password: " + userStore.password + "\n" + "Hashed Password: " + theHashedPassword + "\n")
         try {
             console.log("FirstName: " + userStore.firstName)
             const response = await axios.post(addUserUrl, {
                 sex: userStore.sex,
                 firstName: userStore.firstName,
                 lastName: userStore.lastName,
-                hashedPassword: theHashedPassword,
+                password: this.password,
                 dob: userStore.dob,
                 weight: userStore.weight,
                 chronicDisease: userStore.chronicDisease,
