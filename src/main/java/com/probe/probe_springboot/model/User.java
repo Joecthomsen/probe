@@ -26,7 +26,7 @@ public class User {
     private String chronicDisease;
     private String phoneNumber;
     private String streetName;
-    private int doorNumber;
+    private String doorNumber;
     private String zipCode;
     private String city;
     private String region;
