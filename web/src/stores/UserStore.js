@@ -117,7 +117,15 @@ class UserStore{
             city: this.city,
             region: this.region,
             country: this.country,
-            role: this.role
+            role: this.createMedicalUser
+                ?
+                [{"id": 2,
+                 "roleName": "MEDICAL_USER"
+                }]
+                :
+                [{"id": 1,
+                "roleName": "CLINICAL_USER"
+                }]
         }
     }
 
@@ -137,7 +145,15 @@ class UserStore{
             city: this.city,
             region: this.region,
             country: this.country,
-            role: this.role
+            role: this.createMedicalUser
+                ?
+                [{"id": 2,
+                    "roleName": "MEDICAL_USER"
+                }]
+                :
+                [{"id": 1,
+                    "roleName": "CLINICAL_USER"
+                }]
         }
     }
 }
