@@ -22,16 +22,16 @@ public class ReturnUserData {
     private String firstName;
     private String lastName;
     private Date dob;
-    private double weight;
+    private String weight;
     private String chronicDisease;
     private String phoneNumber;
     private String streetName;
-    private int doorNumber;
+    private String doorNumber;
     private String zipCode;
     private String city;
     private String region;
     private String country;
-    private Collection<Role> roles = new ArrayList<>();
+    private Collection<Role> roles;
 
     public static ReturnUserData createReturnObject(User user, String token){
         return new ReturnUserData(token,
