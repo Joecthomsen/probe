@@ -38,19 +38,14 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public void addRoleToUser(Long userId, String roleName) {
-        User user = userRepository.findById(userId).orElseThrow(() -> new UserNotFound("User with id " + userId + " not found!"));
+    public void addRoleToUser(String userEmail, String roleName) {
+        User user = userRepository.findById(userEmail).orElseThrow(() -> new UserNotFound("User with email " + userEmail + " not found!"));
         Role role = roleRepository.findByRoleName(roleName);
         user.getRoles().add(role);
     }
 
     @Override
-    public User getUserById(Long id) {
-        return userRepository.findById(id).orElseThrow( () -> new UserNotFound("User with id " + id + " not found!"));
-    }
-
-    @Override
-    public User getUserByEmail(String email) {
+    public User findByEmail(String email) {
         return userRepository.findByEmail(email);
     }
 

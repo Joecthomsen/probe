@@ -25,7 +25,7 @@ public class EditTrialRepositoryTest {
         list.add(1);
         list.add(2);
         list.add(3);
-        return new EditTrial(id, "header", "Title", 0, 1, "Streetname", 1234, "City", "Country", "cardDescription", "longDescription", "Vek", "date", 2, "starttime", 12, list, "1");
+        return new EditTrial(id, "header", "Title", 0, 1, "Streetname", 1234, "City", "Country", "cardDescription", "longDescription", "Vek", "date", 2, "starttime", "12", list, "1");
     }
 
     @DisplayName("EditTrial Reposository save method test")
@@ -59,7 +59,7 @@ public class EditTrialRepositoryTest {
         etr.save(et2);
         etr.save(et3);
 
-        List<EditTrial> editTrialList = etr.findByOwnerID(12);
+        List<EditTrial> editTrialList = etr.findByOwnerID("12");
 
         assertThat(editTrialList.size()).isEqualTo(3);
 

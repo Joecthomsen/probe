@@ -4,13 +4,17 @@ import { useState } from "react";
 import {userStore} from "../../stores/UserStore"
 import { observer } from "mobx-react-lite"
 import SelectUserType from "./SelectUserType";
+//import axios from "axios";
+//import bcrypt from 'bcryptjs';
+// import {submitUser} from "../../requests/submitNewUser";
+// import {drawerClasses} from "@mui/material";
 import axios from "axios";
-// import bcrypt from 'bcryptjs';
 
 const CreateUserFormOne = () => {
 
+    const addUserUrl = process.env.NODE_ENV === 'development' ?  "http://localhost:8080/user/add" : "https://probe.joecthomsen.dk/user/add"; //Check if dev environment
+    //const addRoleUrl
     const [firstForm, setFirstForm] = useState(true)
-    // const [createMedicalUser, setCreateMedicalUser] = useState(false)
 
     //const navigate = useNavigate();
 
@@ -18,6 +22,7 @@ const CreateUserFormOne = () => {
         userStore.setEmail(event.target.value)
     }
     const handlePassword = (event) => {
+
         userStore.setPassword(event.target.value)
     }
     const handleRepeatPassword = (event) => {
@@ -120,22 +125,78 @@ const CreateUserFormOne = () => {
         }
     }
 
-    const submitUser = (event) => {
-        event.preventDefault();
-        if(!userStore.createMedicalUser) {
-            axios.post('https://probe.joecthomsen.dk/user/add', userStore.getClinicalUserObject())
-                .then(response => {
-                    console.log(response)
-                })
-                .catch(error => console.log(error))
+    // sex: userStore.sex,
+    // firstName: userStore.firstName,
+    // lastName: userStore.lastName,
+    // hashedPassword: userStore.password,
+    // dob: userStore.dob,
+    // weight: userStore.weight,
+    // chronicDisease: userStore.chronicDisease,
+    // email: userStore.email,
+    // phoneNumber: userStore.phoneNumber,
+    // streetName: userStore.streetName,
+    // doorNumber: 10,
+    // zipCode: userStore.zipCode,
+    // city: userStore.city,
+    // region: userStore.region,
+    // country: userStore.country,
+    // role: userStore.role
+
+    const submitUser = async (event) => {
+        //event.preventDefault();
+        //await submitUser()
+
+        const role = userStore.role === "MEDICAL_USER" ? [{
+                "id": 2,
+                "roleName": "MEDICAL_USER"
+            }] :
+
+            [{
+                "id": 1,
+                "roleName": "CLIENT_USER"
+            }]
+
+        console.log("Inside submitUser")
+        try {
+            console.log("FirstName: " + userStore.firstName)
+            const response = await axios.post(addUserUrl, {
+                sex: userStore.sex,
+                firstName: userStore.firstName,
+                lastName: userStore.lastName,
+                hashedPassword: userStore.password,
+                dob: userStore.dob,
+                weight: userStore.weight,
+                chronicDisease: userStore.chronicDisease,
+                email: userStore.email,
+                phoneNumber: userStore.phoneNumber,
+                streetName: userStore.streetName,
+                doorNumber: userStore.doorNumber,
+                zipCode: userStore.zipCode,
+                city: userStore.zipCode,
+                region: userStore.region,
+                country: userStore.country,
+                roles: role
+            })
+            const data = response.data
+            console.log("response: " + JSON.stringify(data))
+        }catch (error) {
+            console.log("error: " + error.response)
         }
-        else{
-            axios.post('https://probe.joecthomsen.dk/user/add', userStore.getMedicalUserObject())
-                .then(response => {
-                    console.log(response)
-                })
-                .catch(error => console.log(error))
-        }
+        // if(!userStore.createMedicalUser) {
+        //     axios.post(addUserUrl, userStore.getClinicalUserObject())
+        //         .then(response => {
+        //             console.log(response)
+        //         })
+        //         .catch(error => console.log(error))
+        // }
+        //
+        // else{
+        //     axios.post(addUserUrl, { })
+        //         .then(response => {
+        //             console.log(response)
+        //         })
+        //         .catch(error => console.log(error))
+        // }
     }
 
     return (

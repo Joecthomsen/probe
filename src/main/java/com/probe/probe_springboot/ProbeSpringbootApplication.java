@@ -4,8 +4,12 @@ package com.probe.probe_springboot;
 //import com.probe.probe_springboot.model.User;
 //import com.probe.probe_springboot.service.UserServiceImpl;
 //import org.springframework.boot.CommandLineRunner;
+import com.probe.probe_springboot.model.Role;
+import com.probe.probe_springboot.service.UserServiceImpl;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 //import org.springframework.context.annotation.Bean;
 //import org.springframework.context.annotation.Profile;
@@ -16,6 +20,15 @@ public class ProbeSpringbootApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ProbeSpringbootApplication.class, args);
+	}
+
+	@Bean
+	CommandLineRunner run(UserServiceImpl userService){
+		return args -> {
+			userService.saveRole(new Role("CLINICAL_USER"));
+			userService.saveRole(new Role("MEDICAL_USER"));
+			userService.saveRole(new Role("ADMIN_USER"));
+		};
 	}
 
 //	@Bean

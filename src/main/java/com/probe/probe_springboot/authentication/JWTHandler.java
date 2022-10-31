@@ -11,13 +11,16 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.probe.probe_springboot.exceptions.NotAuthorizedException;
 import com.probe.probe_springboot.exceptions.TokenExpiredExceptionCustom;
+import com.probe.probe_springboot.model.Role;
+import com.probe.probe_springboot.model.User;
 
 
 import java.util.Base64;
 import java.util.Calendar;
+import java.util.Collection;
 import java.util.Date;
 
-public class JWTHandler extends Throwable{
+public class JWTHandler extends Throwable {
     private static final String key = System.getenv("JWT_KEY");
     private static final int TOKEN_EXPIRY = 2880;
 
@@ -27,7 +30,20 @@ public class JWTHandler extends Throwable{
         expiry.add(Calendar.MINUTE, TOKEN_EXPIRY);
         ObjectMapper objectMapper = new ObjectMapper();
         String s = objectMapper.writer().writeValueAsString(user.getEmail());
-        System.out.println("USER!!!   !!!  ::: " + user);
+        //System.out.println("USER!!!   !!!  ::: " + user);
+
+        //Har lige tilføjet den her hilsen Troels :-)
+        //if medical user
+//        if (user.getEmail().equals("Medical")) {
+//            String s2 = objectMapper.writer().writeValueAsString(email);
+//            return JWT.create()
+//                    .withIssuer("ProbeDeluxe")
+//                    .withClaim("user", s)
+//                    .withClaim("ownerID", s2)
+//                    .withClaim("role", "Medical")
+//                    .withExpiresAt(expiry.getTime())
+//                    .sign(Algorithm.HMAC512(key));
+//        }
 
         return JWT.create()
                 .withIssuer("ProbeDeluxe")
@@ -41,40 +57,19 @@ public class JWTHandler extends Throwable{
     public static boolean validate(String s) throws NotAuthorizedException {
 
         JWTVerifier verifier = JWT.require(Algorithm.HMAC512(key)).build();
-
         try {
             verifier.verify(s);
-        }catch (Exception e){
+        } catch (Exception e) {
             throw new TokenExpiredExceptionCustom("JWT corrupted or expired.");
         }
         return true;
-
-//        JWTVerifier verifier = JWT.require(Algorithm.HMAC512(key)).build();
-//        DecodedJWT verify = verifier.verify(s);
-//        Claim user = verify.getClaim("user");
-////        Claim unixTimeExpire = verify.getClaim("exp");
-////        long unixTimeNow = System.currentTimeMillis() / 1000L;
-//        //System.out.println("User: " + user + "ExpTime: " + unixTimeExpire + "Now: " + unixTimeNow);
-////
-////        if(verify.getExpiresAt().before(new Date())){
-////            throw
-////        }
-//
-//        try {
-//            new ObjectMapper().reader().forType(ValidationData.class).readValue(user.asString());
-//        }catch (JsonProcessingException e){
-//            System.out.println("Token corrupted");
-//            //throw new RuntimeException(e);
-//            throw new NotAuthorizedException("JWT is corrupted");
-//        }
-//
-//        if(verify.getExpiresAt().before(new Date())){
-//            System.out.println("Token Expired");
-//            throw new TokenExpiredException("JWT expired");
-//        }
-
-
-//        return true;
     }
+
+//    public static String getUserEmailFromToken(String token){
+//        JWT jwt = new JWT();
+//        String email = jwt.decodeJwt(token).getPayload();
+//        System.out.println("Email: " + email);
+//        return "Muuh";
+//    }
 }
 

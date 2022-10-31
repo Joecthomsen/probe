@@ -108,6 +108,12 @@ class EditTrialStore {
             fetch(url, {
                     method: 'GET',
                     mode: 'cors',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json',
+                        'token': localStorage.getItem('token'),
+                        'email': "mail"
+                    }
                 }
             ).then(
                 async (response) => await response.json().then(
@@ -136,7 +142,9 @@ class EditTrialStore {
                 mode: 'cors',
                 headers: {
                     'Accept': 'application/json',
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'token': localStorage.getItem('token'),
+                    'email': "mail"
                 },
                 body: JSON.stringify(this.getDialogInfo())
             }
@@ -147,20 +155,25 @@ class EditTrialStore {
     deleteTrial() {
         let url = this.webUrl + "/delete/" + this.getId();
         fetch(url, {
-                method: 'DELETE',
-                mode: 'cors',
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'token': localStorage.getItem('token'),
+                'email': "mail"
             }
         ).then(async (response) => await response.text().then((resp) => alert(resp))).then(this.updateCardList);
     }
 
     createTrial() {
         let url = this.webUrl + "/add"
+        console.log( localStorage.getItem('token'))
         fetch(url, {
                 method: 'POST',
                 mode: 'cors',
                 headers: {
                     'Accept': 'application/json',
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'token': localStorage.getItem('token'),
+                    'email': "mail"
                 },
                 body: JSON.stringify(this.getDialogInfo())
             }
@@ -201,6 +214,8 @@ class EditTrialStore {
 
     setOwnerID(value) {
         this.ownerID = value;
+        this.updateCardList();
+        this.renderhack();
     }
 
     getHeader() {

@@ -20,7 +20,7 @@ public class JWT_TokenFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 //        @Autowired
         HttpServletRequest req = (HttpServletRequest) request;
-        JWTHandler jwtHandler = new JWTHandler();
+        //JWTHandler jwtHandler = new JWTHandler();
 
         String token = req.getHeader("token");
 
