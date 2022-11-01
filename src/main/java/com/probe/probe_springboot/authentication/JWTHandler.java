@@ -32,9 +32,9 @@ public class JWTHandler extends Throwable {
     public static String generateJwtToken(LoginData user) throws JsonProcessingException {
 
 
-        UserServiceImpl userService = new UserServiceImpl();
+        //UserServiceImpl userService = new UserServiceImpl();
 
-        User a = userService.findByEmail(user.getEmail());
+        //User a = userService.findByEmail(user.getEmail());
 
 
 
