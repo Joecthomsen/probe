@@ -29,6 +29,7 @@ export const loginRequest = async (email, password) => {
         console.log("Data: " + JSON.stringify(data))
         console.log("getRole: " + JSON.stringify(response.data.roles))
         console.log("From userStore: " + JSON.stringify(userStore.role))
+        return true
     }catch (error){
         console.log("error: " + error.response)
     }
