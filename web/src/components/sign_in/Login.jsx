@@ -1,6 +1,10 @@
 import googleLogo from "../../resources/google_logo.svg";
 import facebookLogo from "../../resources/facebook-round-logo.png"
 import {authenticationStore} from "../../stores/AuthenticationStore";
+import {useNavigate} from "react-router-dom";
+import {userStore} from "../../stores/UserStore";
+//import { Navigate } from "react-router-dom"
+
 
 const setUsername = (event) => {
     authenticationStore.setUsername(event.target.value)
@@ -10,8 +14,24 @@ const setPassword = (event) => {
     authenticationStore.setPassword(event.target.value);
 }
 
+
+
 const Login = () => {
 
+    const navigate = useNavigate()
+
+    const HandleSubmit = async (e) => {
+        await authenticationStore.doLogin(e)
+        if (userStore.getRole().pop().roleName === "MEDICAL_USER"){
+            console.log("MEDICAL MOFO ! ! !")
+            navigate('/edittrials')
+        }
+        else{
+            console.log("Meeeh!")
+            navigate('/about')
+        }
+        //console.log("Finished!! " + JSON.stringify(userStore.getRole().pop().roleName ))
+    }
     return ( 
         <div className="page-container">
             <div className="login-page">
@@ -26,7 +46,7 @@ const Login = () => {
                 <form className="login-container">
                     <input onChange={setUsername} type="text" placeholder="Username"/>
                     <input onChange={setPassword} type="password" placeholder="Password"/>
-                    <button onClick={authenticationStore.doLogin}>Sign in</button>
+                    <button onClick={HandleSubmit}>Log in</button>
                 </form>
             </div>
         </div>

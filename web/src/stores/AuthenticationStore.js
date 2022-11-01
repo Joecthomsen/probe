@@ -1,5 +1,6 @@
 import {makeAutoObservable} from "mobx"
 import {loginRequest} from '../requests/loginRequest'
+import {useNavigate} from "react-router-dom";
 //import axios from "axios"
 // import jwt_decode from 'jwt-decode';
 // import {EditTrialStoreOBJ} from "./EditTrialStore";
@@ -26,9 +27,9 @@ class AuthenticationStore {
         )
     }
 
-    async doLogin() {
-
-        await loginRequest(this.loginData.email, this.loginData.password);
+    async doLogin(e) {
+        e.preventDefault()
+        await loginRequest(this.loginData.email, this.loginData.password)
 
     }
 
