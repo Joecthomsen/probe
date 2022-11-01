@@ -1,5 +1,6 @@
 import axios from "axios";
 import {userStore} from "../stores/UserStore";
+import {authenticationStore} from "../stores/AuthenticationStore";
 
 const loginUrl = process.env.NODE_ENV === 'development' ?  "http://localhost:8080/authentication/signin" : "https://probe.joecthomsen.dk/authentication/signin"; //Check if dev environment
 
@@ -22,6 +23,8 @@ export const loginRequest = async (email, password) => {
         userStore.setCity(response.data.city)
         userStore.setCountry(response.data.country)
         userStore.setRole(response.data.roles)
+        authenticationStore.setLoggedIn(true)
+        authenticationStore.setToken(response.data.token)
 
         console.log("Data: " + JSON.stringify(data))
         console.log("getRole: " + JSON.stringify(response.data.roles))
