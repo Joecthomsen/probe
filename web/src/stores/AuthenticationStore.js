@@ -28,29 +28,8 @@ class AuthenticationStore {
 
     async doLogin() {
 
-        //Fix cors issues
-        // const cors = require('cors');
-        // app.use(cors())
-
         await loginRequest(this.loginData.email, this.loginData.password);
 
-        // if (this.token != null) {
-        //     this.setLoggedIn(true)
-        //
-        //     if (this.getLoggedIn()) {
-        //
-        //         if (jwt_decode(this.token).role.toString() === "Medical") {
-        //             window.location = "#/editTrials";
-        //             EditTrialStoreOBJ.setOwnerID(jwt_decode(this.token).ownerID.toString());
-        //         }
-        //     }
-        // }
-
-        //Har lige tilføjet den her hilsen Troels :-)
-
-        //Har lige udkommenteret det. Tænker ikke at det skal bruges med den nye struktur jeg har lavet.
-
-        console.log("User: " + this.loginData.email + " logged in: " + this.loggedIn + " token: " + this.token)
     }
 
     setUsername(userName) {
