@@ -1,10 +1,12 @@
 import axios from "axios";
 import {userStore} from "../stores/UserStore";
 import {authenticationStore} from "../stores/AuthenticationStore";
+//import {useNavigate} from "react-router-dom";
 
 const loginUrl = process.env.NODE_ENV === 'development' ?  "http://localhost:8080/authentication/signin" : "https://probe.joecthomsen.dk/authentication/signin"; //Check if dev environment
 
 export const loginRequest = async (email, password) => {
+
     try {
         const response = await axios.post(loginUrl , { email: email, password: password})
         const data = response.data
@@ -27,8 +29,10 @@ export const loginRequest = async (email, password) => {
         authenticationStore.setToken(response.data.token)
 
         console.log("Data: " + JSON.stringify(data))
-        console.log("getRole: " + JSON.stringify(response.data.roles))
-        console.log("From userStore: " + JSON.stringify(userStore.role))
+        //
+        // console.log("Role: " + JSON.stringify(userStore.getRole().pop().pop().roleName))
+
+
     }catch (error){
         console.log("error: " + error.response)
     }
