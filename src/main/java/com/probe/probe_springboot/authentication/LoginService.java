@@ -21,6 +21,7 @@ public class LoginService {
     public ReturnUserData signIn(LoginData login) throws NotAuthorizedException, JsonProcessingException {
 
         User user = userService.findByEmail(login.getEmail());
+        System.out.println("User: " + user.toString());
         System.out.println("from service: " + login);
 
         if(user == null){
@@ -31,7 +32,7 @@ public class LoginService {
             throw new NotAuthorizedException("Wrong password");
         }
 
-        String token = JWTHandler.generateJwtToken(login);
+        String token = JWTHandler.generateJwtToken(login, user.getRoles());
         System.out.println("ReturnUserObj: " + ReturnUserData.createReturnObject(user,token));
         return ReturnUserData.createReturnObject(user, token);
     }
