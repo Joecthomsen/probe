@@ -18,7 +18,7 @@ class UserStore{
     city;
     region;
     country;
-    role;
+    role = [];
 
     createMedicalUser = false;
     error = false;
@@ -35,6 +35,7 @@ class UserStore{
     setEmail(email){
         this.email = email
     }
+
     setPassword(password){
         this.password = password
     }
@@ -94,6 +95,9 @@ class UserStore{
     }
     setErrorMsg(msg){
         this.errorMsg = msg
+    }
+    setRole(role){
+        this.role.push(role)
     }
 
     getMedicalUserObject(){

@@ -7,10 +7,11 @@ import com.probe.probe_springboot.model.User;
 import com.probe.probe_springboot.repositories.RoleRepository;
 import com.probe.probe_springboot.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Service
@@ -22,8 +23,12 @@ public class UserServiceImpl implements UserService{
     @Autowired
     private RoleRepository roleRepository;
 
+    PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
     @Override
     public User saveUser(User user) throws UserAlreadyExists {
+
+        //String encodedPassword = passwordEncoder.encode(user.getPassword());
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
 
         User userTest = userRepository.findByEmail(user.getEmail());
         if(userTest == null) {

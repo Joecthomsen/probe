@@ -16,6 +16,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 import java.util.List;
 
+
 @CrossOrigin(maxAge = 3600)
 @RestController
 @RequestMapping(value = "/user" )
@@ -55,6 +56,7 @@ public class UserController {
 
     @PostMapping("/add")
     public ResponseEntity<User> saveUser(@RequestBody User user){
+
             URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/user/add").toUriString());
             return ResponseEntity.created(uri).body(userServiceImpl.saveUser(user));
     }
