@@ -1,4 +1,4 @@
-package com.probe.probe_springboot.model;
+package com.probe.probe_springboot.model.UserPreferences;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

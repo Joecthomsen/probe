@@ -1,4 +1,4 @@
-package com.probe.probe_springboot.model;
+package com.probe.probe_springboot.model.UserPreferences;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,8 +18,12 @@ public class UserPreferencesModel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long ID;
+    private String ownerMail;  // a foreign key
 
     @OneToMany
     private List<AUserPreference> myPreferences;
 
 }
+
+
+
