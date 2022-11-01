@@ -5,6 +5,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Profile;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 //TODO Johannes: Exceptions for signin, create new user, JWT corrupted. Test and axios test fail. Authorization header
@@ -18,6 +19,7 @@ public class ProbeSpringbootApplication {
 	}
 
 	@Bean
+	@Profile("!test")
 	CommandLineRunner run(UserServiceImpl userService){
 		return args -> {
 			userService.saveRole(new Role("CLINICAL_USER"));

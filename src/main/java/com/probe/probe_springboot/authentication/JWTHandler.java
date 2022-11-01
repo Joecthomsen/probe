@@ -13,24 +13,41 @@ import com.probe.probe_springboot.exceptions.NotAuthorizedException;
 import com.probe.probe_springboot.exceptions.TokenExpiredExceptionCustom;
 import com.probe.probe_springboot.model.Role;
 import com.probe.probe_springboot.model.User;
+import com.probe.probe_springboot.service.UserServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 
 
-import java.util.Base64;
-import java.util.Calendar;
-import java.util.Collection;
-import java.util.Date;
+import java.util.*;
+
+
 
 public class JWTHandler extends Throwable {
     private static final String key = System.getenv("JWT_KEY");
     private static final int TOKEN_EXPIRY = 2880;
 
+
+
+
+
     public static String generateJwtToken(LoginData user) throws JsonProcessingException {
+
+
+        UserServiceImpl userService = new UserServiceImpl();
+
+        User a = userService.findByEmail(user.getEmail());
+
+
+
+
+        //Collection<Role> userRoles = userService.findByEmail(user.getEmail()).getRoles();
 
         Calendar expiry = Calendar.getInstance();
         expiry.add(Calendar.MINUTE, TOKEN_EXPIRY);
         ObjectMapper objectMapper = new ObjectMapper();
-        String s = objectMapper.writer().writeValueAsString(user.getEmail());
-        //System.out.println("USER!!!   !!!  ::: " + user);
+        String email = objectMapper.writer().writeValueAsString(user.getEmail());
+        //System.out.println("User Role " + a);
+        //String role = objectMapper.writer().writeValueAsString(userRoles);
+        System.out.println("USER!!!   !!!  ::: " + user);
 
         //Har lige tilføjet den her hilsen Troels :-)
         //if medical user
@@ -45,9 +62,11 @@ public class JWTHandler extends Throwable {
 //                    .sign(Algorithm.HMAC512(key));
 //        }
 
+
         return JWT.create()
                 .withIssuer("ProbeDeluxe")
-                .withClaim("user", s)
+                .withClaim("id", email)
+                //.withClaim("roles", role)
                 .withExpiresAt(expiry.getTime())
                 .sign(Algorithm.HMAC512(key));
     }
