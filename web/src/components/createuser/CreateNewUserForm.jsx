@@ -138,16 +138,14 @@ const CreateUserFormOne = () => {
                 "roleName": "CLIENT_USER"
             }]
 
-        //const theHashedPassword = bcrypt.hashSync(userStore.password, 10)
 
-       // console.log("Password: " + userStore.password + "\n" + "Hashed Password: " + theHashedPassword + "\n")
         try {
             console.log("FirstName: " + userStore.firstName)
             const response = await axios.post(addUserUrl, {
                 sex: userStore.sex,
                 firstName: userStore.firstName,
                 lastName: userStore.lastName,
-                password: this.password,
+                password: userStore.password,
                 dob: userStore.dob,
                 weight: userStore.weight,
                 chronicDisease: userStore.chronicDisease,
@@ -164,7 +162,7 @@ const CreateUserFormOne = () => {
             const data = response.data
             console.log("response: " + JSON.stringify(data))
         }catch (error) {
-            console.log("error: " + error.response)
+            console.log("error: " + error)
         }
         // if(!userStore.createMedicalUser) {
         //     axios.post(addUserUrl, userStore.getClinicalUserObject())
