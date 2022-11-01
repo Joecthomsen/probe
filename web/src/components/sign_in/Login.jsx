@@ -2,7 +2,6 @@ import googleLogo from "../../resources/google_logo.svg";
 import facebookLogo from "../../resources/facebook-round-logo.png"
 import {authenticationStore} from "../../stores/AuthenticationStore";
 import {useNavigate} from "react-router-dom";
-import {userStore} from "../../stores/UserStore";
 import jwtDecode from "jwt-decode";
 //import { Navigate } from "react-router-dom"
 
