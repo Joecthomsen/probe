@@ -5,7 +5,7 @@ import * as React from "react";
 
 
 const TrialView = () => {
-    cardList;
+    const cardList = {};
     const url = "https://probe.joecthomsen.dk/viewTrials/getAll";
     fetch(url, {
             method: 'GET',
