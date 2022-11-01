@@ -1,19 +1,33 @@
 import StudyCardLarge from "./StudyCardLarge";
 import "react-multi-carousel/lib/styles.css";
-import cardData from "../api/clinical_trial_api_mock";
+import {runInAction} from "mobx";
+import * as React from "react";
+
 
 const TrialView = () => {
-
-    const studies = cardData.clinicalTrials;
-
-    const cardList = studies.map((element, index) => {
-        return(<StudyCardLarge key={index}
-                               header={element.header}
-                               title={element.title}
-                               country={element.county}
-                               city={element.city}
-                               description={element.longDescription}/>)
-    })
+    cardList;
+    const url = "https://probe.joecthomsen.dk/viewTrials/getAll";
+    fetch(url, {
+            method: 'GET',
+            mode: 'cors',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'email': "mail"
+            }
+        }
+    ).then(
+        async (response) => await response.json().then(
+            (json) => runInAction(async () => {
+                this.cardList = (await json.map((element, index) => {
+                    return(<StudyCardLarge key={index}
+                                           header={element.header}
+                                           title={element.title}
+                                           country={element.county}
+                                           city={element.city}
+                                           description={element.longDescription}/>)
+                }));
+            })));
 
     return (
         <div className="trials-box">
