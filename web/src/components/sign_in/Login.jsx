@@ -3,6 +3,7 @@ import facebookLogo from "../../resources/facebook-round-logo.png"
 import {authenticationStore} from "../../stores/AuthenticationStore";
 import {useNavigate} from "react-router-dom";
 import {userStore} from "../../stores/UserStore";
+import jwtDecode from "jwt-decode";
 //import { Navigate } from "react-router-dom"
 
 
@@ -22,14 +23,36 @@ const Login = () => {
 
     const HandleSubmit = async (e) => {
         await authenticationStore.doLogin(e)
-        if (userStore.getRole().pop().roleName === "MEDICAL_USER"){
-            console.log("MEDICAL MOFO ! ! !")
+        const token = jwtDecode(authenticationStore.getToken() )
+
+        //console.log("Token: "   +  JSON.stringify( jwtDecode(authenticationStore.getToken()) ))
+
+        //const r = token
+        //console.log("r: " + r)
+
+
+        //
+        // console.log("first: " + token.roles.)
+        // console.log("Token: " + JSON.stringify(token.roles))
+
+        if (token.roles.includes("CLINICAL_USER")){
+            console.log("CLINIC MOFO ! ! !")
             navigate('/edittrials')
         }
         else{
             console.log("Meeeh!")
             navigate('/about')
         }
+        //console.log("Finished!! " + JSON.stringify(userStore.getRole().pop().roleName ))
+
+        // if (userStore.getRole().pop().roleName === "MEDICAL_USER"){
+        //     console.log("MEDICAL MOFO ! ! !")
+        //     navigate('/edittrials')
+        // }
+        // else{
+        //     console.log("Meeeh!")
+        //     navigate('/about')
+        // }
         //console.log("Finished!! " + JSON.stringify(userStore.getRole().pop().roleName ))
     }
     return ( 

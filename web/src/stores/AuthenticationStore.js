@@ -44,6 +44,10 @@ class AuthenticationStore {
         return this.loggedIn;
     }
 
+    getToken(){
+        return this.token
+    }
+
 }
 
 export const authenticationStore = new AuthenticationStore()
