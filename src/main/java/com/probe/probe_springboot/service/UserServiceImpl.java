@@ -1,7 +1,7 @@
 package com.probe.probe_springboot.service;
 
 import com.probe.probe_springboot.exceptions.UserAlreadyExists;
-import com.probe.probe_springboot.exceptions.UserNotFound;
+import com.probe.probe_springboot.exceptions.UserNotExist;
 import com.probe.probe_springboot.model.Role;
 import com.probe.probe_springboot.model.User;
 import com.probe.probe_springboot.repositories.RoleRepository;
@@ -44,7 +44,7 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public void addRoleToUser(String userEmail, String roleName) {
-        User user = userRepository.findById(userEmail).orElseThrow(() -> new UserNotFound("User with email " + userEmail + " not found!"));
+        User user = userRepository.findById(userEmail).orElseThrow(() -> new UserNotExist("User with email " + userEmail + " not found!"));
         Role role = roleRepository.findByRoleName(roleName);
         user.getRoles().add(role);
     }

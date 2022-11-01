@@ -14,9 +14,14 @@ import java.time.LocalDateTime;
 @ControllerAdvice
 public class ExceptionHandler extends ResponseEntityExceptionHandler {
 
-    @org.springframework.web.bind.annotation.ExceptionHandler(UserNotFound.class)
-    public ResponseEntity<Object> handleUserNotFound(UserNotFound ex, WebRequest request) {
+    @org.springframework.web.bind.annotation.ExceptionHandler(UserNotExist.class)
+    public ResponseEntity<Object> handleUserNotFound(UserNotExist ex, WebRequest request) {
         return new ResponseEntity<>(new ApiError(ex.getMessage(), HttpStatus.NOT_FOUND, request.toString(), LocalDateTime.now()), HttpStatus.NOT_FOUND);
+    }
+
+    @org.springframework.web.bind.annotation.ExceptionHandler(NotAuthorizedException.class)
+    public ResponseEntity<Object> handleUserNotFound(NotAuthorizedException ex, WebRequest request) {
+        return new ResponseEntity<>(new ApiError(ex.getMessage(), HttpStatus.UNAUTHORIZED, request.toString(), LocalDateTime.now()), HttpStatus.NOT_FOUND);
     }
 
     @Override
