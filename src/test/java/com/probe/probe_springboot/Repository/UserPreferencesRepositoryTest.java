@@ -6,6 +6,7 @@ import com.probe.probe_springboot.repositories.UserPreferences.AUserPreferenceRe
 import com.probe.probe_springboot.repositories.UserPreferences.UserPreferencesRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.ActiveProfiles;
@@ -18,10 +19,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 @DataJpaTest
 @ActiveProfiles("test")
 public class UserPreferencesRepositoryTest {
-
     @Autowired
     UserPreferencesRepository userPreferencesRepository;
-
     @Autowired
     AUserPreferenceRepository aUserPreferenceRepository;
 
@@ -39,21 +38,28 @@ public class UserPreferencesRepositoryTest {
         return new UserPreferencesModel(null, ownerMail, list);
     }
 
+    UserPreferencesModel userPrefModel;
+    UserPreferencesModel savedUserPrefModel;
+
+    @BeforeEach
+    public void init() {
+        userPrefModel = CreateASingleUserPreferences();
+        savedUserPrefModel = userPreferencesRepository.save(userPrefModel);
+    }
+
     @DisplayName("Userpreferences saves correctly")
     @Test
     public void UserPreferences_are_saved_correctly(){
-        UserPreferencesModel userPrefModel = CreateASingleUserPreferences();
-        UserPreferencesModel savedUserPreference = userPreferencesRepository.save(userPrefModel);
 
-        assertThat(savedUserPreference).usingRecursiveComparison().ignoringFields("ID").isEqualTo(userPrefModel);
+
+        assertThat(savedUserPrefModel).usingRecursiveComparison().ignoringFields("ID").isEqualTo(userPrefModel);
     }
 
     @DisplayName("Userpreferences are found correctly by ID")
     @Test
     public void UserPreferences_are_found_correctly_by_ID() {
 
-        UserPreferencesModel userPrefModel = CreateASingleUserPreferences();
-        UserPreferencesModel savedUserPrefModel = userPreferencesRepository.save(userPrefModel);
+
         Long idOfSavedUserPrefModel = savedUserPrefModel.getID();
 
         UserPreferencesModel foundById = userPreferencesRepository.findByID(idOfSavedUserPrefModel);
@@ -61,5 +67,13 @@ public class UserPreferencesRepositoryTest {
         assert(foundById.equals(userPrefModel) );
     }
 
+    @DisplayName("Userpreferences are found correctly by OwnerMail")
+    @Test
+    public void UserPreferences_are_found_correctly_by_OwnerMail() {
+
+        String mailID = savedUserPrefModel.getOwnerMail();
+        UserPreferencesModel foundByOwnerMail = userPreferencesRepository.findByOwnerMail(mailID);
+        assert(foundByOwnerMail.equals(userPrefModel) );
+    }
 
 }
