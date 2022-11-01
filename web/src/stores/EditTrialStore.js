@@ -149,7 +149,6 @@ class EditTrialStore {
                 body: JSON.stringify(this.getDialogInfo())
             }
         ).then(async (response) => await response.json().then((resp) => alert("Updated: " + resp.title))).then(this.updateCardList);
-
     }
 
     deleteTrial() {
