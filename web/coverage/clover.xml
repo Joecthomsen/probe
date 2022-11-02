@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1667408652274" clover="3.2.0">
-  <project timestamp="1667408652274" name="All files">
-    <metrics statements="556" coveredstatements="183" conditionals="124" coveredconditionals="12" methods="226" coveredmethods="82" elements="906" coveredelements="277" complexity="0" loc="556" ncloc="556" packages="11" files="49" classes="49"/>
+<coverage generated="1667418185598" clover="3.2.0">
+  <project timestamp="1667418185598" name="All files">
+    <metrics statements="556" coveredstatements="212" conditionals="98" coveredconditionals="20" methods="226" coveredmethods="87" elements="880" coveredelements="319" complexity="0" loc="556" ncloc="556" packages="11" files="49" classes="49"/>
     <package name="src">
       <metrics statements="12" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="3" coveredmethods="0"/>
       <file name="App.js" path="/home/johannes/DTU/5_semester/Complex_systems_and_DevOps/probe_springboot/web/src/App.js">
@@ -287,39 +287,39 @@
       </file>
     </package>
     <package name="src.components.createuser">
-      <metrics statements="87" coveredstatements="0" conditionals="64" coveredconditionals="0" methods="18" coveredmethods="0"/>
+      <metrics statements="87" coveredstatements="27" conditionals="38" coveredconditionals="8" methods="18" coveredmethods="3"/>
       <file name="CreateNewUserForm.jsx" path="/home/johannes/DTU/5_semester/Complex_systems_and_DevOps/probe_springboot/web/src/components/createuser/CreateNewUserForm.jsx">
-        <metrics statements="79" coveredstatements="0" conditionals="62" coveredconditionals="0" methods="16" coveredmethods="0"/>
-        <line num="5" count="0" type="stmt"/>
-        <line num="7" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="8" count="0" type="stmt"/>
-        <line num="10" count="0" type="stmt"/>
+        <metrics statements="79" coveredstatements="19" conditionals="36" coveredconditionals="6" methods="16" coveredmethods="1"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="7" count="4" type="cond" truecount="1" falsecount="1"/>
+        <line num="8" count="4" type="stmt"/>
+        <line num="10" count="4" type="stmt"/>
         <line num="11" count="0" type="stmt"/>
-        <line num="13" count="0" type="stmt"/>
+        <line num="13" count="4" type="stmt"/>
         <line num="15" count="0" type="stmt"/>
-        <line num="17" count="0" type="stmt"/>
+        <line num="17" count="4" type="stmt"/>
         <line num="18" count="0" type="stmt"/>
-        <line num="20" count="0" type="stmt"/>
+        <line num="20" count="4" type="stmt"/>
         <line num="21" count="0" type="stmt"/>
-        <line num="23" count="0" type="stmt"/>
+        <line num="23" count="4" type="stmt"/>
         <line num="24" count="0" type="stmt"/>
-        <line num="26" count="0" type="stmt"/>
+        <line num="26" count="4" type="stmt"/>
         <line num="27" count="0" type="stmt"/>
-        <line num="29" count="0" type="stmt"/>
+        <line num="29" count="4" type="stmt"/>
         <line num="30" count="0" type="stmt"/>
-        <line num="32" count="0" type="stmt"/>
+        <line num="32" count="4" type="stmt"/>
         <line num="33" count="0" type="stmt"/>
-        <line num="35" count="0" type="stmt"/>
+        <line num="35" count="4" type="stmt"/>
         <line num="36" count="0" type="stmt"/>
-        <line num="38" count="0" type="stmt"/>
+        <line num="38" count="4" type="stmt"/>
         <line num="39" count="0" type="stmt"/>
-        <line num="41" count="0" type="stmt"/>
+        <line num="41" count="4" type="stmt"/>
         <line num="42" count="0" type="stmt"/>
-        <line num="44" count="0" type="stmt"/>
+        <line num="44" count="4" type="stmt"/>
         <line num="45" count="0" type="stmt"/>
-        <line num="47" count="0" type="stmt"/>
+        <line num="47" count="4" type="stmt"/>
         <line num="48" count="0" type="stmt"/>
-        <line num="51" count="0" type="stmt"/>
+        <line num="51" count="4" type="stmt"/>
         <line num="52" count="0" type="stmt"/>
         <line num="53" count="0" type="stmt"/>
         <line num="54" count="0" type="stmt"/>
@@ -359,7 +359,7 @@
         <line num="109" count="0" type="stmt"/>
         <line num="112" count="0" type="stmt"/>
         <line num="113" count="0" type="stmt"/>
-        <line num="117" count="0" type="stmt"/>
+        <line num="117" count="4" type="stmt"/>
         <line num="118" count="0" type="stmt"/>
         <line num="119" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="129" count="0" type="stmt"/>
@@ -368,18 +368,18 @@
         <line num="159" count="0" type="stmt"/>
         <line num="160" count="0" type="stmt"/>
         <line num="162" count="0" type="stmt"/>
-        <line num="166" count="0" type="stmt"/>
+        <line num="166" count="4" type="stmt"/>
       </file>
       <file name="SelectUserType.jsx" path="/home/johannes/DTU/5_semester/Complex_systems_and_DevOps/probe_springboot/web/src/components/createuser/SelectUserType.jsx">
-        <metrics statements="8" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="2" coveredmethods="0"/>
-        <line num="2" count="0" type="stmt"/>
-        <line num="4" count="0" type="stmt"/>
-        <line num="5" count="0" type="stmt"/>
-        <line num="7" count="0" type="stmt"/>
-        <line num="8" count="0" type="stmt"/>
-        <line num="9" count="0" type="stmt"/>
-        <line num="12" count="0" type="stmt"/>
-        <line num="16" count="0" type="stmt"/>
+        <metrics statements="8" coveredstatements="8" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="4" count="4" type="stmt"/>
+        <line num="5" count="4" type="stmt"/>
+        <line num="7" count="4" type="stmt"/>
+        <line num="8" count="1" type="stmt"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="12" count="4" type="stmt"/>
+        <line num="16" count="4" type="stmt"/>
       </file>
     </package>
     <package name="src.components.landingPage">
@@ -519,7 +519,7 @@
       </file>
     </package>
     <package name="src.stores">
-      <metrics statements="199" coveredstatements="124" conditionals="16" coveredconditionals="6" methods="106" coveredmethods="57"/>
+      <metrics statements="199" coveredstatements="126" conditionals="16" coveredconditionals="6" methods="106" coveredmethods="59"/>
       <file name="AuthenticationStore.js" path="/home/johannes/DTU/5_semester/Complex_systems_and_DevOps/probe_springboot/web/src/stores/AuthenticationStore.js">
         <metrics statements="13" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="8" coveredmethods="4"/>
         <line num="6" count="3" type="stmt"/>
@@ -696,11 +696,11 @@
         <line num="80" count="1" type="stmt"/>
       </file>
       <file name="UserStore.js" path="/home/johannes/DTU/5_semester/Complex_systems_and_DevOps/probe_springboot/web/src/stores/UserStore.js">
-        <metrics statements="30" coveredstatements="5" conditionals="4" coveredconditionals="0" methods="25" coveredmethods="1"/>
-        <line num="23" count="3" type="stmt"/>
-        <line num="24" count="3" type="stmt"/>
-        <line num="25" count="3" type="stmt"/>
-        <line num="29" count="3" type="stmt"/>
+        <metrics statements="30" coveredstatements="7" conditionals="4" coveredconditionals="0" methods="25" coveredmethods="3"/>
+        <line num="23" count="4" type="stmt"/>
+        <line num="24" count="4" type="stmt"/>
+        <line num="25" count="4" type="stmt"/>
+        <line num="29" count="4" type="stmt"/>
         <line num="36" count="0" type="stmt"/>
         <line num="40" count="0" type="stmt"/>
         <line num="43" count="0" type="stmt"/>
@@ -718,15 +718,15 @@
         <line num="79" count="0" type="stmt"/>
         <line num="83" count="0" type="stmt"/>
         <line num="87" count="0" type="stmt"/>
-        <line num="91" count="0" type="stmt"/>
-        <line num="94" count="0" type="stmt"/>
+        <line num="91" count="1" type="stmt"/>
+        <line num="94" count="1" type="stmt"/>
         <line num="97" count="0" type="stmt"/>
         <line num="100" count="0" type="stmt"/>
         <line num="104" count="0" type="stmt"/>
         <line num="112" count="0" type="stmt"/>
         <line num="113" count="0" type="stmt"/>
         <line num="141" count="0" type="stmt"/>
-        <line num="168" count="3" type="stmt"/>
+        <line num="168" count="4" type="stmt"/>
       </file>
       <file name="WindowSizeStore.js" path="/home/johannes/DTU/5_semester/Complex_systems_and_DevOps/probe_springboot/web/src/stores/WindowSizeStore.js">
         <metrics statements="6" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="1"/>

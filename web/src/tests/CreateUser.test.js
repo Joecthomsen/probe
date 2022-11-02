@@ -53,15 +53,34 @@ test("Test that when click on 'Next' and password NOT match, that form two is no
             <CreateNewUserForm/>
         </Router>
     )
-    const dob = screen.getByTestId("create-user-dob")
+
+    fireEvent.click(screen.getByText("Client User"))
 
     fireEvent.change(screen.getByPlaceholderText("Email"), {target: {value: "email"}});
     fireEvent.change(screen.getByPlaceholderText("Password"), {target: {value: "password"}});
     fireEvent.change(screen.getByPlaceholderText("Repeat password"), {target: {value: "1234"}});
     fireEvent.change(screen.getByPlaceholderText("First name(s)"), {target: {value: "name"}});
     fireEvent.change(screen.getByPlaceholderText("Last name"), {target: {value: "last"}});
-    fireEvent.change(dob, {target: "10/11/1999"});
+    fireEvent.change(screen.getByTestId("create-user-dob"), {target: "10/11/1999"});
     fireEvent.change(screen.getByPlaceholderText("City"), {target: {value: "city"}});
     fireEvent.change(screen.getByPlaceholderText("Region"), {target: {value: "region"}});
     fireEvent.change(screen.getByPlaceholderText("Country"), {target: {value: "Denmark"}});
+
+    fireEvent.click(screen.getByText("Next"))
+    expect(screen.getByTestId("error-msg")).toBeVisible()
+    expect(screen.getByText("Next")).toBeVisible()
+
+})
+
+test("Test that, when password match, error message not shown", () => {
+
+    render(
+        <Router>
+            <CreateNewUserForm/>
+        </Router>
+    )
+
+    fireEvent.change(screen.getByPlaceholderText("Password"), {target: {value: "1234"}});
+    expect(screen.queryByText("error-msg")).toBeNull()
+
 })

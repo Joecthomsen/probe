@@ -183,7 +183,7 @@ const CreateUserFormOne = () => {
                     <input onChange={handleRegion} type="text" placeholder= "Region"/>
                     <input onChange={handleCountry} type="text" placeholder="Country"/>
                     <button onClick={checkFirstForm} >Next</button>
-                    {userStore.error ? <p className="error-messages">{userStore.errorMsg}</p> : <p></p>}
+                    {userStore.error ? <p data-testid="error-msg" className="error-messages">{userStore.errorMsg}</p> : <p></p>}
                 </form>
                 :
                 <div>
@@ -191,14 +191,14 @@ const CreateUserFormOne = () => {
                         <p>Select gender</p>
                         <div className="radio-buttons">
                             <div className="form-check">
-                                <input className="form-check-input" type="radio" onChange={handleGender} name="exampleRadios" id="exampleRadios1" value="male" />
-                                <label className="form-check-label" htmlFor="exampleRadios1">
+                                <input data-testid="radio-button-male" className="form-check-input" type="radio" onChange={handleGender} name="exampleRadios" id="exampleRadios1" value="male" />
+                                <label data-testid="radio-label-male" className="form-check-label" htmlFor="exampleRadios1">
                                     Male
                                 </label>
                             </div>
                             <div className="form-check">
-                                <input className="form-check-input" type="radio" onChange={handleGender} name="exampleRadios" id="exampleRadios2" value="female"/>
-                                <label className="form-check-label" htmlFor="exampleRadios2">
+                                <input data-testid="radio-button-female" className="form-check-input" type="radio" onChange={handleGender} name="exampleRadios" id="exampleRadios2" value="female"/>
+                                <label data-testid="radio-button-female" className="form-check-label" htmlFor="exampleRadios2">
                                     Female
                                 </label>
                             </div>
@@ -209,8 +209,8 @@ const CreateUserFormOne = () => {
                         <input onChange={handleDiagnose} type="text" placeholder="Your diagnose (If any)"></input>
                         <input onChange={handleWeight} type="text" placeholder="Weight"></input>
                         <input onChange={handlePhoneNumber} type="text" placeholder="Phone number"></input>
-                        <button onClick={submitUser} >Create Users</button>
-                        {userStore.error ? <p className="error-messages">{userStore.errorMsg}</p> : <p></p>}
+                        <button onClick={submitUser}>Create User</button>
+                        {userStore.error ? <p data-testid="error-msg" className="error-messages">{userStore.errorMsg}</p> : <p></p>}
                     </form>
                 </div>
             : //If the user wants to create a medical user
@@ -226,7 +226,7 @@ const CreateUserFormOne = () => {
                 <input onChange={handleRegion} type="text" placeholder="Region"/>
                 <input onChange={handleCountry} type="text" placeholder= "Country"/>
                 <button onClick={submitUser} >Create User</button>
-                {userStore.error ? <p className="error-messages">{userStore.errorMsg}</p> : <p></p>}
+                {userStore.error ? <p data-testid="error-msg" className="error-messages">{userStore.errorMsg}</p> : <p></p>}
             </form>
     );
 }
