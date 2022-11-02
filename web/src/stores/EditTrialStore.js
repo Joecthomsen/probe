@@ -1,11 +1,12 @@
-import {makeAutoObservable, runInAction} from "mobx";
-import EditTrialsStudyCards from "../components/landingPage/TrialCard";
+import {makeAutoObservable} from "mobx";
 import * as React from "react";
+import {authenticationStore} from "./AuthenticationStore";
 
 class EditTrialStore {
     dontlook = [];
-    cardList;
-    webUrl = "https://probe.joecthomsen.dk/editTrial";
+    cardList = [];
+    webUrl = process.env.NODE_ENV === 'development' ? "http://localhost:8080/editTrial" : "https://probe.joecthomsen.dk/editTrial"; //Check if dev environment
+
     //https://probe.joecthomsen.dk/editTrial
     //http://localhost:8080/editTrial
     dialogOpen = false;
@@ -102,36 +103,20 @@ class EditTrialStore {
         this.setVek(props.vek)
     }
 
-    updateCardList() {
+    async updateCardList() {
         if (this.getOwnerId() != null) {
             let url = this.webUrl + "/getByOwnerID/" + this.getOwnerId();
-            fetch(url, {
-                    method: 'GET',
-                    mode: 'cors',
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json',
-                        'token': localStorage.getItem('token'),
-                        'email': "mail"
-                    }
+            const res = await fetch(url, {
+                method: 'GET',
+                mode: 'cors',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'token': authenticationStore.getToken(),
+                    'email': "mail"
                 }
-            ).then(
-                async (response) => await response.json().then(
-                    (json) => runInAction(async () => {
-                        this.cardList = (await json.map((element, index) => {
-                            return <EditTrialsStudyCards key={index}
-                                                         id={element.id}
-                                                         header={element.header}
-                                                         title={element.title}
-                                                         country={element.county}
-                                                         city={element.city}
-                                                         description={element.cardDescription}
-                                                         participants={element.participantsID.length}
-                                                         click={element}
-                            />
-                        }));
-                        this.renderhack();
-                    })));
+            });
+            this.cardList = await res.json();
         }
     }
 
@@ -143,7 +128,7 @@ class EditTrialStore {
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
-                    'token': localStorage.getItem('token'),
+                    'token': authenticationStore.getToken(),
                     'email': "mail"
                 },
                 body: JSON.stringify(this.getDialogInfo())
@@ -154,35 +139,32 @@ class EditTrialStore {
     deleteTrial() {
         let url = this.webUrl + "/delete/" + this.getId();
         fetch(url, {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'token': localStorage.getItem('token'),
-                'email': "mail"
+                method: 'DELETE',
+                mode: 'cors',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'token': authenticationStore.getToken(),
+                    'email': "mail"
+                }
             }
         ).then(async (response) => await response.text().then((resp) => alert(resp))).then(this.updateCardList);
     }
 
     createTrial() {
         let url = this.webUrl + "/add"
-        console.log( localStorage.getItem('token'))
         fetch(url, {
                 method: 'POST',
                 mode: 'cors',
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
-                    'token': localStorage.getItem('token'),
+                    'token': authenticationStore.getToken(),
                     'email': "mail"
                 },
                 body: JSON.stringify(this.getDialogInfo())
             }
         ).then(async (response) => await response.json().then((resp) => alert("added: " + resp.title))).then(this.updateCardList);
-    }
-
-    renderhack() {
-        this.dontlook.push("")
-        this.dontlook.pop()
-
     }
 
     openDialog() {
@@ -214,7 +196,6 @@ class EditTrialStore {
     setOwnerID(value) {
         this.ownerID = value;
         this.updateCardList();
-        this.renderhack();
     }
 
     getHeader() {

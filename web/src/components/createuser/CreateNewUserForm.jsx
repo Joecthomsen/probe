@@ -128,7 +128,7 @@ const CreateUserFormOne = () => {
     const submitUser = async (event) => {
         event.preventDefault();
         //await submitUser()
-        const role = userStore.role === "MEDICAL_USER" ? [{
+        const role = !userStore.createMedicalUser ? [{
                 "id": 2,
                 "roleName": "MEDICAL_USER"
             }] :
