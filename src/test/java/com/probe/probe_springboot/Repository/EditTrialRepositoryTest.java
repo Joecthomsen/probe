@@ -21,10 +21,10 @@ public class EditTrialRepositoryTest {
     EditTrialRepository etr;
 
     private EditTrial makeET(Integer id) {
-        List<Integer> list = new ArrayList<>();
-        list.add(1);
-        list.add(2);
-        list.add(3);
+        List<String> list = new ArrayList<>();
+        list.add("1");
+        list.add("2");
+        list.add("3");
         return new EditTrial(id, "header", "Title", 0, 1, "Streetname", 1234, "City", "Country", "cardDescription", "longDescription", "Vek", "date", 2, "starttime", "12", list, "1");
     }
 
@@ -103,7 +103,7 @@ public class EditTrialRepositoryTest {
         EditTrial et = makeET(null);
         //save object for automatic id.
         EditTrial dbet = etr.save(et);
-        List<Integer> list =etr.findParticipants(dbet.getId());
+        List<String> list =etr.findParticipants(dbet.getId());
 
         assertThat(list).isNotEmpty();
         assertThat(list.size()).isEqualTo(3);

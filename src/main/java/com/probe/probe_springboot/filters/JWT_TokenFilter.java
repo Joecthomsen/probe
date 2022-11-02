@@ -5,6 +5,7 @@ import com.probe.probe_springboot.authentication.LoginData;
 import com.probe.probe_springboot.authentication.ValidationData;
 import com.probe.probe_springboot.exceptions.NotAuthorizedException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.io.IOException;
 import java.util.Objects;

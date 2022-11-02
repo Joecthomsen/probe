@@ -36,7 +36,7 @@ public class EditTrial {
     private String starttime;
     private String ownerID;
     @ElementCollection
-    private List<Integer> participantsID;
+    private List<String> participantsID;
     private String disease;
 
 }
