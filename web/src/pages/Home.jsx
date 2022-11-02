@@ -18,7 +18,6 @@ const LandingPage = () => {
                         <h2>World wide experimental medicin initiateves test test </h2>
                     </div>
                     <img className="world" data-testid="bgn-world" src={world} alt="null" />
-
                     {/* {!homepageStore.burgerMenuToggled 
                     ? 
                         <img className="world" src={world} alt="null" /> 
@@ -33,7 +32,7 @@ const LandingPage = () => {
                 <div className="card-header">
                     <h1>Selection of Studies</h1>
                 </div>
-                <CustomCarousel/>
+                <CustomCarousel />
             </div> 
         </div>
     )
