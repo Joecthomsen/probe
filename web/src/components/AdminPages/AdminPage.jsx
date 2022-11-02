@@ -22,7 +22,11 @@ const trialCols = [
   { field: "id", headerName: "ID", flex: 0 },
   { field: "header", headerName: "Header", flex: 3 },
   { field: "dateSubmitted", headerName: "Date Submitted", flex: 2 },
-  { field: "title", headerName: "Title", flex: 2 },
+  {
+    field: "title",
+    headerName: "Title",
+    flex: 2,
+  },
   { field: "minAge", headerName: "Min Age", flex: 0 },
   { field: "maxAge", headerName: "Max Age", flex: 0 },
   { field: "hospital", headerName: "Hospital", flex: 3 },
@@ -76,7 +80,7 @@ function Page() {
       <Box
         justifyContent="center"
         alignItems="center"
-        sx={{ mx: "auto", width: 400, pm: "auto", padding: "50px" }}
+        sx={{ mx: "auto", width: "20%", pm: "auto", padding: "50px" }}
       >
         <ToggleButtonGroup
           size="large"
