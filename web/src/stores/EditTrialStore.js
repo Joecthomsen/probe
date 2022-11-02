@@ -1,5 +1,4 @@
 import {makeAutoObservable} from "mobx";
-import * as React from "react";
 import {authenticationStore} from "./AuthenticationStore";
 
 class EditTrialStore {
@@ -115,9 +114,14 @@ class EditTrialStore {
                     'token': authenticationStore.getToken(),
                     'email': "mail"
                 }
-            });
-            this.cardList = await res.json();
+            })
+            try {
+                this.cardList = await res.json().catch()
+            } catch (error) {
+                console.log(error)
+            }
         }
+
     }
 
     putTial() {
@@ -148,7 +152,7 @@ class EditTrialStore {
                     'email': "mail"
                 }
             }
-        ).then(async (response) => await response.text().then((resp) => alert(resp))).then(this.updateCardList);
+        ).then( (response) =>  response.text().then((resp) => alert(resp))).then(this.updateCardList);
     }
 
     createTrial() {

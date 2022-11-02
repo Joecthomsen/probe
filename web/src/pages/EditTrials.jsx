@@ -8,7 +8,6 @@ import EditTrialsStudyCards from "../components/landingPage/TrialCard";
 
 
 const EditTrials = () => {
-
     return (
         <Grid container spacing={2} style={{marginTop: 20}}>
             {popup()}

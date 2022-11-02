@@ -68,8 +68,8 @@ const Login = () => {
                 <hr className="line-breaker"></hr>
                 <h2>Login With Credential</h2>
                 <form className="login-container">
-                    <input onChange={setUsername} type="text" placeholder="Username"/>
-                    <input onChange={setPassword} type="password" placeholder="Password"/>
+                    <input onChange={setUsername} type="text" placeholder="Username" id="Username"/>
+                    <input onChange={setPassword} type="password" placeholder="Password" id="Password"/>
                     <button onClick={HandleSubmit}>Log in</button>
                 </form>
             </div>
