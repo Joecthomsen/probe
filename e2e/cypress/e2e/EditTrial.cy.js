@@ -1,26 +1,25 @@
 describe('Edit Trial', () => {
-    beforeEach(()=>{
-        cy.visit('https://probe.joecthomsen.dk/editTrial')
-        cy.get('[id=selectID]').click()
-        cy.contains("owneridTest").click({force: true})
-    });
+    it('get token and visit EditTrials', () => {
+        cy.visit("/#/login")
+        cy.get("[id=Username]").type("TestUser")
+        cy.get("[id=Password]").type("test")
+        cy.contains("Log in").click()
+        cy.wait(1000)
+    })
 
-    it('Page loads correctly', () => {
+    it('EditTrials loads correctly', () => {
 
         cy.contains("My Trials")
         cy.contains("Create Trial")
     })
 
-    it("Create Trial Open Modal", () => {
-        cy.contains("Create Trial").click()
-        cy.contains("Edit Trial")
-    })
-
-    it("Create Trial delete button disabled right button = Create", () => {
+    it("Create Trials button opens modal & Delete should be disabled & Cancel button closes modal", () => {
         cy.contains("Create Trial").click()
         cy.contains("Edit Trial")
         cy.get('[id=Create]')
         cy.contains("Delete").should("be.disabled")
+        cy.contains("Cancel").click()
+        cy.wait(500)
     })
 
     it("Can Create Trial", () => {
@@ -33,37 +32,33 @@ describe('Edit Trial', () => {
         cy.get('[id=Create]').click()
     })
 
-    it("Check is Trial was created correctly", () =>{
+    it("Edit trial opens trialModal & Check Trial was created correctly & Edit Trial button has update button", () => {
         cy.contains("test")
         cy.contains("Edit").click()
         cy.contains("Edit Trial")
-        cy.get("[id=Header]").should("have.value","test");
-        cy.get("[id=Country]").should("have.value","test");
-        cy.get("[id=Title]").should("have.value","test");
-        cy.get("[id=City]").should("have.value","test");
-    })
-
-    it("Edit Trial delete button not disabled right button = update", () => {
-        cy.contains("Edit").click()
-        cy.contains("Edit Trial")
+        cy.get("[id=Header]").should("have.value", "test");
+        cy.get("[id=Country]").should("have.value", "test");
+        cy.get("[id=Title]").should("have.value", "test");
+        cy.get("[id=City]").should("have.value", "test");
         cy.get('[id=Update]')
-        cy.contains("Delete")
-    })
-
-    it("Can open A Trial and Cancel", () => {
-        cy.contains("Edit").click()
-        cy.contains("Edit Trial")
         cy.contains("Cancel").click()
         cy.wait(500)
-        cy.contains("Edit Trial").should("not.exist")
     })
 
-    it("Can open A Trial and Delete", () => {
+    it("Can open A Trial and Delete Trial", () => {
         cy.contains("test")
         cy.contains("Edit").click()
         cy.contains("Edit Trial")
         cy.contains("Delete").click()
-        cy.wait(500)
-        cy.contains("test").should("not.exist")
     })
+
+    it("Trial was deleted and no existing testTrials", () => {
+        cy.visit("/#/login")
+        cy.get("[id=Username]").type("TestUser")
+        cy.get("[id=Password]").type("test")
+        cy.contains("Log in").click()
+        cy.wait(1000)
+        cy.contains("test").should("not.exist")
+        }
+    )
 })
