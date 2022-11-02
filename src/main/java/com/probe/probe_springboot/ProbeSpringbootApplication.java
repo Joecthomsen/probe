@@ -1,5 +1,6 @@
 package com.probe.probe_springboot;
 import com.probe.probe_springboot.model.Role;
+import com.probe.probe_springboot.model.User;
 import com.probe.probe_springboot.service.UserServiceImpl;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -25,6 +26,9 @@ public class ProbeSpringbootApplication {
 			userService.saveRole(new Role("CLINICAL_USER"));
 			userService.saveRole(new Role("MEDICAL_USER"));
 			userService.saveRole(new Role("ADMIN_USER"));
+
+			userService.saveUser(User.builder().email("TestUser").password("test").build());
+			userService.addRoleToUser("TestUser","CLINICAL_USER");
 		};
 	}
 
