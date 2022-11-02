@@ -3,8 +3,6 @@ import facebookLogo from "../../resources/facebook-round-logo.png"
 import {authenticationStore} from "../../stores/AuthenticationStore";
 import {useNavigate} from "react-router-dom";
 import jwtDecode from "jwt-decode";
-import {EditTrialStoreOBJ} from "../../stores/EditTrialStore";
-//import { Navigate } from "react-router-dom"
 
 
 const setUsername = (event) => {
@@ -15,8 +13,6 @@ const setPassword = (event) => {
     authenticationStore.setPassword(event.target.value);
 }
 
-
-
 const Login = () => {
 
     const navigate = useNavigate()
@@ -25,19 +21,8 @@ const Login = () => {
         await authenticationStore.doLogin(e)
         const token = jwtDecode(authenticationStore.getToken() )
 
-        //console.log("Token: "   +  JSON.stringify( jwtDecode(authenticationStore.getToken()) ))
-
-        //const r = token
-        //console.log("r: " + r)
-
-
-        //
-        // console.log("first: " + token.roles.)
-        // console.log("Token: " + JSON.stringify(token.roles))
-
         if (token.roles.includes("CLINICAL_USER")){
             console.log("CLINIC MOFO ! ! !")
-            EditTrialStoreOBJ.setOwnerID(authenticationStore.loginData.email)
             navigate('/edittrials')
         }
         else{
@@ -68,8 +53,8 @@ const Login = () => {
                 <hr className="line-breaker"></hr>
                 <h2>Login With Credential</h2>
                 <form className="login-container">
-                    <input onChange={setUsername} type="text" placeholder="Username" id="Username"/>
-                    <input onChange={setPassword} type="password" placeholder="Password" id="Password"/>
+                    <input onChange={setUsername} type="text" placeholder="Username"/>
+                    <input onChange={setPassword} type="password" placeholder="Password"/>
                     <button onClick={HandleSubmit}>Log in</button>
                 </form>
             </div>
