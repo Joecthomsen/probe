@@ -1,28 +1,9 @@
-//import axios from "axios";
 import {userStore} from "../stores/UserStore";
 import {authenticationStore} from "../stores/AuthenticationStore";
-//import {useNavigate} from "react-router-dom";
 
 const loginUrl = process.env.NODE_ENV === 'development' ?  "http://localhost:8080/authentication/signin" : "https://probe.joecthomsen.dk/authentication/signin"; //Check if dev environment
 
 export const loginRequest = async (email, password) => {
-
-    // async updateCardList() {
-    //     if (this.getOwnerId() != null) {
-    //         let url = this.webUrl + "/getByOwnerID/" + this.getOwnerId();
-    //         const res = await fetch(url, {
-    //             method: 'GET',
-    //             mode: 'cors',
-    //             headers: {
-    //                 'Accept': 'application/json',
-    //                 'Content-Type': 'application/json',
-    //                 'token': authenticationStore.getToken(),
-    //                 'email': "mail"
-    //             }
-    //         });
-    //         this.cardList = await res.json();
-    //     }
-    // }
 
     try {
         const requestOptions = {

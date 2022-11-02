@@ -172,16 +172,16 @@ const CreateUserFormOne = () => {
                 <form className="create-user-form">
                     <SelectUserType/>
                     <label htmlFor="Create a new user"></label>
-                    <input onChange={handleEmail} name="email" type="text" placeholder={userStore.email ? userStore.email : "Email"}/>
+                    <input onChange={handleEmail} name="email" type="text" placeholder= "Email"/>
                     <input onChange={handlePassword} type="password" placeholder="Password"/>
                     <input onChange={handleRepeatPassword} type="password" placeholder="Repeat password"/>
-                    <input onChange={handleFirstName} type="text" placeholder={userStore.firstName ? userStore.firstName : "First name(s)"}/>
-                    <input onChange={handleLastName} type="text" placeholder={userStore.lastName ? userStore.lastName : "Last name"}/>
+                    <input onChange={handleFirstName} type="text" placeholder="First name(s)"/>
+                    <input onChange={handleLastName} type="text" placeholder="Last name"/>
                     <label htmlFor="user-birthday">Day of Birth:</label>
-                    <input onChange={handleBirthday} type="date" name="Birthday" id="user-birthday" placeholder={userStore.dob ? userStore.dob : ""}/>
-                    <input onChange={handleCity} type="text" placeholder={userStore.city ? userStore.city : "city"}/>
-                    <input onChange={handleRegion} type="text" placeholder={userStore.region ? userStore.region : "Region"}/>
-                    <input onChange={handleCountry} type="text" placeholder={userStore.country ? userStore.city : "County"}/>
+                    <input onChange={handleBirthday} type="date" data-testid="create-user-dob" name="Birthday" id="user-birthday" placeholder= ""/>
+                    <input onChange={handleCity} type="text" placeholder="City"/>
+                    <input onChange={handleRegion} type="text" placeholder= "Region"/>
+                    <input onChange={handleCountry} type="text" placeholder="Country"/>
                     <button onClick={checkFirstForm} >Next</button>
                     {userStore.error ? <p className="error-messages">{userStore.errorMsg}</p> : <p></p>}
                 </form>
@@ -217,14 +217,14 @@ const CreateUserFormOne = () => {
             <form className="create-user-form">
                 <SelectUserType/>
                 <label htmlFor="Create a new user"></label>
-                <input onChange={handleEmail} name="email" type="text" placeholder={userStore.email ? userStore.email : "Email"}/>
+                <input onChange={handleEmail} name="email" type="text" placeholder="Email"/>
                 <input onChange={handlePassword} type="password" placeholder="Password"/>
                 <input onChange={handleRepeatPassword} type="password" placeholder="Repeat password"/>
-                <input onChange={handleFirstName} type="text" placeholder={userStore.firstName ? userStore.firstName : "First name(s)"}/>
-                <input onChange={handleLastName} type="text" placeholder={userStore.lastName ? userStore.lastName : "Last name"}/>
-                <input onChange={handleCity} type="text" placeholder={userStore.city ? userStore.city : "city"}/>
-                <input onChange={handleRegion} type="text" placeholder={userStore.region ? userStore.region : "Region"}/>
-                <input onChange={handleCountry} type="text" placeholder={userStore.country ? userStore.city : "County"}/>
+                <input onChange={handleFirstName} type="text" placeholder="First name(s)"/>
+                <input onChange={handleLastName} type="text" placeholder= "Last name"/>
+                <input onChange={handleCity} type="text" placeholder="City"/>
+                <input onChange={handleRegion} type="text" placeholder="Region"/>
+                <input onChange={handleCountry} type="text" placeholder= "Country"/>
                 <button onClick={submitUser} >Create User</button>
                 {userStore.error ? <p className="error-messages">{userStore.errorMsg}</p> : <p></p>}
             </form>
