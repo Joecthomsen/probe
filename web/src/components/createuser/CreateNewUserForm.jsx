@@ -1,22 +1,11 @@
 import { useState } from "react";
-//import users from "../../api/user_api_mock";
-//import { useNavigate } from 'react-router-dom';
 import {userStore} from "../../stores/UserStore"
 import { observer } from "mobx-react-lite"
 import SelectUserType from "./SelectUserType";
-//import axios from "axios";
-//import bcrypt from 'bcryptjs';
-// import {submitUser} from "../../requests/submitNewUser";
-// import {drawerClasses} from "@mui/material";
-import axios from "axios";
-
 const CreateUserFormOne = () => {
 
     const addUserUrl = process.env.NODE_ENV === 'development' ?  "http://localhost:8080/user/add" : "https://probe.joecthomsen.dk/user/add"; //Check if dev environment
-    //const addRoleUrl
     const [firstForm, setFirstForm] = useState(true)
-
-    //const navigate = useNavigate();
 
     const handleEmail = (event) => {
         userStore.setEmail(event.target.value)
@@ -127,7 +116,6 @@ const CreateUserFormOne = () => {
 
     const submitUser = async (event) => {
         event.preventDefault();
-        //await submitUser()
         const role = userStore.role === "MEDICAL_USER" ? [{
                 "id": 2,
                 "roleName": "MEDICAL_USER"
@@ -138,10 +126,15 @@ const CreateUserFormOne = () => {
                 "roleName": "CLIENT_USER"
             }]
 
-
-        try {
-            console.log("FirstName: " + userStore.firstName)
-            const response = await axios.post(addUserUrl, {
+        const requestOptions = {
+            method: 'POST',
+            mode: 'cors',
+            headers:
+                {
+                'Content-Type': 'application/json' ,
+                'Accept': 'application/json'
+                },
+            body: JSON.stringify({
                 sex: userStore.sex,
                 firstName: userStore.firstName,
                 lastName: userStore.lastName,
@@ -159,26 +152,15 @@ const CreateUserFormOne = () => {
                 country: userStore.country,
                 roles: role
             })
-            const data = response.data
-            console.log("response: " + JSON.stringify(data))
+        }
+
+        try {
+            const response = await fetch(addUserUrl, requestOptions)
+            const data = await response.data
+            console.log("response: " + JSON.stringify( data ))
         }catch (error) {
             console.log("error: " + error)
         }
-        // if(!userStore.createMedicalUser) {
-        //     axios.post(addUserUrl, userStore.getClinicalUserObject())
-        //         .then(response => {
-        //             console.log(response)
-        //         })
-        //         .catch(error => console.log(error))
-        // }
-        //
-        // else{
-        //     axios.post(addUserUrl, { })
-        //         .then(response => {
-        //             console.log(response)
-        //         })
-        //         .catch(error => console.log(error))
-        // }
     }
 
     return (
