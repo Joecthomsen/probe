@@ -3,6 +3,7 @@ import facebookLogo from "../../resources/facebook-round-logo.png"
 import {authenticationStore} from "../../stores/AuthenticationStore";
 import {useNavigate} from "react-router-dom";
 import jwtDecode from "jwt-decode";
+import {EditTrialStoreOBJ} from "../../stores/EditTrialStore";
 
 
 const setUsername = (event) => {
@@ -23,6 +24,7 @@ const Login = () => {
 
         if (token.roles.includes("CLINICAL_USER")){
             console.log("CLINIC MOFO ! ! !")
+            EditTrialStoreOBJ.setOwnerID(authenticationStore.loginData.email)
             navigate('/edittrials')
         }
         else{
