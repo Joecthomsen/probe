@@ -1,0 +1,137 @@
+import React from "react";
+import { TextField } from "@mui/material";
+import { useParams } from "react-router-dom";
+
+function ViewUser() {
+  let { id } = useParams();
+  return (
+    <div>
+      {id}
+      <table>
+        <tbody>
+          <tr>
+            <td>First Name</td>
+            <td>
+              <TextField
+                hiddenLabel
+                id="filled-hidden-label-small"
+                defaultValue="Small"
+                variant="filled"
+                size="small"
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>Last Name</td>
+            <td>
+              <TextField
+                hiddenLabel
+                id="filled-hidden-label-small"
+                defaultValue="Small"
+                variant="filled"
+                size="small"
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>CPR</td>
+            <td>
+              <TextField
+                hiddenLabel
+                id="filled-hidden-label-small"
+                defaultValue="Small"
+                variant="filled"
+                size="small"
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>Age</td>
+            <td>
+              <TextField
+                hiddenLabel
+                id="filled-hidden-label-small"
+                defaultValue="Small"
+                variant="filled"
+                size="small"
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>Chronic Disease</td>
+            <td>
+              <TextField
+                hiddenLabel
+                id="filled-hidden-label-small"
+                defaultValue="Small"
+                variant="filled"
+                size="small"
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>Adress</td>
+            <td>
+              <TextField
+                hiddenLabel
+                id="filled-hidden-label-small"
+                defaultValue="Small"
+                variant="filled"
+                size="small"
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>City</td>
+            <td>
+              <TextField
+                hiddenLabel
+                id="filled-hidden-label-small"
+                defaultValue="Small"
+                variant="filled"
+                size="small"
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>Zip Code</td>
+            <td>
+              <TextField
+                hiddenLabel
+                id="filled-hidden-label-small"
+                defaultValue="Small"
+                variant="filled"
+                size="small"
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>Region</td>
+            <td>
+              <TextField
+                hiddenLabel
+                id="filled-hidden-label-small"
+                defaultValue="Small"
+                variant="filled"
+                size="small"
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>Country</td>
+            <td>
+              <TextField
+                hiddenLabel
+                id="filled-hidden-label-small"
+                defaultValue="Small"
+                variant="filled"
+                size="small"
+              />
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  );
+}
+export default ViewUser;
