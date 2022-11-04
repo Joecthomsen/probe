@@ -1,13 +1,5 @@
 import {makeAutoObservable} from "mobx"
 import {loginRequest} from '../requests/loginRequest'
-//import axios from "axios"
-// import jwt_decode from 'jwt-decode';
-// import {EditTrialStoreOBJ} from "./EditTrialStore";
-//import app from "../App";
-
-
-// const getToken = "https://probe.joecthomsen.dk/authentication/jwt";
-//const getToken = "http://localhost:8080/authentication/jwt";
 
 class AuthenticationStore {
 
@@ -26,31 +18,10 @@ class AuthenticationStore {
         )
     }
 
-    async doLogin() {
+    async doLogin(e) {
+        e.preventDefault()
+        await loginRequest(this.loginData.email, this.loginData.password)
 
-        //Fix cors issues
-        // const cors = require('cors');
-        // app.use(cors())
-
-        await loginRequest(this.loginData.email, this.loginData.password);
-
-        // if (this.token != null) {
-        //     this.setLoggedIn(true)
-        //
-        //     if (this.getLoggedIn()) {
-        //
-        //         if (jwt_decode(this.token).role.toString() === "Medical") {
-        //             window.location = "#/editTrials";
-        //             EditTrialStoreOBJ.setOwnerID(jwt_decode(this.token).ownerID.toString());
-        //         }
-        //     }
-        // }
-
-        //Har lige tilføjet den her hilsen Troels :-)
-
-        //Har lige udkommenteret det. Tænker ikke at det skal bruges med den nye struktur jeg har lavet.
-
-        console.log("User: " + this.loginData.email + " logged in: " + this.loggedIn + " token: " + this.token)
     }
 
     setUsername(userName) {
@@ -71,6 +42,10 @@ class AuthenticationStore {
 
     getLoggedIn() {
         return this.loggedIn;
+    }
+
+    getToken(){
+        return this.token
     }
 
 }

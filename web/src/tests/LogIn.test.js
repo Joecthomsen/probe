@@ -1,5 +1,4 @@
 import {render, screen, fireEvent} from '@testing-library/react'
-//import LoginPage from '../components/sign_in/Login'
 import LoginPage from '../components/sign_in/Login'
 import CreateNewUser from "../components/sign_in/CreateNewUser";
 import {BrowserRouter as Router} from "react-router-dom";
@@ -44,6 +43,16 @@ test('That the password is entered', () => {
     const usernameInput = screen.getByPlaceholderText("Password");
     fireEvent.change(usernameInput, {target: {value: "This is my secret password!"}});
     expect(usernameInput.value).toBe("This is my secret password!");
+})
+
+test('That there is a login button', () => {
+    render(
+        <Router>
+            <LoginPage />
+        </Router>
+    );
+    const loginButton = screen.getByText("Log in");
+    expect(loginButton).toBeVisible()
 })
 
 test('That create new user button is working', () => {

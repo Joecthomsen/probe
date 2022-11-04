@@ -47,7 +47,7 @@ const CustomCarousel = () => {
           itemClass="carusel-item"
           showDots={true}
           partialVisible={false}
-          >
+      >
           {cardList}
       </Carousel>
     );
