@@ -1,6 +1,10 @@
 import {makeAutoObservable} from "mobx"
+import {authenticationStore} from "./AuthenticationStore";
+import {userStore} from "./UserStore";
 
 class UserPreferencesStore{
+
+    webUrl = process.env.NODE_ENV === 'development' ? "http://localhost:8080/userPreferences" : "https://probe.joecthomsen.dk/userPreferences"; //Check if dev environment
 
 
     // Variables
@@ -34,9 +38,8 @@ class UserPreferencesStore{
         this.currentChoice = value
     }
 
-
     getPossibleChoices() {
-        const singleElement = this.possiblePreferences.find(value => value.pref === this.currentPref) || {index: 5, pref: "no match", choices: ['no', 'no']}
+        const singleElement = this.possiblePreferences.find(value => value.pref === this.currentPref) || {pref: "no match", choices: ['no', 'no']}
         console.log(singleElement)
         return  singleElement.choices
     }
@@ -49,13 +52,8 @@ class UserPreferencesStore{
         }
     }
 
-
     getPossiblePrefs()  {
-       let prefArray = []
-        this.possiblePreferences.forEach(value => {
-            prefArray.push(value.pref)
-        })
-        return prefArray
+       return this.possiblePreferences.map(value => value.pref)
     }
 
     deletePreference(index) {
@@ -71,6 +69,26 @@ class UserPreferencesStore{
 
     setActiveState(state) {
         this.active = state
+    }
+
+    async getUserPrefFromBackend() {
+        if (userStore.email != null) {
+            let url = this.webUrl + "/getByOwnerMail/" + userStore.email;
+            try {
+                this.thisUsersPreferences = await fetch(url, {
+                    method: 'GET',
+                    mode: 'cors',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json',
+                        'token': authenticationStore.getToken(),
+                        'email': "mail"
+                    }
+                })
+            } catch (e) {
+                console.error(e);
+            }
+        }
     }
 
 

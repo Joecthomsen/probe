@@ -5,7 +5,6 @@ import com.probe.probe_springboot.model.UserPreferences.UserPreferencesModel;
 import com.probe.probe_springboot.repositories.UserPreferences.UserPreferencesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
@@ -23,7 +22,40 @@ public class UserPreferenceService {
         }
     }
 
-    public List<AUserPreference> getUsersPreferences(String ownerMail) {
+    public List<AUserPreference> getUserPreferencesByOwnID(Long ID) {
+        return userPreferencesRepository.findByID(ID).getMyPreferences();
+    }
+
+    public List<AUserPreference> getUsersPreferencesByOwnersMail(String ownerMail) {
         return userPreferencesRepository.findByOwnerMail(ownerMail).getMyPreferences();
     }
+
+    public UserPreferencesModel addUserPreferencesToOwnerMail( String ownerMail, List<AUserPreference> preferences) {
+        UserPreferencesModel newModel = new UserPreferencesModel(ownerMail, preferences);
+        try {
+            return saveUserPreferences(newModel);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public String deleteById(Long ID) {
+
+        try {
+            userPreferencesRepository.deleteById(ID.toString());
+            return "deleted" + ID;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("Unable to delete");
+        }
+    }
+    public UserPreferencesModel updateUserPreferences(UserPreferencesModel userPreferencesModel) {
+        if (userPreferencesRepository.findByID(userPreferencesModel.getID()) != null) {
+            return userPreferencesRepository.save(userPreferencesModel);
+        }
+        else throw new RuntimeException("UserPreference not found");
+    }
 }
+

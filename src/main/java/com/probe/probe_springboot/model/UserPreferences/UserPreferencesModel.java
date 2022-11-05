@@ -23,6 +23,11 @@ public class UserPreferencesModel {
     @OneToMany
     private List<AUserPreference> myPreferences;
 
+    public UserPreferencesModel(String ownerMail, List<AUserPreference> preferences) {
+        this.ownerMail = ownerMail;
+        this.myPreferences = preferences;
+    }
+
 }
 
 

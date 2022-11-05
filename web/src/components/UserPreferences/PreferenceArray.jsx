@@ -2,8 +2,16 @@ import {userPreferences} from "../../stores/UserPreferencesStore";
 import Button from '@mui/material/Button';
 import {observer} from "mobx-react-lite";
 import Grid from "@mui/material/Unstable_Grid2";
+import * as React from 'react';
+
 
 const PreferenceArray = () => {
+
+    let prefsFetched = false;
+
+    React.useEffect(() => {
+        userPreferences.getUserPrefFromBackend().then(() => prefsFetched = true).catch(() => prefsFetched = false);
+    })
 
     const preferences = userPreferences.thisUsersPreferences
     const constructedArray = []
@@ -13,7 +21,7 @@ const PreferenceArray = () => {
     }
 
     function deletePref(index) {
-userPreferences.deletePreference(index)
+        userPreferences.deletePreference(index)
         console.log("clicked delete on: ", index)
     }
 

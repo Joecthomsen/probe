@@ -10,11 +10,8 @@ import PreferenceAdder from "../components/UserPreferences/PreferenceAdder";
 
 const UserProfile = () => {
 
-
     return (
-
         <div>
-
         <div>
             <Grid container spacing={2}>
 
