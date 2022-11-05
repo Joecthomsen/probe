@@ -7,11 +7,8 @@ import * as React from 'react';
 
 const PreferenceArray = () => {
 
-    let prefsFetched = false;
 
-    React.useEffect(() => {
-        userPreferences.getUserPrefFromBackend().then(() => prefsFetched = true).catch(() => prefsFetched = false);
-    })
+    React.useState(() => userPreferences.getUserPrefFromBackend())
 
     const preferences = userPreferences.thisUsersPreferences
     const constructedArray = []
