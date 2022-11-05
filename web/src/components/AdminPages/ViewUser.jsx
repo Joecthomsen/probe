@@ -6,7 +6,7 @@ import { useState } from "react";
 import getUsers from "../../requests/users";
 
 function findUser(id) {
-  console.log(getUsers());
+  console.log(getUsers);
   return users["users"].find((obj) => {
     return obj.id === parseInt(id);
   });

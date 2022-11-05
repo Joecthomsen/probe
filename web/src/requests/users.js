@@ -5,9 +5,13 @@ const getUsers = () => {
     const url = baseUrl + "/user/all"
     Http.open("GET", url);
     Http.send();
+    var res;
     Http.onreadystatechange=(e)=>{
-        console.log(Http.response);
+        res= Http.responseText;
     }
+
+    return res;
+
 }
 
 export default getUsers;
