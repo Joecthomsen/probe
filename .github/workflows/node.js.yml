@@ -36,11 +36,18 @@ jobs:
       run: npm test
 
   build-and-test-mvn:
+   runs-on: ubuntu-latest
+    #strategy:
+    #  matrix:
+    #    node-version: [12.x, 14.x, 16.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+   steps:
     - uses: actions/checkout@v3
-      - name: Set up JDK 11
-        uses: actions/setup-java@v3
-        with:
+    - name: Set up JDK 11
+      uses: actions/setup-java@v3
+      with:
           java-version: '18'
           distribution: 'alpine'
-      - name: Build and test maven
-        run: mvn --batch-mode --update-snapshots package
+    - name: Build and test maven
+      run: mvn --batch-mode --update-snapshots package
