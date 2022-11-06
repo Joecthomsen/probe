@@ -29,7 +29,7 @@ public class UserServiceImpl implements UserService {
     public User saveUser(User user) throws UserAlreadyExists {
 
         // String encodedPassword = passwordEncoder.encode(user.getPassword());
-        // user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
 
         User userTest = userRepository.findByEmail(user.getEmail());
         if (userTest == null) {
