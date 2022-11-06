@@ -2,10 +2,13 @@ import { useState } from "react";
 import {userStore} from "../../stores/UserStore"
 import { observer } from "mobx-react-lite"
 import SelectUserType from "./SelectUserType";
+import {useNavigate} from "react-router-dom";
+
 const CreateUserFormOne = () => {
 
     const addUserUrl = process.env.NODE_ENV === 'development' ?  "http://localhost:8080/user/add" : "https://probe.joecthomsen.dk/user/add"; //Check if dev environment
     const [firstForm, setFirstForm] = useState(true)
+    const navigate = useNavigate()
 
     const handleEmail = (event) => {
         userStore.setEmail(event.target.value)
@@ -160,6 +163,8 @@ const CreateUserFormOne = () => {
             const response = await fetch(addUserUrl, requestOptions)
             const data = await response.data
             console.log("response: " + JSON.stringify( data ))
+            await navigate("/")
+            window.alert("New user " + userStore.firstName + " has been created\nPlease sign in with your credential")
         }catch (error) {
             console.log("error: " + error)
         }
