@@ -8,8 +8,8 @@ import * as React from 'react';
 import PreferenceAdder from "../components/UserPreferences/PreferenceAdder";
 import {Link} from 'react-router-dom'
 
-
 const UserProfile = () => {
+
 
     return (
         <div>
@@ -21,7 +21,7 @@ const UserProfile = () => {
                 </Grid>
 
                 <Grid xs={12} md={12}>
-                    <Link to="/ViewTrials">About</Link>
+                    <Link to="/trials">Go to the view trials page to see relevant trials</Link>
                 </Grid>
 
                 <Grid xs={12} md={6}>
