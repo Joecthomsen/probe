@@ -24,7 +24,7 @@ const LandingPage = () => {
                     : 
                         <div className="burger-menu-wrapper">
                             <h1 className="burger-menu">MOFO</h1>
-                            <img className="world" src={world} alt="null" /> 
+                            <img className="worl1d" src={world} alt="null" />
                         </div>} */}
                 </div>                   
             </main> 
