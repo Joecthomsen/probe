@@ -1,7 +1,5 @@
 package com.probe.probe_springboot.Service;
 
-import com.probe.probe_springboot.exceptions.EditTrials.DatabaseErrorGettingParticipants;
-import com.probe.probe_springboot.exceptions.EditTrials.OwnerIDNotFound;
 import com.probe.probe_springboot.exceptions.EditTrials.TrialIdNotFound;
 import com.probe.probe_springboot.model.EditTrial;
 import com.probe.probe_springboot.repositories.EditTrialRepository;
@@ -13,7 +11,6 @@ import org.mockito.Mock;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.ActiveProfiles;
 
-import java.sql.SQLException;
 import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -34,10 +31,10 @@ public class EditTrialServiceTest {
     private EditTrialService ets;
 
     private EditTrial makeET() {
-        List<Integer> list = new ArrayList<>();
-        list.add(1);
-        list.add(2);
-        list.add(3);
+        List<String> list = new ArrayList<>();
+        list.add("1");
+        list.add("2");
+        list.add("3");
         return new EditTrial(null, "header", "Title", 0, 1, "Streetname", 213, "City", "Country", "cardDescription", "longDescription", "Vek", "date", 2, "starttime", "12", list, "1");
     }
 
@@ -93,7 +90,7 @@ public class EditTrialServiceTest {
 
         assertThat(list).isNotNull();
         assertThat(list.size()).isEqualTo(3);
-    }
+    }/*
 
     @DisplayName("EditTrial Service shouldReturnTrialsByOwnerID(OwnerID Not Found) method test")
     @Test
@@ -108,6 +105,16 @@ public class EditTrialServiceTest {
         String dbGot = exception.getMessage();
 
         assertThat(expect).isEqualTo(dbGot);
+    }*/
+
+    @DisplayName("EditTrial Service shouldReturnTrialsByOwnerID to be null")
+    @Test
+    public void shouldReturnNull_TrialsByOwnerID() {
+        given(editTrialRepository.findByOwnerID("12")).willReturn(Collections.emptyList());
+
+        List<EditTrial> list= ets.getEditTrialByOwnerID("12");
+
+        assertThat(list).isEqualTo(null);
     }
 
 

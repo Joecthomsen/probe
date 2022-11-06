@@ -54,7 +54,8 @@ public class EditTrialService {
     public List<EditTrial> getEditTrialByOwnerID(String ownerID) {
         List<EditTrial> list = editTrialRepository.findByOwnerID(ownerID);
         if (list.isEmpty()) {
-            throw new OwnerIDNotFound("OwnerID: " + ownerID + " not found.");
+            return null;
+            //throw new OwnerIDNotFound("OwnerID: " + ownerID + " not found.");
         }
         for (EditTrial editTrial : list) {
             try {

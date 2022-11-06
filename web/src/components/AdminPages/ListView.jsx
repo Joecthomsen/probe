@@ -9,13 +9,8 @@ export default function ListView({ data, columns }) {
   console.log(JSON.parse(data1));
   //console.log(data);
   return (
-    <div style={{ display: "flex", height: 500 }}>
-      <DataGrid
-        rows={data}
-        columns={columns}
-        getRowId={(row) => row.id}
-        checkboxSelection={true}
-      />
+    <div style={{ height: 400, width: "100%" }}>
+      <DataGrid rows={data} columns={columns} getRowId={(row) => row.id} />
     </div>
   );
 }

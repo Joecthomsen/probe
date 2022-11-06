@@ -4,7 +4,7 @@
   "description": "",
   "scripts": {
     "test": "cypress run",
-    "open": "cypress open"
+    "open": "cypress open --config baseUrl=http://localhost:3000"
   },
   "author": "",
   "license": "ISC",
