@@ -16,7 +16,7 @@ import java.util.List;
 
 @Service
 @Transactional
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository userRepository;
@@ -24,14 +24,15 @@ public class UserServiceImpl implements UserService{
     private RoleRepository roleRepository;
 
     PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-    @Override
-    public User saveUser(User user) throws UserAlreadyExists{
 
-        //String encodedPassword = passwordEncoder.encode(user.getPassword());
+    @Override
+    public User saveUser(User user) throws UserAlreadyExists {
+
+        // String encodedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 
         User userTest = userRepository.findByEmail(user.getEmail());
-        if(userTest == null) {
+        if (userTest == null) {
             return userRepository.save(user);
         }
         throw new UserAlreadyExists("User with email " + user.getEmail() + " already exists");
@@ -43,8 +44,9 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public void addRoleToUser(String userEmail, String roleName){
-        User user = userRepository.findById(userEmail).orElseThrow(() -> new UserNotExist("User with email " + userEmail + " not found!"));
+    public void addRoleToUser(String userEmail, String roleName) {
+        User user = userRepository.findById(userEmail)
+                .orElseThrow(() -> new UserNotExist("User with email " + userEmail + " not found!"));
         Role role = roleRepository.findByRoleName(roleName);
         user.getRoles().add(role);
     }
@@ -59,7 +61,22 @@ public class UserServiceImpl implements UserService{
         return userRepository.findAll();
     }
 
-    public List<Role> getAllRoles(){
+    public List<Role> getAllRoles() {
         return roleRepository.findAll();
+    }
+
+    @Override
+    public User updateUser(User updatedUser, String id) {
+        return userRepository.findById(id)
+                .map(user -> {
+                    user.setFirstName(updatedUser.getFirstName());
+                    return userRepository.save(user);
+                }).get();
+    }
+
+    @Override
+    public User findById(String id) {
+        // FIXME: Handle id does not exist
+        return userRepository.findById(id).get();
     }
 }
