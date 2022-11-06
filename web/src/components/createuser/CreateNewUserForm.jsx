@@ -164,7 +164,6 @@ const CreateUserFormOne = () => {
             const data = await response.data
             console.log("response: " + JSON.stringify( data ))
             await navigate("/")
-            window.al
             window.alert("New user " + userStore.firstName + " has been created\nPlease sign in with your credential")
         }catch (error) {
             console.log("error: " + error)
