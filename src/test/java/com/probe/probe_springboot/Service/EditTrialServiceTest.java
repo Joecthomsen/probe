@@ -1,7 +1,5 @@
 package com.probe.probe_springboot.Service;
 
-import com.probe.probe_springboot.exceptions.EditTrials.DatabaseErrorGettingParticipants;
-import com.probe.probe_springboot.exceptions.EditTrials.OwnerIDNotFound;
 import com.probe.probe_springboot.exceptions.EditTrials.TrialIdNotFound;
 import com.probe.probe_springboot.model.EditTrial;
 import com.probe.probe_springboot.repositories.EditTrialRepository;
@@ -13,7 +11,6 @@ import org.mockito.Mock;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.ActiveProfiles;
 
-import java.sql.SQLException;
 import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -93,7 +90,7 @@ public class EditTrialServiceTest {
 
         assertThat(list).isNotNull();
         assertThat(list.size()).isEqualTo(3);
-    }
+    }/*
 
     @DisplayName("EditTrial Service shouldReturnTrialsByOwnerID(OwnerID Not Found) method test")
     @Test
@@ -108,6 +105,16 @@ public class EditTrialServiceTest {
         String dbGot = exception.getMessage();
 
         assertThat(expect).isEqualTo(dbGot);
+    }*/
+
+    @DisplayName("EditTrial Service shouldReturnTrialsByOwnerID to be null")
+    @Test
+    public void shouldReturnNull_TrialsByOwnerID() {
+        given(editTrialRepository.findByOwnerID("12")).willReturn(Collections.emptyList());
+
+        List<EditTrial> list= ets.getEditTrialByOwnerID("12");
+
+        assertThat(list).isEqualTo(null);
     }
 
 
