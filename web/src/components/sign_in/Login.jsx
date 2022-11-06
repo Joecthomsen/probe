@@ -23,13 +23,11 @@ const Login = () => {
         const token = jwtDecode(authenticationStore.getToken() )
 
         if (token.roles.includes("CLINICAL_USER")){
-            console.log("CLINIC MOFO ! ! !")
             EditTrialStoreOBJ.setOwnerID(authenticationStore.loginData.email)
             navigate('/edittrials')
         }
         else{
-            console.log("Meeeh!")
-            navigate('/about')
+            navigate('/userProfile')
         }
         //console.log("Finished!! " + JSON.stringify(userStore.getRole().pop().roleName ))
 
