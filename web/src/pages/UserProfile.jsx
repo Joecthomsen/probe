@@ -6,20 +6,22 @@ import PreferenceArray from "../components/UserPreferences/PreferenceArray";
 import {Box} from "@mui/material";
 import * as React from 'react';
 import PreferenceAdder from "../components/UserPreferences/PreferenceAdder";
-
+import {Link} from 'react-router-dom'
 
 const UserProfile = () => {
 
 
     return (
-
         <div>
-
         <div>
             <Grid container spacing={2}>
 
                 <Grid xs={12} md={12}>
                     <h1> User Preferences </h1>
+                </Grid>
+
+                <Grid xs={12} md={12}>
+                    <Link to="/trials">Go to the view trials page to see relevant trials</Link>
                 </Grid>
 
                 <Grid xs={12} md={6}>
@@ -28,7 +30,6 @@ const UserProfile = () => {
                     <ActivateDeactivateButton/>
                     </Box>
                 </Grid>
-
                 <Grid xs={12} md={6}>
 
                 </Grid>
