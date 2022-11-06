@@ -25,7 +25,7 @@ public class UserServiceImpl implements UserService{
 
     PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
     @Override
-    public User saveUser(User user) throws UserAlreadyExists {
+    public User saveUser(User user) throws UserAlreadyExists{
 
         //String encodedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(passwordEncoder.encode(user.getPassword()));
@@ -43,7 +43,7 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public void addRoleToUser(String userEmail, String roleName) {
+    public void addRoleToUser(String userEmail, String roleName){
         User user = userRepository.findById(userEmail).orElseThrow(() -> new UserNotExist("User with email " + userEmail + " not found!"));
         Role role = roleRepository.findByRoleName(roleName);
         user.getRoles().add(role);

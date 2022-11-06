@@ -116,7 +116,9 @@ const CreateUserFormOne = () => {
 
     const submitUser = async (event) => {
         event.preventDefault();
-        const role = userStore.role === "MEDICAL_USER" ? [{
+        //const role = JSON.stringify( userStore.getRole());
+        console.log("ROLE: " + userStore.getRole())
+        const role = userStore.getRole().role === "MEDICAL_USER" ? [{
                 "id": 2,
                 "roleName": "MEDICAL_USER"
             }] :

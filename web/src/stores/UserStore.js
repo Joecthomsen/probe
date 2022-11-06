@@ -18,7 +18,9 @@ class UserStore{
     city;
     region;
     country;
-    role;
+    role = {
+            "id": 1,
+            "role": "CLINICAL_USER"};
 
     createMedicalUser = false;
     error = false;
@@ -97,11 +99,16 @@ class UserStore{
         this.errorMsg = msg
     }
     setRole(role){
-        this.role = role
+        this.role = "MEDICAL_USER" ? this.role = {"id": 2, "role": role} : {"id": 1, "role": role}
+
     }
 
     getRole(){
         return this.role
+    }
+
+    getCreateMedicalUser(){
+        return this.createMedicalUser
     }
 
     getMedicalUserObject(){
@@ -125,7 +132,7 @@ class UserStore{
             city: this.city,
             region: this.region,
             country: this.country,
-            role: this.createMedicalUser
+            role: this.getCreateMedicalUser()
                 ?
                 [{"id": 2,
                  "roleName": "MEDICAL_USER"
@@ -153,7 +160,7 @@ class UserStore{
             city: this.city,
             region: this.region,
             country: this.country,
-            role: this.createMedicalUser
+            role: this.getCreateMedicalUser()
                 ?
                 [{"id": 2,
                     "roleName": "MEDICAL_USER"
