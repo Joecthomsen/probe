@@ -45,7 +45,7 @@ const PreferenceArray = () => {
         })
     } else {
         constructedArray.push(
-            <Grid key={`${index}consArray`} container spacing={2} border={1}>
+            <Grid key={`GuarderdArray`} container spacing={2} border={1}>
                 <Grid xs={12} md={3}>
                     <p>  No preferences yet </p>
                 </Grid>
