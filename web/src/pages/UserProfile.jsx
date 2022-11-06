@@ -19,13 +19,16 @@ const UserProfile = () => {
                     <h1> User Preferences </h1>
                 </Grid>
 
+                <Grid xs={12} md={12}>
+                    <Link to='/ViewTrials' >Go to View Trials</Link>
+                </Grid>
+
                 <Grid xs={12} md={6}>
                     <Box border={2} >
                   <p>  {userPreferences.statusString} </p>
                     <ActivateDeactivateButton/>
                     </Box>
                 </Grid>
-
                 <Grid xs={12} md={6}>
 
                 </Grid>
