@@ -22,25 +22,41 @@ const PreferenceArray = () => {
         console.log("clicked delete on: ", index)
     }
 
-    preferences.forEach((preference, index) => {
-         constructedArray.push(
+    if (preferences) {
 
-        <Grid key={`${index}consArray`} container spacing={2} border={1}>
-            <Grid xs={12} md={3}>
-               <p>  {preference.key} </p>
-             </Grid>
-            <Grid xs={12} md={3} borderLeft={1} borderRight={1}>
-              <p>  {preference.value} </p>
+        preferences.forEach((preference, index) => {
+             constructedArray.push(
+
+            <Grid key={`${index}consArray`} container spacing={2} border={1}>
+                <Grid xs={12} md={3}>
+                   <p>  {preference.key} </p>
+                 </Grid>
+                <Grid xs={12} md={3} borderLeft={1} borderRight={1}>
+                  <p>  {preference.value} </p>
+                </Grid>
+                <Grid xs={12} md={3}>
+                    <Button variant={"contained"} onClick={() => deletePref(index)} > Delete Preference  </Button>
+                </Grid>
+                <Grid xs={12} md={3} borderLeft={1} borderRight={1}>
+                    <Button variant={"contained"} onClick={() => editPref(index)} > Edit Preference  </Button>
+                </Grid>
             </Grid>
-            <Grid xs={12} md={3}>
-                <Button variant={"contained"} onClick={() => deletePref(index)} > Delete Preference  </Button>
+             )
+        })
+    } else {
+        constructedArray.push(
+            <Grid key={`GuarderdArray`} container spacing={2} border={1}>
+                <Grid xs={12} md={3}>
+                    <p>  No preferences yet </p>
+                </Grid>
+                <Grid xs={12} md={3} borderLeft={1} borderRight={1}>
+                    <p>  Add preference below </p>
+                </Grid>
             </Grid>
-            <Grid xs={12} md={3} borderLeft={1} borderRight={1}>
-                <Button variant={"contained"} onClick={() => editPref(index)} > Edit Preference  </Button>
-            </Grid>
-        </Grid>
-         )
-    })
+
+
+        )
+    }
 
     return (
         constructedArray
