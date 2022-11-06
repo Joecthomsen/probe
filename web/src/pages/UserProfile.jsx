@@ -6,6 +6,7 @@ import PreferenceArray from "../components/UserPreferences/PreferenceArray";
 import {Box} from "@mui/material";
 import * as React from 'react';
 import PreferenceAdder from "../components/UserPreferences/PreferenceAdder";
+import {Link} from 'react-router-dom'
 
 
 const UserProfile = () => {
@@ -20,7 +21,7 @@ const UserProfile = () => {
                 </Grid>
 
                 <Grid xs={12} md={12}>
-                    <Link to='/ViewTrials' >Go to View Trials</Link>
+                    <Link to="/ViewTrials">About</Link>
                 </Grid>
 
                 <Grid xs={12} md={6}>
