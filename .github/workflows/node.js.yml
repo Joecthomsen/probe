@@ -5,9 +5,9 @@ name: TEstOnDev CI
 
 on:
   push:
-    branches: ["dev"]
+    branches: ["dev", "clean-up"]
   pull_request:
-    branches: [ "dev"]
+    branches: ["dev", "clean-up"]
 
 jobs:
   build-and-test-npm:
@@ -15,40 +15,42 @@ jobs:
     #strategy:
     #  matrix:
     #    node-version: [12.x, 14.x, 16.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+    # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-        cache-dependency-path: web/package-lock.json
-    - name: Clean install npm
-      working-directory: ./web
-      run: npm ci
-    - name: Build npm
-      run: npm run build --if-present
-      working-directory: ./web
-    - name: Test npm
-      working-directory: ./web
-      run: npm test
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "npm"
+          cache-dependency-path: web/package-lock.json
+      - name: Clean install npm
+        working-directory: ./web
+        run: npm ci
+      - name: Build npm
+        run: npm run build --if-present
+        working-directory: ./web
+      - name: Test npm
+        working-directory: ./web
+        run: npm test
 
   build-and-test-mvn:
-   runs-on: ubuntu-latest
-    #strategy:
-    #  matrix:
-    #    node-version: [12.x, 14.x, 16.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+    runs-on:
+      ubuntu-latest
+      #strategy:
+      #  matrix:
+      #    node-version: [12.x, 14.x, 16.x]
+      # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
-   steps:
-    - uses: actions/checkout@v3
-    - name: Set up JDK 11
-      uses: actions/setup-java@v3
-      with:
-          distribution: 'temurin'
-          java-version: '17'
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up JDK 11
+        uses: actions/setup-java@v3
+        with:
+          distribution: "temurin"
+          java-version: "17"
 
-    - name: Build and test maven
-      run: mvn --batch-mode --update-snapshots package
+      - name: Build and test maven
+        working-directory: ./backend
+        run: mvn --batch-mode --update-snapshots package
