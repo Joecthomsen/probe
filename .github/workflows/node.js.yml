@@ -52,4 +52,5 @@ jobs:
           java-version: "17"
 
       - name: Build and test maven
+        working-directory: ./backend
         run: mvn --batch-mode --update-snapshots package
