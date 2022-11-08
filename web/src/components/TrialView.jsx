@@ -5,8 +5,8 @@ import * as React from "react";
 
 
 const TrialView = () => {
-    const cardList = {};
-    const url = "https://probe.joecthomsen.dk/viewTrials/getAll";
+    let cardList = [];
+    const url = "http://localhost:8080/viewTrials/getAll";
     fetch(url, {
             method: 'GET',
             mode: 'cors',
@@ -19,6 +19,7 @@ const TrialView = () => {
     ).then(
         async (response) => await response.json().then(
             (json) => runInAction(async () => {
+                console.log("BLABLA: " + json.length)
                 this.cardList = (await json.map((element, index) => {
                     return(<StudyCardLarge key={index}
                                            header={element.header}
