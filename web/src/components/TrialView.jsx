@@ -6,36 +6,46 @@ import * as React from "react";
 
 const TrialView = () => {
     let cardList = [];
-    const url = "http://localhost:8080/viewTrials/getAll";
-    fetch(url, {
-            method: 'GET',
-            mode: 'cors',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'email': "mail"
+    let success = 0;
+    const url = "https://probe.joecthomsen.dk/viewTrials/getAll";
+    try {
+        fetch(url, {
+                method: 'GET',
+                mode: 'cors',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'email': "mail"
+                }
             }
-        }
-    ).then(
-        async (response) => await response.json().then(
-            (json) => runInAction(async () => {
-                console.log("BLABLA: " + json.length)
-                this.cardList = (await json.map((element, index) => {
-                    return(<StudyCardLarge key={index}
-                                           header={element.header}
-                                           title={element.title}
-                                           country={element.county}
-                                           city={element.city}
-                                           description={element.longDescription}/>)
-                }));
-            })));
-
+        ).then(
+            async (response) => await response.json().then(
+                (json) => runInAction(async () => { console.log(json);
+                    cardList = (await json.map((element, index) => {
+                        return (<StudyCardLarge key={index}
+                                                header={element.header}
+                                                title={element.title}
+                                                country={element.county}
+                                                city={element.city}
+                                                description={element.longDescription}/>)
+                    }));
+                })))
+        console.log(cardList);
+    } catch (e) {
+        success = 1;
+        console.log("No data found");
+    }
+    if (cardList.length != 0) {
+        return (
+            <div className="trials-box">
+                <ul>{cardList}</ul>
+            </div>
+        );
+    }
     return (
-        <div className="trials-box">
-            <ul>{cardList}</ul>
+        <div>
+            <h1>No data available</h1>
         </div>
-
     );
-}
 
 export default TrialView;
