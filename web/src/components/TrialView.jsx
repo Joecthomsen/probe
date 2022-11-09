@@ -20,7 +20,8 @@ const TrialView = () => {
             }
         ).then(
             async (response) => await response.json().then(
-                (json) => runInAction(async () => { console.log(json);
+                (json) => runInAction(async () => {
+                    console.log(json);
                     cardList = (await json.map((element, index) => {
                         return (<StudyCardLarge key={index}
                                                 header={element.header}
@@ -47,5 +48,5 @@ const TrialView = () => {
             <h1>No data available</h1>
         </div>
     );
-
+}
 export default TrialView;
