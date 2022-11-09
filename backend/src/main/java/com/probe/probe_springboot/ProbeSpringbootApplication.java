@@ -2,14 +2,15 @@ package com.probe.probe_springboot;
 import com.probe.probe_springboot.model.Role;
 import com.probe.probe_springboot.model.User;
 import com.probe.probe_springboot.service.UserServiceImpl;
+import io.prometheus.client.exporter.HTTPServer;
+import io.prometheus.client.hotspot.DefaultExports;
+import org.apache.catalina.startup.Tomcat;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Profile;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-
-//TODO Johannes: Exceptions for signin, create new user, JWT corrupted. Test and axios test fail. Authorization header
 
 @EnableJpaRepositories
 @SpringBootApplication
@@ -23,6 +24,11 @@ public class ProbeSpringbootApplication {
 	@Profile("!test")
 	CommandLineRunner run(UserServiceImpl userService){
 		return args -> {
+
+			//DefaultExports.initialize();
+			//HTTPServer prometheusServer = new HTTPServer(666);
+			//Tomcat tomcat = new Tomcat();
+
 			userService.saveRole(new Role("CLINICAL_USER"));
 			userService.saveRole(new Role("MEDICAL_USER"));
 			userService.saveRole(new Role("ADMIN_USER"));

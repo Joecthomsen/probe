@@ -47,6 +47,5 @@ const TrialView = () => {
             <h1>No data available</h1>
         </div>
     );
-}
 
 export default TrialView;
