@@ -5,7 +5,7 @@ import * as React from "react";
 
 
 const TrialView = () => {
-    let cardList = [];
+    let cardList;
     const url = "https://probe.joecthomsen.dk/viewTrials/getAll";
     try {
         fetch(url, {
@@ -29,12 +29,13 @@ const TrialView = () => {
                                                 city={element.city}
                                                 description={element.longDescription}/>)
                     }));
+                    console.log(cardList);
                 })))
-        console.log(cardList);
+
     } catch (e) {
         console.log("No data found");
     }
-    if (cardList.length !== 0) {
+    if (cardList !== undefined) {
         return (
             <div className="trials-box">
                 <ul>{cardList}</ul>
