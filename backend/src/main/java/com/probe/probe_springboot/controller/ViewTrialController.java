@@ -21,6 +21,9 @@ public class ViewTrialController {
         return viewTrialService.viewTrials();
     }
 
-
+    @PutMapping("/participate")
+    public ParticipateTrial putTrial(@RequestBody EditTrial editTrial){
+        return editTrialService.updateEditTrial(editTrial);
+    }
 }
 
