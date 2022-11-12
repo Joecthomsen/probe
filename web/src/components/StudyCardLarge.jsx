@@ -19,7 +19,12 @@ const StudyCardLarge = (props) => {
                 <p>{description}</p>
             </div>
             <div className="links">
-                <span class="material-symbols-outlined">read_more</span>
+                <div>
+                    <button className="join-button">Join Trial</button>
+                </div>
+                <div className="link-button">
+                    <span className="material-symbols-outlined">read_more</span>
+                </div>
             </div>
         </div>
     );
