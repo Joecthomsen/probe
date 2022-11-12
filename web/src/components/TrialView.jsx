@@ -3,12 +3,12 @@ import "react-multi-carousel/lib/styles.css";
 import {runInAction} from "mobx";
 import * as React from "react";
 import {useState} from "react";
-
+import {useEffect} from "react";
 
 const TrialView = () => {
     const [cardList, setCardList] = useState();
     const url = "https://probe.joecthomsen.dk/viewTrials/getAll";
-    try {
+    useEffect(() => { try {
         fetch(url, {
                 method: 'GET',
                 mode: 'cors',
@@ -21,7 +21,7 @@ const TrialView = () => {
         ).then(
             async (response) => await response.json().then(
                 (json) => runInAction(async () => {
-                    console.log(json);
+                    //console.log(json);
                     setCardList((await json.map((element, index) => {
                         return (<StudyCardLarge key={index}
                                                 header={element.header}
@@ -30,12 +30,12 @@ const TrialView = () => {
                                                 city={element.city}
                                                 description={element.longDescription}/>)
                     })));
-                    console.log(cardList);
+                    //console.log(cardList);
                 })))
 
     } catch (e) {
         console.log("No data found");
-    }
+    } }, []);
 
     if (cardList !== undefined) {
         return (
@@ -49,5 +49,5 @@ const TrialView = () => {
             <h1>No data available</h1>
         </div>
     );
-}
+};
 export default TrialView;
