@@ -1,10 +1,8 @@
-import googleLogo from "../../resources/google_logo.svg";
-import facebookLogo from "../../resources/facebook-round-logo.png"
+import DTUlogo from "../../resources/DTU_Logo_Hvid.jpg";
 import {authenticationStore} from "../../stores/AuthenticationStore";
 import {useNavigate} from "react-router-dom";
 import jwtDecode from "jwt-decode";
 import {EditTrialStoreOBJ} from "../../stores/EditTrialStore";
-
 
 const setUsername = (event) => {
     authenticationStore.setUsername(event.target.value)
@@ -15,7 +13,6 @@ const setPassword = (event) => {
 }
 
 const Login = () => {
-
     const navigate = useNavigate()
 
     const HandleSubmit = async (e) => {
@@ -41,14 +38,13 @@ const Login = () => {
         // }
         //console.log("Finished!! " + JSON.stringify(userStore.getRole().pop().roleName ))
     }
-    return ( 
+    return (
         <div className="page-container">
             <div className="login-page">
                 <h1 className="login-header">Login to your account</h1>
                 <h2>Login Using Social Media</h2>
                 <div className="so-me-login-buttons">
-                    <img className="google-button" src={googleLogo} alt="Google" />
-                    <img className="facebook-button" src={facebookLogo} alt="Facebook" />
+                    <img className="facebook-button" src={DTUlogo} alt="DTU_Campus_Login" onClick={authenticationStore.dtucasFetch} />
                 </div>
                 <hr className="line-breaker"></hr>
                 <h2>Login With Credential</h2>
@@ -61,5 +57,5 @@ const Login = () => {
         </div>
      );
 }
- 
+
 export default Login;
