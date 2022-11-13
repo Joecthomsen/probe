@@ -1,3 +1,18 @@
+import {authenticationStore} from "../stores/AuthenticationStore";
+import {Link} from 'react-router-dom';
+
+function SignUp() {
+    
+}
+
+function JoinButton() {
+    if (authenticationStore.getLoggedIn()) {
+        return (<button className="join-button" onClick={SignUp}>Join Trial</button>)
+    } else {
+        return (<Link to="/login"><button className="join-button">Log In</button></Link>)
+    }
+}
+
 const StudyCardLarge = (props) => {
     console.log(props);
     let description = props.description;
@@ -9,7 +24,7 @@ const StudyCardLarge = (props) => {
         <div className="studycard-container-large">
             <h1>{props.header}</h1>
             <div className="card-location">
-                <span class="material-symbols-outlined">location_on</span>
+                <span className="material-symbols-outlined">location_on</span>
                 <p className="card-country">{props.country}</p>
                 <p className="card-city">{props.city}</p>
             </div>
@@ -20,7 +35,7 @@ const StudyCardLarge = (props) => {
             </div>
             <div className="links">
                 <div>
-                    <button className="join-button">Join Trial</button>
+                    <JoinButton></JoinButton>
                 </div>
                 <div className="link-button">
                     <span className="material-symbols-outlined">read_more</span>
@@ -29,5 +44,7 @@ const StudyCardLarge = (props) => {
         </div>
     );
 }
+
+
 
 export default StudyCardLarge;
