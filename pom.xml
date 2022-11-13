@@ -91,6 +91,13 @@
             <artifactId>spring-boot-starter-actuator</artifactId>
             <version>2.7.5</version>
         </dependency>
+        <!--XML to Json serializer -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.dataformat</groupId>
+            <artifactId>jackson-dataformat-xml</artifactId>
+            <version>2.14.0</version>
+        </dependency>
+
 
     </dependencies>
 

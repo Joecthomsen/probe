@@ -2,6 +2,8 @@ import {makeAutoObservable} from "mobx"
 import {loginRequest} from '../requests/loginRequest'
 
 class AuthenticationStore {
+    webUrl = process.env.NODE_ENV === 'development' ? "http://localhost:8080/campusnet/login" : "https://probe.joecthomsen.dk/campusnet/login"; //Check if dev environment
+
 
     loggedIn = false;
     token = null;
@@ -44,8 +46,39 @@ class AuthenticationStore {
         return this.loggedIn;
     }
 
-    getToken(){
+    getToken() {
         return this.token
+    }
+
+    getParameterByName(name, url) {
+        if (!url) {
+            url = window.location.href;
+        }
+        //name = name.replace(/[\[\]]/g, "\\$&");
+        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+            results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, " "));
+    }
+
+    dtucasFetch() {
+        fetch(this.webUrl, {
+            method: 'GET',
+            mode: 'cors',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            }
+        }).then(() => {
+            const token = this.getParameterByName("token");
+            if (token != null && token.length > 0) {
+                //Store token and redirect to baseURL
+                this.setToken(token)
+                console.log(token)
+                window.location.replace("/");
+            }
+        })
     }
 
 }
