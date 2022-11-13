@@ -1,8 +1,11 @@
 import {authenticationStore} from "../stores/AuthenticationStore";
 import {Link} from 'react-router-dom';
+import * as React from "react";
+import {EditTrialStoreOBJ} from "../stores/EditTrialStore";
+import {userStore} from "../stores/UserStore";
 
 function SignUp() {
-    
+    EditTrialStoreOBJ.setApplicants(userStore.getEmail());
 }
 
 function JoinButton() {
