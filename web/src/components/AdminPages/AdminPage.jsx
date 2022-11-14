@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { ToggleButton, Box, ToggleButtonGroup } from "@mui/material";
-import ListView from "./ListView";
 import users from "../../api/user_api_mock";
 import clinicalTrials from "../../api/clinical_trial_api_mock";
+import { DataGrid } from "@mui/x-data-grid";
+import getUsers from "../../requests/users";
+import { useEffect } from "react";
 
 const userCols = [
   { field: "id", headerName: "ID", flex: 0 },
@@ -42,6 +44,22 @@ const researcherCols = [
   { field: "region", headerName: "Region", flex: 2 },
   { field: "county", headerName: "Country", flex: 2 }, // TODO change to proper field name
 ];
+
+// TODO fix double re-render
+function ListView({ data, columns }) {
+  const [D, setD] = useState([]);
+  useEffect(() => {
+    getUsers().then((d) => {
+      setD(d);
+    });
+  }, []);
+
+  return (
+    <div style={{ height: 400, width: "100%" }}>
+      <DataGrid rows={D} columns={columns} getRowId={(row) => row.email} />
+    </div>
+  );
+}
 
 function Page() {
   const [data, setData] = useState(users["users"]);
