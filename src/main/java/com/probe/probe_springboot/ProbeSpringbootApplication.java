@@ -4,7 +4,12 @@ import com.probe.probe_springboot.model.User;
 import com.probe.probe_springboot.service.UserServiceImpl;
 import io.prometheus.client.exporter.HTTPServer;
 import io.prometheus.client.hotspot.DefaultExports;
+import lombok.extern.log4j.Log4j2;
 import org.apache.catalina.startup.Tomcat;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.springframework.boot.ApplicationArguments;
+import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -13,18 +18,29 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @EnableJpaRepositories
+@Log4j2
 @SpringBootApplication
-public class ProbeSpringbootApplication {
+public class ProbeSpringbootApplication implements ApplicationRunner {
 
+	private static final Logger logger = LogManager.getLogger(ProbeSpringbootApplication.class);
 	public static void main(String[] args) {
 		SpringApplication.run(ProbeSpringbootApplication.class, args);
+	}
+
+	@Override
+	public void run(ApplicationArguments applicationArguments) throws Exception {
+		logger.debug("Debugging log");
+		logger.info("Info log");
+		logger.warn("Hey, This is a warning!");
+		logger.error("Oops! We have an Error. OK");
+		logger.fatal("Damn! Fatal error. Please fix me.");
 	}
 
 	@Bean
 	@Profile("!test")
 	CommandLineRunner run(UserServiceImpl userService){
 		return args -> {
-
+			log.error("Dame, I'm working!");
 			//DefaultExports.initialize();
 			//HTTPServer prometheusServer = new HTTPServer(666);
 			//Tomcat tomcat = new Tomcat();
