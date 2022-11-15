@@ -2,6 +2,8 @@ package com.probe.probe_springboot.authentication;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.probe.probe_springboot.exceptions.NotAuthorizedException;
+import io.micrometer.core.instrument.Counter;
+import io.micrometer.core.instrument.MeterRegistry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,6 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/authentication" )
 public class LoginController {
+
     @Autowired
     private LoginService loginService;
 
