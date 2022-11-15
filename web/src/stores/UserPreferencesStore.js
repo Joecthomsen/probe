@@ -38,6 +38,29 @@ class UserPreferencesStore{
         this.currentChoice = value
     }
 
+    get possiblePrefs()  {
+        let filteredArray = []
+        let posPrefArray = this.possiblePreferences.map(value => value.pref)
+        console.log("thisUsersPreferences", this.thisUsersPreferences)
+
+        let usersPrefArray = this.thisUsersPreferences.map(value => value)
+
+        console.log("posPref", posPrefArray)
+
+        console.log("userPref", usersPrefArray)
+
+        posPrefArray.forEach(posPref => {
+            if (!usersPrefArray.includes(posPref)) {
+                filteredArray.push(posPref)
+            }
+        })
+
+        console.log("filteredArray", filteredArray)
+
+
+        return filteredArray
+    }
+
     getPossibleChoices() {
         const singleElement = this.possiblePreferences.find(value => value.pref === this.currentPref) || {pref: "no match", choices: ['no', 'no']}
         console.log(singleElement)
@@ -52,10 +75,6 @@ class UserPreferencesStore{
         }
     }
 
-    getPossiblePrefs()  {
-       return this.possiblePreferences.map(value => value.pref)
-    }
-
     deletePreference(index) {
         this.thisUsersPreferences.splice(index, 1);
     }
@@ -65,6 +84,8 @@ class UserPreferencesStore{
             this.thisUsersPreferences.splice(0,1)
         }
         this.thisUsersPreferences.push({key: this.currentPref, value: this.currentChoice})
+
+        console.log("after add thisUsersPreference", this.thisUsersPreferences)
     }
 
     setActiveState(state) {

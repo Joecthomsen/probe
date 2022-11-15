@@ -8,6 +8,7 @@ const PreferenceAdder = () => {
 
     function addPref() {
        userPreferences.addPreference()
+
     }
 
     function setPref(value) {

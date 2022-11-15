@@ -8,10 +8,4 @@ public interface UserPreferencesRepository extends JpaRepository<UserPreferences
     UserPreferencesModel findByID(@NonNull Long ID);
     UserPreferencesModel findByOwnerMail(@NonNull String ownerMail);
 
-
-
-
-
-
-
 }
