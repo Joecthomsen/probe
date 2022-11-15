@@ -24,7 +24,7 @@ public class CampusNetController {
 
     @GetMapping("login2")
     public String login2() {
-        String URI = "https://auth.dtu.dk/dtu/?service=https://probe.joecthomsen.dk/campusnetredirect";
+        String URI = "https://auth.dtu.dk/dtu/?service=https://probe.joecthomsen.dk/campusnet/redirect";
         return URI;
     }
 
