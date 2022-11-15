@@ -8,13 +8,15 @@ import * as React from 'react';
 const PreferenceArray = () => {
 
 
-    React.useState(() => userPreferences.getUserPrefFromBackend())
+    React.useState(() => userPreferences.getUserPrefFromBackend())  // TODO ???
 
     const preferences = userPreferences.thisUsersPreferences
     const constructedArray = []
 
+
     function editPref(index) {
-        console.log("clicked edit on: ", index)
+        alert("not implemeted yet")
+        console.log("clicked edit on: ", index)    // TODO make it actual possible to change stuff
     }
 
     function deletePref(index) {

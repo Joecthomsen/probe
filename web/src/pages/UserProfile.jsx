@@ -12,8 +12,8 @@ import Button from "@mui/material/Button";
 const UserProfile = () => {
 
 
-    function persistPrefsInDB() {
-
+    function persistPrefsInDB() {      // TODO implement it
+          alert("not implemented yet")
     }
 
     return (

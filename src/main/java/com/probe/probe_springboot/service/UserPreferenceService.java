@@ -31,7 +31,7 @@ public class UserPreferenceService {
     }
 
     public UserPreferencesModel addUserPreferencesToOwnerMail( String ownerMail, List<AUserPreference> preferences) {
-        UserPreferencesModel newModel = new UserPreferencesModel(ownerMail, preferences);
+        UserPreferencesModel newModel = new UserPreferencesModel(ownerMail, preferences, true);
         try {
             return saveUserPreferences(newModel);
         } catch (Exception e) {

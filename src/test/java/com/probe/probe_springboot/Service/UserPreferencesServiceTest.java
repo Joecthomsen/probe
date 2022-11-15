@@ -44,7 +44,7 @@ public class UserPreferencesServiceTest {
             list.add(savedUserPreference);
         }
 
-        return new UserPreferencesModel(null, ownerMail, list);
+        return new UserPreferencesModel(ownerMail, list, true);
     }
 
 
