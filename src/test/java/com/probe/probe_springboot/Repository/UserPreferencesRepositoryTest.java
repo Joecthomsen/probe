@@ -30,12 +30,14 @@ public class UserPreferencesRepositoryTest {
         List<AUserPreference> list = new ArrayList<>();
 
         for (long i = 1; i < 5; i++) {
-            AUserPreference aUserPreference = new AUserPreference(null,"pref" + i, "choice" + i);
+            AUserPreference aUserPreference = new AUserPreference();
+            aUserPreference.setPreferenceName("pref"+i);
+            aUserPreference.setChoice("choice"+i);
             AUserPreference savedUserPreference = aUserPreferenceRepository.save(aUserPreference);
             list.add(savedUserPreference);
         }
 
-        return new UserPreferencesModel(null, ownerMail, list);
+        return new UserPreferencesModel(ownerMail, list, true);
     }
 
     UserPreferencesModel userPrefModel;
@@ -59,11 +61,8 @@ public class UserPreferencesRepositoryTest {
     @Test
     public void UserPreferences_are_found_correctly_by_ID() {
 
-
         Long idOfSavedUserPrefModel = savedUserPrefModel.getID();
-
         UserPreferencesModel foundById = userPreferencesRepository.findByID(idOfSavedUserPrefModel);
-
         assert(foundById.equals(userPrefModel) );
     }
 

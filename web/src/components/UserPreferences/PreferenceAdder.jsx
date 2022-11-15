@@ -11,6 +11,7 @@ const PreferenceAdder = () => {
     }
 
     function setPref(value) {
+        console.log("in setPref in preferenceAdder value is: ", value)
         userPreferences.setCurrentPref(value);
         userPreferences.setCurrentChoice(userPreferences.getPossibleChoices()[0]);
     }
