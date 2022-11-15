@@ -13,59 +13,42 @@ class UserPreferencesStore{
 
     active = true
 
-    possiblePreferences = [
+    allPreferences = [
         {pref: "Max Distance to Home Address in KM", choices: ['5', '10', '20', '30', '40','50', 'dont care' ],},
         {pref: "Need to be accompanied by helper", choices: ['yes', 'no'],},
         {pref: "Preferred Language", choices: ['Danish', 'English', 'Spanish', 'Chinese', 'Other', 'dont care'],},
-
     ]
 
-    currentPref = this.possiblePreferences[0].pref
-    currentChoice = this.possiblePreferences[0].choices[0]
-
     // Constructor
-        constructor() {
-            makeAutoObservable(this, {},{autoBind: true} )
-        }
-
-    setCurrentPref(value) {
-        this.currentPref = value
-    }
-    setCurrentChoice(value) {
-        this.currentChoice = value
+    constructor() {
+        makeAutoObservable(this, {},{autoBind: true} );
     }
 
-    getPossiblePrefs()  {
-        let filteredArray = []
-        let posPrefArray = this.possiblePreferences.map(value => value.pref)
+    get possiblePrefs()  {
+        let usersPrefArray = this.thisUsersPreferences.map(value => value.pref); // An array of strings with pref values
+        let posPrefArray = this.allPreferences.filter(value => usersPrefArray.indexOf(value.pref) === -1);
+        console.log("posPrefArray", posPrefArray);
 
-
-        let usersPrefArray = this.thisUsersPreferences.map(value => value)
-
-
-        posPrefArray.forEach(posPref => {
-            if (!usersPrefArray.includes(posPref)) {
-                filteredArray.push(posPref)
-            }
-        })
-
-        console.log("filteredArray", filteredArray)
-
-
-        return filteredArray
+        return posPrefArray;
     }
 
-    getPossibleChoices() {
-        const singleElement = this.possiblePreferences.find(value => value.pref === this.currentPref) || {pref: "no match", choices: ['no', 'no']}
-        console.log(singleElement)
-        return  singleElement.choices
+    get defaultPref() {
+        if (this.possiblePrefs.length > 0) { return this.possiblePrefs[0] }
+        else return "No more prefs to add"
+    }
+    //currentChoice = this.allPreferences[0].choices[0]
+
+    getPossibleChoices(pref) {
+        const singleElement = this.allPreferences.find(value => value.pref === pref) || {pref: "no match", choices: ['no', 'no']};
+        console.log(singleElement);
+        return  singleElement.choices;
     }
 
     get statusString() {
         if (this.active) {
-            return "You are actively seeking studies"
+            return "You are actively seeking studies";
         } else {
-            return "You are NOT seeking studies"
+            return "You are NOT seeking studies";
         }
     }
 
@@ -73,15 +56,12 @@ class UserPreferencesStore{
         this.thisUsersPreferences.splice(index, 1);
     }
 
-    addPreference = () => {
-        if (this.thisUsersPreferences.length === 1 && this.thisUsersPreferences[0].value === 'No Preference Set') {
-            this.thisUsersPreferences.splice(0,1)
-        }
-
-        const newPref = {pref: this.currentPref, choice: this.currentChoice}
-        this.thisUsersPreferences.push(newPref)
-
-        console.log("after add thisUsersPreference", this.thisUsersPreferences)
+    addPreference = (pref, choice) => {
+        console.log("in addPreference")
+        console.log("pref is: ", pref)
+        console.log("choice is: ", choice)
+        this.thisUsersPreferences.push({ pref, choice })
+        console.log("this.thisUsersPreferences is: ", this.thisUsersPreferences)
     }
 
     setActiveState(state) {
@@ -107,9 +87,6 @@ class UserPreferencesStore{
             }
         }
     }
-
-
-
 }
 
 export const userPreferences = new UserPreferencesStore()

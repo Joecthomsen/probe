@@ -7,12 +7,7 @@ import * as React from 'react';
 
 const PreferenceArray = () => {
 
-
-    React.useState(() => userPreferences.getUserPrefFromBackend())  // TODO ???
-
     const preferences = userPreferences.thisUsersPreferences
-    const constructedArray = []
-
 
     function editPref(index) {
         alert("not implemeted yet")
@@ -24,6 +19,28 @@ const PreferenceArray = () => {
         console.log("clicked delete on: ", index)
     }
 
+    return (
+            <div>
+                { preferences && preferences.map((preference, index) => {
+                    console.log(preference);
+                    return <Grid key={`${index}consArray`} container spacing={2} border={1}>
+                            <Grid xs={12} md={3}>
+                                <p>  {preference.pref} </p>
+                            </Grid>
+                            <Grid xs={12} md={3} borderLeft={1} borderRight={1}>
+                                <p>  {preference.choice} </p>
+                            </Grid>
+                            <Grid xs={12} md={3}>
+                                <Button variant={"contained"} onClick={() => deletePref(index)} > Delete Preference  </Button>
+                            </Grid>
+                            <Grid xs={12} md={3} borderLeft={1} borderRight={1}>
+                                <Button variant={"contained"} onClick={() => editPref(index)} > Edit Preference  </Button>
+                            </Grid>
+                        </Grid>
+                })}
+            </div>
+        );
+    /*
     if (preferences) {
 
         preferences.forEach((preference, index) => {
@@ -63,6 +80,7 @@ const PreferenceArray = () => {
     return (
         constructedArray
     )
+     */
 
 }
 

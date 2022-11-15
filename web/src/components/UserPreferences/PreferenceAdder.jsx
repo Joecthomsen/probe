@@ -6,25 +6,26 @@ import {FormControl, InputLabel, NativeSelect} from "@mui/material";
 
 const PreferenceAdder = () => {
 
+    const [selectedPref, setSelectedPref] = React.useState(userPreferences.defaultPref.pref);
+    const [choices, setChoices] = React.useState([]);
+    const [selectedChoice, setSelectedChoice] = React.useState(userPreferences.defaultPref.choices[0]);
+
+    React.useEffect(() => {
+        const newPref = userPreferences.possiblePrefs.find(p => p.pref === selectedPref);
+        setChoices(newPref.choices);
+    }, [selectedPref])
+
+
     function addPref() {
-       userPreferences.addPreference()
+       userPreferences.addPreference(selectedPref, selectedChoice);
     }
 
-    function setPref(value) {
-        console.log("in setPref in preferenceAdder value is: ", value)
-        userPreferences.setCurrentPref(value);
-        userPreferences.setCurrentChoice(userPreferences.getPossibleChoices()[0]);
-    }
-    function setChoice(value) {
-        userPreferences.setCurrentChoice(value);
-    }
-
-    const prefList = userPreferences.getPossiblePrefs().map((value) =>
-    <option key={`${value}pref`} value={value}>{value}</option>
+    const prefList = userPreferences.possiblePrefs.map((value) =>
+        <option key={`${value.pref}pref`} value={value.pref}>{value.pref}</option>
     )
 
-    const choiceList = userPreferences.getPossibleChoices().map((value) =>
-    <option key={`${value}choice`} value={value}>{value}</option>
+    const choiceList = choices.map((value) =>
+        <option key={`${value}choice`} value={value}>{value}</option>
     )
 
     return (
@@ -33,8 +34,8 @@ const PreferenceAdder = () => {
                 <InputLabel variant="standard" htmlFor="uncontrolled-native">
                     Preference
                 </InputLabel>
-                <NativeSelect defaultValue={userPreferences.getPossiblePrefs()[0]}
-                onChange={event => {setPref(event.target.value)}}
+                <NativeSelect defaultValue={selectedPref}
+                onChange={event => {setSelectedPref(event.target.value)}}
                 >
                     {prefList}
                 </NativeSelect>
@@ -44,14 +45,14 @@ const PreferenceAdder = () => {
                 <InputLabel variant="standard" htmlFor="uncontrolled-native">
                     Choice
                 </InputLabel>
-                <NativeSelect defaultValue={userPreferences.getPossibleChoices()[0]}
-                              onChange={event => {setChoice(event.target.value)}}
+                <NativeSelect defaultValue={selectedChoice}
+                              onChange={event => {setSelectedChoice(event.target.value)}}
                 >
                     {choiceList}
                 </NativeSelect>
             </FormControl>
 
-            <Button variant={"outlined"} onClick={addPref}> Add Another Preference </Button>
+            <Button variant={"outlined"} onClick={addPref}> Add This Preference </Button>
         </div>
     )
 
