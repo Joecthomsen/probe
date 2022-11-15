@@ -42,7 +42,7 @@ const Login = () => {
         <div className="page-container">
             <div className="login-page">
                 <h1 className="login-header">Login to your account</h1>
-                <h2>Login Using Social Media</h2>
+                <h2>Login Using DTU</h2>
                 <div className="so-me-login-buttons">
                     <img className="facebook-button" src={DTUlogo} alt="DTU_Campus_Login" onClick={authenticationStore.dtucasFetch} />
                 </div>

@@ -16,10 +16,16 @@ public class CampusNetController {
     @Autowired
     private CampusNetService campusNetService;
 
-    @GetMapping("login")
+    /*@GetMapping("login")
     public RedirectView login() {
         String URI = "https://auth.dtu.dk/dtu/?service=http://localhost:8080/campusnet/redirect";
         return new RedirectView(URI);
+    }*/
+
+    @GetMapping("login2")
+    public String login2() {
+        String URI = "https://auth.dtu.dk/dtu/?service=https://probe.joecthomsen.dk/campusnetredirect";
+        return URI;
     }
 
     @CrossOrigin(maxAge = 3600)
@@ -30,7 +36,7 @@ public class CampusNetController {
         JsonNode json = campusNetService.getDTUCASUser(ticket);
 
         if (campusNetService.validateDTUToken(json)) {
-            return new RedirectView("http://localhost:3000/#/login?token="+campusNetService.dtuCasJwtToken(json));
+            return new RedirectView("https://probe.joecthomsen.dk/#/trials?token="+campusNetService.dtuCasJwtToken(json));
             //return campusNetService.dtuCasJwtToken(json);
         }
         throw new NotAuthorizedException(json.toString());

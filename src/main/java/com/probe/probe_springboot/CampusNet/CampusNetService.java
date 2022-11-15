@@ -22,7 +22,7 @@ public class CampusNetService {
     public JsonNode getDTUCASUser(String ticket) throws JsonProcessingException {
         RestTemplate restTemplate = new RestTemplate();
 
-        String URI = "https://auth.dtu.dk/dtu/servicevalidate?service=http://localhost:8080/campusnet/redirect&ticket=" + ticket;
+        String URI = "https://auth.dtu.dk/dtu/servicevalidate?service=https://probe.joecthomsen.dk/campusnet/redirect&ticket=" + ticket;
 
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));

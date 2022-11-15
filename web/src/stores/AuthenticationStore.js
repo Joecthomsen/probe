@@ -63,21 +63,28 @@ class AuthenticationStore {
     }
 
     dtucasFetch() {
-        fetch(this.webUrl, {
-            method: 'GET',
-            mode: 'cors',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
+        let url = this.webUrl + "2";
+        fetch(url, {
+                method: 'GET',
+                mode: 'cors',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                }
             }
-        }).then(() => {
-            const token = this.getParameterByName("token");
-            if (token != null && token.length > 0) {
-                //Store token and redirect to baseURL
-                this.setToken(token)
-                console.log(token)
-                window.location.replace("/");
-            }
+
+            /*).then(() => {
+                const token = this.getParameterByName("token");
+                if (token != null && token.length > 0) {
+                    //Store token and redirect to baseURL
+                    this.setToken(token)
+                    window.location.replace("#/trials");
+                    console.log(token)
+                    console.log(this.getToken())
+                }
+            }*/).then((res) => res.text()).then((res) => {
+            console.log(res);
+            window.location.replace(res)
         })
     }
 
