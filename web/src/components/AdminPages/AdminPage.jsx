@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { ToggleButton, Box, ToggleButtonGroup } from "@mui/material";
-import users from "../../api/user_api_mock";
 import clinicalTrials from "../../api/clinical_trial_api_mock";
 import { DataGrid } from "@mui/x-data-grid";
 import getUsers from "../../requests/users";
@@ -47,24 +46,36 @@ const researcherCols = [
 
 // TODO fix double re-render
 function ListView({ data, columns }) {
-  const [D, setD] = useState([]);
-  useEffect(() => {
-    getUsers().then((d) => {
-      setD(d);
-    });
-  }, []);
-
   return (
     <div style={{ height: 400, width: "100%" }}>
-      <DataGrid rows={D} columns={columns} getRowId={(row) => row.email} />
+      <DataGrid rows={data} columns={columns} getRowId={(row) => row.email} />
     </div>
   );
 }
 
 function Page() {
-  const [data, setData] = useState(users["users"]);
+
+  
+  const [data, setData] = useState([]);
   const [columns, setColumns] = useState(userCols);
   const [activeBtn, setActiveBtn] = useState("users");
+
+  useEffect(() => {
+      fetchData(activeBtn);
+  }, []);
+
+  const fetchData =(active) => {
+    switch(active) {
+      case "trials":
+        break;
+      case "researchers":
+        break;
+      case "users":
+        getUsers().then((d) => {
+          setData(d);
+        });
+    }
+  }
 
   const handleChange = (e, newActiveBtn) => {
     setActiveBtn(newActiveBtn);
@@ -74,7 +85,7 @@ function Page() {
         setColumns(trialCols);
         break;
       case "users":
-        setData(users["users"]);
+        setData(data);
         setColumns(userCols);
         break;
       case "researchers":
@@ -83,7 +94,7 @@ function Page() {
         setColumns(researcherCols);
         break;
       default:
-        setData(users["users"]);
+        setData(data);
         setColumns(userCols);
         break;
     }
