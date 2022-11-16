@@ -54,50 +54,36 @@ function ListView({ data, columns }) {
 }
 
 function Page() {
-
-  
   const [data, setData] = useState([]);
   const [columns, setColumns] = useState(userCols);
   const [activeBtn, setActiveBtn] = useState("users");
 
   useEffect(() => {
-      fetchData(activeBtn);
-  }, []);
+    console.log("triggered!!!!");
+    fetchData(activeBtn);
+  }, [activeBtn]);
 
-  const fetchData =(active) => {
-    switch(active) {
+  const fetchData = (active) => {
+    switch (active) {
       case "trials":
+        setData([]);
+        setColumns(trialCols);
         break;
       case "researchers":
+        setData([]);
+        setColumns(researcherCols);
         break;
       case "users":
+        setColumns(userCols);
         getUsers().then((d) => {
           setData(d);
         });
     }
-  }
+  };
 
   const handleChange = (e, newActiveBtn) => {
+    console.log(newActiveBtn);
     setActiveBtn(newActiveBtn);
-    switch (newActiveBtn) {
-      case "trials":
-        setData(clinicalTrials["clinicalTrials"]);
-        setColumns(trialCols);
-        break;
-      case "users":
-        setData(data);
-        setColumns(userCols);
-        break;
-      case "researchers":
-        // FIXME: Add researchers
-        setData([]);
-        setColumns(researcherCols);
-        break;
-      default:
-        setData(data);
-        setColumns(userCols);
-        break;
-    }
   };
 
   return (
