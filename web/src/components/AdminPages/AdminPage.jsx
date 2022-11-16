@@ -1,12 +1,40 @@
 import React, { useState } from "react";
-import { ToggleButton, Box, ToggleButtonGroup } from "@mui/material";
+import { ToggleButton, Box, ToggleButtonGroup, Button } from "@mui/material";
 import clinicalTrials from "../../api/clinical_trial_api_mock";
 import { DataGrid } from "@mui/x-data-grid";
 import getUsers from "../../requests/users";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
+const Btn = (row) => {
+  //const [id, setId] = useState(field.row.id);
+  //setId(field.row.id);
+  const navigate = useNavigate();
+  const onClick = (row) => {
+    navigate("/admin-page/data/" + row.field.id);
+  };
+
+  return (
+    <Button
+      variant="contained"
+      size="small"
+      style={{ marginLeft: 16 }}
+      onClick={() => {
+        onClick(row);
+      }}
+    >
+      Test
+    </Button>
+  );
+};
 
 const userCols = [
-  { field: "id", headerName: "ID", flex: 0 },
+  {
+    field: "id",
+    headerName: "ID",
+    flex: 0,
+    renderCell: (field) => <Btn field={field} />,
+  },
   { field: "firstName", headerName: "First Name", flex: 2 },
   { field: "lastName", headerName: "Last Name", flex: 2 },
   { field: "cpr", headerName: "CPR", flex: 2 },
@@ -59,7 +87,6 @@ function Page() {
   const [activeBtn, setActiveBtn] = useState("users");
 
   useEffect(() => {
-    console.log("triggered!!!!");
     fetchData(activeBtn);
   }, [activeBtn]);
 
@@ -82,7 +109,6 @@ function Page() {
   };
 
   const handleChange = (e, newActiveBtn) => {
-    console.log(newActiveBtn);
     setActiveBtn(newActiveBtn);
   };
 

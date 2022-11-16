@@ -27,9 +27,9 @@ function TextFields({ data, isEditable }) {
 }
 
 function ViewUser() {
-  let { id } = useParams();
+  const mail = useParams();
 
-  const user = findUser(id);
+  const user = findUser(mail);
   const [isEditable, setIsEditable] = useState(false);
   const [btnText, setBtnText] = useState("Edit");
 
