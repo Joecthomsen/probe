@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { ToggleButton, Box, ToggleButtonGroup, Button } from "@mui/material";
-import clinicalTrials from "../../api/clinical_trial_api_mock";
 import { DataGrid } from "@mui/x-data-grid";
 import UserApi from "../../requests/users";
 import { useEffect } from "react";

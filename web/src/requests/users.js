@@ -1,6 +1,3 @@
-import { ResponsiveEmbed } from "react-bootstrap";
-import { json } from "react-router-dom";
-
 const baseUrl =
   process.env.NODE_ENV === "development"
     ? "http://localhost:8080"

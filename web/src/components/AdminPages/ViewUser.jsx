@@ -5,11 +5,6 @@ import { useState } from "react";
 import userApi from "../../requests/users";
 import { useEffect } from "react";
 
-function findUser(email) {
-  const mail = email.id;
-  return userApi.getUser(mail);
-}
-
 function TextFields({ data, isEditable }) {
   return (
     <TextField
@@ -54,7 +49,7 @@ function ViewUser() {
     userApi.getUser(mail.id).then((user) => {
       setUser(user);
     });
-  }, []);
+  }, [mail.id]);
 
   const btnDeleteClick = (e) => {};
 
