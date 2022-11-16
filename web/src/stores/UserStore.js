@@ -103,6 +103,10 @@ class UserStore{
 
     }
 
+
+    getEmail(){
+        return this.email
+    }
     getRole(){
         return this.role
     }
