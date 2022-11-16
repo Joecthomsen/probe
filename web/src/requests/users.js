@@ -1,39 +1,43 @@
 import { ResponsiveEmbed } from "react-bootstrap";
 import { json } from "react-router-dom";
 
-const baseUrl = process.env.NODE_ENV === 'development' ?  "http://localhost:8080" : "https://probe.joecthomsen.dk"; 
-function handleHttpErrors(res) {
-    if (!res.ok) {
-        return Promise.reject({ status: res.status, fullError: res.json()})
-    }
-    return res.json();
-}
+const baseUrl =
+  process.env.NODE_ENV === "development"
+    ? "http://localhost:8080"
+    : "https://probe.joecthomsen.dk";
 
-
-async function getUsers() {
-    const response = await fetch("http://localhost:8080/user/all", 
-    {
-        method: 'GET', 
-        headers: {
-            "Content-type": "application/json",
-            'Accept': 'application/json',
+class UserApi {
+  async getUsers() {
+    const response = await fetch(baseUrl +"/user/all", {
+      method: "GET",
+      headers: {
+        "Content-type": "application/json",
+        "Accept": "application/json",
+      },
+    }).then(res => {
+        if(!res.ok) {
+            return Promise.reject({status:res.status});
         }
-    })
-    return await response.json()
-};
+        return res.json()
+    });
+    return await response;
+  }
 
-
-const getUsers1 = () => {
-    const Http = new XMLHttpRequest();
-    const url = baseUrl + "/user/all"
-    Http.open("GET", url);
-    Http.send();
-    var res;
-    Http.onreadystatechange=(e)=>{
-        res= Http.responseText;
-    }
-    return res;
-
+  async getUser(email) {
+    const response = await fetch(baseUrl + "/user/" + email, {
+      method: "GET",
+      headers: {
+        "Content-type": "application/json",
+      },
+    }).then(res => {
+      if(!res.ok) {
+        return Promise.reject({status:res.status})
+      }
+      return res.json();
+    });
+    return await response;
+  }
 }
 
-export default getUsers;
+const userApi = new UserApi();
+export default userApi;

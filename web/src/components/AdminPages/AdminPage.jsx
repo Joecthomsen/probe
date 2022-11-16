@@ -2,13 +2,11 @@ import React, { useState } from "react";
 import { ToggleButton, Box, ToggleButtonGroup, Button } from "@mui/material";
 import clinicalTrials from "../../api/clinical_trial_api_mock";
 import { DataGrid } from "@mui/x-data-grid";
-import getUsers from "../../requests/users";
+import UserApi from "../../requests/users";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Btn = (row) => {
-  //const [id, setId] = useState(field.row.id);
-  //setId(field.row.id);
   const navigate = useNavigate();
   const onClick = (row) => {
     navigate("/admin-page/data/" + row.field.id);
@@ -30,8 +28,8 @@ const Btn = (row) => {
 
 const userCols = [
   {
-    field: "id",
-    headerName: "ID",
+    field: "email",
+    headerName: "Email",
     flex: 0,
     renderCell: (field) => <Btn field={field} />,
   },
@@ -102,7 +100,7 @@ function Page() {
         break;
       case "users":
         setColumns(userCols);
-        getUsers().then((d) => {
+        UserApi.getUsers().then((d) => {
           setData(d);
         });
     }

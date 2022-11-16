@@ -8,7 +8,6 @@ package com.probe.probe_springboot.controller;
 
 import com.probe.probe_springboot.model.Role;
 import com.probe.probe_springboot.model.User;
-import com.probe.probe_springboot.repositories.UserRepository;
 import com.probe.probe_springboot.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -50,6 +49,11 @@ public class UserController {
     @GetMapping("/all")
     public List<User> getAllUsers() {
         return userServiceImpl.getUsers();
+    }
+
+    @GetMapping("/{email}")
+    public User getUser(@PathVariable String email) {
+        return userServiceImpl.findByEmail(email);
     }
 
     @GetMapping("/roles")

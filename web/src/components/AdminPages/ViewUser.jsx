@@ -1,15 +1,13 @@
 import React from "react";
 import { TextField, Box, Button } from "@mui/material";
 import { useParams } from "react-router-dom";
-import users from "../../api/user_api_mock";
 import { useState } from "react";
-import getUsers from "../../requests/users";
+import userApi from "../../requests/users";
+import { useEffect } from "react";
 
-function findUser(id) {
-  console.log(getUsers);
-  return users["users"].find((obj) => {
-    return obj.id === parseInt(id);
-  });
+function findUser(email) {
+  const mail = email.id;
+  return userApi.getUser(mail);
 }
 
 function TextFields({ data, isEditable }) {
@@ -26,12 +24,37 @@ function TextFields({ data, isEditable }) {
   );
 }
 
+const emptyUser = {
+  email: "",
+  sex: "",
+  firstName: "",
+  lastName: "",
+  password: "",
+  dob: "",
+  weight: "",
+  chronicDisease: "",
+  phoneNumber: "",
+  streetName: "",
+  doorNumber: "",
+  zipCode: "",
+  city: "",
+  region: "",
+  country: "",
+  roles: [],
+};
+
 function ViewUser() {
   const mail = useParams();
-
-  const user = findUser(mail);
+  //const user = findUser(mail);
   const [isEditable, setIsEditable] = useState(false);
   const [btnText, setBtnText] = useState("Edit");
+  const [user, setUser] = useState(emptyUser);
+
+  useEffect(() => {
+    userApi.getUser(mail.id).then((user) => {
+      setUser(user);
+    });
+  }, []);
 
   const btnDeleteClick = (e) => {};
 

@@ -6,6 +6,7 @@ import CreateUser from "./pages/CreateUser";
 import ViewTrials from "./pages/ViewTrials";
 import AdminLogin from "./pages/AdminLogin";
 import Page from "./pages/AdminPage";
+import ViewUser from './components/AdminPages/ViewUser';
 import AdmLayout from './components/AdminPages/AdminLayout';
 
 import {
@@ -31,6 +32,7 @@ function App() {
               <Route path='/trials' element={<Layout> <ViewTrials/> </Layout>}/>
               <Route path='/admin' element={<AdminLogin/>}/>
               <Route path='/admin-page' element={<AdmLayout><Page/> </AdmLayout>}/>
+              <Route path='/admin-page/data/:id' element={<AdmLayout><ViewUser/> </AdmLayout>}/>
               <Route path='*' element={<PageNotFound/>}/>
           </Routes>
         </HashRouter>
