@@ -1,21 +1,50 @@
 import React from "react";
-import { TextField, Box, Button } from "@mui/material";
+import { TextField, Box, Button, Typography } from "@mui/material";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
 import userApi from "../../requests/users";
 import { useEffect } from "react";
 
-function TextFields({ data, isEditable }) {
+function TableEntry({ label, data, isEditable, onChange, name }) {
   return (
-    <TextField
-      hiddenLabel
-      id="filled-hidden-label-small"
-      variant="filled"
-      size="small"
-      value={data}
-      disabled={!isEditable}
-      sx={{ width: 500 }}
-    />
+    <tr>
+      <td>{label}</td>
+      <td>
+        <TextField
+          hiddenLabel
+          name={name}
+          id="filled-hidden-label-small"
+          variant="filled"
+          size="small"
+          value={data}
+          disabled={!isEditable}
+          onChange={onChange}
+          sx={{ width: 500 }}
+        />
+      </td>
+    </tr>
+  );
+}
+
+function Modal({ open, handleModalClose }) {
+  return (
+    <div>
+      <Modal
+        open={open}
+        onClose={handleModalClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box>
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+            Text in a modal
+          </Typography>
+          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+          </Typography>
+        </Box>
+      </Modal>
+    </div>
   );
 }
 
@@ -24,26 +53,32 @@ const emptyUser = {
   sex: "",
   firstName: "",
   lastName: "",
-  password: "",
-  dob: "",
   weight: "",
-  chronicDisease: "",
+  dob: "",
   phoneNumber: "",
+  chronicDisease: "",
   streetName: "",
   doorNumber: "",
   zipCode: "",
   city: "",
   region: "",
   country: "",
-  roles: [],
 };
 
 function ViewUser() {
   const mail = useParams();
-  //const user = findUser(mail);
   const [isEditable, setIsEditable] = useState(false);
   const [btnText, setBtnText] = useState("Edit");
   const [user, setUser] = useState(emptyUser);
+  const [modelOpen, setModalOpen] = useState(false);
+
+  const handleChange = (e) => {
+    console.log("HANDLE CHANGE");
+    setUser({
+      ...user,
+      [e.target.name]: e.target.value,
+    });
+  };
 
   useEffect(() => {
     userApi.getUser(mail.id).then((user) => {
@@ -51,13 +86,19 @@ function ViewUser() {
     });
   }, [mail.id]);
 
-  const btnDeleteClick = (e) => {};
+  const handleModalOpen = () => setModalOpen(true);
+  const handleModalClose = () => setModalOpen(false);
+
+  const btnDeleteClick = (e) => {
+    handleModalOpen();
+    //userApi.deleteUser(user.email);
+  };
 
   const editBtnOnClick = (e) => {
     if (isEditable) {
+      userApi.updateUser(user);
       setIsEditable(false);
       setBtnText("Edit");
-
       // TODO: Save edited data
     } else {
       setIsEditable(true);
@@ -72,76 +113,107 @@ function ViewUser() {
           display: "flex",
           justifyContent: "space-evenly",
           p: 10,
-          m: 5,
+          m: 1,
           borderRadius: 1,
         }}
       >
         <Box sx={{ justifyContent: "center" }}>
           <table align="center">
             <tbody>
-              <tr>
-                <td>First Name</td>
-                <td>
-                  <TextFields data={user.firstName} isEditable={isEditable} />
-                </td>
-              </tr>
-              <tr>
-                <td>Last Name</td>
-                <td>
-                  <TextFields data={user.lastName} isEditable={isEditable} />
-                </td>
-              </tr>
-              <tr>
-                <td>CPR</td>
-                <td>
-                  <TextFields data={user.cpr} isEditable={isEditable} />
-                </td>
-              </tr>
-              <tr>
-                <td>Age</td>
-                <td>
-                  <TextFields data={user.age} isEditable={isEditable} />
-                </td>
-              </tr>
-              <tr>
-                <td>Chronic Disease</td>
-                <td>
-                  <TextFields
-                    data={user.chronicDisease}
-                    isEditable={isEditable}
-                  />
-                </td>
-              </tr>
-              <tr>
-                <td>Adress</td>
-                <td>
-                  <TextFields data={user.streetName} isEditable={isEditable} />
-                </td>
-              </tr>
-              <tr>
-                <td>City</td>
-                <td>
-                  <TextFields data={user.city} isEditable={isEditable} />
-                </td>
-              </tr>
-              <tr>
-                <td>Zip Code</td>
-                <td>
-                  <TextFields data={user.zipCode} isEditable={isEditable} />
-                </td>
-              </tr>
-              <tr>
-                <td>Region</td>
-                <td>
-                  <TextFields data={user.region} isEditable={isEditable} />
-                </td>
-              </tr>
-              <tr>
-                <td>Country</td>
-                <td>
-                  <TextFields data={user.county} isEditable={isEditable} />
-                </td>
-              </tr>
+              <TableEntry
+                label="Email"
+                data={user.email}
+                isEditable={false} // Cannot be edited since it is primary key in db
+              />
+              <TableEntry
+                label="Sex"
+                data={user.sex}
+                isEditable={false} // Cannot be edited since it is primary key in db
+              />
+              <TableEntry
+                label="First Name"
+                name="firstName"
+                data={user.firstName}
+                isEditable={isEditable}
+                onChange={handleChange}
+              />
+              <TableEntry
+                label="Last Name"
+                name="lastName"
+                data={user.lastName}
+                isEditable={isEditable}
+                onChange={handleChange}
+              />
+              <TableEntry
+                label="Weight"
+                name="weight"
+                data={user.weight}
+                isEditable={isEditable}
+                onChange={handleChange}
+              />
+              <TableEntry
+                label="Date of Birth"
+                name="dob"
+                data={user.dob}
+                isEditable={isEditable}
+                onChange={handleChange}
+              />
+              <TableEntry
+                label="Phone Number"
+                name="phoneNumber"
+                data={user.phoneNumber}
+                isEditable={isEditable}
+                onChange={handleChange}
+              />
+              <TableEntry
+                label="Chronic Disease"
+                name="chronicDisease"
+                data={user.chronicDisease}
+                isEditable={isEditable}
+                onChange={handleChange}
+              />
+              <TableEntry
+                label="Street Name"
+                name="streetName"
+                data={user.streetName}
+                isEditable={isEditable}
+                onChange={handleChange}
+              />
+              <TableEntry
+                label="Door Number"
+                name="doorNumber"
+                data={user.doorNumber}
+                isEditable={isEditable}
+                onChange={handleChange}
+              />
+              <TableEntry
+                label="City"
+                name="city"
+                data={user.city}
+                isEditable={isEditable}
+                onChange={handleChange}
+              />
+              <TableEntry
+                label="Zip Code"
+                name="zipCode"
+                data={user.zipCode}
+                isEditable={isEditable}
+                onChange={handleChange}
+              />
+              <TableEntry
+                label="Region"
+                name="region"
+                data={user.region}
+                isEditable={isEditable}
+                onChange={handleChange}
+              />
+              <TableEntry
+                label="Country"
+                name="country"
+                data={user.country}
+                isEditable={isEditable}
+                onChange={handleChange}
+              />
             </tbody>
           </table>
           <br />

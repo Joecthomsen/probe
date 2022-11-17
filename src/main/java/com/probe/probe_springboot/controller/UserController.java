@@ -78,9 +78,15 @@ public class UserController {
         userServiceImpl.addRoleToUser(userEmail, roleName);
     }
 
-    @PutMapping("/{id}")
-    public User updateUser(@RequestBody User userToUpdate, @PathVariable String id) {
-        return userServiceImpl.updateUser(userToUpdate, id);
+    @PutMapping("/{email}")
+    public User updateUser(@RequestBody User userToUpdate, @PathVariable String email) {
+        return userServiceImpl.updateUser(userToUpdate, email);
+
+    }
+
+    @DeleteMapping("/{email}")
+    public boolean deleteUser(@PathVariable String email) {
+        return userServiceImpl.deleteUser(email);
     }
 
 }

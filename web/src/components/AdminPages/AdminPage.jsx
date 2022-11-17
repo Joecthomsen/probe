@@ -20,28 +20,29 @@ const Btn = (row) => {
         onClick(row);
       }}
     >
-      Test
+      Veiw
     </Button>
   );
 };
 
 const userCols = [
   {
-    field: "email",
-    headerName: "Email",
+    field: "btn",
+    headerName: "",
     flex: 0,
+
     renderCell: (field) => <Btn field={field} />,
   },
-  { field: "firstName", headerName: "First Name", flex: 2 },
-  { field: "lastName", headerName: "Last Name", flex: 2 },
-  { field: "cpr", headerName: "CPR", flex: 2 },
-  { field: "age", headerName: "Age", flex: 0 },
+  { field: "email", headerName: "Email", flex: 3 },
+  { field: "firstName", headerName: "First Name", flex: 3 },
+  { field: "lastName", headerName: "Last Name", flex: 3 },
+  { field: "sex", headerName: "Sex", flex: 2 },
   { field: "chronicDisease", headerName: "Chronic Disease", flex: 3 },
-  { field: "adress", headerName: "Adress", flex: 3 },
-  { field: "city", headerName: "City", flex: 2 },
+  { field: "streetName", headerName: "Adress", flex: 3 },
+  { field: "city", headerName: "City", flex: 3 },
   { field: "zipCode", headerName: "Zip", flex: 0 },
-  { field: "region", headerName: "Region", flex: 2 },
-  { field: "county", headerName: "Country", flex: 2 }, // TODO change to proper field name
+  { field: "region", headerName: "Region", flex: 3 },
+  { field: "country", headerName: "Country", flex: 2 },
 ];
 
 const trialCols = [
@@ -98,6 +99,12 @@ function Page() {
         setColumns(researcherCols);
         break;
       case "users":
+        setColumns(userCols);
+        UserApi.getUsers().then((d) => {
+          setData(d);
+        });
+        break;
+      default:
         setColumns(userCols);
         UserApi.getUsers().then((d) => {
           setData(d);
