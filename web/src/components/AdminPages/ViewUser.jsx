@@ -1,5 +1,5 @@
 import React from "react";
-import { TextField, Box, Button, Typography } from "@mui/material";
+import { TextField, Box, Button } from "@mui/material";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
 import userApi from "../../requests/users";
