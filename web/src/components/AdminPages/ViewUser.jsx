@@ -26,6 +26,7 @@ function TableEntry({ label, data, isEditable, onChange, name }) {
   );
 }
 
+/*
 function Modal({ open, handleModalClose }) {
   return (
     <div>
@@ -47,7 +48,7 @@ function Modal({ open, handleModalClose }) {
     </div>
   );
 }
-
+*/
 const emptyUser = {
   email: "",
   sex: "",
@@ -70,10 +71,9 @@ function ViewUser() {
   const [isEditable, setIsEditable] = useState(false);
   const [btnText, setBtnText] = useState("Edit");
   const [user, setUser] = useState(emptyUser);
-  const [modelOpen, setModalOpen] = useState(false);
+  //const [modelOpen, setModalOpen] = useState(false);
 
   const handleChange = (e) => {
-    console.log("HANDLE CHANGE");
     setUser({
       ...user,
       [e.target.name]: e.target.value,
@@ -86,11 +86,11 @@ function ViewUser() {
     });
   }, [mail.id]);
 
-  const handleModalOpen = () => setModalOpen(true);
-  const handleModalClose = () => setModalOpen(false);
+  //const handleModalOpen = () => setModalOpen(true);
+  //const handleModalClose = () => setModalOpen(false);
 
   const btnDeleteClick = (e) => {
-    handleModalOpen();
+    //handleModalOpen();
     //userApi.deleteUser(user.email);
   };
 
