@@ -1,17 +1,73 @@
-const baseUrl = process.env.NODE_ENV === 'development' ?  "http://localhost:8080" : "https://probe.joecthomsen.dk"; 
+const baseUrl =
+  process.env.NODE_ENV === "development"
+    ? "http://localhost:8080"
+    : "https://probe.joecthomsen.dk";
 
-const getUsers = () => {
-    const Http = new XMLHttpRequest();
-    const url = baseUrl + "/user/all"
-    Http.open("GET", url);
-    Http.send();
-    var res;
-    Http.onreadystatechange=(e)=>{
-        res= Http.responseText;
-    }
+class UserApi {
+  async getUsers() {
+    const response = await fetch(baseUrl +"/user/all", {
+      method: "GET",
+      headers: {
+        "Content-type": "application/json",
+        "Accept": "application/json",
+      },
+    }).then(res => {
+        if(!res.ok) {
+            return Promise.reject({status:res.status});
+        }
+        return res.json()
+    });
+    return await response;
+  }
 
-    return res;
+  async getUser(email) {
+    const response = await fetch(baseUrl + "/user/" + email, {
+      method: "GET",
+      headers: {
+        "Content-type": "application/json",
+      },
+    }).then(res => {
+      if(!res.ok) {
+        return Promise.reject({status:res.status})
+      }
+      return res.json();
+    });
+    return await response;
+  }
 
+  async updateUser(user) {
+    console.log(user);
+    const response = await fetch(baseUrl + "/user/" + user.email, {
+      method: "PUT",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(user)
+    }).then(res => {
+      if(!res.ok) {
+        return Promise.reject({status:res.status})
+      }
+      return res.json();
+    });
+    return await response;
+  }
+
+  async deleteUser(email) {
+    const response = await fetch(baseUrl + "/user/" + email, {
+      method: "DELETE",
+      headers: {
+        "Content-type": "application/json",
+      },
+    }).then(res => {
+      if(!res.ok) {
+        return Promise.reject({status:res.status})
+      }
+      return res.json();
+    });
+    return await response;
+  } 
 }
 
-export default getUsers;
+
+const userApi = new UserApi();
+export default userApi;
