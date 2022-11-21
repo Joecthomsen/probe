@@ -4,7 +4,7 @@ import {loginRequest} from '../requests/loginRequest'
 class AuthenticationStore {
     webUrl = process.env.NODE_ENV === 'development' ? "http://localhost:8080/campusnet/login" : "https://probe.joecthomsen.dk/campusnet/login"; //Check if dev environment
 
-    loading = false;
+    //loading = false;
     loggedIn = false;
     token = null;
     loginData = {

@@ -19,7 +19,7 @@ $soMeButtonsSize: 80px;
   align-items: center;
   width: 60vw;
 
-  .login-header{
+  .loading-spinner-wrapper{
     color: black;
     padding: 20px 0px 0px 0px;
     margin-bottom: 0px;
@@ -138,7 +138,10 @@ $soMeButtonsSize: 80px;
       cursor: pointer;
     }
   }
-  
+}
+
+.loading-spinner-wrapper{
+  padding: 20% 0 0 45%;
 }
 
 
