@@ -2,3 +2,9 @@
 2022-39-15 18:39:17.877 [main] ERROR com.probe.probe_springboot.ProbeSpringbootApplication - Oops! We have an Error. OK
 2022-39-15 18:39:17.877 [main] FATAL com.probe.probe_springboot.ProbeSpringbootApplication - Damn! Fatal error. Please fix me.
 2022-39-15 18:39:17.877 [main] ERROR com.probe.probe_springboot.ProbeSpringbootApplication - Dame, I'm working!
+2022-42-15 20:42:11.729 [main] ERROR com.probe.probe_springboot.ProbeSpringbootApplication - Oops! We have an Error. OK
+2022-42-15 20:42:11.729 [main] FATAL com.probe.probe_springboot.ProbeSpringbootApplication - Damn! Fatal error. Please fix me.
+2022-42-15 20:42:11.729 [main] ERROR com.probe.probe_springboot.ProbeSpringbootApplication - Dame, I'm working!
+2022-13-15 21:13:53.577 [main] ERROR com.probe.probe_springboot.ProbeSpringbootApplication - Oops! We have an Error. OK
+2022-13-15 21:13:53.577 [main] FATAL com.probe.probe_springboot.ProbeSpringbootApplication - Damn! Fatal error. Please fix me.
+2022-13-15 21:13:53.577 [main] ERROR com.probe.probe_springboot.ProbeSpringbootApplication - Dame, I'm working!

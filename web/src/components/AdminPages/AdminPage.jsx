@@ -1,21 +1,48 @@
 import React, { useState } from "react";
-import { ToggleButton, Box, ToggleButtonGroup } from "@mui/material";
-import ListView from "./ListView";
-import users from "../../api/user_api_mock";
-import clinicalTrials from "../../api/clinical_trial_api_mock";
+import { ToggleButton, Box, ToggleButtonGroup, Button } from "@mui/material";
+import { DataGrid } from "@mui/x-data-grid";
+import UserApi from "../../requests/users";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
+const Btn = (row) => {
+  const navigate = useNavigate();
+  const onClick = (row) => {
+    navigate("/admin-page/data/" + row.field.id);
+  };
+
+  return (
+    <Button
+      variant="contained"
+      size="small"
+      style={{ marginLeft: 16 }}
+      onClick={() => {
+        onClick(row);
+      }}
+    >
+      Veiw
+    </Button>
+  );
+};
 
 const userCols = [
-  { field: "id", headerName: "ID", flex: 0 },
-  { field: "firstName", headerName: "First Name", flex: 2 },
-  { field: "lastName", headerName: "Last Name", flex: 2 },
-  { field: "cpr", headerName: "CPR", flex: 2 },
-  { field: "age", headerName: "Age", flex: 0 },
+  {
+    field: "btn",
+    headerName: "",
+    flex: 0,
+
+    renderCell: (field) => <Btn field={field} />,
+  },
+  { field: "email", headerName: "Email", flex: 3 },
+  { field: "firstName", headerName: "First Name", flex: 3 },
+  { field: "lastName", headerName: "Last Name", flex: 3 },
+  { field: "sex", headerName: "Sex", flex: 2 },
   { field: "chronicDisease", headerName: "Chronic Disease", flex: 3 },
-  { field: "adress", headerName: "Adress", flex: 3 },
-  { field: "city", headerName: "City", flex: 2 },
+  { field: "streetName", headerName: "Adress", flex: 3 },
+  { field: "city", headerName: "City", flex: 3 },
   { field: "zipCode", headerName: "Zip", flex: 0 },
-  { field: "region", headerName: "Region", flex: 2 },
-  { field: "county", headerName: "Country", flex: 2 }, // TODO change to proper field name
+  { field: "region", headerName: "Region", flex: 3 },
+  { field: "country", headerName: "Country", flex: 2 },
 ];
 
 const trialCols = [
@@ -43,32 +70,50 @@ const researcherCols = [
   { field: "county", headerName: "Country", flex: 2 }, // TODO change to proper field name
 ];
 
+// TODO fix double re-render
+function ListView({ data, columns }) {
+  return (
+    <div style={{ height: 400, width: "100%" }}>
+      <DataGrid rows={data} columns={columns} getRowId={(row) => row.email} />
+    </div>
+  );
+}
+
 function Page() {
-  const [data, setData] = useState(users["users"]);
+  const [data, setData] = useState([]);
   const [columns, setColumns] = useState(userCols);
   const [activeBtn, setActiveBtn] = useState("users");
 
-  const handleChange = (e, newActiveBtn) => {
-    setActiveBtn(newActiveBtn);
-    switch (newActiveBtn) {
+  useEffect(() => {
+    fetchData(activeBtn);
+  }, [activeBtn]);
+
+  const fetchData = (active) => {
+    switch (active) {
       case "trials":
-        setData(clinicalTrials["clinicalTrials"]);
+        setData([]);
         setColumns(trialCols);
         break;
-      case "users":
-        setData(users["users"]);
-        setColumns(userCols);
-        break;
       case "researchers":
-        // FIXME: Add researchers
         setData([]);
         setColumns(researcherCols);
         break;
-      default:
-        setData(users["users"]);
+      case "users":
         setColumns(userCols);
+        UserApi.getUsers().then((d) => {
+          setData(d);
+        });
         break;
+      default:
+        setColumns(userCols);
+        UserApi.getUsers().then((d) => {
+          setData(d);
+        });
     }
+  };
+
+  const handleChange = (e, newActiveBtn) => {
+    setActiveBtn(newActiveBtn);
   };
 
   return (

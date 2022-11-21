@@ -28,7 +28,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public User saveUser(User user) throws UserAlreadyExists {
 
-        // String encodedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 
         User userTest = userRepository.findByEmail(user.getEmail());
@@ -66,17 +65,33 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User updateUser(User updatedUser, String id) {
-        return userRepository.findById(id)
+    public User updateUser(User updatedUser, String email) {
+        return userRepository.findById(email)
                 .map(user -> {
                     user.setFirstName(updatedUser.getFirstName());
+                    user.setLastName(updatedUser.getLastName());
+                    user.setDob(updatedUser.getDob());
+                    user.setWeight(updatedUser.getWeight());
+                    user.setChronicDisease(updatedUser.getChronicDisease());
+                    user.setPhoneNumber(updatedUser.getPhoneNumber());
+                    user.setStreetName(updatedUser.getStreetName());
+                    user.setDoorNumber(updatedUser.getDoorNumber());
+                    user.setCity(updatedUser.getCity());
+                    user.setZipCode(updatedUser.getZipCode());
+                    user.setRegion(updatedUser.getRegion());
+                    user.setCountry(updatedUser.getCountry());
                     return userRepository.save(user);
                 }).get();
     }
 
     @Override
-    public User findById(String id) {
-        // FIXME: Handle id does not exist
-        return userRepository.findById(id).get();
+    public boolean deleteUser(String email) {
+        var success = true;
+        try {
+            userRepository.deleteById(email);
+        } catch (IllegalArgumentException e) {
+            success = false;
+        }
+        return success;
     }
 }
