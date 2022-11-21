@@ -10,7 +10,9 @@ const login = observer ( () => {
     return (
         authenticationStore.getLoading()
         ?
-            <CircularProgress/>
+            <div className="loading-spinner-wrapper">
+                <CircularProgress size={200} />
+            </div>
         :
             <div className="page-container">
                 <Login/>

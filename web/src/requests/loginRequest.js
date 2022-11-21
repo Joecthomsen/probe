@@ -1,12 +1,13 @@
 import {userStore} from "../stores/UserStore";
 import {authenticationStore} from "../stores/AuthenticationStore";
+import {loadingStore} from  "../stores/LoadingStore";
 
 const loginUrl = process.env.NODE_ENV === 'development' ?  "http://localhost:8080/authentication/signin" : "https://probe.joecthomsen.dk/authentication/signin"; //Check if dev environment
 
 export const loginRequest = async (email, password) => {
     try {
         console.log("Started")
-        authenticationStore.setLoading(true)
+        loadingStore.setLoading(true)
         const requestOptions = {
             method: 'POST',
             mode: 'cors',
@@ -15,7 +16,7 @@ export const loginRequest = async (email, password) => {
         };
         const response = await fetch(loginUrl, requestOptions);
         const data = await response.json();
-        authenticationStore.setLoading(false)
+        loadingStore.setLoading(false)
         console.log("Finished")
         console.log("DATA: " + JSON.stringify(data))
         userStore.setEmail(data.email)
