@@ -22,9 +22,7 @@ class AuthenticationStore {
 
     async doLogin(e) {
         e.preventDefault()
-        this.setLoading(true)
         await loginRequest(this.loginData.email, this.loginData.password)
-        this.setLoading(false)
     }
 
     setUsername(userName) {
