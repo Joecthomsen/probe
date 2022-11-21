@@ -17,6 +17,7 @@ const Login = () => {
 
     const HandleSubmit = async (e) => {
         await authenticationStore.doLogin(e)
+        /*setTimeout(() => { console. log("Hello, Sleep!") }, 3000);*/
         const token = jwtDecode(authenticationStore.getToken() )
         if (token.roles.includes("CLINICAL_USER")){
             navigate('/userProfile')
