@@ -1,4 +1,4 @@
-import {makeAutoObservable, makeObservable} from "mobx"
+import {makeAutoObservable} from "mobx"
 import {loginRequest} from '../requests/loginRequest'
 
 class AuthenticationStore {
