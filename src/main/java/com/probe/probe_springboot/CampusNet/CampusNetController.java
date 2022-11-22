@@ -25,6 +25,7 @@ public class CampusNetController {
     @GetMapping("login2")
     public String login2() {
         String URI = "https://auth.dtu.dk/dtu/?service=https://probe.joecthomsen.dk/campusnet/redirect";
+        //String URI = "https://auth.dtu.dk/dtu/?service=http://localhost:8080/campusnet/redirect";
         return URI;
     }
 
@@ -37,6 +38,7 @@ public class CampusNetController {
 
         if (campusNetService.validateDTUToken(json)) {
             return new RedirectView("https://probe.joecthomsen.dk/#/trials?token="+campusNetService.dtuCasJwtToken(json));
+            //return new RedirectView("http://localhost:3000/#/trials?token="+campusNetService.dtuCasJwtToken(json));
             //return campusNetService.dtuCasJwtToken(json);
         }
         throw new NotAuthorizedException(json.toString());
