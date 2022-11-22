@@ -4,7 +4,7 @@ import {loginRequest} from '../requests/loginRequest'
 class AuthenticationStore {
     webUrl = process.env.NODE_ENV === 'development' ? "http://localhost:8080/campusnet/login" : "https://probe.joecthomsen.dk/campusnet/login"; //Check if dev environment
 
-
+    //loading = false;
     loggedIn = false;
     token = null;
     loginData = {
@@ -23,7 +23,6 @@ class AuthenticationStore {
     async doLogin(e) {
         e.preventDefault()
         await loginRequest(this.loginData.email, this.loginData.password)
-
     }
 
     setUsername(userName) {
@@ -48,6 +47,14 @@ class AuthenticationStore {
 
     getToken() {
         return this.token
+    }
+
+    setLoading(loading){
+        this.loading = loading;
+    }
+
+    getLoading(){
+        return this.loading;
     }
 
     getParameterByName(name, url) {

@@ -11,15 +11,17 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.probe.probe_springboot.exceptions.NotAuthorizedException;
 import com.probe.probe_springboot.exceptions.TokenExpiredExceptionCustom;
 import com.probe.probe_springboot.model.Role;
+import io.micrometer.core.instrument.MeterRegistry;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import java.util.*;
 
 
+public class JWTHandler extends Throwable{
 
-public class JWTHandler extends Throwable {
     private static final String key = System.getenv("JWT_KEY");
     private static final int TOKEN_EXPIRY = 2880;
-
-
     public static String generateJwtToken(LoginData user, List<Role> roles) throws JsonProcessingException {
 
         Calendar expiry = Calendar.getInstance();
@@ -27,7 +29,6 @@ public class JWTHandler extends Throwable {
         ObjectMapper objectMapper = new ObjectMapper();
         String email = objectMapper.writer().writeValueAsString(user.getEmail());
         String rolesMapping = objectMapper.writer().writeValueAsString(roles);
-        System.out.println("USER!!!   !!!  ::: " + user);
 
         return JWT.create()
                 .withIssuer("ProbeDeluxe")
@@ -37,10 +38,9 @@ public class JWTHandler extends Throwable {
                 .sign(Algorithm.HMAC512(key));
     }
     //TODO Make custom exceptions
-    public static boolean validate(String s) throws NotAuthorizedException {
+    public static boolean validate(String s) throws NotAuthorizedException{
 
         JWTVerifier verifier = JWT.require(Algorithm.HMAC512(key)).build();
-
         DecodedJWT jwt = JWT.decode(s);
 
         if(jwt.getExpiresAt().before(new Date())){

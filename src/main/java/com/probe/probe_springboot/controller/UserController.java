@@ -8,7 +8,6 @@ package com.probe.probe_springboot.controller;
 
 import com.probe.probe_springboot.model.Role;
 import com.probe.probe_springboot.model.User;
-import com.probe.probe_springboot.repositories.UserRepository;
 import com.probe.probe_springboot.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -52,6 +51,11 @@ public class UserController {
         return userServiceImpl.getUsers();
     }
 
+    @GetMapping("/{email}")
+    public User getUser(@PathVariable String email) {
+        return userServiceImpl.findByEmail(email);
+    }
+
     @GetMapping("/roles")
     public List<Role> getAllRoles() {
         return userServiceImpl.getAllRoles();
@@ -74,9 +78,15 @@ public class UserController {
         userServiceImpl.addRoleToUser(userEmail, roleName);
     }
 
-    @PutMapping("/{id}")
-    public User updateUser(@RequestBody User userToUpdate, @PathVariable String id) {
-        return userServiceImpl.updateUser(userToUpdate, id);
+    @PutMapping("/{email}")
+    public User updateUser(@RequestBody User userToUpdate, @PathVariable String email) {
+        return userServiceImpl.updateUser(userToUpdate, email);
+
+    }
+
+    @DeleteMapping("/{email}")
+    public boolean deleteUser(@PathVariable String email) {
+        return userServiceImpl.deleteUser(email);
     }
 
 }

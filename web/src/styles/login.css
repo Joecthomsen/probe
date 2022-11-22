@@ -8,7 +8,7 @@
   align-items: center;
   width: 60vw;
 }
-.login-page .login-header {
+.login-page .loading-spinner-wrapper {
   color: black;
   padding: 20px 0px 0px 0px;
   margin-bottom: 0px;
@@ -39,7 +39,7 @@
   padding: 0px;
   border-radius: 40px;
   padding: 10px;
-  height: 70px;
+  height: 64px;
 }
 .facebook-button:hover {
   background-color: #e1f6ff;
@@ -117,4 +117,12 @@
 .create-new-user button:hover {
   background-color: #006c9b;
   cursor: pointer;
-}/*# sourceMappingURL=login.css.map */
+}
+
+.loading-spinner-wrapper {
+  align-content: center;
+  justify-content: center;
+  padding: 20% 0 0 45%;
+}
+
+/*# sourceMappingURL=login.css.map */
