@@ -4,10 +4,14 @@ import com.probe.probe_springboot.exceptions.EditTrials.TrialIdNotFound;
 import com.probe.probe_springboot.model.EditTrial;
 import com.probe.probe_springboot.repositories.EditTrialRepository;
 import com.probe.probe_springboot.service.EditTrialService;
+import io.micrometer.core.instrument.MeterRegistry;
+import io.micrometer.core.instrument.simple.SimpleMeterRegistry;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.ActiveProfiles;
 
@@ -29,6 +33,7 @@ public class EditTrialServiceTest {
 
     @InjectMocks
     private EditTrialService ets;
+
 
     private EditTrial makeET() {
         List<String> list = new ArrayList<>();
