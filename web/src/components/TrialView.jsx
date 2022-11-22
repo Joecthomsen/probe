@@ -4,8 +4,21 @@ import {runInAction} from "mobx";
 import * as React from "react";
 import {useState} from "react";
 import {useEffect} from "react";
+import {authenticationStore} from "../stores/AuthenticationStore";
+import jwtDecode from "jwt-decode";
 
 const TrialView = () => {
+    const token = authenticationStore.getParameterByName("token");
+    if (token != null && token.length > 0) {
+        //Store token and remove token from url
+        authenticationStore.setToken(token);
+        authenticationStore.setLoggedIn(true);
+        authenticationStore.setUsername(jwtDecode(authenticationStore.getToken()).email)
+
+        window.location.replace("#/trials");
+        console.log(authenticationStore.getToken());
+    }
+
     const [cardList, setCardList] = useState();
     const url = "https://probe.joecthomsen.dk/viewTrials/getAll";
     useEffect(() => { try {

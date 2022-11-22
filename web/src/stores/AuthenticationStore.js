@@ -90,6 +90,7 @@ class AuthenticationStore {
                     console.log(this.getToken())
                 }
             }*/).then((res) => res.text()).then((res) => {
+
             console.log(res);
             window.location.replace(res)
         })
