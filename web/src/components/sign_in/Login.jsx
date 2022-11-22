@@ -51,6 +51,7 @@ const Login = () => {
                 loadingStore.setLoading(false)
             }
         }catch (e){
+            window.alert("Could not sign in with credentials - try again.")
             console.log("ERROR!")
             loadingStore.setLoading(false)
         }
