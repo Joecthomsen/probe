@@ -50,7 +50,7 @@ public class CampusNetService {
 
     public String dtuCasJwtToken(JsonNode node) throws JsonProcessingException {
         List<Role> rolleliste = new ArrayList<>();
-        rolleliste.add(new Role("MEDICAL_USER"));
+        rolleliste.add(new Role("CLINICAL_USER"));
         try {
             return JWTHandler.generateJwtToken(new LoginData(node.get("authenticationSuccess").get("root").get("norEduPerson").get("mail").toString()), rolleliste);
         } catch (Exception e) {

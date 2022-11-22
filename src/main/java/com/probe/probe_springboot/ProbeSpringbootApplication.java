@@ -50,7 +50,7 @@ public class ProbeSpringbootApplication implements ApplicationRunner {
 			userService.saveRole(new Role("ADMIN_USER"));
 
 			userService.saveUser(User.builder().email("TestUser").password("test").build());
-			userService.addRoleToUser("TestUser","CLINICAL_USER");
+			userService.addRoleToUser("TestUser","MEDICAL_USER");
 		};
 	}
 
