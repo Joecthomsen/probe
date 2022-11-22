@@ -6,7 +6,6 @@ const loginUrl = process.env.NODE_ENV === 'development' ?  "http://localhost:808
 
 export const loginRequest = async (email, password) => {
     try {
-        console.log("Started")
         loadingStore.setLoading(true)
         const requestOptions = {
             method: 'POST',
@@ -16,26 +15,28 @@ export const loginRequest = async (email, password) => {
         };
         const response = await fetch(loginUrl, requestOptions);
         const data = await response.json();
-        loadingStore.setLoading(false)
-        console.log("Finished")
-        console.log("DATA: " + JSON.stringify(data))
-        userStore.setEmail(data.email)
-        userStore.setSex(data.sex)
-        userStore.setFirstName(data.firstName)
-        userStore.setLastName(data.lastName)
-        userStore.setDob(data.dob)
-        userStore.setWeight(data.weight)
-        userStore.setChronicDisease(data.chronicDisease)
-        userStore.setEmail(data.email)
-        userStore.setPhoneNumber(data.phoneNumber)
-        userStore.setStreetName(data.streetName)
-        userStore.setDoorNumber(data.doorNumber)
-        userStore.setZipCode(data.zipCode)
-        userStore.setCity(data.city)
-        userStore.setCountry(data.country)
-        userStore.setRole(data.roles)
-        authenticationStore.setLoggedIn(true)
-        authenticationStore.setToken(data.token)
+        if(data.token.length > 0) {
+            loadingStore.setLoading(false)
+            console.log("Finished")
+            console.log("DATA: " + JSON.stringify(data))
+            userStore.setEmail(data.email)
+            userStore.setSex(data.sex)
+            userStore.setFirstName(data.firstName)
+            userStore.setLastName(data.lastName)
+            userStore.setDob(data.dob)
+            userStore.setWeight(data.weight)
+            userStore.setChronicDisease(data.chronicDisease)
+            userStore.setEmail(data.email)
+            userStore.setPhoneNumber(data.phoneNumber)
+            userStore.setStreetName(data.streetName)
+            userStore.setDoorNumber(data.doorNumber)
+            userStore.setZipCode(data.zipCode)
+            userStore.setCity(data.city)
+            userStore.setCountry(data.country)
+            userStore.setRole(data.roles)
+            authenticationStore.setLoggedIn(true)
+            authenticationStore.setToken(data.token)
+        }
     }catch (error){
         console.log("error: " + error.response)
     }
