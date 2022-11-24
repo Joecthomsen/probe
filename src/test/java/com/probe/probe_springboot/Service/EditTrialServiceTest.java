@@ -4,10 +4,14 @@ import com.probe.probe_springboot.exceptions.EditTrials.TrialIdNotFound;
 import com.probe.probe_springboot.model.EditTrial;
 import com.probe.probe_springboot.repositories.EditTrialRepository;
 import com.probe.probe_springboot.service.EditTrialService;
+import io.micrometer.core.instrument.MeterRegistry;
+import io.micrometer.core.instrument.simple.SimpleMeterRegistry;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.springframework.boot.test.autoconfigure.actuate.metrics.AutoConfigureMetrics;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.ActiveProfiles;
 
@@ -21,14 +25,18 @@ import static org.mockito.internal.verification.VerificationModeFactory.times;
 
 
 @DataJpaTest
+@AutoConfigureMetrics
 @ActiveProfiles("test")
-public class EditTrialServiceTest {
+public class EditTrialServiceTest  {
+
+    @Mock
+    static MeterRegistry meterRegistry = new SimpleMeterRegistry();
 
     @Mock
     private EditTrialRepository editTrialRepository;
 
     @InjectMocks
-    private EditTrialService ets;
+    private static EditTrialService ets;
 
     private EditTrial makeET() {
         List<String> list = new ArrayList<>();
@@ -38,12 +46,16 @@ public class EditTrialServiceTest {
         return new EditTrial(null, "header", "Title", 0, 1, "Streetname", 213, "City", "Country", "cardDescription", "longDescription", "Vek", "date", 2, "starttime", "12", list, "1");
     }
 
+    @BeforeAll
+    static void setup(){
+        ets = new EditTrialService(meterRegistry);
+    }
+
     @DisplayName("EditTrial Service save method test")
     @Test
     public void shouldInsertTrial() {
         EditTrial et = makeET();
         given(editTrialRepository.save(et)).willReturn(et);
-
         EditTrial dbet = ets.saveEditTrial(et);
 
         assertThat(dbet).isNotNull();

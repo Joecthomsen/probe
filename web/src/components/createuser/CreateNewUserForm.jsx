@@ -3,6 +3,8 @@ import {userStore} from "../../stores/UserStore"
 import { observer } from "mobx-react-lite"
 import SelectUserType from "./SelectUserType";
 import {useNavigate} from "react-router-dom";
+import {loadingStore} from "../../stores/LoadingStore";
+import "../../styles/login.css"
 
 const CreateUserFormOne = () => {
 
@@ -160,81 +162,85 @@ const CreateUserFormOne = () => {
         }
 
         try {
+            loadingStore.setLoading(true)
             const response = await fetch(addUserUrl, requestOptions)
             const data = await response.data
+            loadingStore.setLoading(false)
             console.log("response: " + JSON.stringify( data ))
             await navigate("/")
             window.alert("New user " + userStore.firstName + " has been created\nPlease sign in with your credential")
-        }catch (error) {
+        }
+        catch (error) {
             console.log("error: " + error)
         }
+
     }
 
     return (
         //Check if the user wants to create a medical user
         !userStore.createMedicalUser
+        ?
+        firstForm
             ?
-            firstForm
-                ?
-                <form className="create-user-form">
-                    <SelectUserType/>
-                    <label htmlFor="Create a new user"></label>
-                    <input onChange={handleEmail} name="email" type="text" placeholder= "Email"/>
-                    <input onChange={handlePassword} type="password" placeholder="Password"/>
-                    <input onChange={handleRepeatPassword} type="password" placeholder="Repeat password"/>
-                    <input onChange={handleFirstName} type="text" placeholder="First name(s)"/>
-                    <input onChange={handleLastName} type="text" placeholder="Last name"/>
-                    <label htmlFor="user-birthday">Day of Birth:</label>
-                    <input onChange={handleBirthday} type="date" data-testid="create-user-dob" name="Birthday" id="user-birthday" placeholder= ""/>
-                    <input onChange={handleCity} type="text" placeholder="City"/>
-                    <input onChange={handleRegion} type="text" placeholder= "Region"/>
-                    <input onChange={handleCountry} type="text" placeholder="Country"/>
-                    <button onClick={checkFirstForm} >Next</button>
-                    {userStore.error ? <p data-testid="error-msg" className="error-messages">{userStore.errorMsg}</p> : <p></p>}
-                </form>
-                :
-                <div>
-                    <div className="gender-selection">
-                        <p>Select gender</p>
-                        <div className="radio-buttons">
-                            <div className="form-check">
-                                <input data-testid="radio-button-male" className="form-check-input" type="radio" onChange={handleGender} name="exampleRadios" id="exampleRadios1" value="male" />
-                                <label data-testid="radio-label-male" className="form-check-label" htmlFor="exampleRadios1">
-                                    Male
-                                </label>
-                            </div>
-                            <div className="form-check">
-                                <input data-testid="radio-button-female" className="form-check-input" type="radio" onChange={handleGender} name="exampleRadios" id="exampleRadios2" value="female"/>
-                                <label data-testid="radio-button-female" className="form-check-label" htmlFor="exampleRadios2">
-                                    Female
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    <form className="create-user-form">
-                        <label htmlFor="Create a new user"></label>
-                        <input onChange={handleDiagnose} type="text" placeholder="Your diagnose (If any)"></input>
-                        <input onChange={handleWeight} type="text" placeholder="Weight"></input>
-                        <input onChange={handlePhoneNumber} type="text" placeholder="Phone number"></input>
-                        <button onClick={submitUser}>Create User</button>
-                        {userStore.error ? <p data-testid="error-msg" className="error-messages">{userStore.errorMsg}</p> : <p></p>}
-                    </form>
-                </div>
-            : //If the user wants to create a medical user
             <form className="create-user-form">
                 <SelectUserType/>
                 <label htmlFor="Create a new user"></label>
-                <input onChange={handleEmail} name="email" type="text" placeholder="Email"/>
+                <input onChange={handleEmail} name="email" type="text" placeholder= "Email"/>
                 <input onChange={handlePassword} type="password" placeholder="Password"/>
                 <input onChange={handleRepeatPassword} type="password" placeholder="Repeat password"/>
                 <input onChange={handleFirstName} type="text" placeholder="First name(s)"/>
-                <input onChange={handleLastName} type="text" placeholder= "Last name"/>
+                <input onChange={handleLastName} type="text" placeholder="Last name"/>
+                <label htmlFor="user-birthday">Day of Birth:</label>
+                <input onChange={handleBirthday} type="date" data-testid="create-user-dob" name="Birthday" id="user-birthday" placeholder= ""/>
                 <input onChange={handleCity} type="text" placeholder="City"/>
-                <input onChange={handleRegion} type="text" placeholder="Region"/>
-                <input onChange={handleCountry} type="text" placeholder= "Country"/>
-                <button onClick={submitUser} >Create User</button>
+                <input onChange={handleRegion} type="text" placeholder= "Region"/>
+                <input onChange={handleCountry} type="text" placeholder="Country"/>
+                <button onClick={checkFirstForm} >Next</button>
                 {userStore.error ? <p data-testid="error-msg" className="error-messages">{userStore.errorMsg}</p> : <p></p>}
             </form>
+            :
+            <div>
+                <div className="gender-selection">
+                    <p>Select gender</p>
+                    <div className="radio-buttons">
+                        <div className="form-check">
+                            <input data-testid="radio-button-male" className="form-check-input" type="radio" onChange={handleGender} name="exampleRadios" id="exampleRadios1" value="male" />
+                            <label data-testid="radio-label-male" className="form-check-label" htmlFor="exampleRadios1">
+                                Male
+                            </label>
+                        </div>
+                        <div className="form-check">
+                            <input data-testid="radio-button-female" className="form-check-input" type="radio" onChange={handleGender} name="exampleRadios" id="exampleRadios2" value="female"/>
+                            <label data-testid="radio-button-female" className="form-check-label" htmlFor="exampleRadios2">
+                                Female
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <form className="create-user-form">
+                    <label htmlFor="Create a new user"></label>
+                    <input onChange={handleDiagnose} type="text" placeholder="Your diagnose (If any)"></input>
+                    <input onChange={handleWeight} type="text" placeholder="Weight"></input>
+                    <input onChange={handlePhoneNumber} type="text" placeholder="Phone number"></input>
+                    <button onClick={submitUser}>Create User</button>
+                    {userStore.error ? <p data-testid="error-msg" className="error-messages">{userStore.errorMsg}</p> : <p></p>}
+                </form>
+            </div>
+        : //If the user wants to create a medical user
+        <form className="create-user-form">
+            <SelectUserType/>
+            <label htmlFor="Create a new user"></label>
+            <input onChange={handleEmail} name="email" type="text" placeholder="Email"/>
+            <input onChange={handlePassword} type="password" placeholder="Password"/>
+            <input onChange={handleRepeatPassword} type="password" placeholder="Repeat password"/>
+            <input onChange={handleFirstName} type="text" placeholder="First name(s)"/>
+            <input onChange={handleLastName} type="text" placeholder= "Last name"/>
+            <input onChange={handleCity} type="text" placeholder="City"/>
+            <input onChange={handleRegion} type="text" placeholder="Region"/>
+            <input onChange={handleCountry} type="text" placeholder= "Country"/>
+            <button onClick={submitUser} >Create User</button>
+            {userStore.error ? <p data-testid="error-msg" className="error-messages">{userStore.errorMsg}</p> : <p></p>}
+        </form>
     );
 }
 
