@@ -10,8 +10,11 @@ import java.util.List;
 @Service
 public class UserPreferenceService {
 
-    @Autowired
-    private UserPreferencesRepository userPreferencesRepository;
+
+    private final UserPreferencesRepository userPreferencesRepository;
+    public UserPreferenceService(UserPreferencesRepository userPreferencesRepository) {
+        this.userPreferencesRepository = userPreferencesRepository;
+    }
 
     public UserPreferencesModel saveUserPreferences(UserPreferencesModel userPreferencesModel) {
         try {
