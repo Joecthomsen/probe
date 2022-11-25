@@ -27,6 +27,7 @@ function TableEntry({ label, data, isEditable, onChange, name }) {
   );
 }
 
+// Modified Modal from https://mui.com/material-ui/react-modal/
 function ModalDelete({ open, close, fullName, mail, deleteUser }) {
   const style = {
     position: 'absolute',
