@@ -14,9 +14,11 @@ $card-link-learn-more-hover-color: #00ad09;
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
+  width: 100vw;
+  height: 100vh;
 }
 .filter-box{
-  flex: 2;
+  width:20%;
 
   .filter-list{
     list-style-type: none;
@@ -28,7 +30,7 @@ $card-link-learn-more-hover-color: #00ad09;
   }
 }
 .trials-box{
-  flex: 10;
+  width:80%;
 }
 
 .studycard-container-large{
