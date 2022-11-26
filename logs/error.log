@@ -501,3 +501,6 @@ com.auth0.jwt.exceptions.JWTDecodeException: The token was expected to have 3 pa
 	at java.lang.Thread.run(Thread.java:833) ~[?:?]
 2022-17-22 19:17:29.056 [main] ERROR com.probe.probe_springboot.ProbeSpringbootApplication - Oops! We have an Error. OK
 2022-17-22 19:17:29.057 [main] FATAL com.probe.probe_springboot.ProbeSpringbootApplication - Damn! Fatal error. Please fix me.
+2022-55-26 11:55:22.550 [main] ERROR com.probe.probe_springboot.ProbeSpringbootApplication - Oops! We have an Error. OK
+2022-55-26 11:55:22.550 [main] FATAL com.probe.probe_springboot.ProbeSpringbootApplication - Damn! Fatal error. Please fix me.
+2022-55-26 11:55:22.551 [main] ERROR com.probe.probe_springboot.ProbeSpringbootApplication - Dame, I'm working!
