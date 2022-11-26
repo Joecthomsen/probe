@@ -3,6 +3,8 @@ package com.probe.probe_springboot.service;
 import com.probe.probe_springboot.exceptions.EditTrials.*;
 import com.probe.probe_springboot.model.EditTrial;
 import com.probe.probe_springboot.repositories.EditTrialRepository;
+import io.micrometer.core.instrument.MeterRegistry;
+import lombok.Builder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,13 +13,21 @@ import java.util.List;
 
 @Service
 public class EditTrialService {
+    final
+    MeterRegistry meterRegistry;
+    //Meter Prometheus commented out, because tests failed
 
     @Autowired
     private EditTrialRepository editTrialRepository;
 
+    public EditTrialService(MeterRegistry meterRegistry) {
+        this.meterRegistry = meterRegistry;
+    }
+
     public EditTrial saveEditTrial(EditTrial editTrial) {
 
         try {
+            meterRegistry.counter("total_upload_trial_attempts").increment(1);
             return editTrialRepository.save(editTrial);
         } catch (Exception e) {
             e.printStackTrace();
@@ -36,6 +46,7 @@ public class EditTrialService {
     public String deleteEditTrialByID(Integer id) {
         try {
             editTrialRepository.deleteById(id);
+            meterRegistry.counter("total_trials_deleted").increment(1);
             return "Deleted: " + id;
         } catch (Exception e) {
             e.printStackTrace();
@@ -45,6 +56,7 @@ public class EditTrialService {
 
     public EditTrial updateEditTrial(EditTrial editTrial) {
         if (editTrialRepository.findById(editTrial.getId()).isPresent()) {
+            meterRegistry.counter("total_update_trial_attempts").increment(1);
             return editTrialRepository.save(editTrial);
         } else {
             throw new TriaINotFound("Trial not found.");
@@ -53,6 +65,8 @@ public class EditTrialService {
 
     public List<EditTrial> getEditTrialByOwnerID(String ownerID) {
         List<EditTrial> list = editTrialRepository.findByOwnerID(ownerID);
+        meterRegistry.counter("total_getTrials_attempts_from_" + ownerID).increment(1);
+        meterRegistry.counter("total_getTrialsByOwnerid_attempt").increment(1);
         if (list.isEmpty()) {
             return null;
             //throw new OwnerIDNotFound("OwnerID: " + ownerID + " not found.");

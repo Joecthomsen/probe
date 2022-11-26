@@ -15,8 +15,11 @@ import java.util.List;
 public class UserPreferencesController {
 
 
-    @Autowired
-    UserPreferenceService userPreferenceService;
+    private final UserPreferenceService userPreferenceService;
+
+    public UserPreferencesController(UserPreferenceService userPreferenceService) {
+        this.userPreferenceService = userPreferenceService;
+    }
 
     @GetMapping("/getByOwnerMail/{ownerMail}")
     public List<AUserPreference> getPreferences(@PathVariable String ownerMail){
@@ -27,7 +30,6 @@ public class UserPreferencesController {
     public List<AUserPreference> getPreferences(@PathVariable Long ID){
         return userPreferenceService.getUserPreferencesByOwnID(ID);
     }
-
 
     @PostMapping("/add")
     public UserPreferencesModel createPreferencesForOwner (@RequestBody List<AUserPreference> preferences, String ownerMail ){

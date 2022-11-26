@@ -11,6 +11,23 @@ import Button from "@mui/material/Button";
 
 const UserProfile = () => {
 
+   /* const [allPreferences, setAllPreferences] = React.useState([]);
+    const [preferences, setPreferences] = React.useState([]);
+    const [possiblePreferences, setPossiblePreferences] = React.useState([]);
+
+    React.useEffect(async () => {
+        setPreferences(await API.getUserPreferences());
+        setAllPreferences(await API.geAllPreferences());
+    }, []);
+
+    React.useEffect(async () => {
+        const usersPrefArray = preferences.map(value => value.pref)
+        const posPrefArray = allPreferences.filter(value => usersPrefArray.indexOf(value.pref) === -1);
+        setPossiblePreferences(posPrefArray);
+    }, [allPreferences, preferences]);
+
+
+    */
 
     function persistPrefsInDB() {      // TODO implement it
           alert("not implemented yet")
@@ -35,7 +52,7 @@ const UserProfile = () => {
 
                 </Grid>
                 <Grid xs={12} md={12} >
-                    <PreferenceArray id={"prefArray"} />
+                    <PreferenceArray  id={"prefArray"} />
                 </Grid>
                 <Grid xs={12} md={12}>
                     <PreferenceAdder />

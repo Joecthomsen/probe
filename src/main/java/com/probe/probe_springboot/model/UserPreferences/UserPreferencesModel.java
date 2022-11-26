@@ -20,7 +20,7 @@ public class UserPreferencesModel {
     private Long ID;
     private String ownerMail;  // a foreign key
     private boolean active;  // could be changed to status and use an enum instead
-    @OneToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<AUserPreference> myPreferences = new java.util.ArrayList<>();
 
     public UserPreferencesModel(String ownerMail, List<AUserPreference> preferences, boolean active) {
