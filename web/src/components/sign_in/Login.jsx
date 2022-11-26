@@ -3,6 +3,10 @@ import {authenticationStore} from "../../stores/AuthenticationStore";
 import {useNavigate} from "react-router-dom";
 import jwtDecode from "jwt-decode";
 import {EditTrialStoreOBJ} from "../../stores/EditTrialStore";
+import {loadingStore} from "../../stores/LoadingStore";
+
+const url = process.env.NODE_ENV === 'development' ? "http://localhost:8080/authentication/validate/" : "https:/probe.joecthomsen.dk/authentication/validate/"; //Check if dev environment
+
 
 const setUsername = (event) => {
     authenticationStore.setUsername(event.target.value)
@@ -17,15 +21,41 @@ const Login = () => {
 
     const HandleSubmit = async (e) => {
         await authenticationStore.doLogin(e)
-        /*setTimeout(() => { console. log("Hello, Sleep!") }, 3000);*/
-        const token = jwtDecode(authenticationStore.getToken() )
-        if (token.roles.includes("CLINICAL_USER")){
-            navigate('/userProfile')
+        const token = authenticationStore.getToken() === null ? "0" : jwtDecode(authenticationStore.getToken() )
+        const validateTokenUrl = url+authenticationStore.getToken()
+        console.log("TOKEN: " + validateTokenUrl)
+        loadingStore.setLoading(true)
+        const requestOptions = {
+            method: 'POST',
+            mode: 'cors',
+            headers: { 'Content-Type': 'application/json' },
+        };
+        try {
+            loadingStore.setLoading(true)
+            const response = await fetch(validateTokenUrl, requestOptions);
+            const data = await response.json();
+            loadingStore.setLoading(false)
+            console.log("Token : " + data)
+            if(data){
+                console.log("Inside if")
+                if (token.roles.includes("CLINICAL_USER")){
+                    navigate('/userProfile')
+                }
+                else {
+                    EditTrialStoreOBJ.setOwnerID(authenticationStore.loginData.email)
+                    navigate('/edittrials')
+                }
+            }
+            else{
+                window.alert("Could not sign in with credentials - try again.")
+                loadingStore.setLoading(false)
+            }
+        }catch (e){
+            window.alert("Could not sign in with credentials - try again.")
+            console.log("ERROR!")
+            loadingStore.setLoading(false)
         }
-        else{
-            EditTrialStoreOBJ.setOwnerID(authenticationStore.loginData.email)
-            navigate('/edittrials')
-        }
+
         //console.log("Finished!! " + JSON.stringify(userStore.getRole().pop().roleName ))
 
         // if (userStore.getRole().pop().roleName === "MEDICAL_USER"){
