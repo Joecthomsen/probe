@@ -8,7 +8,6 @@ import Slider from '@mui/material/Slider';
 import MenuItem from "@mui/material/MenuItem";
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import {grey,indigo,purple} from "@mui/material/colors";
 
 function valuetext(value) {
     return `${value} years`;
