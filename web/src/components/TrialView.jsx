@@ -6,9 +6,11 @@ import {useState} from "react";
 import {useEffect} from "react";
 import {authenticationStore} from "../stores/AuthenticationStore";
 import jwtDecode from "jwt-decode";
+import cardData from "../api/clinical_trial_api_mock";
 
 const TrialView = () => {
     const token = authenticationStore.getParameterByName("token");
+    const studies = cardData.clinicalTrials;
     if (token != null && token.length > 0) {
         //Store token and remove token from url
         authenticationStore.setToken(token);
@@ -42,24 +44,28 @@ const TrialView = () => {
                                                 country={element.county}
                                                 city={element.city}
                                                 description={element.longDescription}/>)
-                    })));
+                    })))
                     //console.log(cardList);
-                })))
+                    if (cardList === undefined) {
+                        setCardList((studies.map((element, index) => {
+                            return (<StudyCardLarge key={index}
+                                                    header={element.header}
+                                                    title={element.title}
+                                                    country={element.county}
+                                                    city={element.city}
+                                                    description={element.longDescription}/>)
+                        })));
+                    }
+                }))
+        )
 
     } catch (e) {
         console.log("No data found");
     } }, []);
 
-    if (cardList !== undefined) {
-        return (
-            <div className="trials-box">
-                <ul>{cardList}</ul>
-            </div>
-        );
-    }
     return (
-        <div>
-            <h1>No data available</h1>
+        <div className="trials-box">
+            <ul>{cardList}</ul>
         </div>
     );
 };
