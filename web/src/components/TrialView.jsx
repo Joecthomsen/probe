@@ -10,7 +10,6 @@ import cardData from "../api/clinical_trial_api_mock";
 
 const TrialView = () => {
     const token = authenticationStore.getParameterByName("token");
-    const studies = cardData.clinicalTrials;
     if (token != null && token.length > 0) {
         //Store token and remove token from url
         authenticationStore.setToken(token);
@@ -37,7 +36,7 @@ const TrialView = () => {
             async (response) => await response.json().then(
                 (json) => runInAction(async () => {
                     //console.log(json);
-                    setCardList((await json.map((element, index) => {
+                    const lst = setCardList((await json.map((element, index) => {
                         return (<StudyCardLarge key={index}
                                                 header={element.header}
                                                 title={element.title}
@@ -45,8 +44,8 @@ const TrialView = () => {
                                                 city={element.city}
                                                 description={element.longDescription}/>)
                     })))
-                    //console.log(cardList);
-                    if (cardList === undefined) {
+                    const studies = cardData.clinicalTrials;
+                    if (lst === undefined) {
                         setCardList((studies.map((element, index) => {
                             return (<StudyCardLarge key={index}
                                                     header={element.header}
