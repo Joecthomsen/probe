@@ -154,7 +154,7 @@ const CreateUserFormOne = () => {
                 streetName: userStore.streetName,
                 doorNumber: userStore.doorNumber,
                 zipCode: userStore.zipCode,
-                city: userStore.zipCode,
+                city: userStore.city,
                 region: userStore.region,
                 country: userStore.country,
                 roles: role

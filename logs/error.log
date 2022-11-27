@@ -519,3 +519,9 @@ com.auth0.jwt.exceptions.JWTDecodeException: The token was expected to have 3 pa
 2022-53-27 12:53:11.299 [main] ERROR com.probe.probe_springboot.ProbeSpringbootApplication - Oops! We have an Error. OK
 2022-53-27 12:53:11.299 [main] FATAL com.probe.probe_springboot.ProbeSpringbootApplication - Damn! Fatal error. Please fix me.
 2022-53-27 12:53:11.299 [main] ERROR com.probe.probe_springboot.ProbeSpringbootApplication - Dame, I'm working!
+2022-17-27 13:17:01.177 [main] ERROR com.probe.probe_springboot.ProbeSpringbootApplication - Oops! We have an Error. OK
+2022-17-27 13:17:01.178 [main] FATAL com.probe.probe_springboot.ProbeSpringbootApplication - Damn! Fatal error. Please fix me.
+2022-17-27 13:17:01.178 [main] ERROR com.probe.probe_springboot.ProbeSpringbootApplication - Dame, I'm working!
+2022-32-27 13:32:45.854 [main] ERROR com.probe.probe_springboot.ProbeSpringbootApplication - Oops! We have an Error. OK
+2022-32-27 13:32:45.854 [main] FATAL com.probe.probe_springboot.ProbeSpringbootApplication - Damn! Fatal error. Please fix me.
+2022-32-27 13:32:45.854 [main] ERROR com.probe.probe_springboot.ProbeSpringbootApplication - Dame, I'm working!
