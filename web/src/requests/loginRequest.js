@@ -20,7 +20,7 @@ export const loginRequest = async (email, password) => {
             console.log("Finished")
             console.log("DATA: " + JSON.stringify(data))
             userStore.setEmail(data.email)
-            userStore.setSex(data.sex)
+            userStore.setGender(data.sex)
             userStore.setFirstName(data.firstName)
             userStore.setLastName(data.lastName)
             userStore.setDob(data.dob)
