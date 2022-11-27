@@ -504,3 +504,18 @@ com.auth0.jwt.exceptions.JWTDecodeException: The token was expected to have 3 pa
 2022-55-26 11:55:22.550 [main] ERROR com.probe.probe_springboot.ProbeSpringbootApplication - Oops! We have an Error. OK
 2022-55-26 11:55:22.550 [main] FATAL com.probe.probe_springboot.ProbeSpringbootApplication - Damn! Fatal error. Please fix me.
 2022-55-26 11:55:22.551 [main] ERROR com.probe.probe_springboot.ProbeSpringbootApplication - Dame, I'm working!
+2022-12-26 12:12:53.073 [main] ERROR com.probe.probe_springboot.ProbeSpringbootApplication - Oops! We have an Error. OK
+2022-12-26 12:12:53.074 [main] FATAL com.probe.probe_springboot.ProbeSpringbootApplication - Damn! Fatal error. Please fix me.
+2022-12-26 12:12:53.074 [main] ERROR com.probe.probe_springboot.ProbeSpringbootApplication - Dame, I'm working!
+2022-44-27 12:44:16.507 [main] ERROR com.probe.probe_springboot.ProbeSpringbootApplication - Oops! We have an Error. OK
+2022-44-27 12:44:16.507 [main] FATAL com.probe.probe_springboot.ProbeSpringbootApplication - Damn! Fatal error. Please fix me.
+2022-44-27 12:44:16.507 [main] ERROR com.probe.probe_springboot.ProbeSpringbootApplication - Dame, I'm working!
+2022-45-27 12:45:47.236 [main] ERROR com.probe.probe_springboot.ProbeSpringbootApplication - Oops! We have an Error. OK
+2022-45-27 12:45:47.236 [main] FATAL com.probe.probe_springboot.ProbeSpringbootApplication - Damn! Fatal error. Please fix me.
+2022-45-27 12:45:47.236 [main] ERROR com.probe.probe_springboot.ProbeSpringbootApplication - Dame, I'm working!
+2022-51-27 12:51:05.579 [main] ERROR com.probe.probe_springboot.ProbeSpringbootApplication - Oops! We have an Error. OK
+2022-51-27 12:51:05.579 [main] FATAL com.probe.probe_springboot.ProbeSpringbootApplication - Damn! Fatal error. Please fix me.
+2022-51-27 12:51:05.580 [main] ERROR com.probe.probe_springboot.ProbeSpringbootApplication - Dame, I'm working!
+2022-53-27 12:53:11.299 [main] ERROR com.probe.probe_springboot.ProbeSpringbootApplication - Oops! We have an Error. OK
+2022-53-27 12:53:11.299 [main] FATAL com.probe.probe_springboot.ProbeSpringbootApplication - Damn! Fatal error. Please fix me.
+2022-53-27 12:53:11.299 [main] ERROR com.probe.probe_springboot.ProbeSpringbootApplication - Dame, I'm working!
