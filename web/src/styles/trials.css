@@ -4,10 +4,11 @@
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
+  width: 100vw;
 }
 
 .filter-box {
-  flex: 2;
+  width: 20%;
 }
 .filter-box .filter-list {
   list-style-type: none;
@@ -19,7 +20,7 @@
 }
 
 .trials-box {
-  flex: 10;
+  width: 80%;
 }
 
 .studycard-container-large {

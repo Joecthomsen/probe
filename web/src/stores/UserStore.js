@@ -78,12 +78,13 @@ class UserStore{
         this.country = country
     }
     setGender(gender){
-        this.gender = gender
+        this.sex = gender
     }
 
-    setSex(value) {
+/*    setSex(value) {
         this.sex = value;
-    }
+        console.log("")
+    }*/
 
     setPhoneNumber(value) {
         this.phoneNumber = value;
@@ -127,6 +128,7 @@ class UserStore{
             lastName: this.lastName,
             password: this.password,
             weight: null,
+            sex: this.sex,
             chronicDisease: null,
             email: this.email,
             phoneNumber: null,
