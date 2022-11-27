@@ -23,6 +23,7 @@ const Login = () => {
         await authenticationStore.doLogin(e)
         const token = authenticationStore.getToken() === null ? "0" : jwtDecode(authenticationStore.getToken() )
         const validateTokenUrl = url+authenticationStore.getToken()
+        console.log("aut chekc: " + validateTokenUrl)
         console.log("TOKEN: " + validateTokenUrl)
         loadingStore.setLoading(true)
         const requestOptions = {
@@ -37,22 +38,24 @@ const Login = () => {
             loadingStore.setLoading(false)
             console.log("Token : " + data)
             if(data){
-                console.log("Inside if")
+                console.log("Inside if!!")
                 if (token.roles.includes("CLINICAL_USER")){
+                    console.log("if once more")
                     navigate('/userProfile')
                 }
                 else {
+                    console.log("else")
                     EditTrialStoreOBJ.setOwnerID(authenticationStore.loginData.email)
                     navigate('/edittrials')
                 }
             }
             else{
-                window.alert("Could not sign in with credentials - try again.")
+                window.alert("Could not sign in with credentials - try again. code : 01")
                 loadingStore.setLoading(false)
             }
         }catch (e){
-            window.alert("Could not sign in with credentials - try again.")
-            console.log("ERROR!")
+            window.alert("Could not sign in with credentials - try again. code: 02")
+            console.log("ERROR! : " + e)
             loadingStore.setLoading(false)
         }
 
