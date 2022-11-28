@@ -1,7 +1,7 @@
 import { TextField, Button, Typography, Box } from "@mui/material";
 import React, { useState } from "react";
-import ApiMock from "../../api/admin_login_mock";
 import { useNavigate } from "react-router-dom";
+import adminApi from "../../requests/adminLogin";
 
 function Login() {
   const navigate = useNavigate();
@@ -20,14 +20,16 @@ function Login() {
   };
 
   const onClick = () => {
-    var canLogin = ApiMock.login(username, password);
-    if (canLogin) {
-      navigate("/admin-page");
-    } else {
-      setUsername("");
-      setPassword("");
-      setError("Wrong username or password");
-    }
+    adminApi.login(username, password).then((token) => {
+      if (token !== "") {
+        localStorage.setItem("token", token);
+        navigate("/admin-page");
+      } else {
+        setUsername("");
+        setPassword("");
+        setError("Wrong username or password");
+      }
+    });
   };
 
   return (
