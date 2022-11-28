@@ -5,16 +5,15 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Collection;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Table(name = "AUSERPREFERENCE")
 public class AUserPreference {
 
     @Id
@@ -22,4 +21,6 @@ public class AUserPreference {
     private Long ID;
     private String preferenceName;
     private String choice;
+
+
 }

@@ -33,18 +33,22 @@ public class UserPreferencesServiceTest {
     @InjectMocks
     private UserPreferenceService userPrefService;
 
+    private String firstMail =  "first@mail.test";
+    private String secondMail =  "second@mail.test";
+
+
     private UserPreferencesModel CreateASingleUserPreferences() {
 
         String ownerMail = "a@b.dk";
         List<AUserPreference> list = new ArrayList<>();
 
         for (long i = 1; i < 5; i++) {
-            AUserPreference aUserPreference = new AUserPreference(null,"pref" + i, "choice" + i);
+            AUserPreference aUserPreference = new AUserPreference(null, "pref" + i, "choice" + i );
             AUserPreference savedUserPreference = aUserPreferenceRepository.save(aUserPreference);
             list.add(savedUserPreference);
         }
 
-        return new UserPreferencesModel(null, ownerMail, list);
+        return new UserPreferencesModel(ownerMail, list, true);
     }
 
 
@@ -56,7 +60,15 @@ public class UserPreferencesServiceTest {
 
         UserPreferencesModel savedUserPrefModel = userPrefService.saveUserPreferences(userPrefModel);
 
-        assertThat(savedUserPrefModel).isNotNull();
+        assertThat(savedUserPrefModel).isEqualTo(userPrefModel);
+    }@Test
+
+    public void canFindByOwnerMail() {
+        UserPreferencesModel userPrefModel = CreateASingleUserPreferences();
+        given(userPreferencesRepository.save(userPrefModel)).willReturn(userPrefModel);
+
+        UserPreferencesModel savedUserPrefModel = userPrefService.saveUserPreferences(userPrefModel);
+
         assertThat(savedUserPrefModel).isEqualTo(userPrefModel);
     }
 

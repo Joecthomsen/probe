@@ -4,7 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.lang.NonNull;
 
 public interface AUserPreferenceRepository extends JpaRepository<AUserPreference, String> {
-
     AUserPreference findByID(@NonNull Long ID);
 
 }

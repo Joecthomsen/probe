@@ -4,7 +4,7 @@ import {loginRequest} from '../requests/loginRequest'
 class AuthenticationStore {
     webUrl = process.env.NODE_ENV === 'development' ? "http://localhost:8080/campusnet/login" : "https://probe.joecthomsen.dk/campusnet/login"; //Check if dev environment
 
-
+    //loading = false;
     loggedIn = false;
     token = null;
     loginData = {
@@ -23,7 +23,6 @@ class AuthenticationStore {
     async doLogin(e) {
         e.preventDefault()
         await loginRequest(this.loginData.email, this.loginData.password)
-
     }
 
     setUsername(userName) {
@@ -50,6 +49,14 @@ class AuthenticationStore {
         return this.token
     }
 
+    setLoading(loading){
+        this.loading = loading;
+    }
+
+    getLoading(){
+        return this.loading;
+    }
+
     getParameterByName(name, url) {
         if (!url) {
             url = window.location.href;
@@ -63,21 +70,29 @@ class AuthenticationStore {
     }
 
     dtucasFetch() {
-        fetch(this.webUrl, {
-            method: 'GET',
-            mode: 'cors',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
+        let url = this.webUrl + "2";
+        fetch(url, {
+                method: 'GET',
+                mode: 'cors',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                }
             }
-        }).then(() => {
-            const token = this.getParameterByName("token");
-            if (token != null && token.length > 0) {
-                //Store token and redirect to baseURL
-                this.setToken(token)
-                console.log(token)
-                window.location.replace("/");
-            }
+
+            /*).then(() => {
+                const token = this.getParameterByName("token");
+                if (token != null && token.length > 0) {
+                    //Store token and redirect to baseURL
+                    this.setToken(token)
+                    window.location.replace("#/trials");
+                    console.log(token)
+                    console.log(this.getToken())
+                }
+            }*/).then((res) => res.text()).then((res) => {
+
+            console.log(res);
+            window.location.replace(res)
         })
     }
 

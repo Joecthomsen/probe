@@ -10,8 +10,11 @@ import java.util.List;
 @Service
 public class UserPreferenceService {
 
-    @Autowired
-    private UserPreferencesRepository userPreferencesRepository;
+
+    private final UserPreferencesRepository userPreferencesRepository;
+    public UserPreferenceService(UserPreferencesRepository userPreferencesRepository) {
+        this.userPreferencesRepository = userPreferencesRepository;
+    }
 
     public UserPreferencesModel saveUserPreferences(UserPreferencesModel userPreferencesModel) {
         try {
@@ -31,7 +34,7 @@ public class UserPreferenceService {
     }
 
     public UserPreferencesModel addUserPreferencesToOwnerMail( String ownerMail, List<AUserPreference> preferences) {
-        UserPreferencesModel newModel = new UserPreferencesModel(ownerMail, preferences);
+        UserPreferencesModel newModel = new UserPreferencesModel(ownerMail, preferences, true);
         try {
             return saveUserPreferences(newModel);
         } catch (Exception e) {

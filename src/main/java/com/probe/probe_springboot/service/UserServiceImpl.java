@@ -28,7 +28,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public User saveUser(User user) throws UserAlreadyExists {
 
-        // String encodedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 
         User userTest = userRepository.findByEmail(user.getEmail());

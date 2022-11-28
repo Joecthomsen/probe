@@ -14,9 +14,10 @@ $card-link-learn-more-hover-color: #00ad09;
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
+  width: 100vw;
 }
 .filter-box{
-  flex: 2;
+  width:20%;
 
   .filter-list{
     list-style-type: none;
@@ -28,7 +29,7 @@ $card-link-learn-more-hover-color: #00ad09;
   }
 }
 .trials-box{
-  flex: 10;
+  width:80%;
 }
 
 .studycard-container-large{
@@ -93,13 +94,25 @@ $card-link-learn-more-hover-color: #00ad09;
     text-align: justify
   }
 
-  .links{
+  .links {
     display: flex;
-    padding: 1% 0px 0px 90%;
-    color: $card-link-learn-more-color;
-    &:hover{
-      color: $card-link-learn-more-hover-color;
-      cursor: pointer;
+    .join-button{
+      height:60px;
+      width:100px;
+      flex:1;
+      margin-top: 1%;
+      padding: 1% 0px 0px 0px;
+    }
+
+    .link-button {
+      flex:1;
+      padding: 1% 0px 0px 80%;
+      color: $card-link-learn-more-color;
+
+      &:hover {
+        color: $card-link-learn-more-hover-color;
+        cursor: pointer;
+      }
     }
   }
 }

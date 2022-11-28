@@ -8,6 +8,7 @@ import com.probe.probe_springboot.authentication.LoginData;
 import com.probe.probe_springboot.model.Role;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
@@ -22,19 +23,25 @@ public class CampusNetService {
     public JsonNode getDTUCASUser(String ticket) throws JsonProcessingException {
         RestTemplate restTemplate = new RestTemplate();
 
-        String URI = "https://auth.dtu.dk/dtu/servicevalidate?service=http://localhost:8080/campusnet/redirect&ticket=" + ticket;
+        String URI = "https://auth.dtu.dk/dtu/servicevalidate?service=https://probe.joecthomsen.dk/campusnet/redirect&ticket=" + ticket;
+        //String URI = "https://auth.dtu.dk/dtu/servicevalidate?service=http://localhost:8080/campusnet/redirect&ticket=" + ticket;
 
-        HttpHeaders headers = new HttpHeaders();
-        headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
-        headers.add("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36");
+        try {
+            HttpHeaders headers = new HttpHeaders();
+            headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
+            headers.add("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36");
 
-        HttpEntity<String> entity = new HttpEntity<>("parameters", headers);
-        ResponseEntity<?> result =
-                restTemplate.exchange(URI, HttpMethod.GET, entity, String.class);
+            HttpEntity<String> entity = new HttpEntity<>("parameters", headers);
+            ResponseEntity<?> result =
+                    restTemplate.exchange(URI, HttpMethod.GET, entity, String.class);
 
-        XmlMapper xmlMapper = new XmlMapper();
+            XmlMapper xmlMapper = new XmlMapper();
 
-        return xmlMapper.readTree(Objects.requireNonNull(result.getBody()).toString());
+            return xmlMapper.readTree(Objects.requireNonNull(result.getBody()).toString());
+        } catch (RestClientException | JsonProcessingException e) {
+            e.printStackTrace();
+            throw new RestClientException("DTU_CAS AuthenticationServer ERROR");
+        }
     }
 
     public boolean validateDTUToken(JsonNode node) {
@@ -43,7 +50,7 @@ public class CampusNetService {
 
     public String dtuCasJwtToken(JsonNode node) throws JsonProcessingException {
         List<Role> rolleliste = new ArrayList<>();
-        rolleliste.add(new Role("MEDICAL_USER"));
+        rolleliste.add(new Role("CLINICAL_USER"));
         try {
             return JWTHandler.generateJwtToken(new LoginData(node.get("authenticationSuccess").get("root").get("norEduPerson").get("mail").toString()), rolleliste);
         } catch (Exception e) {

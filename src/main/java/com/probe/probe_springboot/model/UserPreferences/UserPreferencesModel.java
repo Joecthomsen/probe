@@ -13,19 +13,20 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "UserPreferences")
+@Table(name = "USERPREFERENCES")
 public class UserPreferencesModel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long ID;
     private String ownerMail;  // a foreign key
+    private boolean active;  // could be changed to status and use an enum instead
+    @ManyToMany(fetch = FetchType.EAGER)
+    private List<AUserPreference> myPreferences = new java.util.ArrayList<>();
 
-    @OneToMany
-    private List<AUserPreference> myPreferences;
-
-    public UserPreferencesModel(String ownerMail, List<AUserPreference> preferences) {
+    public UserPreferencesModel(String ownerMail, List<AUserPreference> preferences, boolean active) {
         this.ownerMail = ownerMail;
         this.myPreferences = preferences;
+        this.active = active;
     }
 
 }

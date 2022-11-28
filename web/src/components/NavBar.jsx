@@ -28,6 +28,7 @@ const NavBar = () => {
                 <h1 className="nav-bar-logo">PROBE</h1>
                 <div className="nav-bar-links-container">
                     <Link to='/' className="nav-bar-links">Home</Link>
+                    <Link to='/trials' className="nav-bar-links">Browse</Link>
                     <Link to='/about' className="nav-bar-links">About</Link>
                     <Link to='/login' className="nav-bar-links">Login</Link>
                 </div>

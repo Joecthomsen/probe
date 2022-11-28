@@ -7,14 +7,11 @@ import * as React from 'react';
 
 const PreferenceArray = () => {
 
-
-    React.useState(() => userPreferences.getUserPrefFromBackend())
-
     const preferences = userPreferences.thisUsersPreferences
-    const constructedArray = []
 
     function editPref(index) {
-        console.log("clicked edit on: ", index)
+        alert("not implemeted yet")
+        console.log("clicked edit on: ", index)    // TODO make it actual possible to change stuff
     }
 
     function deletePref(index) {
@@ -22,45 +19,36 @@ const PreferenceArray = () => {
         console.log("clicked delete on: ", index)
     }
 
-    if (preferences) {
+    if (userPreferences.thisUsersPreferences.length > 0 ) {
+    return (
+            <div>
+                {preferences && preferences.map((preference, index) => {
+                    return <Grid key={`${index}consArray`} container spacing={2} border={1}>
+                        <Grid xs={12} md={3}>
+                            <p>  { preference.pref.text } </p>
+                        </Grid>
+                        <Grid xs={12} md={3} borderLeft={1} borderRight={1}>
+                            <p>  { preference.choice.text } </p>
+                        </Grid>
+                        <Grid xs={12} md={3}>
+                            <Button variant={"contained"} onClick={() => deletePref(index)}> Delete Preference </Button>
+                        </Grid>
+                        <Grid xs={12} md={3} borderLeft={1} borderRight={1}>
+                            <Button variant={"contained"} onClick={() => editPref(index)}> Edit Preference </Button>
+                        </Grid>
+                    </Grid>
+                })}
 
-        preferences.forEach((preference, index) => {
-             constructedArray.push(
+            </div>
 
-            <Grid key={`${index}consArray`} container spacing={2} border={1}>
-                <Grid xs={12} md={3}>
-                   <p>  {preference.key} </p>
-                 </Grid>
-                <Grid xs={12} md={3} borderLeft={1} borderRight={1}>
-                  <p>  {preference.value} </p>
-                </Grid>
-                <Grid xs={12} md={3}>
-                    <Button variant={"contained"} onClick={() => deletePref(index)} > Delete Preference  </Button>
-                </Grid>
-                <Grid xs={12} md={3} borderLeft={1} borderRight={1}>
-                    <Button variant={"contained"} onClick={() => editPref(index)} > Edit Preference  </Button>
-                </Grid>
-            </Grid>
-             )
-        })
+    )
     } else {
-        constructedArray.push(
-            <Grid key={`GuarderdArray`} container spacing={2} border={1}>
-                <Grid xs={12} md={3}>
-                    <p>  No preferences yet </p>
-                </Grid>
-                <Grid xs={12} md={3} borderLeft={1} borderRight={1}>
-                    <p>  Add preference below </p>
-                </Grid>
-            </Grid>
-
-
+        return (
+        <div>
+        <p> No preferences choosen </p>
+        </div>
         )
     }
-
-    return (
-        constructedArray
-    )
 
 }
 

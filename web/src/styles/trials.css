@@ -4,10 +4,11 @@
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
+  width: 100vw;
 }
 
 .filter-box {
-  flex: 2;
+  width: 20%;
 }
 .filter-box .filter-list {
   list-style-type: none;
@@ -19,7 +20,7 @@
 }
 
 .trials-box {
-  flex: 10;
+  width: 80%;
 }
 
 .studycard-container-large {
@@ -77,10 +78,20 @@
 }
 .studycard-container-large .links {
   display: flex;
-  padding: 1% 0px 0px 90%;
+}
+.studycard-container-large .links .join-button {
+  height: 60px;
+  width: 100px;
+  flex: 1;
+  margin-top: 1%;
+  padding: 1% 0px 0px 0px;
+}
+.studycard-container-large .links .link-button {
+  flex: 1;
+  padding: 1% 0px 0px 80%;
   color: #00ff0d;
 }
-.studycard-container-large .links:hover {
+.studycard-container-large .links .link-button:hover {
   color: #00ad09;
   cursor: pointer;
 }
