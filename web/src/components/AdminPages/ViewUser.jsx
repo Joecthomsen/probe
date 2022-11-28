@@ -1,9 +1,10 @@
 import React from "react";
-import { TextField, Box, Button } from "@mui/material";
+import { TextField, Box, Button, Typography, Modal } from "@mui/material";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
 import userApi from "../../requests/users";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 function TableEntry({ label, data, isEditable, onChange, name }) {
   return (
@@ -26,29 +27,42 @@ function TableEntry({ label, data, isEditable, onChange, name }) {
   );
 }
 
-/*
-function Modal({ open, handleModalClose }) {
+// Modified Modal from https://mui.com/material-ui/react-modal/
+function ModalDelete({ open, close, fullName, mail, deleteUser }) {
+  const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
+    boxShadow: 24,
+    p: 4,
+  };
   return (
     <div>
       <Modal
         open={open}
-        onClose={handleModalClose}
+        onClose={close}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box>
+        <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
-            Text in a modal
+            DELETING USER!
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+            Are you sure you want to delete {fullName} with mail {mail}?
           </Typography>
+          <Button onClick={deleteUser}>Delete</Button> 
+          <Button onClick={close}>Cancel</Button> 
         </Box>
       </Modal>
     </div>
   );
 }
-*/
+
 const emptyUser = {
   email: "",
   sex: "",
@@ -71,8 +85,10 @@ function ViewUser() {
   const [isEditable, setIsEditable] = useState(false);
   const [btnText, setBtnText] = useState("Edit");
   const [user, setUser] = useState(emptyUser);
-  //const [modelOpen, setModalOpen] = useState(false);
-
+  const [modalOpen, setModalOpen] = useState(false);
+  const navigate = useNavigate();
+  const fullName = user.firstName + " " + user.lastName;
+  
   const handleChange = (e) => {
     setUser({
       ...user,
@@ -86,12 +102,16 @@ function ViewUser() {
     });
   }, [mail.id]);
 
-  //const handleModalOpen = () => setModalOpen(true);
-  //const handleModalClose = () => setModalOpen(false);
+  const handleModalOpen = () => setModalOpen(true);
+  const handleModalClose = () => setModalOpen(false);
+
+  const deleteUser = () => {
+    userApi.deleteUser(user.email);
+    navigate("/admin-page/");
+  }
 
   const btnDeleteClick = (e) => {
-    //handleModalOpen();
-    //userApi.deleteUser(user.email);
+    handleModalOpen();
   };
 
   const editBtnOnClick = (e) => {
@@ -99,7 +119,6 @@ function ViewUser() {
       userApi.updateUser(user);
       setIsEditable(false);
       setBtnText("Edit");
-      // TODO: Save edited data
     } else {
       setIsEditable(true);
       setBtnText("Save");
@@ -107,7 +126,9 @@ function ViewUser() {
   };
 
   return (
+    
     <div style={{ width: "100%" }}>
+      <ModalDelete open={modalOpen} close={handleModalClose} fullName={fullName} mail={user.email} deleteUser={deleteUser}/>
       <Box
         sx={{
           display: "flex",

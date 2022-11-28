@@ -5,17 +5,17 @@ const baseUrl =
 
 class UserApi {
   async getUsers() {
-    const response = await fetch(baseUrl +"/user/all", {
+    const response = await fetch(baseUrl + "/user/all", {
       method: "GET",
       headers: {
         "Content-type": "application/json",
-        "Accept": "application/json",
+        Accept: "application/json",
       },
-    }).then(res => {
-        if(!res.ok) {
-            return Promise.reject({status:res.status});
-        }
-        return res.json()
+    }).then((res) => {
+      if (!res.ok) {
+        return Promise.reject({ status: res.status });
+      }
+      return res.json();
     });
     return await response;
   }
@@ -26,11 +26,11 @@ class UserApi {
       headers: {
         "Content-type": "application/json",
       },
-    }).then(res => {
-      if(!res.ok) {
-        return Promise.reject({status:res.status})
+    }).then((res) => {
+      if (!res.ok) {
+        return Promise.reject({ status: res.status });
       }
-      return res.json();
+      // return res.json();
     });
     return await response;
   }
@@ -42,10 +42,10 @@ class UserApi {
       headers: {
         "Content-type": "application/json",
       },
-      body: JSON.stringify(user)
-    }).then(res => {
-      if(!res.ok) {
-        return Promise.reject({status:res.status})
+      body: JSON.stringify(user),
+    }).then((res) => {
+      if (!res.ok) {
+        return Promise.reject({ status: res.status });
       }
       return res.json();
     });
@@ -58,16 +58,15 @@ class UserApi {
       headers: {
         "Content-type": "application/json",
       },
-    }).then(res => {
-      if(!res.ok) {
-        return Promise.reject({status:res.status})
+    }).then((res) => {
+      if (!res.ok) {
+        return Promise.reject({ status: res.status });
       }
       return res.json();
     });
     return await response;
-  } 
+  }
 }
-
 
 const userApi = new UserApi();
 export default userApi;
