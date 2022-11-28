@@ -6,21 +6,18 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Collection;
 
+
+@Entity
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-@Table(name = "AUSERPREFERENCE")
-public class AUserPreference {
+public class Pref {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long ID;
-    private String preferenceName;
-    private String choice;
-
-
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    String id;
+    String text;
+    String choiceType;  // This is a key to another table to get list of choices
 }
