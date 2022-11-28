@@ -1,5 +1,6 @@
 package com.probe.probe_springboot.authentication;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.probe.probe_springboot.exceptions.NotAuthorizedException;
 import com.probe.probe_springboot.model.Admin;
 import com.probe.probe_springboot.service.AdminService;
@@ -19,13 +20,13 @@ public class AdminLoginController {
     @CrossOrigin(origins = "*")
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody Admin admin) {
-        System.out.println("password");
+        String token = null;
         try {
-            adminService.authenticate(admin.getUsername(), admin.getPassword());
-        } catch (NotAuthorizedException | NotFoundException e) {
+            token = adminService.authenticate(admin.getUsername(), admin.getPassword());
+        } catch (NotAuthorizedException | NotFoundException | JsonProcessingException e) {
             return new ResponseEntity<>("Login failed", HttpStatus.UNAUTHORIZED);
         }
-        return new ResponseEntity<>("", HttpStatus.OK);
+        return new ResponseEntity<>(token, HttpStatus.OK);
     }
 
     @GetMapping("/hello")
