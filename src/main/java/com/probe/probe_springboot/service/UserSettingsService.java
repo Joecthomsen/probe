@@ -9,7 +9,6 @@ import java.util.List;
 @Service
 public class UserSettingsService {
 
-
     private final UserSettingsRepository userSettingsRepository;
     public UserSettingsService(UserSettingsRepository userSettingsRepository) {
         this.userSettingsRepository = userSettingsRepository;
@@ -32,8 +31,8 @@ public class UserSettingsService {
         return userSettingsRepository.findByOwnerMail(ownerMail);
     }
 
-    public UserSettings addUserPreferencesToOwnerMail( String ownerMail, List<PrefChoicePair> prefChoicePairs) {
-        UserSettings newModel = new UserSettings(ownerMail, prefChoicePairs, true);
+    public UserSettings addUserPreferencesToOwnerMail( String ownerMail, List<String> prefChoicePairIds) {
+        UserSettings newModel = new UserSettings(null, ownerMail,true, prefChoicePairIds);
         try {
             return saveUserSettings(newModel);
         } catch (Exception e) {
@@ -42,22 +41,31 @@ public class UserSettingsService {
         }
     }
 
-    public String deleteById(Long ID) {
+    public String deleteById(String id) {
 
         try {
-            userSettingsRepository.deleteById(ID.toString());
-            return "deleted" + ID;
+            userSettingsRepository.deleteById(id);
+            return "deleted" + id;
 
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException("Unable to delete");
         }
     }
-    public UserSettings updateUserPreferences(UserSettings userPreferencesModel) {
-        if (userSettingsRepository.findById(userPreferencesModel.getId()) != null) {
-            return userSettingsRepository.save(userPreferencesModel);
+    public UserSettings updateUserSettings(UserSettings userSettings) {
+        if (userSettingsRepository.findById(userSettings.getId()) != null) {
+            return userSettingsRepository.save(userSettings);
         }
-        else throw new RuntimeException("UserPreference not found");
+        else throw new RuntimeException("UserSettings not found");
+    }
+
+    public List<UserSettings> getAll() {
+        try {
+            return userSettingsRepository.findAll();
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("Unable to delete");
+        }
     }
 }
 

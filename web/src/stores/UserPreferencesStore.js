@@ -4,7 +4,7 @@ import {userStore} from "./UserStore";
 
 class UserPreferencesStore{
 
-    webUrl = process.env.NODE_ENV === 'development' ? "http://localhost:8080/userPreferences" : "https://probe.joecthomsen.dk/userPreferences"; //Check if dev environment
+    webUrl = process.env.NODE_ENV === 'development' ? "http://localhost:8080/userSettings" : "https://probe.joecthomsen.dk/userSettings";
 
     // Variables
 
@@ -24,7 +24,6 @@ class UserPreferencesStore{
         {type: "numbers_51020304050", choices: [{id: "five", text: '5' }, { id: "ten", text: '10' }, { id: "twenty", text: '20' }, { id: "thirty", text: '30' }, {id: "forty", text: '40' }, { id: "fifty", text: '50' }, {id: "dontcare", text: 'dont care'}]},
         {type: "language", choices: [{ id: "da", text: 'Danish' }, { id: "en", text: 'English' }, {id: "sp", text: 'Spanish' }, { id: "ch", text: 'Chinese' }, {id: "ot", text: 'Other'}, { text: 'dont care' }]}
     ];
-
 
 
     // Constructor
@@ -78,7 +77,7 @@ class UserPreferencesStore{
         console.log("this.thisUsersPreferences is: ", this.thisUsersPreferences)
     }
 
-    async getUserPrefFromBackend() {
+    async getUsersPrefFromBackend() {
         if (userStore.email != null) {
             let url = this.webUrl + "/getByOwnerMail/" + userStore.email;
             try {
@@ -89,7 +88,7 @@ class UserPreferencesStore{
                         'Accept': 'application/json',
                         'Content-Type': 'application/json',
                         'token': authenticationStore.getToken(),
-                        'email': "mail"
+                        'email': userStore.getEmail()
                     }
                 })
             } catch (e) {

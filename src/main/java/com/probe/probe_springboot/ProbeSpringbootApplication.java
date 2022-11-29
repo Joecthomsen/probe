@@ -3,8 +3,11 @@ package com.probe.probe_springboot;
 import com.probe.probe_springboot.model.Admin;
 import com.probe.probe_springboot.model.Role;
 import com.probe.probe_springboot.model.User;
+import com.probe.probe_springboot.model.UserPreferences.*;
 import com.probe.probe_springboot.service.AdminServiceImpl;
+import com.probe.probe_springboot.service.PrefAndChoiceService;
 import com.probe.probe_springboot.service.UserServiceImpl;
+import com.probe.probe_springboot.service.UserSettingsService;
 import io.prometheus.client.exporter.HTTPServer;
 import io.prometheus.client.hotspot.DefaultExports;
 import lombok.extern.log4j.Log4j2;
@@ -20,6 +23,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Profile;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.security.crypto.bcrypt.BCrypt;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @EnableJpaRepositories
 @Log4j2
@@ -43,7 +49,7 @@ public class ProbeSpringbootApplication implements ApplicationRunner {
 
 	@Bean
 	@Profile("!test")
-	CommandLineRunner run(UserServiceImpl userService, AdminServiceImpl adminServiceImpl) {
+	CommandLineRunner run(UserServiceImpl userService, AdminServiceImpl adminServiceImpl, UserSettingsService userSettingsService, PrefAndChoiceService prefAndChoiceService) {
 		return args -> {
 			log.error("Dame, I'm working!");
 			// DefaultExports.initialize();
@@ -61,7 +67,40 @@ public class ProbeSpringbootApplication implements ApplicationRunner {
 			admin.setPassword(BCrypt.hashpw("admin", BCrypt.gensalt()));
 			admin.setUsername("admin");
 			adminServiceImpl.addAdmin(admin);
+
+
+			SeedPrefChoiceAndUserSetting(userSettingsService, prefAndChoiceService);
 		};
+	}
+
+	private static void SeedPrefChoiceAndUserSetting(UserSettingsService userSettingsService, PrefAndChoiceService prefAndChoiceService) {
+		ChoiceType choiceTypeYesNo = new ChoiceType();
+		choiceTypeYesNo.setId("yesNo");
+		Choicee choiceYes = new Choicee(choiceTypeYesNo.getId() + "_" + "yes", "yes", choiceTypeYesNo.getId());
+		Choicee choiceNo = new Choicee(choiceTypeYesNo.getId() + "_" + "no", "no", choiceTypeYesNo.getId());
+		prefAndChoiceService.AddChoicee(choiceYes);
+		prefAndChoiceService.AddChoicee(choiceNo);
+		Pref accomByHelper = new Pref("1p", "Need to be accompanied by helper", choiceTypeYesNo.getId());
+		prefAndChoiceService.AddPref(accomByHelper);
+		List<String> yesNoList = new ArrayList<>();
+		yesNoList.add(choiceYes.getId());
+		yesNoList.add(choiceNo.getId());
+		choiceTypeYesNo.setPossibleChoicesId(yesNoList);
+		prefAndChoiceService.AddChoiceType(choiceTypeYesNo);
+
+		PrefChoicePair pcp1 = new PrefChoicePair();
+		pcp1.setChoiceId(choiceNo.getId());
+		pcp1.setPrefId(accomByHelper.getId());
+
+		String pcpId = SettingsHelper.GeneratePCPid(pcp1.getPrefId(), accomByHelper.getChoiceTypeId(), pcp1.getChoiceId());
+		pcp1.setId(pcpId);
+		prefAndChoiceService.AddPrefChoicePair(pcp1);
+
+		List<String> prefChoicPairIdList = new ArrayList<>();
+		prefChoicPairIdList.add(pcp1.getId());
+		String userMail = "TestUser";
+		UserSettings userSettings = new UserSettings(userMail + "_settings", "TestUser", true, prefChoicPairIdList);
+		userSettingsService.saveUserSettings(userSettings);
 	}
 
 	// @Bean
