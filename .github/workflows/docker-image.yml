@@ -49,7 +49,15 @@ jobs:
       - name: sleep 10 seconds
         run: sleep 10s
         shell: bash
+        
+  e2etest-passedtest-deploy:
+    name: Cypress Integration Tests
+    needs: build-and-deploy
+    runs-on: ubuntu-latest
 
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
       - name: Run Cypress
         uses: cypress-io/github-action@v4
         with:
