@@ -46,14 +46,10 @@ jobs:
         run:
           'caprover deploy --caproverUrl=$APP_URL --caproverPassword=${{ secrets.CAPROVER_PASSWORD }} --imageName=$IMAGE_NAME --appName=$APP_NAME'
 
-      - uses: actions/setup-node@v3
-      - name: Wait for deployment is done
-        run: >
-          node ./scripts/waitForDeploymentCompletion.js 
-          appName=test-e2e 
-          password=${{ secrets.CAPROVER_PASSWORD }} 
-          url=https://captain.joecthomsen.dk/ 
-          cwd=node_modules/.bin
+      - name: sleep 10 seconds
+        run: sleep 10s
+        shell: bash
+
       - name: Run Cypress
         uses: cypress-io/github-action@v4
         with:
