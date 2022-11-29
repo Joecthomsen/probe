@@ -1,5 +1,5 @@
 import { TextField, Button, Typography, Box } from "@mui/material";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import adminApi from "../../requests/adminLogin";
 
@@ -9,6 +9,11 @@ function Login() {
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
   const [btnDisabled, setBtnDisabled] = useState(true);
+
+
+  useEffect(() => {
+    setBtnDisabled(username !== "" && password !== "");
+  }, [btnDisabled]);
 
   const onChange = (event) => {
     if (event.target.id === "username") {
