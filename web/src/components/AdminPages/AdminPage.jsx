@@ -20,7 +20,7 @@ const Btn = (row) => {
         onClick(row);
       }}
     >
-      Veiw
+      View
     </Button>
   );
 };
@@ -67,7 +67,7 @@ const researcherCols = [
   { field: "city", headerName: "City", flex: 2 },
   { field: "zipCode", headerName: "Zip", flex: 2 },
   { field: "region", headerName: "Region", flex: 2 },
-  { field: "country", headerName: "Country", flex: 2 }, 
+  { field: "country", headerName: "Country", flex: 2 },
 ];
 
 function ListView({ data, columns }) {

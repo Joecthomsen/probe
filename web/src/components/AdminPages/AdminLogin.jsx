@@ -8,12 +8,11 @@ function Login() {
   const [error, setError] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
-  const [btnDisabled, setBtnDisabled] = useState(true);
-
+  const [btnDisabled, setBtnDisabled] = useState(false);
 
   useEffect(() => {
-    setBtnDisabled(username !== "" && password !== "");
-  }, [btnDisabled]);
+    setBtnDisabled(username === "" || password === "");
+  }, [password, username]);
 
   const onChange = (event) => {
     if (event.target.id === "username") {
@@ -21,10 +20,9 @@ function Login() {
     } else {
       setPassword(event.target.value);
     }
-    setBtnDisabled(username === "" || password === "");
   };
 
-  const onClick = () => {
+  const onClick = (e) => {
     adminApi.login(username, password).then((token) => {
       if (token !== "") {
         localStorage.setItem("token", token);
