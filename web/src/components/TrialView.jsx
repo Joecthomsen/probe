@@ -35,28 +35,24 @@ const TrialView = () => {
         ).then(
             async (response) => await response.json().then(
                 (json) => runInAction(async () => {
-                    //console.log(json);
-                    const lst = setCardList((await json.map((element, index) => {
+                    const studies = cardData.clinicalTrials;
+                    setCardList(await json.map((element, index) => {
                         return (<StudyCardLarge key={index}
                                                 header={element.header}
                                                 title={element.title}
                                                 country={element.county}
                                                 city={element.city}
                                                 description={element.longDescription}/>)
-                    })))
-                    const studies = cardData.clinicalTrials;
-                    if (lst === undefined) {
-                        setCardList((studies.map((element, index) => {
-                            return (<StudyCardLarge key={index}
-                                                    header={element.header}
-                                                    title={element.title}
-                                                    country={element.county}
-                                                    city={element.city}
-                                                    description={element.longDescription}/>)
-                        })));
-                    }
-                }))
-        )
+                    }).concat(studies.map((element, index) => {
+                                return (<StudyCardLarge key={index}
+                                                        header={element.header}
+                                                        title={element.title}
+                                                        country={element.county}
+                                                        city={element.city}
+                                                        description={element.longDescription}/>)
+                            })))
+
+                })))
 
     } catch (e) {
         console.log("No data found");
