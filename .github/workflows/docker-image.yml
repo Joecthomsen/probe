@@ -32,7 +32,7 @@ jobs:
       - name: install caprover cli
         run: npm install -g caprover
       # Trigger deploy on Caprover instance Test
-      - name: Deploy app
+      - name: Deploy testapp
         env:
           APP_NAME: 'test-e2e'
           APP_URL: 'https://joecthomsen.dk/'
@@ -65,6 +65,9 @@ jobs:
           config: baseUrl=https://test-e2e.joecthomsen.dk/
 
       # Trigger deploy on Caprover instance
+       # Install caprover cli
+      - name: install caprover cli
+        run: npm install -g caprover
       - name: Deploy app
         env: 
           APP_NAME: 'probe'
