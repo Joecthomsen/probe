@@ -7,7 +7,7 @@ on:
   workflow_dispatch:      
 
 jobs:
-  build-and-deploy:
+  build-test-and-deploy:
     runs-on: ubuntu-latest
     steps:
       # Initialize Emumlation
@@ -31,6 +31,34 @@ jobs:
       # Install caprover cli
       - name: install caprover cli
         run: npm install -g caprover
+      # Trigger deploy on Caprover instance Test
+      - name: Deploy app
+        env:
+          APP_NAME: 'test-e2e'
+          APP_URL: 'https://joecthomsen.dk/'
+          IMAGE_NAME: 'joecthomsen/docker-app:${{github.run_number}}'
+          DB_HOST: '${{secrets.DB_HOST}}'
+          DB_NAME: '${{secrets.DB_NAME}}'
+          DB_PASSWORD: '${{secrets.DB_PASSWORD}}'
+          DB_PORT: '${{secrets.DB_PORT}}'
+          DB_USERNAME: '${{secrets.DB_USERNAME}}'
+          SERVER_PORT: '${{secrets.SERVER_PORT}}'
+        run:
+          'caprover deploy --caproverUrl=$APP_URL --caproverPassword=${{ secrets.CAPROVER_PASSWORD }} --imageName=$IMAGE_NAME --appName=$APP_NAME'
+
+      - name: Wait for deployment is done
+        run: >
+          node ./scripts/waitForDeploymentCompletion.js 
+          appName=test-e2e 
+          password=${{ secrets.CAPROVER_PASSWORD }} 
+          url=https://captain.joecthomsen.dk/ 
+          cwd=node_modules/.bin
+      - name: Run Cypress
+        uses: cypress-io/github-action@v4
+        with:
+          working-directory: web/e2e
+          config: baseUrl=https://test-e2e.joecthomsen.dk/
+
       # Trigger deploy on Caprover instance
       - name: Deploy app
         env: 
