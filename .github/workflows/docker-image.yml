@@ -7,7 +7,7 @@ on:
   workflow_dispatch:      
 
 jobs:
-  build-test-and-deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       # Initialize Emumlation
@@ -46,6 +46,7 @@ jobs:
         run:
           'caprover deploy --caproverUrl=$APP_URL --caproverPassword=${{ secrets.CAPROVER_PASSWORD }} --imageName=$IMAGE_NAME --appName=$APP_NAME'
 
+      - uses: actions/setup-node@v3
       - name: Wait for deployment is done
         run: >
           node ./scripts/waitForDeploymentCompletion.js 
