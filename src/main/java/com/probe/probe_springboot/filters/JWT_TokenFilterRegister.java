@@ -15,6 +15,8 @@ public class JWT_TokenFilterRegister {
         registrationBean.setFilter(new JWT_TokenFilter());
         registrationBean.addUrlPatterns("/user/authorize/*");
         registrationBean.addUrlPatterns("/editTrial/*");
+       // registrationBean.addUrlPatterns("/userSettings/*");
+
         return registrationBean;
     }
 

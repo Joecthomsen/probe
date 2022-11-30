@@ -6,21 +6,25 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Collection;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "AUSERPREFERENCE")
-public class AUserPreference {
+@Table(name = "choicee")
+public class Choicee {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long ID;
-    private String preferenceName;
-    private String choice;
+    private Long id;
 
+    private String text;
 
+    private String typeId;
+
+    public Choicee(String text, String typeId) {
+        this.text = text;
+        this.typeId = typeId;
+    }
 }

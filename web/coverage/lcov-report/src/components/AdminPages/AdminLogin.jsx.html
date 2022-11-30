@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">65% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/18</span>
+                <span class='fraction'>13/20</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">66.66% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/6</span>
+                <span class='fraction'>4/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">60% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/3</span>
+                <span class='fraction'>3/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">65% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/18</span>
+                <span class='fraction'>13/20</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -148,13 +148,36 @@
 <a name='L83'></a><a href='#L83'>83</a>
 <a name='L84'></a><a href='#L84'>84</a>
 <a name='L85'></a><a href='#L85'>85</a>
-<a name='L86'></a><a href='#L86'>86</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L86'></a><a href='#L86'>86</a>
+<a name='L87'></a><a href='#L87'>87</a>
+<a name='L88'></a><a href='#L88'>88</a>
+<a name='L89'></a><a href='#L89'>89</a>
+<a name='L90'></a><a href='#L90'>90</a>
+<a name='L91'></a><a href='#L91'>91</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">16x</span>
+<span class="cline-any cline-yes">16x</span>
+<span class="cline-any cline-yes">16x</span>
+<span class="cline-any cline-yes">16x</span>
+<span class="cline-any cline-yes">16x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">16x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">16x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">16x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -164,23 +187,10 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">16x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -234,38 +244,43 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { TextField, Button, Typography, Box } from "@mui/material";
-import React, { useState } from "react";
-import ApiMock from "../../api/admin_login_mock";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import adminApi from "../../requests/adminLogin";
 &nbsp;
-function <span class="fstat-no" title="function not covered" >Login(</span>) {
-  const navigate = <span class="cstat-no" title="statement not covered" >useNavigate();</span>
-  const [error, setError] = <span class="cstat-no" title="statement not covered" >useState("");</span>
-  const [password, setPassword] = <span class="cstat-no" title="statement not covered" >useState("");</span>
-  const [username, setUsername] = <span class="cstat-no" title="statement not covered" >useState("");</span>
-  const [btnDisabled, setBtnDisabled] = <span class="cstat-no" title="statement not covered" >useState(true);</span>
+function Login() {
+  const navigate = useNavigate();
+  const [error, setError] = useState("");
+  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
+  const [btnDisabled, setBtnDisabled] = useState(false);
 &nbsp;
-  const onChange = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(e</span>vent) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    if (event.target.id === "username") {</span>
-<span class="cstat-no" title="statement not covered" >      setUsername(event.target.value);</span>
+  useEffect(() =&gt; {
+    setBtnDisabled(username === "" || password === "");
+  }, [password, username]);
+&nbsp;
+  const onChange = (event) =&gt; {
+    if (event.target.id === "username") {
+      setUsername(event.target.value);
     } else {
-<span class="cstat-no" title="statement not covered" >      setPassword(event.target.value);</span>
-    }
-<span class="cstat-no" title="statement not covered" >    setBtnDisabled(username === "" || password === "");</span>
-  };
-&nbsp;
-  const onClick = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
-    var canLogin = <span class="cstat-no" title="statement not covered" >ApiMock.login(username, password);</span>
-<span class="cstat-no" title="statement not covered" >    if (canLogin) {</span>
-<span class="cstat-no" title="statement not covered" >      navigate("/admin-page");</span>
-    } else {
-<span class="cstat-no" title="statement not covered" >      setUsername("");</span>
-<span class="cstat-no" title="statement not covered" >      setPassword("");</span>
-<span class="cstat-no" title="statement not covered" >      setError("Wrong username or password");</span>
+      setPassword(event.target.value);
     }
   };
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  return (</span>
+  const onClick = <span class="fstat-no" title="function not covered" >(e</span>) =&gt; {
+<span class="cstat-no" title="statement not covered" >    adminApi.login(username, password).then(<span class="fstat-no" title="function not covered" >(t</span>oken) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >      if (token !== "") {</span>
+<span class="cstat-no" title="statement not covered" >        localStorage.setItem("token", token);</span>
+<span class="cstat-no" title="statement not covered" >        navigate("/admin-page");</span>
+      } else {
+<span class="cstat-no" title="statement not covered" >        setUsername("");</span>
+<span class="cstat-no" title="statement not covered" >        setPassword("");</span>
+<span class="cstat-no" title="statement not covered" >        setError("Wrong username or password");</span>
+      }
+    });
+  };
+&nbsp;
+  return (
     &lt;Box
       justifyContent="center"
       alignItems="center"
@@ -325,7 +340,7 @@ export default Login;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2022-11-06T17:56:33.632Z
+                at 2022-11-30T14:52:40.193Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

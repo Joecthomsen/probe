@@ -237,7 +237,13 @@
 <a name='L172'></a><a href='#L172'>172</a>
 <a name='L173'></a><a href='#L173'>173</a>
 <a name='L174'></a><a href='#L174'>174</a>
-<a name='L175'></a><a href='#L175'>175</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L175'></a><a href='#L175'>175</a>
+<a name='L176'></a><a href='#L176'>176</a>
+<a name='L177'></a><a href='#L177'>177</a>
+<a name='L178'></a><a href='#L178'>178</a>
+<a name='L179'></a><a href='#L179'>179</a>
+<a name='L180'></a><a href='#L180'>180</a>
+<a name='L181'></a><a href='#L181'>181</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -257,17 +263,17 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -321,7 +327,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -343,6 +350,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -384,6 +395,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -411,7 +423,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span></td><td class="text"><pre class="prettyprint lang-js">import { makeAutoObservable } from "mobx"
+<span class="cline-any cline-yes">5x</span></td><td class="text"><pre class="prettyprint lang-js">import { makeAutoObservable } from "mobx"
 &nbsp;
 class UserStore{
 &nbsp;
@@ -491,12 +503,13 @@ class UserStore{
         this.country = country
     }
 <span class="fstat-no" title="function not covered" >    se</span>tGender(gender){
-<span class="cstat-no" title="statement not covered" >        this.gender = gender</span>
+<span class="cstat-no" title="statement not covered" >        this.sex = gender</span>
     }
 &nbsp;
-<span class="fstat-no" title="function not covered" >    se</span>tSex(value) {
-<span class="cstat-no" title="statement not covered" >        this.sex = value;</span>
-    }
+/*    setSex(value) {
+        this.sex = value;
+        console.log("")
+    }*/
 &nbsp;
 <span class="fstat-no" title="function not covered" >    se</span>tPhoneNumber(value) {
 <span class="cstat-no" title="statement not covered" >        this.phoneNumber = value;</span>
@@ -516,6 +529,10 @@ class UserStore{
 &nbsp;
     }
 &nbsp;
+&nbsp;
+<span class="fstat-no" title="function not covered" >    ge</span>tEmail(){
+<span class="cstat-no" title="statement not covered" >        return this.email</span>
+    }
 <span class="fstat-no" title="function not covered" >    ge</span>tRole(){
 <span class="cstat-no" title="statement not covered" >        return this.role</span>
     }
@@ -536,6 +553,7 @@ class UserStore{
             lastName: this.lastName,
             password: this.password,
             weight: null,
+            sex: this.sex,
             chronicDisease: null,
             email: this.email,
             phoneNumber: null,
@@ -592,7 +610,7 @@ export const userStore = new UserStore()</pre></td></tr></table></pre>
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2022-11-06T17:56:33.632Z
+                at 2022-11-30T14:52:40.193Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
