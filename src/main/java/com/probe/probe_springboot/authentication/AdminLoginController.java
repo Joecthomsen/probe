@@ -31,4 +31,12 @@ public class AdminLoginController {
         }
         return new ResponseEntity<>(token, HttpStatus.OK);
     }
+
+    // Only for testing purposes
+    @PutMapping("/create")
+    public Admin createAdmin(@RequestBody Admin admin) {
+        var res = adminService.addAdmin(admin);
+        return res;
+    }
+
 }
