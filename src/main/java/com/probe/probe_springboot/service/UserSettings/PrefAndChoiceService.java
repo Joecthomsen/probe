@@ -1,8 +1,10 @@
-package com.probe.probe_springboot.service;
+package com.probe.probe_springboot.service.UserSettings;
 
 import com.probe.probe_springboot.model.UserPreferences.*;
 import com.probe.probe_springboot.repositories.UserPreferences.*;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class PrefAndChoiceService {
@@ -44,6 +46,8 @@ public class PrefAndChoiceService {
         }
     }
 
+
+
     public Pref GetPrefById(Long id) {
         try {
             return prefRepository.getReferenceById(id);
@@ -53,5 +57,8 @@ public class PrefAndChoiceService {
         }
     }
 
+    public List<UserPrefs> FindUsersPrefsByUserSettings(UserSettings userSettings) {
+        return userPrefsRepository.findAllByUserSettings(userSettings);
+    }
 }
 

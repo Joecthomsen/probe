@@ -1,8 +1,8 @@
 package com.probe.probe_springboot.controller;
-
-
+import com.probe.probe_springboot.model.UserPreferences.UserPrefs;
 import com.probe.probe_springboot.model.UserPreferences.UserSettings;
-import com.probe.probe_springboot.service.UserSettingsService;
+import com.probe.probe_springboot.service.UserSettings.PrefAndChoiceService;
+import com.probe.probe_springboot.service.UserSettings.UserSettingsService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,9 +13,11 @@ import java.util.List;
 public class UserSettingsController {
 
     private final UserSettingsService userSettingsService;
+    private final PrefAndChoiceService prefAndChoiceService;
 
-    public UserSettingsController(UserSettingsService userSettingsService) {
+    public UserSettingsController(UserSettingsService userSettingsService, PrefAndChoiceService prefAndChoiceService) {
         this.userSettingsService = userSettingsService;
+        this.prefAndChoiceService = prefAndChoiceService;
     }
 
     @GetMapping("/getAll")
@@ -28,10 +30,18 @@ public class UserSettingsController {
         return userSettingsService.getUserSettingsByOwnID(id);
     }
 
-    @GetMapping("/getByOwnerMail/{ownerMail}")
-    public UserSettings GetUSersPrefChoicesByOwnerMail(@PathVariable String ownerMail) {
+    @GetMapping("/getSettingsByOwnerMail/{ownerMail}")
+    public UserSettings GetUSersSettingsByOwnerMail(@PathVariable String ownerMail) {
         return userSettingsService.getUsersSetttingsByOwnersMail(ownerMail);
     }
+
+    @GetMapping("/getUserPrefsByOwnerMail/{ownerMail}")
+    public List<UserPrefs> GetUSersPrefByOwnerMail(@PathVariable String ownerMail) {
+        UserSettings ownerBySettings = userSettingsService.getUsersSetttingsByOwnersMail(ownerMail);
+        return prefAndChoiceService.FindUsersPrefsByUserSettings(ownerBySettings);
+    }
+
+
 
     @PostMapping("/createUserSettings")
     public UserSettings CreateNewUserSettings(@RequestBody UserSettings userSettings) {

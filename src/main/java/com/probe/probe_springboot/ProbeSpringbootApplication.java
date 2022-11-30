@@ -5,13 +5,10 @@ import com.probe.probe_springboot.model.Role;
 import com.probe.probe_springboot.model.User;
 import com.probe.probe_springboot.model.UserPreferences.*;
 import com.probe.probe_springboot.service.AdminServiceImpl;
-import com.probe.probe_springboot.service.PrefAndChoiceService;
+import com.probe.probe_springboot.service.UserSettings.PrefAndChoiceService;
 import com.probe.probe_springboot.service.UserServiceImpl;
-import com.probe.probe_springboot.service.UserSettingsService;
-import io.prometheus.client.exporter.HTTPServer;
-import io.prometheus.client.hotspot.DefaultExports;
+import com.probe.probe_springboot.service.UserSettings.UserSettingsService;
 import lombok.extern.log4j.Log4j2;
-import org.apache.catalina.startup.Tomcat;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.boot.ApplicationArguments;
@@ -23,9 +20,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Profile;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.security.crypto.bcrypt.BCrypt;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @EnableJpaRepositories
 @Log4j2
@@ -99,8 +93,10 @@ public class ProbeSpringbootApplication implements ApplicationRunner {
 		UserSettings userSettings = new UserSettings("TestUser", true);
 		UserSettings savedSettings = userSettingsService.saveUserSettings(userSettings);
 
-		UserPrefs userPrefs = new UserPrefs(savedSettings, prefAccomByHelper, choiceeNo);
-		var tempUSerPref =  prefAndChoiceService.AddUserPref(userPrefs);
+		UserPrefs userPref1 = new UserPrefs(savedSettings, prefAccomByHelper, choiceeNo);
+		var tempUSerPref =  prefAndChoiceService.AddUserPref(userPref1);
+		UserPrefs userPref2 = new UserPrefs(savedSettings, prefPhysicalWork, choiceeYes);
+		var tempUSerPref2 =  prefAndChoiceService.AddUserPref(userPref2);
 
 
 
