@@ -1,0 +1,69 @@
+--------------------------------|---------|----------|---------|---------|---------------------------------------
+File                            | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s
+--------------------------------|---------|----------|---------|---------|---------------------------------------
+All files                       |   37.94 |    22.72 |   39.57 |   38.61 |                                       
+ src                            |       0 |        0 |       0 |       0 |                                       
+  App.js                        |       0 |      100 |       0 |       0 | 22                                    
+  index.js                      |       0 |      100 |     100 |       0 | 10-31                                 
+  reportWebVitals.js            |       0 |        0 |       0 |       0 | 1-8                                   
+ src/api                        |   22.22 |        0 |       0 |   22.22 | 
+  admin_login_mock.js           |       0 |        0 |       0 |       0 | 1-15
+  clinical_trial_api_mock.js    |     100 |      100 |     100 |     100 | 
+  match_codes_api.js            |     100 |      100 |     100 |     100 | 
+  user_api_mock.js              |       0 |      100 |     100 |       0 | 2
+ src/components                 |   13.22 |    18.18 |   15.78 |   13.44 | 
+  DialogModalTrial.jsx          |   42.85 |       50 |      50 |   42.85 | 11-14,23-29
+  EditTrialDialogContext.jsx    |    23.8 |      100 |    23.8 |    23.8 | 17-35,43-87,107-137
+  Filter.jsx                    |       0 |      100 |       0 |       0 | 13-291
+  Footer.jsx                    |       0 |      100 |       0 |       0 | 1-2
+  Layout.jsx                    |       0 |      100 |       0 |       0 | 2-3
+  NavBar.jsx                    |      40 |    33.33 |      25 |      40 | 10-11,16-17,50-51
+  StudyCard.jsx                 |      20 |        0 |       0 |      20 | 3-8
+  StudyCardLarge.jsx            |       0 |        0 |       0 |       0 | 8-26
+  TrialView.jsx                 |       0 |        0 |       0 |       0 | 11-65
+  UserInputFields.jsx           |       0 |      100 |       0 |       0 | 2-24
+ src/components/AdminPages      |   37.75 |    58.33 |      25 |   38.54 | 
+  AdminLayout.jsx               |       0 |      100 |       0 |       0 | 3-4
+  AdminLogin.jsx                |      65 |    66.66 |      60 |      65 | 26-33
+  AdminPage.jsx                 |   68.57 |       75 |   41.66 |   68.57 | 9-20,34,76,103,107-109
+  NavBar.jsx                    |       0 |      100 |       0 |       0 | 5-26
+  ViewUser.jsx                  |       0 |        0 |       0 |       0 | 10-128
+ src/components/UserPreferences |   11.76 |       25 |    6.25 |   11.76 | 
+  ActivateDeactivateButton.jsx  |   66.66 |      100 |   33.33 |   66.66 | 8,12
+  BasicSelect.jsx               |       0 |        0 |       0 |       0 | 9-40
+  PreferenceAdder.jsx           |       0 |      100 |       0 |       0 | 7-23
+  PreferenceArray.jsx           |       0 |        0 |       0 |       0 | 8-46
+ src/components/createuser      |      53 |    28.94 |   68.42 |      53 | 
+  CreateNewUserForm.jsx         |    44.7 |       25 |    62.5 |    44.7 | 32,44,47,50,53,66-108,117-118,123-174
+  SelectUserType.jsx            |     100 |      100 |     100 |     100 | 
+ src/components/landingPage     |   53.84 |        0 |      50 |   53.84 | 
+  Carousel.jsx                  |     100 |      100 |     100 |     100 | 
+  TrialCard.jsx                 |   14.28 |        0 |       0 |   14.28 | 8-38
+ src/components/sign_in         |   29.72 |     12.5 |      80 |   29.72 | 
+  CreateNewUser.jsx             |     100 |      100 |     100 |     100 | 
+  Login.jsx                     |   25.71 |     12.5 |      75 |   25.71 | 23-59
+ src/pages                      |   28.57 |        0 |   30.76 |   28.57 | 
+  About.jsx                     |       0 |      100 |       0 |       0 | 1-2
+  AdminLogin.jsx                |     100 |      100 |     100 |     100 | 
+  AdminPage.jsx                 |       0 |      100 |       0 |       0 | 4
+  CreateUser.jsx                |       0 |      100 |       0 |       0 | 5-7
+  EditTrials.jsx                |      75 |      100 |   66.66 |      75 | 24
+  Home.jsx                      |     100 |      100 |     100 |     100 | 
+  Login.jsx                     |       0 |        0 |       0 |       0 | 9-10
+  PageNotFound.jsx              |       0 |      100 |       0 |       0 | 1-2
+  UserProfile.jsx               |       0 |      100 |       0 |       0 | 12-36
+  ViewTrials.jsx                |       0 |      100 |       0 |       0 | 5-7
+ src/requests                   |   11.86 |    16.66 |    9.09 |   11.86 | 
+  adminLogin.js                 |      25 |       25 |       0 |      25 | 8-26
+  loginRequest.js               |    6.89 |       25 |       0 |    6.89 | 8-41
+  submitNewUser.js              |       0 |        0 |       0 |       0 | 
+  users.js                      |   13.63 |       10 |    12.5 |   13.63 | 15-67
+ src/stores                     |   57.72 |    19.44 |   57.37 |   59.91 | 
+  AuthenticationStore.js        |      30 |     12.5 |   28.57 |   32.14 | 24-25,37-41,49-95
+  EditTrialStore.js             |   66.93 |       25 |   71.92 |   68.59 | 62-171,179-180,189,197-202
+  HomepageStore.js              |      75 |      100 |      50 |      75 | 16
+  LoadingStore.js               |      60 |      100 |   33.33 |      60 | 16-19
+  UserPreferencesStore.js       |   46.66 |    22.22 |   47.05 |   51.21 | 36-65,71-72,82-96                     
+  UserStore.js                  |   59.37 |    16.66 |   53.84 |   59.37 | 54-69,81-90,109-112,124-154
+  WindowSizeStore.js            |   66.66 |      100 |   33.33 |   66.66 | 16-19
+--------------------------------|---------|----------|---------|---------|---------------------------------------

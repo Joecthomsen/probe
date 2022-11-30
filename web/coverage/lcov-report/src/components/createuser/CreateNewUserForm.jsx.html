@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">45.78% </span>
+                <span class="strong">44.7% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>38/83</span>
+                <span class='fraction'>38/85</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">45.78% </span>
+                <span class="strong">44.7% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>38/83</span>
+                <span class='fraction'>38/85</span>
             </div>
         
             
@@ -303,7 +303,15 @@
 <a name='L238'></a><a href='#L238'>238</a>
 <a name='L239'></a><a href='#L239'>239</a>
 <a name='L240'></a><a href='#L240'>240</a>
-<a name='L241'></a><a href='#L241'>241</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L241'></a><a href='#L241'>241</a>
+<a name='L242'></a><a href='#L242'>242</a>
+<a name='L243'></a><a href='#L243'>243</a>
+<a name='L244'></a><a href='#L244'>244</a>
+<a name='L245'></a><a href='#L245'>245</a>
+<a name='L246'></a><a href='#L246'>246</a>
+<a name='L247'></a><a href='#L247'>247</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -470,8 +478,12 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -548,6 +560,8 @@ import {userStore} from "../../stores/UserStore"
 import { observer } from "mobx-react-lite"
 import SelectUserType from "./SelectUserType";
 import {useNavigate} from "react-router-dom";
+import {loadingStore} from "../../stores/LoadingStore";
+import "../../styles/login.css"
 &nbsp;
 const CreateUserFormOne = () =&gt; {
 &nbsp;
@@ -697,7 +711,7 @@ const CreateUserFormOne = () =&gt; {
                 streetName: userStore.streetName,
                 doorNumber: userStore.doorNumber,
                 zipCode: userStore.zipCode,
-                city: userStore.zipCode,
+                city: userStore.city,
                 region: userStore.region,
                 country: userStore.country,
                 roles: role
@@ -705,81 +719,85 @@ const CreateUserFormOne = () =&gt; {
         }
 &nbsp;
 <span class="cstat-no" title="statement not covered" >        try {</span>
+<span class="cstat-no" title="statement not covered" >            loadingStore.setLoading(true)</span>
             const response = <span class="cstat-no" title="statement not covered" >await fetch(addUserUrl, requestOptions)</span>
             const data = <span class="cstat-no" title="statement not covered" >await response.data</span>
+<span class="cstat-no" title="statement not covered" >            loadingStore.setLoading(false)</span>
 <span class="cstat-no" title="statement not covered" >            console.log("response: " + JSON.stringify( data ))</span>
 <span class="cstat-no" title="statement not covered" >            await navigate("/")</span>
 <span class="cstat-no" title="statement not covered" >            window.alert("New user " + userStore.firstName + " has been created\nPlease sign in with your credential")</span>
-        }catch (error) {
+        }
+        catch (error) {
 <span class="cstat-no" title="statement not covered" >            console.log("error: " + error)</span>
         }
+&nbsp;
     }
 &nbsp;
     return (
         //Check if the user wants to create a medical user
         !userStore.createMedicalUser
+        ?
+        firstForm
             ?
-            firstForm
-                ?
-                &lt;form className="create-user-form"&gt;
-                    &lt;SelectUserType/&gt;
-                    &lt;label htmlFor="Create a new user"&gt;&lt;/label&gt;
-                    &lt;input onChange={handleEmail} name="email" type="text" placeholder= "Email"/&gt;
-                    &lt;input onChange={handlePassword} type="password" placeholder="Password"/&gt;
-                    &lt;input onChange={handleRepeatPassword} type="password" placeholder="Repeat password"/&gt;
-                    &lt;input onChange={handleFirstName} type="text" placeholder="First name(s)"/&gt;
-                    &lt;input onChange={handleLastName} type="text" placeholder="Last name"/&gt;
-                    &lt;label htmlFor="user-birthday"&gt;Day of Birth:&lt;/label&gt;
-                    &lt;input onChange={handleBirthday} type="date" data-testid="create-user-dob" name="Birthday" id="user-birthday" placeholder= ""/&gt;
-                    &lt;input onChange={handleCity} type="text" placeholder="City"/&gt;
-                    &lt;input onChange={handleRegion} type="text" placeholder= "Region"/&gt;
-                    &lt;input onChange={handleCountry} type="text" placeholder="Country"/&gt;
-                    &lt;button onClick={checkFirstForm} &gt;Next&lt;/button&gt;
-                    {userStore.error ? &lt;p data-testid="error-msg" className="error-messages"&gt;{userStore.errorMsg}&lt;/p&gt; : &lt;p&gt;&lt;/p&gt;}
-                &lt;/form&gt;
-                :
-<span class="branch-1 cbranch-no" title="branch not covered" >                &lt;div&gt;</span>
-                    &lt;div className="gender-selection"&gt;
-                        &lt;p&gt;Select gender&lt;/p&gt;
-                        &lt;div className="radio-buttons"&gt;
-                            &lt;div className="form-check"&gt;
-                                &lt;input data-testid="radio-button-male" className="form-check-input" type="radio" onChange={handleGender} name="exampleRadios" id="exampleRadios1" value="male" /&gt;
-                                &lt;label data-testid="radio-label-male" className="form-check-label" htmlFor="exampleRadios1"&gt;
-                                    Male
-                                &lt;/label&gt;
-                            &lt;/div&gt;
-                            &lt;div className="form-check"&gt;
-                                &lt;input data-testid="radio-button-female" className="form-check-input" type="radio" onChange={handleGender} name="exampleRadios" id="exampleRadios2" value="female"/&gt;
-                                &lt;label data-testid="radio-button-female" className="form-check-label" htmlFor="exampleRadios2"&gt;
-                                    Female
-                                &lt;/label&gt;
-                            &lt;/div&gt;
-                        &lt;/div&gt;
-                    &lt;/div&gt;
-                    &lt;form className="create-user-form"&gt;
-                        &lt;label htmlFor="Create a new user"&gt;&lt;/label&gt;
-                        &lt;input onChange={handleDiagnose} type="text" placeholder="Your diagnose (If any)"&gt;&lt;/input&gt;
-                        &lt;input onChange={handleWeight} type="text" placeholder="Weight"&gt;&lt;/input&gt;
-                        &lt;input onChange={handlePhoneNumber} type="text" placeholder="Phone number"&gt;&lt;/input&gt;
-                        &lt;button onClick={submitUser}&gt;Create User&lt;/button&gt;
-                        {userStore.error ? &lt;p data-testid="error-msg" className="error-messages"&gt;{userStore.errorMsg}&lt;/p&gt; : &lt;p&gt;&lt;/p&gt;}
-                    &lt;/form&gt;
-                &lt;/div&gt;
-            : //If the user wants to create a medical user
             &lt;form className="create-user-form"&gt;
                 &lt;SelectUserType/&gt;
                 &lt;label htmlFor="Create a new user"&gt;&lt;/label&gt;
-                &lt;input onChange={handleEmail} name="email" type="text" placeholder="Email"/&gt;
+                &lt;input onChange={handleEmail} name="email" type="text" placeholder= "Email"/&gt;
                 &lt;input onChange={handlePassword} type="password" placeholder="Password"/&gt;
                 &lt;input onChange={handleRepeatPassword} type="password" placeholder="Repeat password"/&gt;
                 &lt;input onChange={handleFirstName} type="text" placeholder="First name(s)"/&gt;
-                &lt;input onChange={handleLastName} type="text" placeholder= "Last name"/&gt;
+                &lt;input onChange={handleLastName} type="text" placeholder="Last name"/&gt;
+                &lt;label htmlFor="user-birthday"&gt;Day of Birth:&lt;/label&gt;
+                &lt;input onChange={handleBirthday} type="date" data-testid="create-user-dob" name="Birthday" id="user-birthday" placeholder= ""/&gt;
                 &lt;input onChange={handleCity} type="text" placeholder="City"/&gt;
-                &lt;input onChange={handleRegion} type="text" placeholder="Region"/&gt;
-                &lt;input onChange={handleCountry} type="text" placeholder= "Country"/&gt;
-                &lt;button onClick={submitUser} &gt;Create User&lt;/button&gt;
-                {userStore.error ? <span class="branch-0 cbranch-no" title="branch not covered" >&lt;p data-testid="error-msg" className="error-messages"&gt;{userStore.errorMsg}&lt;/p&gt; </span>: &lt;p&gt;&lt;/p&gt;}
+                &lt;input onChange={handleRegion} type="text" placeholder= "Region"/&gt;
+                &lt;input onChange={handleCountry} type="text" placeholder="Country"/&gt;
+                &lt;button onClick={checkFirstForm} &gt;Next&lt;/button&gt;
+                {userStore.error ? &lt;p data-testid="error-msg" className="error-messages"&gt;{userStore.errorMsg}&lt;/p&gt; : &lt;p&gt;&lt;/p&gt;}
             &lt;/form&gt;
+            :
+<span class="branch-1 cbranch-no" title="branch not covered" >            &lt;div&gt;</span>
+                &lt;div className="gender-selection"&gt;
+                    &lt;p&gt;Select gender&lt;/p&gt;
+                    &lt;div className="radio-buttons"&gt;
+                        &lt;div className="form-check"&gt;
+                            &lt;input data-testid="radio-button-male" className="form-check-input" type="radio" onChange={handleGender} name="exampleRadios" id="exampleRadios1" value="male" /&gt;
+                            &lt;label data-testid="radio-label-male" className="form-check-label" htmlFor="exampleRadios1"&gt;
+                                Male
+                            &lt;/label&gt;
+                        &lt;/div&gt;
+                        &lt;div className="form-check"&gt;
+                            &lt;input data-testid="radio-button-female" className="form-check-input" type="radio" onChange={handleGender} name="exampleRadios" id="exampleRadios2" value="female"/&gt;
+                            &lt;label data-testid="radio-button-female" className="form-check-label" htmlFor="exampleRadios2"&gt;
+                                Female
+                            &lt;/label&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;form className="create-user-form"&gt;
+                    &lt;label htmlFor="Create a new user"&gt;&lt;/label&gt;
+                    &lt;input onChange={handleDiagnose} type="text" placeholder="Your diagnose (If any)"&gt;&lt;/input&gt;
+                    &lt;input onChange={handleWeight} type="text" placeholder="Weight"&gt;&lt;/input&gt;
+                    &lt;input onChange={handlePhoneNumber} type="text" placeholder="Phone number"&gt;&lt;/input&gt;
+                    &lt;button onClick={submitUser}&gt;Create User&lt;/button&gt;
+                    {userStore.error ? &lt;p data-testid="error-msg" className="error-messages"&gt;{userStore.errorMsg}&lt;/p&gt; : &lt;p&gt;&lt;/p&gt;}
+                &lt;/form&gt;
+            &lt;/div&gt;
+        : //If the user wants to create a medical user
+        &lt;form className="create-user-form"&gt;
+            &lt;SelectUserType/&gt;
+            &lt;label htmlFor="Create a new user"&gt;&lt;/label&gt;
+            &lt;input onChange={handleEmail} name="email" type="text" placeholder="Email"/&gt;
+            &lt;input onChange={handlePassword} type="password" placeholder="Password"/&gt;
+            &lt;input onChange={handleRepeatPassword} type="password" placeholder="Repeat password"/&gt;
+            &lt;input onChange={handleFirstName} type="text" placeholder="First name(s)"/&gt;
+            &lt;input onChange={handleLastName} type="text" placeholder= "Last name"/&gt;
+            &lt;input onChange={handleCity} type="text" placeholder="City"/&gt;
+            &lt;input onChange={handleRegion} type="text" placeholder="Region"/&gt;
+            &lt;input onChange={handleCountry} type="text" placeholder= "Country"/&gt;
+            &lt;button onClick={submitUser} &gt;Create User&lt;/button&gt;
+            {userStore.error ? <span class="branch-0 cbranch-no" title="branch not covered" >&lt;p data-testid="error-msg" className="error-messages"&gt;{userStore.errorMsg}&lt;/p&gt; </span>: &lt;p&gt;&lt;/p&gt;}
+        &lt;/form&gt;
     );
 }
 &nbsp;
@@ -790,7 +808,7 @@ export default observer(CreateUserFormOne)</pre></td></tr></table></pre>
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2022-11-06T17:56:33.632Z
+                at 2022-11-30T14:52:40.193Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>
