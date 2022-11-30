@@ -78,41 +78,6 @@ class UserPreferencesStore{
         console.log("this.thisUsersPreferences is: ", this.thisUsersPreferences)
     }
 
-    async calledFromPage() {
-        if (authenticationStore.getLoggedIn() !== null && userStore.getEmail() !== null) {
-            console.log("logged in and mail: " + userStore.getEmail())
-            let url = this.webUrl + "/getAll/";
-            await fetch(url, {
-                method: 'GET',
-                mode: 'cors',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                    'token': authenticationStore.getToken(),
-                    'email': "mail"
-                }
-            }).then(async value => {
-                    try {
-                        let temp = await value.json().catch()
-                        console.log("temp")
-                        console.log(temp)
-                    } catch (e) {
-                        console.error(e)
-                    }
-                }
-            ).catch( reason => {
-                console.log("in catch reason:")
-                console.log(reason)
-            }).finally(async () => {
-                // deactivate loading spinner and reactivate buttons
-
-            });
-
-
-        }
-
-    }
-
 
     async getSettingsAndUserPref() {
         if (userStore.getEmail() != null) {
@@ -123,7 +88,8 @@ class UserPreferencesStore{
                     headers: {
                         'Accept': 'application/json',
                         'Content-Type': 'application/json',
-                        'token': authenticationStore.getToken()
+                        'token': authenticationStore.getToken(),
+                        'email': 'mail'
                     }
                 }).then(async value => {
                     try {
