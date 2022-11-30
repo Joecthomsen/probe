@@ -25,6 +25,7 @@ class UserPreferencesStore{
         {type: "language", choices: [{ id: "da", text: 'Danish' }, { id: "en", text: 'English' }, {id: "sp", text: 'Spanish' }, { id: "ch", text: 'Chinese' }, {id: "ot", text: 'Other'}, { text: 'dont care' }]}
     ];
 
+    resultA;
 
     // Constructor
     constructor() {
@@ -77,24 +78,64 @@ class UserPreferencesStore{
         console.log("this.thisUsersPreferences is: ", this.thisUsersPreferences)
     }
 
-    async getUsersPrefFromBackend() {
-        if (userStore.email != null) {
-            let url = this.webUrl + "/getByOwnerMail/" + userStore.email;
-            try {
-                this.thisUsersPreferences = await fetch(url, {
+    async calledFromPage() {
+        if (authenticationStore.getLoggedIn() !== null && userStore.getEmail() !== null) {
+            console.log("logged in and mail: " + userStore.getEmail())
+            let url = this.webUrl + "/getAll/";
+            await fetch(url, {
+                method: 'GET',
+                mode: 'cors',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'token': authenticationStore.getToken(),
+                    'email': "mail"
+                }
+            }).then(async value => {
+                    try {
+                        let temp = await value.json().catch()
+                        console.log("temp")
+                        console.log(temp)
+                    } catch (e) {
+                        console.error(e)
+                    }
+                }
+            ).catch( reason => {
+                console.log("in catch reason:")
+                console.log(reason)
+            }).finally(async () => {
+                // deactivate loading spinner and reactivate buttons
+
+            });
+
+
+        }
+
+    }
+
+
+    async getSettingsAndUserPref() {
+        if (userStore.getEmail() != null) {
+            let url = this.webUrl + "/getUserPrefsByOwnerMail/" + userStore.getEmail();
+                await fetch(url, {
                     method: 'GET',
                     mode: 'cors',
                     headers: {
                         'Accept': 'application/json',
                         'Content-Type': 'application/json',
-                        'token': authenticationStore.getToken(),
-                        'email': userStore.getEmail()
+                        'token': authenticationStore.getToken()
+                    }
+                }).then(async value => {
+                    try {
+                        let temp = await value.json().catch()
+                        console.log("temp")
+                        console.log(temp)
+                    } catch (e) {
+                        console.error(e)
                     }
                 })
-            } catch (e) {
-                console.error(e);
-            }
-        }
+
+        } else {console.log("no email to use")}
     }
 
     _prefToAdd = null;

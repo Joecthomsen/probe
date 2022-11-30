@@ -9,6 +9,7 @@ import PreferenceAdder from "../components/UserPreferences/PreferenceAdder";
 import {Link} from 'react-router-dom'
 import Button from "@mui/material/Button";
 
+
 const UserProfile = () => {
 
    /* const [allPreferences, setAllPreferences] = React.useState([]);
@@ -33,6 +34,12 @@ const UserProfile = () => {
           alert("not implemented yet")
     }
 
+    async function getFromApi() {
+
+        await userPreferences.getSettingsAndUserPref();
+
+    }
+
     return (
         <div>
         <div>
@@ -40,7 +47,18 @@ const UserProfile = () => {
 
                 <Grid xs={12} md={12}>
                     <h1> User Preferences </h1>
+                    <br/>
+                        <p> OBS grundet manglende tid er integrationen mellem backend og frontend ikke ordentligt implementeret</p>
+                    <br/>
+                        <p> frontend implementationen kan ses her med brug af components (dropdowns og buttons mm) </p>
+                    <br/>
+                    <p> Knappen "Click me to get from API demonsterer i consollen, at der modtages gyldigt resultat fra APIet   </p>
+
                 </Grid>
+                <Grid xs={12} md={12}>
+                    <Button key="getMySettingsAndPrefs" onClick={getFromApi} > Click me to get from API </Button>
+                </Grid>
+
 
                 <Grid xs={12} md={6}>
                     <Box border={2} >
