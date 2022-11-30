@@ -68,39 +68,42 @@ public class ProbeSpringbootApplication implements ApplicationRunner {
 			admin.setUsername("admin");
 			adminServiceImpl.addAdmin(admin);
 
+			SeedUserSetting(userSettingsService, prefAndChoiceService);
 
-			SeedPrefChoiceAndUserSetting(userSettingsService, prefAndChoiceService);
+
+	//		SeedPrefChoiceAndUserSetting(userSettingsService, prefAndChoiceService);
 		};
 	}
 
-	private static void SeedPrefChoiceAndUserSetting(UserSettingsService userSettingsService, PrefAndChoiceService prefAndChoiceService) {
-		ChoiceType choiceTypeYesNo = new ChoiceType();
-		choiceTypeYesNo.setId("yesNo");
-		Choicee choiceYes = new Choicee(choiceTypeYesNo.getId() + "_" + "yes", "yes", choiceTypeYesNo.getId());
-		Choicee choiceNo = new Choicee(choiceTypeYesNo.getId() + "_" + "no", "no", choiceTypeYesNo.getId());
-		prefAndChoiceService.AddChoicee(choiceYes);
-		prefAndChoiceService.AddChoicee(choiceNo);
-		Pref accomByHelper = new Pref("1p", "Need to be accompanied by helper", choiceTypeYesNo.getId());
-		prefAndChoiceService.AddPref(accomByHelper);
-		List<String> yesNoList = new ArrayList<>();
-		yesNoList.add(choiceYes.getId());
-		yesNoList.add(choiceNo.getId());
-		choiceTypeYesNo.setPossibleChoicesId(yesNoList);
-		prefAndChoiceService.AddChoiceType(choiceTypeYesNo);
+	private void SeedUserSetting(UserSettingsService userSettingsService, PrefAndChoiceService prefAndChoiceService) {
+		Choicee choiceeNo = new Choicee("no", "yesNo");
+		prefAndChoiceService.AddChoicee(choiceeNo);
+		Choicee choiceeYes = new Choicee("yes", "yesNo");
+		prefAndChoiceService.AddChoicee(choiceeYes);
+		Choicee languageDA = new Choicee("Danish", "language");
+		prefAndChoiceService.AddChoicee(languageDA);
+		Choicee languageEn = new Choicee("English", "language");
+		prefAndChoiceService.AddChoicee(languageEn);
+		Choicee languageGer = new Choicee("German", "language");
+		prefAndChoiceService.AddChoicee(languageGer);
+		Choicee languageSpa = new Choicee("Spanish", "language");
+		prefAndChoiceService.AddChoicee(languageSpa);
 
-		PrefChoicePair pcp1 = new PrefChoicePair();
-		pcp1.setChoiceId(choiceNo.getId());
-		pcp1.setPrefId(accomByHelper.getId());
+		Pref prefAccomByHelper = new Pref("Need to be accompanied by helper?", "yesNo");
+		prefAndChoiceService.AddPref(prefAccomByHelper);
+		Pref prefPhysicalWork = new Pref("Willing to do intense physical work?", "yesNo");
+		prefAndChoiceService.AddPref(prefPhysicalWork);
+		Pref prefLanguage = new Pref("Preferred language?", "language");
+		prefAndChoiceService.AddPref(prefLanguage);
 
-		String pcpId = SettingsHelper.GeneratePCPid(pcp1.getPrefId(), accomByHelper.getChoiceTypeId(), pcp1.getChoiceId());
-		pcp1.setId(pcpId);
-		prefAndChoiceService.AddPrefChoicePair(pcp1);
+		UserSettings userSettings = new UserSettings("TestUser", true);
+		UserSettings savedSettings = userSettingsService.saveUserSettings(userSettings);
 
-		List<String> prefChoicPairIdList = new ArrayList<>();
-		prefChoicPairIdList.add(pcp1.getId());
-		String userMail = "TestUser";
-		UserSettings userSettings = new UserSettings(userMail + "_settings", "TestUser", true, prefChoicPairIdList);
-		userSettingsService.saveUserSettings(userSettings);
+		UserPrefs userPrefs = new UserPrefs(savedSettings, prefAccomByHelper, choiceeNo);
+		var tempUSerPref =  prefAndChoiceService.AddUserPref(userPrefs);
+
+
+
 	}
 
 	// @Bean

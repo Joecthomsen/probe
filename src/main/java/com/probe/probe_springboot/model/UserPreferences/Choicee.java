@@ -16,10 +16,15 @@ import javax.persistence.*;
 public class Choicee {
 
     @Id
-    @Column(name = "id", nullable = false)
-    private String id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
     private String text;
 
     private String typeId;
+
+    public Choicee(String text, String typeId) {
+        this.text = text;
+        this.typeId = typeId;
+    }
 }

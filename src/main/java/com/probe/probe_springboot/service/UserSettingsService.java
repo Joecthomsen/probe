@@ -1,6 +1,5 @@
 package com.probe.probe_springboot.service;
 
-import com.probe.probe_springboot.model.UserPreferences.PrefChoicePair;
 import com.probe.probe_springboot.model.UserPreferences.UserSettings;
 import com.probe.probe_springboot.repositories.UserPreferences.UserSettingsRepository;
 import org.springframework.stereotype.Service;
@@ -23,16 +22,16 @@ public class UserSettingsService {
         }
     }
 
-    public UserSettings getUserSettingsByOwnID(String id) {
-        return userSettingsRepository.findById(id).get();
+    public UserSettings getUserSettingsByOwnID(Long id) {
+        return userSettingsRepository.findById(id).orElse(null);
     }
 
     public UserSettings getUsersSetttingsByOwnersMail(String ownerMail) {
         return userSettingsRepository.findByOwnerMail(ownerMail);
     }
 
-    public UserSettings addUserPreferencesToOwnerMail( String ownerMail, List<String> prefChoicePairIds) {
-        UserSettings newModel = new UserSettings(null, ownerMail,true, prefChoicePairIds);
+    public UserSettings addUserPreferencesToOwnerMail( String ownerMail, boolean active) {
+        UserSettings newModel = new UserSettings(ownerMail, active);
         try {
             return saveUserSettings(newModel);
         } catch (Exception e) {
@@ -41,7 +40,7 @@ public class UserSettingsService {
         }
     }
 
-    public String deleteById(String id) {
+    public String deleteById(Long id) {
 
         try {
             userSettingsRepository.deleteById(id);
@@ -64,7 +63,7 @@ public class UserSettingsService {
             return userSettingsRepository.findAll();
         } catch (Exception e) {
             e.printStackTrace();
-            throw new RuntimeException("Unable to delete");
+            throw new RuntimeException("Unable to get all");
         }
     }
 }

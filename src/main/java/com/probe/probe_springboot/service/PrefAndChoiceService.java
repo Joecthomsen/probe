@@ -4,26 +4,17 @@ import com.probe.probe_springboot.model.UserPreferences.*;
 import com.probe.probe_springboot.repositories.UserPreferences.*;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 public class PrefAndChoiceService {
 
     private final ChoiceRepository choiceRepository;
     private final PrefRepository prefRepository;
-    private final ChoiceTypeRepository choiceTypeRepository;
+    private final UserPrefsRepository userPrefsRepository;
 
-    private final PrefChoicePairRepository prefChoicePairRepository;
-
-
-    public PrefAndChoiceService(ChoiceRepository choiceRepository,
-                                PrefRepository prefRepository,
-                                ChoiceTypeRepository choiceTypeRepository,
-                                PrefChoicePairRepository prefChoicePairRepository) {
+    public PrefAndChoiceService(ChoiceRepository choiceRepository, PrefRepository prefRepository, UserPrefsRepository userPrefsRepository) {
         this.choiceRepository = choiceRepository;
         this.prefRepository = prefRepository;
-        this.choiceTypeRepository = choiceTypeRepository;
-        this.prefChoicePairRepository = prefChoicePairRepository;
+        this.userPrefsRepository = userPrefsRepository;
     }
 
     public Choicee AddChoicee(Choicee choicee){
@@ -44,18 +35,18 @@ public class PrefAndChoiceService {
         }
     }
 
-    public ChoiceType AddChoiceType(ChoiceType choiceType){
+    public UserPrefs AddUserPref(UserPrefs userPrefs) {
         try {
-            return choiceTypeRepository.save(choiceType);
+            return userPrefsRepository.save(userPrefs);
         } catch (Exception e) {
             e.printStackTrace();
             throw e;
         }
     }
 
-    public PrefChoicePair AddPrefChoicePair(PrefChoicePair prefChoicePair){
+    public Pref GetPrefById(Long id) {
         try {
-            return prefChoicePairRepository.save(prefChoicePair);
+            return prefRepository.getReferenceById(id);
         } catch (Exception e) {
             e.printStackTrace();
             throw e;

@@ -24,7 +24,7 @@ public class UserSettingsController {
     }
 
     @GetMapping("/getById/{id}")
-    public UserSettings GetUSersPrefChoicesById(@PathVariable String id) {
+    public UserSettings GetUSersPrefChoicesById(@PathVariable Long id) {
         return userSettingsService.getUserSettingsByOwnID(id);
     }
 
@@ -39,7 +39,7 @@ public class UserSettingsController {
     }
 
     @DeleteMapping("/deleteUserSettings/{id}")
-    public String DeleteUserSettingsById(@PathVariable String id) {
+    public String DeleteUserSettingsById(@PathVariable Long id) {
         return userSettingsService.deleteById(id);
     }
 

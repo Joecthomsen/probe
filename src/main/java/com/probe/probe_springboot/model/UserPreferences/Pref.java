@@ -10,16 +10,24 @@ import javax.persistence.*;
 @Entity
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
 @Table(name = "pref")
 public class Pref {
-    @Id
-    @Column(name = "id", nullable = false)
 
-    private String id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
     private String text;
+
     private String choiceTypeId;
 
+    public Pref(String text, String choiceTypeId){
+        this.text = text;
+        this.choiceTypeId = choiceTypeId;
+    }
 
+
+    public Pref() {
+
+    }
 }

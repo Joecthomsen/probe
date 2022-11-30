@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Getter
 @Setter
@@ -15,12 +14,18 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 public class UserSettings {
+
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     @NotNull
+    @Column(unique = true)
     private String ownerMail;  // a foreign key
     private boolean active;  // could be changed to status and use an enum instead for more posibilities
-    @ElementCollection
-    private List<String> prefAndChoicePairId;
+
+    public UserSettings(String ownerMail, boolean active) {
+        this.ownerMail = ownerMail;
+        this.active = active;
+    }
 
 }
