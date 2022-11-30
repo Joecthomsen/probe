@@ -30,13 +30,13 @@ function TableEntry({ label, data, isEditable, onChange, name }) {
 // Modified Modal from https://mui.com/material-ui/react-modal/
 function ModalDelete({ open, close, fullName, mail, deleteUser }) {
   const style = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
     width: 400,
-    bgcolor: 'background.paper',
-    border: '2px solid #000',
+    bgcolor: "background.paper",
+    border: "2px solid #000",
     boxShadow: 24,
     p: 4,
   };
@@ -55,8 +55,8 @@ function ModalDelete({ open, close, fullName, mail, deleteUser }) {
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
             Are you sure you want to delete {fullName} with mail {mail}?
           </Typography>
-          <Button onClick={deleteUser}>Delete</Button> 
-          <Button onClick={close}>Cancel</Button> 
+          <Button onClick={deleteUser}>Delete</Button>
+          <Button onClick={close}>Cancel</Button>
         </Box>
       </Modal>
     </div>
@@ -88,7 +88,7 @@ function ViewUser() {
   const [modalOpen, setModalOpen] = useState(false);
   const navigate = useNavigate();
   const fullName = user.firstName + " " + user.lastName;
-  
+
   const handleChange = (e) => {
     setUser({
       ...user,
@@ -108,7 +108,7 @@ function ViewUser() {
   const deleteUser = () => {
     userApi.deleteUser(user.email);
     navigate("/admin-page/");
-  }
+  };
 
   const btnDeleteClick = (e) => {
     handleModalOpen();
@@ -126,9 +126,14 @@ function ViewUser() {
   };
 
   return (
-    
     <div style={{ width: "100%" }}>
-      <ModalDelete open={modalOpen} close={handleModalClose} fullName={fullName} mail={user.email} deleteUser={deleteUser}/>
+      <ModalDelete
+        open={modalOpen}
+        close={handleModalClose}
+        fullName={fullName}
+        mail={user.email}
+        deleteUser={deleteUser}
+      />
       <Box
         sx={{
           display: "flex",
@@ -263,7 +268,7 @@ function ViewUser() {
             </Button>
           </Box>
         </Box>
-        <Box>Some text here </Box>
+        <Box>Insert list of trials </Box>
       </Box>
     </div>
   );

@@ -3,15 +3,15 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for src/components/UserPreferences/PreferenceAdder.jsx</title>
+    <title>Code coverage report for src/requests/adminLogin.js</title>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="../../../prettify.css" />
-    <link rel="stylesheet" href="../../../base.css" />
-    <link rel="shortcut icon" type="image/x-icon" href="../../../favicon.png" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="../../favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style type='text/css'>
         .coverage-summary .sorter {
-            background-image: url(../../../sort-arrow-sprite.png);
+            background-image: url(../../sort-arrow-sprite.png);
         }
     </style>
 </head>
@@ -19,34 +19,34 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../../index.html">All files</a> / <a href="index.html">src/components/UserPreferences</a> PreferenceAdder.jsx</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">src/requests</a> adminLogin.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">25% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/7</span>
+                <span class='fraction'>2/8</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">25% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/0</span>
+                <span class='fraction'>1/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/4</span>
+                <span class='fraction'>0/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">25% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/7</span>
+                <span class='fraction'>2/8</span>
             </div>
         
             
@@ -94,11 +94,25 @@
 <a name='L29'></a><a href='#L29'>29</a>
 <a name='L30'></a><a href='#L30'>30</a>
 <a name='L31'></a><a href='#L31'>31</a>
-<a name='L32'></a><a href='#L32'>32</a>
-<a name='L33'></a><a href='#L33'>33</a>
-<a name='L34'></a><a href='#L34'>34</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L32'></a><a href='#L32'>32</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -109,59 +123,39 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import {userPreferences} from "../../stores/UserPreferencesStore";
-import Button from '@mui/material/Button';
-import {observer} from "mobx-react-lite";
-import * as React from "react";
-import BasicSelect from "./BasicSelect";
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const baseUrl =
+  process.env.NODE_ENV === "development"
+    ? <span class="branch-0 cbranch-no" title="branch not covered" >"http://localhost:8080"</span>
+    : "https://probe.joecthomsen.dk";
 &nbsp;
-const PreferenceAdder = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
+class AdminApi {
+<span class="fstat-no" title="function not covered" >  as</span>ync login(username, password) {
+    var body = <span class="cstat-no" title="statement not covered" >JSON.stringify({ username: username, password: password });</span>
+    const response = <span class="cstat-no" title="statement not covered" >await fetch(baseUrl + "/admin/login", {</span>
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+        Accept: "application/json",
+        Connection: "keep-alive",
+      },
+      body: body,
+    }).then(<span class="fstat-no" title="function not covered" >(r</span>es) =&gt; {
+<span class="cstat-no" title="statement not covered" >      if (!res.ok) {</span>
+<span class="cstat-no" title="statement not covered" >        return Promise.reject({</span>
+          status: res.status,
+        });
+      }
+<span class="cstat-no" title="statement not covered" >      return res.text();</span>
+    });
 &nbsp;
-    function <span class="fstat-no" title="function not covered" >addPref(</span>) {
-<span class="cstat-no" title="statement not covered" >       userPreferences.addPreference();</span>
-    }
-&nbsp;
-    function <span class="fstat-no" title="function not covered" >prefChanged(</span>newValue) {
-<span class="cstat-no" title="statement not covered" >        console.log("prefChanged", newValue)</span>
-<span class="cstat-no" title="statement not covered" >        userPreferences.prefToAdd = newValue</span>
-    }
-&nbsp;
-    function <span class="fstat-no" title="function not covered" >choiceChanged(</span>newValue) {
-<span class="cstat-no" title="statement not covered" >        console.log("choiceChanged", newValue)</span>
-<span class="cstat-no" title="statement not covered" >        userPreferences.choiceToAdd = newValue</span>
-    }
-&nbsp;
-<span class="cstat-no" title="statement not covered" >    return (</span>
-        &lt;div&gt;
-                &lt;BasicSelect myArray = { userPreferences.possiblePrefs } labelName = "Preference" onValueChanged = {prefChanged}   &gt;&lt;/BasicSelect&gt;
-                &lt;BasicSelect myArray = { userPreferences.possibleChoices } labelName = "Choice" onValueChanged = {choiceChanged}&gt;&lt;/BasicSelect&gt;
-                &lt;Button variant={"outlined"} onClick={addPref}&gt; Add This Preference &lt;/Button&gt;
-        &lt;/div&gt;
-    )
-&nbsp;
+<span class="cstat-no" title="statement not covered" >    return response;</span>
+  }
 }
 &nbsp;
-export default observer(PreferenceAdder);
+const adminApi = new AdminApi();
+export default adminApi;
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -171,14 +165,14 @@ export default observer(PreferenceAdder);
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
                 at 2022-11-30T14:52:40.193Z
             </div>
-        <script src="../../../prettify.js"></script>
+        <script src="../../prettify.js"></script>
         <script>
             window.onload = function () {
                 prettyPrint();
             };
         </script>
-        <script src="../../../sorter.js"></script>
-        <script src="../../../block-navigation.js"></script>
+        <script src="../../sorter.js"></script>
+        <script src="../../block-navigation.js"></script>
     </body>
 </html>
     
