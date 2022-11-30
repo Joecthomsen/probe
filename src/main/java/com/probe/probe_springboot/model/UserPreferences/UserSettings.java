@@ -21,7 +21,7 @@ public class UserSettings {
     @NotNull
     @Column(unique = true)
     private String ownerMail;  // a foreign key
-    private boolean active;  // could be changed to status and use an enum instead for more posibilities
+    private boolean active;
 
     public UserSettings(String ownerMail, boolean active) {
         this.ownerMail = ownerMail;

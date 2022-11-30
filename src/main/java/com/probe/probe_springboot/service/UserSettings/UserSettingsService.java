@@ -1,4 +1,4 @@
-package com.probe.probe_springboot.service;
+package com.probe.probe_springboot.service.UserSettings;
 
 import com.probe.probe_springboot.model.UserPreferences.UserSettings;
 import com.probe.probe_springboot.repositories.UserPreferences.UserSettingsRepository;
