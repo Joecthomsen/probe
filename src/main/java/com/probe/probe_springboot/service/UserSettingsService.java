@@ -1,6 +1,5 @@
 package com.probe.probe_springboot.service;
 
-import com.probe.probe_springboot.model.UserPreferences.PrefChoicePair;
 import com.probe.probe_springboot.model.UserPreferences.UserSettings;
 import com.probe.probe_springboot.repositories.UserPreferences.UserSettingsRepository;
 import org.springframework.stereotype.Service;
@@ -8,7 +7,6 @@ import java.util.List;
 
 @Service
 public class UserSettingsService {
-
 
     private final UserSettingsRepository userSettingsRepository;
     public UserSettingsService(UserSettingsRepository userSettingsRepository) {
@@ -24,16 +22,16 @@ public class UserSettingsService {
         }
     }
 
-    public UserSettings getUserSettingsByOwnID(String id) {
-        return userSettingsRepository.findById(id).get();
+    public UserSettings getUserSettingsByOwnID(Long id) {
+        return userSettingsRepository.findById(id).orElse(null);
     }
 
     public UserSettings getUsersSetttingsByOwnersMail(String ownerMail) {
         return userSettingsRepository.findByOwnerMail(ownerMail);
     }
 
-    public UserSettings addUserPreferencesToOwnerMail( String ownerMail, List<PrefChoicePair> prefChoicePairs) {
-        UserSettings newModel = new UserSettings(ownerMail, prefChoicePairs, true);
+    public UserSettings addUserPreferencesToOwnerMail( String ownerMail, boolean active) {
+        UserSettings newModel = new UserSettings(ownerMail, active);
         try {
             return saveUserSettings(newModel);
         } catch (Exception e) {
@@ -42,22 +40,31 @@ public class UserSettingsService {
         }
     }
 
-    public String deleteById(Long ID) {
+    public String deleteById(Long id) {
 
         try {
-            userSettingsRepository.deleteById(ID.toString());
-            return "deleted" + ID;
+            userSettingsRepository.deleteById(id);
+            return "deleted" + id;
 
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException("Unable to delete");
         }
     }
-    public UserSettings updateUserPreferences(UserSettings userPreferencesModel) {
-        if (userSettingsRepository.findById(userPreferencesModel.getId()) != null) {
-            return userSettingsRepository.save(userPreferencesModel);
+    public UserSettings updateUserSettings(UserSettings userSettings) {
+        if (userSettingsRepository.findById(userSettings.getId()) != null) {
+            return userSettingsRepository.save(userSettings);
         }
-        else throw new RuntimeException("UserPreference not found");
+        else throw new RuntimeException("UserSettings not found");
+    }
+
+    public List<UserSettings> getAll() {
+        try {
+            return userSettingsRepository.findAll();
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("Unable to get all");
+        }
     }
 }
 

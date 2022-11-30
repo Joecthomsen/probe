@@ -3,8 +3,11 @@ package com.probe.probe_springboot;
 import com.probe.probe_springboot.model.Admin;
 import com.probe.probe_springboot.model.Role;
 import com.probe.probe_springboot.model.User;
+import com.probe.probe_springboot.model.UserPreferences.*;
 import com.probe.probe_springboot.service.AdminServiceImpl;
+import com.probe.probe_springboot.service.PrefAndChoiceService;
 import com.probe.probe_springboot.service.UserServiceImpl;
+import com.probe.probe_springboot.service.UserSettingsService;
 import io.prometheus.client.exporter.HTTPServer;
 import io.prometheus.client.hotspot.DefaultExports;
 import lombok.extern.log4j.Log4j2;
@@ -20,6 +23,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Profile;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.security.crypto.bcrypt.BCrypt;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @EnableJpaRepositories
 @Log4j2
@@ -43,7 +49,7 @@ public class ProbeSpringbootApplication implements ApplicationRunner {
 
 	@Bean
 	@Profile("!test")
-	CommandLineRunner run(UserServiceImpl userService, AdminServiceImpl adminServiceImpl) {
+	CommandLineRunner run(UserServiceImpl userService, AdminServiceImpl adminServiceImpl, UserSettingsService userSettingsService, PrefAndChoiceService prefAndChoiceService) {
 		return args -> {
 			log.error("Dame, I'm working!");
 			// DefaultExports.initialize();
@@ -61,7 +67,43 @@ public class ProbeSpringbootApplication implements ApplicationRunner {
 			admin.setPassword(BCrypt.hashpw("admin", BCrypt.gensalt()));
 			admin.setUsername("admin");
 			adminServiceImpl.addAdmin(admin);
+
+			SeedUserSetting(userSettingsService, prefAndChoiceService);
+
+
+	//		SeedPrefChoiceAndUserSetting(userSettingsService, prefAndChoiceService);
 		};
+	}
+
+	private void SeedUserSetting(UserSettingsService userSettingsService, PrefAndChoiceService prefAndChoiceService) {
+		Choicee choiceeNo = new Choicee("no", "yesNo");
+		prefAndChoiceService.AddChoicee(choiceeNo);
+		Choicee choiceeYes = new Choicee("yes", "yesNo");
+		prefAndChoiceService.AddChoicee(choiceeYes);
+		Choicee languageDA = new Choicee("Danish", "language");
+		prefAndChoiceService.AddChoicee(languageDA);
+		Choicee languageEn = new Choicee("English", "language");
+		prefAndChoiceService.AddChoicee(languageEn);
+		Choicee languageGer = new Choicee("German", "language");
+		prefAndChoiceService.AddChoicee(languageGer);
+		Choicee languageSpa = new Choicee("Spanish", "language");
+		prefAndChoiceService.AddChoicee(languageSpa);
+
+		Pref prefAccomByHelper = new Pref("Need to be accompanied by helper?", "yesNo");
+		prefAndChoiceService.AddPref(prefAccomByHelper);
+		Pref prefPhysicalWork = new Pref("Willing to do intense physical work?", "yesNo");
+		prefAndChoiceService.AddPref(prefPhysicalWork);
+		Pref prefLanguage = new Pref("Preferred language?", "language");
+		prefAndChoiceService.AddPref(prefLanguage);
+
+		UserSettings userSettings = new UserSettings("TestUser", true);
+		UserSettings savedSettings = userSettingsService.saveUserSettings(userSettings);
+
+		UserPrefs userPrefs = new UserPrefs(savedSettings, prefAccomByHelper, choiceeNo);
+		var tempUSerPref =  prefAndChoiceService.AddUserPref(userPrefs);
+
+
+
 	}
 
 	// @Bean

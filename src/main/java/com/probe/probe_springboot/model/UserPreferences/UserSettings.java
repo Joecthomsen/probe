@@ -1,33 +1,31 @@
 package com.probe.probe_springboot.model.UserPreferences;
 
 import com.sun.istack.NotNull;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 public class UserSettings {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String id;
+    private Long id;
     @NotNull
+    @Column(unique = true)
     private String ownerMail;  // a foreign key
-    private boolean active;  // could be changed to status and use an enum instead
+    private boolean active;  // could be changed to status and use an enum instead for more posibilities
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "userSettings")
-    private List<PrefChoicePair> prefsAndChoices = new java.util.ArrayList<>();
-
-    public UserSettings(String ownerMail, List<PrefChoicePair> prefChoicePairs, boolean b) {
+    public UserSettings(String ownerMail, boolean active) {
         this.ownerMail = ownerMail;
-        this.prefsAndChoices = prefChoicePairs;
-        this.active = b;
+        this.active = active;
     }
 
-    public UserSettings() {
-
-    }
 }
