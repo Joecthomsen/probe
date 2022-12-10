@@ -31,7 +31,43 @@ jobs:
       # Install caprover cli
       - name: install caprover cli
         run: npm install -g caprover
+      # Trigger deploy on Caprover instance Test
+      - name: Deploy testapp
+        env:
+          APP_NAME: 'test-e2e'
+          APP_URL: 'https://joecthomsen.dk/'
+          IMAGE_NAME: 'joecthomsen/docker-app:${{github.run_number}}'
+          DB_HOST: '${{secrets.DB_HOST}}'
+          DB_NAME: '${{secrets.DB_NAME}}'
+          DB_PASSWORD: '${{secrets.DB_PASSWORD}}'
+          DB_PORT: '${{secrets.DB_PORT}}'
+          DB_USERNAME: '${{secrets.DB_USERNAME}}'
+          SERVER_PORT: '${{secrets.SERVER_PORT}}'
+        run:
+          'caprover deploy --caproverUrl=$APP_URL --caproverPassword=${{ secrets.CAPROVER_PASSWORD }} --imageName=$IMAGE_NAME --appName=$APP_NAME'
+
+      - name: sleep 10 seconds
+        run: sleep 10s
+        shell: bash
+        
+  e2etest-passedtest-deploy:
+    name: Cypress Integration Tests
+    needs: build-and-deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Run Cypress
+        uses: cypress-io/github-action@v4
+        with:
+          working-directory: ./web/e2e
+          config: baseUrl=https://test-e2e.joecthomsen.dk/
+
       # Trigger deploy on Caprover instance
+       # Install caprover cli
+      - name: install caprover cli
+        run: npm install -g caprover
       - name: Deploy app
         env: 
           APP_NAME: 'probe'
