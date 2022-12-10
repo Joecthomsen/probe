@@ -1,4 +1,4 @@
-import DTUlogo from "../../resources/DTU_Logo_Hvid.jpg";
+import DTUlogo from "../../resources/DTU_Logo_Social_Media_Hvid_Paa_sort_M.jpg";
 import {authenticationStore} from "../../stores/AuthenticationStore";
 import {useNavigate} from "react-router-dom";
 import jwtDecode from "jwt-decode";
